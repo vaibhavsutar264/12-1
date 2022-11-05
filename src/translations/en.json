@@ -8,6 +8,6 @@
     "password": "Password",
     "forgotPassword": "Forgot Password ?",
     "loginBtn": "Login",
-    "yourEmailIdPasswordNotMatch": "Your Email Id and password does not match, Please try again"
+    "yourEmailIdPasswordNotMatch": "Entered credential are not correct"
   }
 }

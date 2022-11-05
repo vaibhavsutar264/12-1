@@ -30,12 +30,8 @@ const Login = () => {
   const userLogin = useSelector<RootState, UserState>(
     (state: RootState) => state.userLogin
   );
-  // const userLoginData = useSelector<RootState, UserState>(
-  //   (state: RootState) => state.userLogin.user
-  // );
   const { userInfo,loading, data, token } = userLogin;
   const { message, success } = data;
-  // const { userInfo, error, token, email:emailfrombackend, loading, data } = userLogin;
 
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem("token")!== null) {
@@ -52,15 +48,6 @@ const Login = () => {
     // navigate('/setpassword')
 
   };
-  // const inputElement = document.getElementById(
-  //   "passwordTitle"
-  // ) as HTMLInputElement;
-  // const messageElement = document.getElementById("message") as HTMLInputElement;
-  // if (inputElement != null) {
-  //   messageElement.style.display = "block";
-  // } else {
-  //   console.log("abcd");
-  // }
 
   const handleChange = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -82,7 +69,7 @@ const Login = () => {
   const handleEmailChange = (e: SyntheticEvent) => {
     e.preventDefault();
     const emailVariable =
-      "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+      ".{5,}";
       // const submitButtonElement = document.getElementById("btn-enable-style") as HTMLInputElement;
     if ((e.target as HTMLInputElement).value.match(emailVariable)) {
       (e.target as HTMLInputElement).className="form-control input-custom is-valid"
@@ -95,24 +82,9 @@ const Login = () => {
 
   const eyeToggle = () => {
     // const passwordElement = document.getElementById("password") as HTMLInputElement;
-    // if (passwordElement.type === "password"){
-    //       passwordElement.type = "text";
-    //  } else{
-    //         passwordElement.type = "password";
-    //  }
      setPasswordShown(!passwordShown);
   }
 
-//   const input = document.querySelector('input') as HTMLInputElement
-
-//   if (input) {
-//     input.value = ''
-// }
-
-  // (document.getElementById("username") as HTMLInputElement).value="";
-  // const passwordValueElement = document.getElementById("password") as HTMLInputElement;
-  // emailValueElement.value='';
-  // passwordValueElement.value='';
 
   return (
     <>
@@ -122,8 +94,8 @@ const Login = () => {
                   <h5 className="security-form-title title">{t<string>('loginHeading')}</h5>
                   <p className="security-form-subTitle sub-title">{t<string>('enterEmailAndPassword')}</p>
                   <p className="text-danger text-center making-color-red" id="making-color-red">   
-                  {!success && message}
-
+                  {!success && message=="Invalid email and password"?(<p>
+                    {t<string>('yourEmailIdPasswordNotMatch')}</p>): message}
                   </p>
                 </div>
                 <form onSubmit={submitHandler} action="#" method="post">

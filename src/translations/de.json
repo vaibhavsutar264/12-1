@@ -8,6 +8,6 @@
     "password": "Passwort eingeben",
     "forgotPassword": "Passwort vergessen ?",
     "loginBtn": "Anmeldung",
-    "yourEmailIdPasswordNotMatch": "Ihre E-Mail-ID und Ihr Passwort stimmen nicht überein. Bitte versuchen Sie es erneut"
+    "yourEmailIdPasswordNotMatch": "Eingegebene Anmeldedaten sind nicht korrekt"
   }
 }

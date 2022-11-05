@@ -20,21 +20,6 @@ export const login =
     dispatch: ThunkDispatch<RootState, unknown, AnyAction>
   ): Promise<void> => {
     try {
-      // dispatch({
-      //   type: USER_LOGIN_REQUEST,
-      // })
-
-      // const response = await fetch('/api/v1/login', {
-      //   // mode: "no-cors",
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json'},
-      //   credentials: 'include',
-      //   body: JSON.stringify({
-      //     email,
-      //     password,
-      //   }),
-      // })
-      // const loginService = services.loginModuleService
 
       const data:any = await services.loginModuleService.loginAPI({ email, password })
       
@@ -48,17 +33,12 @@ export const login =
       //       config
       //   )
 
-      // const data = await response.json()
       const userData =  {"email": data.data.user.email, "role":data.data.user.role, "token":data.data.token} 
       const token: any = data.data.token
       localStorage.setItem('userInfo', JSON.stringify(userData))
       localStorage.setItem('token', token)
       
       dispatch(userLoginActionCreator(userData));
-      // dispatch({
-      //   type: USER_LOGIN_SUCCESS,
-      //   payload: [{"email":data.data.user.email} ,{"role":data.data.user.role}, {"token":data.data.token}]
-      // })
       
     } catch (error: any) {
       dispatch(userLoginActionCreator(error.response.data));
