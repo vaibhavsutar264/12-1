@@ -1,0 +1,123 @@
+header {
+  width: 100%;
+  float: left;
+  clear: both;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 30px 100px;
+  .nav {
+    margin-right: 6%;
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .nav-link {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: 'poppins', sans-serif;
+      }
+    }
+  }
+  .language-select {
+    min-width: 100px;
+    max-width: 100px;
+    width: 100px;
+    padding: 0.3rem 2.5rem 0.3rem 1rem !important;
+    border-radius: 4px;
+    background-position: right 1rem center;
+    margin-left: 30px;
+    cursor: pointer !important;
+  }
+}
+
+header .logo img {
+  width: 150px;
+}
+
+.mode-text {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.theme-toggle-button {
+  position: absolute;
+  top: 54px;
+  right: 143px;
+  z-index: 99;
+  button {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: 0;
+    background: none;
+    border: 1px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover,
+    &:focus {
+      background: #d63548;
+      border-color: #d63548;
+    }
+    .bi {
+      font-size: 20px;
+      color: white;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .theme-toggle-button {
+    right: 100px;
+  }
+}
+@media (max-width: 768px) {
+  header a.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .theme-toggle-button {
+    right: 100px;
+  }
+}
+@media (max-width: 600px) {
+  header {
+    padding: 20px 0px;
+  }
+  header .logo img {
+    width: 80px;
+  }
+  header .language-select {
+    min-width: 80px;
+    max-width: 80px;
+    width: 80px;
+    padding: 0.3rem 1.5rem 0.3rem 1rem !important;
+  }
+  header {
+    .nav-link {
+      font-size: 12px;
+    }
+    .nav {
+      margin-right: 7%;
+    }
+  }
+  .theme-toggle-button {
+    top: 27px;
+    right: 14px;
+  }
+  .main-div {
+    border-top: 87px solid black;
+  }
+}

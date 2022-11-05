@@ -1,0 +1,13 @@
+{
+  "common": {
+    "home": "Heimat Screen",
+    "CpaasHeading": "CPAAS TCL in german",
+    "loginHeading": "Anmeldung",
+    "enterEmailAndPassword": "Geben Sie die E-Mail-ID und das Passwort ein",
+    "email": "Email eingeben",
+    "password": "Passwort eingeben",
+    "forgotPassword": "Passwort vergessen ?",
+    "loginBtn": "Anmeldung",
+    "yourEmailIdPasswordNotMatch": "Ihre E-Mail-ID und Ihr Passwort stimmen nicht überein. Bitte versuchen Sie es erneut"
+  }
+}
