@@ -45,6 +45,8 @@ const Login = () => {
   const submitHandler = async (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(login(email, password, token));
+    setEmail("");
+    setPassword("");
     // navigate('/setpassword')
 
   };
@@ -94,7 +96,7 @@ const Login = () => {
                   <h5 className="security-form-title title">{t<string>('loginHeading')}</h5>
                   <p className="security-form-subTitle sub-title">{t<string>('enterEmailAndPassword')}</p>
                   <p className="text-danger text-center making-color-red" id="making-color-red">   
-                  {!success && message=="Invalid email and password"?(<p>
+                  {!success && message=="Your Email Id and password does not match, Please try again"?(<p>
                     {t<string>('yourEmailIdPasswordNotMatch')}</p>): message}
                   </p>
                 </div>
@@ -140,7 +142,7 @@ const Login = () => {
                         placeholder="Enter your email"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                         value={email}
-                        className={message?("form-control input-custom is-invalid"): ("form-control input-custom") }
+                        className="form-control input-custom"
                         id="username"
                       />
                       <label htmlFor="username">{t<string>('email')}</label>
@@ -224,7 +226,7 @@ const Login = () => {
                         type={passwordShown ? "text" : "password"}
                         data-testid="password-element"
                         placeholder="Password"
-                        className={message?("form-control input-custom is-invalid"): ("form-control input-custom") }
+                        className="form-control input-custom"
                         value={password}
                         // title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters."
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~'=?\|\]\[\(\)\-<>/]).{8,}"
@@ -253,7 +255,7 @@ const Login = () => {
                     </a>
                   </div>
                   <div className="input-group">
-                    <button id="btn-enable-style" type="submit" name="submit" disabled={open} className="login-btn">
+                    <button id="btn-enable-style" data-testid="button-element" type="submit" name="submit" disabled={open} className="login-btn">
                     {t<string>('loginBtn')}
                     </button>
                   </div>
