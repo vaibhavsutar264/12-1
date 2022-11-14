@@ -63,6 +63,9 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   #password{
     color: ${({ theme }) => theme.textForLogin};
   }
+  #confirmPassword{
+    color: ${({ theme }) => theme.textForLogin};
+  }
   #mail-icon{
     color: ${({ theme }) => theme.textForLogin};
   }

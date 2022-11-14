@@ -68,8 +68,6 @@ const SetPassword = () => {
   ) => {
     event.preventDefault()
   }
-
-  // const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [open, setOpen] = useState(false)
@@ -79,15 +77,11 @@ const SetPassword = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (isError) {
-      // toast.error(message)
       console.log(message)
-
-      // dispatch(reset())
     }
     if (isSuccess) {
       toast.success(message)
       setPassword('')
-      // setOldPassword("")
       setConfirmPassword('')
       dispatch(reset())
     }
@@ -110,32 +104,15 @@ const SetPassword = () => {
     setPassword((e.target as HTMLInputElement).value)
     const patternVariable =
       "(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~'=?|][()-<>/]).{8,}" //uppercase lowercase symbol and number
-    // const patternVariable =".{5,}";
-    // const submitButtonElement = document.getElementById("btn-enable-style") as HTMLButtonElement;
     const passwordBoxElement = document.getElementById(
       'password-box'
     ) as HTMLButtonElement
     if ((e.target as HTMLInputElement).value.match(patternVariable)) {
-      // submitButtonElement.className="customBtn-01 btn-enable-style"
       passwordBoxElement.className = 'input-wrapper success'
-      // setOpen(false);
     } else {
-      // submitButtonElement.className="customBtn-01"
       passwordBoxElement.className = 'input-wrapper'
-      // setOpen(true);
     }
   }
-
-  // const handlePasswordChange = (e: SyntheticEvent) => {
-  //   e.preventDefault();
-  //   setPassword((e.target as HTMLInputElement).value)
-  //   const patternVariable ="(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~'=?|][()-<>/]).{8,}";
-  //   if ((e.target as HTMLInputElement).value.match(patternVariable)) {
-  //     (e.target as HTMLInputElement).className="form-control input-custom is-valid"
-  //   } else {
-  //     (e.target as HTMLInputElement).className="form-control input-custom"
-  //   }
-  // };
 
   const handleConfirmPasswordChange = (e: SyntheticEvent) => {
     e.preventDefault()
@@ -203,14 +180,18 @@ const SetPassword = () => {
       </Box>
       {/* ACCOUNT SCREEN ANIMATION END */}
       {/* ACCOUNT FORM START */}
-      <Box sx={{ flexGrow: 1 }} className="account__form login-form">
+      <Box
+        sx={{ flexGrow: 1 }}
+        id="login-form"
+        className="account__form login-form"
+      >
         <div className="form__inner">
           <Box sx={{ width: 1 }} className="account__form__header">
             <h3 className="title">{t<string>('setPassword')}</h3>
             <p className="sub__title">{t<string>('generatePassword')}</p>
           </Box>
           <Box sx={{ width: 1 }} className="account__form__error">
-            <p className="error__msg">{message && message}</p>
+            <p className="error__msg">{message.length > 1 ? message : ''}</p>
           </Box>
           <Box sx={{ flexGrow: 1 }} className="account__form__body">
             <form onSubmit={handleSubmit} action="#" method="post">
@@ -319,7 +300,7 @@ const SetPassword = () => {
                   type="submit"
                   name="submit"
                   disabled={open}
-                  className="customBtn-01 btn-enable-style"
+                  className="customBtn-01"
                 >
                   {t<string>('done')}
                 </ColorButton>

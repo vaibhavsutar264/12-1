@@ -28,7 +28,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (res) => {
     if (res.status === 201) {
-      console.log('Posted Successfully')
+      console.log('Successful')
     }
     return res
   },

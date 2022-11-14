@@ -293,6 +293,7 @@
           &.password-checkHide {
             &.success {
               position: relative;
+              border-color: green;
               &::before {
                 display: none;
               }
@@ -314,9 +315,12 @@
           }
           &.success {
             position: relative;
+            border-color: green;
+            border-block-color: green;
             &::before {
               font-size: 20px;
               font-weight: bold;
+              border-color: green;
               color: #39be12;
               font-family: 'poppins', sans-serif;
               position: absolute;

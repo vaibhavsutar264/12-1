@@ -37,10 +37,13 @@ const login = async (userData: UserLogin) => {
 }
 
 const logout = async () => {
-  removeFromLocalStorage('user')
   removeFromLocalStorage('token')
-  delete axios.defaults.headers.common['Authorization']
-  // const response = await API_URL.post(API_URL + "/logout")
+  try {
+    await axios.get(`http://localhost:4000/api/v1/auth/logout`)
+  } catch (error) {
+    console.log(error)
+  }
+  // await axios.get(LOGOUT)
   // return response
 }
 

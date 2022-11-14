@@ -1,8 +1,8 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import Login from '../src/components/login/login-screen/Login'
+import Login from '../components/login/login-screen/Login'
 import { Provider } from 'react-redux'
-import store from '../src/redux/store'
+import store from '../redux/store'
 // import { debug } from 'console';
 // import user from '@testing-library/user-event'
 import userEvent from '@testing-library/user-event'
