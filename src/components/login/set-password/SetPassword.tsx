@@ -281,7 +281,7 @@ const SetPassword = () => {
                   margin: '20px 0px',
                 }}
               >
-                <a href="/forgot-password" className="forgot-password">
+                <a href="/forgotpassword" className="forgot-password">
                   {t<string>('forgotPassword')}
                 </a>
               </Box>

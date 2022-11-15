@@ -6,10 +6,12 @@ import { useNavigate, Link } from 'react-router-dom'
 import Logo from '../../assets/images/CPaaSLogo.png'
 import '../../i18n'
 import useLocales from '../../hooks/useLocales'
+import { useTranslation } from 'react-i18next'
+import { availableLanguages } from '../../i18n'
 
 const Header = () => {
-  // const { i18n, t } = useTranslation();
-  const { allLang, currentLang, t, onChangeLang } = useLocales()
+  const { i18n } = useTranslation()
+  const { t } = useLocales()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -64,11 +66,14 @@ const Header = () => {
                 <select
                   className="form-select language-select"
                   aria-label="Default select example"
-                  value={currentLang?.value}
-                  onChange={(event) => onChangeLang(event.target.value)}
+                  defaultValue={i18n.language}
+                  onChange={(e) => {
+                    i18n.changeLanguage(e.target.value)
+                    localStorage.setItem('lng', e.target.value)
+                  }}
                 >
-                  {(allLang as unknown as any[]).map((lang) => (
-                    <option key={lang.label}>{lang.value}</option>
+                  {availableLanguages.map((language) => (
+                    <option key={language}>{language}</option>
                   ))}
                 </select>
               </li>
