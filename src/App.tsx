@@ -5,13 +5,13 @@ import React from 'react'
 // import SetPassword from "./components/login/set-password/SetPassword";
 import './i18n'
 import Header from './components/Header/Header'
-import { Toggle } from './themes/Toggle'
+import { Toggle } from './themes/toggle'
 import { useDarkMode } from './themes/useDarkMode'
 import { GlobalStyles, lightTheme, darkTheme } from './themes/globalStyles'
 import { ThemeProvider } from 'styled-components'
 // import Notfound from "./components/Notfound/Notfound";
-import useAuth from './hooks/use-auth.hook'
-import RouteHandler from './route/RouteHandler'
+import useAuth from './hooks/useAuth'
+import RouteHandler from './route/routeHandler'
 // import PrivateRoutes from './utils/PrivateRoutes'
 import './assets/sass/global/global.scss'
 // import ForgotPassword from "./components/login/forgot-password/ForgotPassword";

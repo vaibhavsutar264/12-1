@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { useAppDispatch } from '../../redux/store'
-import { logout } from '../../redux/auth/auth.slice'
+import { logout } from '../../redux/auth/authSlice'
 import { useNavigate, Link } from 'react-router-dom'
 import Logo from '../../assets/images/CPaaSLogo.png'
 import '../../i18n'

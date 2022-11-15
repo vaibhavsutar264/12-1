@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 import { useAppSelector } from '../redux/store'
-import { setHttpToken } from '../services/baseConfig/ApiBase'
+import { setHttpToken } from '../utils/baseConfig/apiBase'
 
 function useAuth() {
   const [loggedIn, setLoggedIn] = useState(false)
