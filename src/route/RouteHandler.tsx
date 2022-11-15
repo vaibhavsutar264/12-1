@@ -13,12 +13,12 @@ const RouteHandler = () => {
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Notfound />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/checkprotected" element={<HomeScreen />} />
           <Route path="/setpassword" element={<SetPassword />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Route>
-        <Route path="*" element={<Notfound />} />
       </Routes>
     </>
   )

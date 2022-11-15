@@ -47,17 +47,13 @@ const logout = async () => {
   // return response
 }
 
-// export const logout =
-//   (): ThunkAction<void, RootState, unknown, AnyAction> =>
-//   async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
-//     localStorage.removeItem('token')
-//     localStorage.removeItem('user')
-//   }
-
 const updatePassword = async (passwordData: Password) => {
-  const response = await API_URL.patch(PASSWORD, passwordData)
-
-  return response.data
+  try {
+    const response = await API_URL.patch(PASSWORD, passwordData)
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
 }
 const authService = {
   logout,
