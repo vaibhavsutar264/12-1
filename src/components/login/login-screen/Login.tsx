@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SyntheticEvent, useState, useEffect } from 'react'
-import { login, reset } from '../../../redux/auth/auth.slice'
-import { UserLogin } from '../../../types/auth.type'
+import { login, reset } from '../../../redux/auth/authSlice'
+import { UserLogin } from '../../../types/authType'
 // import { Form, Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { useFormik } from 'formik'
@@ -77,12 +77,9 @@ const Login = () => {
   )
   useEffect(() => {
     if (isError) {
-      // toast.error(message)
       console.log(isError)
-      // dispatch(reset())
     }
     if (isSuccess) {
-      // toast.success(message)
       dispatch(reset())
     }
   }, [isError, isSuccess, user, message, dispatch])
@@ -96,18 +93,6 @@ const Login = () => {
       navigate('/setpassword')
     }
   }, [isSuccess, navigate])
-
-  // let inputs = document.querySelectorAll("input");
-  // inputs.forEach((input) => (input.value = null));
-
-  // const submitHandler = async (e: SyntheticEvent) => {
-  //   e.preventDefault();
-  //   dispatch(login(email, password, token));
-  //   setEmail("");
-  //   setPassword("");
-  //   // navigate('/setpassword')
-
-  // };
 
   const formik = useFormik({
     initialValues: {

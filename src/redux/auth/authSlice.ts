@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios'
-import { AuthState, Password, UserLogin } from '../../types/auth.type'
+import { AuthState, Password, UserLogin } from '../../types/authType'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getUserFromStorage } from '../../services/baseConfig/user.utils'
-import authService from './auth.service'
-import { Error } from '../../types/fetch-data.type'
+import { getUserFromStorage } from '../../utils/baseConfig/userUtils'
+import authService from './authService'
+import { Error } from '../../types/fetchType'
 
 const user = getUserFromStorage()
 

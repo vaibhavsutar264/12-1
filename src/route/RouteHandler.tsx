@@ -4,7 +4,7 @@ import HomeScreen from '../components/Home/HomeScreen'
 import Login from '../components/login/login-screen/Login'
 import SetPassword from '../components/login/set-password/SetPassword'
 import Notfound from '../components/Notfound/Notfound'
-import PrivateRoutes from '../utils/PrivateRoutes'
+import PrivateRoutes from '../utils/privateRoutes'
 import ForgotPassword from '../components/login/forgot-password/ForgotPassword'
 
 const RouteHandler = () => {

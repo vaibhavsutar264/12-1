@@ -1,11 +1,11 @@
-import API_URL from '../../services/baseConfig/ApiBase'
-import { Password, UserLogin } from '../../types/auth.type'
+import API_URL from '../../utils/baseConfig/apiBase'
+import { Password, UserLogin } from '../../types/authType'
 import {
   removeFromLocalStorage,
   setInLocalStorage,
 } from '../../hooks/useLocalStorage'
 import axios from 'axios'
-import ApiRouteconstant from '../../services/ApiRouteconstant'
+import ApiRouteconstant from '../../services/apiRouteConstant'
 // import { setHttpToken } from "../../services/baseConfig/ApiBase"
 
 const { LOGIN, PASSWORD } = ApiRouteconstant
