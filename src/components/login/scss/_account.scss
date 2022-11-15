@@ -7,17 +7,17 @@
   top: 50%;
   left: 7%;
   transform: translateY(-50%);
-  animation: animwrapper 1000ms linear forwards;
-  animation-delay: 1s;
+  animation: animwrapper 1s linear forwards;
+  animation-delay: 0.5s;
   opacity: 0;
   @keyframes animwrapper {
     0%{
       opacity: 0;
-      transform: translateY(-50%) scale(0);
+      transform: translateY(-50%) scale(0) skewY(20deg);
     }
     100%{
       opacity: 1;
-      transform: translateY(-50%) scale(1);
+      transform: translateY(-50%) scale(1) skewY(0deg);
     }
   }
   .floating-wrapper-inner {
