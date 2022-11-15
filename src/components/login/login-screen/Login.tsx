@@ -281,7 +281,7 @@ const Login = () => {
                 </Box>
                 {touched.email && errors.email && <p>{errors.email}</p>}
                 <Box
-                  className="input-wrapper password-checkHide success"
+                  className="input-wrapper password-checkHide"
                   id="password-box"
                   sx={{
                     display: 'flex',
