@@ -3,12 +3,8 @@ import { render, screen } from '@testing-library/react'
 import Login from '../components/login/login-screen/Login'
 import { Provider } from 'react-redux'
 import store from '../redux/store'
-// import { debug } from 'console';
-// import user from '@testing-library/user-event'
 import userEvent from '@testing-library/user-event'
-// import { fireEvent } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-// import { TextField } from '@mui/material'
 
 const mockedUsedNavigate = jest.fn()
 
@@ -39,15 +35,10 @@ test('Then it shuold show the user text on input box', () => {
   const passwordElement = screen.getByTestId('password-element')
   expect(emailElement).toBeInTheDocument()
 
-  // fireEvent.input(emailElement, { target: { value: "vaibhav" } });
-  // user.type(emailElement, 'vaibhav')
-
   userEvent.type(emailElement, 'vaibhav')
   userEvent.type(passwordElement, '1234')
 
   expect(emailElement).toHaveAttribute('value', expectTextUser)
-  // expect(emailElement).toHaveValue(expectTextUser)
-  // expect(emailElement).toContain(expectTextUser)
   expect(passwordElement).toHaveAttribute('value', expectTextPassword)
 })
 
@@ -106,9 +97,6 @@ describe('App', () => {
 
   test('should be able to type an email', () => {
     const emailElement = screen.getByTestId('email-element') as HTMLInputElement
-    // const passwordElement = screen.getByTestId(
-    //   'password-element'
-    // ) as HTMLInputElement
     typeIntoForm({ email: 'vaibhav@gmail.com', password: '123' })
     expect(emailElement.value).toBe('vaibhav@gmail.com')
     console.log(emailElement.value)
@@ -118,7 +106,6 @@ describe('App', () => {
     const passwordElement = screen.getByTestId(
       'password-element'
     ) as HTMLInputElement
-    // const buttonElement = screen.getByTestId("button-element") as HTMLButtonElement;
     const buttonElement = screen.getByRole('button', { name: /Login/i })
     typeIntoForm({ email: '', password: 'vai' })
     expect(passwordElement.value).toBe('vai')
@@ -133,7 +120,6 @@ describe('App', () => {
     typeIntoForm({ email: '', password: 'Vaibhav@1234' })
     expect(passwordElement.value).toBe('Vaibhav@1234')
     expect(buttonElement).toBeEnabled()
-    // console.log(passwordElement.value)
   })
 
   test('Then it have both values', async () => {
@@ -150,7 +136,6 @@ describe('App', () => {
     const errorafterwrongcredentials =
       'Login failed Incorrect email or password'
     userEvent.click(NavigateToSetpasswordScreen)
-    // expect(errorafterwrongcredentials).toBeInTheDocument()
     expect(errorafterwrongcredentials).toBeTruthy()
   })
 })

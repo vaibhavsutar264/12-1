@@ -6,10 +6,9 @@ import {
 } from '../../hooks/useLocalStorage'
 import axios from 'axios'
 import ApiRouteconstant from '../../services/apiRouteconstant'
-// import { setHttpToken } from "../../services/baseConfig/ApiBase"
+import { getFromLocalStorage } from '../../hooks/useLocalStorage'
 
 const { LOGIN, PASSWORD } = ApiRouteconstant
-// const { MOCKLOGIN } = ApiRouteconstant
 
 const login = async (userData: UserLogin) => {
   const config = { headers: { 'Content-Type': 'application/json' } }
@@ -23,17 +22,6 @@ const login = async (userData: UserLogin) => {
     }
   }
   return response.data
-  // const config = { headers: { 'Content-Type': 'application/json' } }
-  // const response = await API_URL.post(MOCKLOGIN, userData, config)
-  // if (response) {
-  //   // setInLocalStorage('user', JSON.stringify(response.data.data))
-  //   const token: any = response
-  //   if (token) {
-  //     API_URL.defaults.headers.common['Authorization'] = `Bearer ${token}`
-  //     setInLocalStorage('token', token)
-  //   }
-  // }
-  // return response
 }
 
 const logout = async () => {
@@ -43,12 +31,14 @@ const logout = async () => {
   } catch (error) {
     console.log(error)
   }
-  // await axios.get(LOGOUT)
-  // return response
 }
 
 const updatePassword = async (passwordData: Password) => {
   try {
+    const token = await getFromLocalStorage('token')
+    if (token) {
+      API_URL.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
     const response = await API_URL.patch(PASSWORD, passwordData)
     return response.data
   } catch (error) {

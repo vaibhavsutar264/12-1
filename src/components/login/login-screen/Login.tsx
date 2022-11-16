@@ -326,7 +326,7 @@ const Login = () => {
                     }}
                   >
                     <a
-                      href="/forgot-password"
+                      href="/forgotpassword"
                       id="forgot-password"
                       className="forgot-password"
                     >

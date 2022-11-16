@@ -187,7 +187,11 @@ const SetPassword = () => {
       </Box>
       {/* ACCOUNT SCREEN ANIMATION END */}
       {/* ACCOUNT FORM START */}
-      <Box sx={{ flexGrow: 1 }} className="account__form login-form">
+      <Box
+        sx={{ flexGrow: 1 }}
+        id="login-form"
+        className="account__form login-form"
+      >
         <div className="form__inner">
           <Box sx={{ width: 1 }} className="account__form__header">
             <h3 className="title">{t<string>('setPassword')}</h3>
@@ -284,7 +288,7 @@ const SetPassword = () => {
                     margin: '20px 0px',
                   }}
                 >
-                  <a href="/forgot-password" className="forgot-password">
+                  <a href="/forgotpassword" className="forgot-password">
                     {t<string>('forgotPassword')}
                   </a>
                 </FormControl>

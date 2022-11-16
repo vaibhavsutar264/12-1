@@ -110,7 +110,7 @@ const ForgotPassword = () => {
       </Box>
       {/* ACCOUNT SCREEN ANIMATION END */}
       {/* ACCOUNT FORM START */}
-      <Box sx={{ flexGrow: 1 }} className="account__form">
+      <Box sx={{ flexGrow: 1 }} id="login-form" className="account__form">
         <div className="form__inner">
           <Box sx={{ width: 1 }} className="account__form__header">
             <h3 className="title">Forgot Password?</h3>
