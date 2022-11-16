@@ -1,0 +1,9 @@
+
+.theme-toggle-button {
+  border: 0.5px solid lightblue;
+  padding: 10px;
+  position: absolute;
+  top: 3.4rem;
+  right: 4rem;
+  transition: all 0.5s linear;
+}
