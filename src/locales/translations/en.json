@@ -13,6 +13,8 @@
     "setPassword": "Set Password",
     "generatePassword": "Generate new password",
     "confirmPassword": "Confirm Password",
-    "done": "Done"
+    "done": "Done",
+    "resetPassword": "Reset Password",
+    "resetPasswordSubTitle":"Your new password must be different from previous password"
   }
 }

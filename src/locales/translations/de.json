@@ -13,6 +13,8 @@
     "setPassword": "Passwort festlegen",
     "generatePassword": "Neues Passwort generieren",
     "confirmPassword": "Passwort bestätigen",
-    "done": "Fertig"
+    "done": "Fertig",
+    "resetPassword": "Passwort zurücksetzen",
+    "resetPasswordSubTitle":"Ihr neues Passwort muss sich vom vorherigen Passwort unterscheiden"
   }
 }

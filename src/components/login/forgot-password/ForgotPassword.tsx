@@ -136,7 +136,7 @@ const ForgotPassword = () => {
                   }}
                 >
                   <InputLabel htmlFor="username" className="label__icon">
-                    <MailOutlineIcon />
+                    <MailOutlineIcon id="mail-icon" />
                   </InputLabel>
                   <TextField
                     required

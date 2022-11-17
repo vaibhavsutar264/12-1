@@ -221,7 +221,12 @@ const Login = () => {
               <p className="sub__title">{t<string>('enterEmailAndPassword')}</p>
             </Box>
             <Box sx={{ width: 1 }} className="account__form__error">
-              <p className="error__msg">{message && message}</p>
+              <p className="error__msg">
+                {message &&
+                message == 'Login failed Incorrect email or password'
+                  ? t<string>('yourEmailIdPasswordNotMatch')
+                  : message}
+              </p>
             </Box>
             <Box sx={{ flexGrow: 1 }} className="account__form__body">
               <form onSubmit={handleSubmit} action="#" method="post">

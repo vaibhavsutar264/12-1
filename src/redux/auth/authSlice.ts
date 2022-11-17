@@ -47,6 +47,18 @@ export const updatePassword = createAsyncThunk(
     }
   }
 )
+// export const resetPassword = createAsyncThunk(
+//   'auth/resetPassword',
+//   async (token: any, userPassword: Password) => {
+//     try {
+//       const data = await authService.resetPassword(token, userPassword)
+//       return data
+//     } catch (error) {
+//       const err = error as AxiosError<Error>
+//       console.log(err)
+//     }
+//   }
+// )
 export const forgotPassword = createAsyncThunk(
   'auth/forgotPassword',
   async (userEmail: Email, thunkAPI) => {
@@ -108,6 +120,19 @@ export const authSlice = createSlice({
       state.isError = true
       state.message = action.payload as string
     })
+    // builder.addCase(resetPassword.pending, (state) => {
+    //   state.isLoading = true
+    // })
+    // builder.addCase(resetPassword.fulfilled, (state, action) => {
+    //   state.isLoading = false
+    //   state.isSuccess = true
+    //   state.message = action.payload.message as string
+    // })
+    // builder.addCase(resetPassword.rejected, (state, action) => {
+    //   state.isLoading = false
+    //   state.isError = true
+    //   state.message = action.payload as string
+    // })
     builder.addCase(forgotPassword.pending, (state) => {
       state.isLoading = true
     })

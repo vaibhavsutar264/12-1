@@ -5,13 +5,13 @@ import Toggle from './themes/toggle'
 import { useDarkMode } from './themes/useDarkMode'
 import { GlobalStyles, lightTheme, darkTheme } from './themes/globalStyles'
 import { ThemeProvider } from 'styled-components'
-import useAuth from './hooks/useAuth'
+// import useAuth from './hooks/useAuth'
 import RouteHandler from './route/routeHandler'
 import './assets/sass/global/global.scss'
 import { ToastContainer } from 'react-toastify'
 
 const App = () => {
-  useAuth()
+  // useAuth()
   const [theme, toggleTheme] = useDarkMode()
   const themeMode = theme === 'light' ? lightTheme : darkTheme
   return (

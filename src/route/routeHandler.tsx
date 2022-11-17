@@ -6,6 +6,7 @@ import SetPassword from '../components/login/set-password/SetPassword'
 import Notfound from '../components/Notfound/Notfound'
 import PrivateRoutes from '../utils/privateRoutes'
 import ForgotPassword from '../components/login/forgot-password/ForgotPassword'
+import ResetPassword from '../components/login/reset-password/ResetPassword'
 
 const RouteHandler = () => {
   return (
@@ -18,6 +19,7 @@ const RouteHandler = () => {
           <Route path="/checkprotected" element={<HomeScreen />} />
           <Route path="/setpassword" element={<SetPassword />} />
         </Route>
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
       </Routes>
     </>
