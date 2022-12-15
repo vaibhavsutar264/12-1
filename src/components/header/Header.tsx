@@ -85,7 +85,7 @@ const Header = ({ toggleTheme }: { toggleTheme: any }) => {
       refreshToken: `${localStorage.getItem(localStorageVar.TOKEN_VAR)}`,
       username: user != null ? user[apiVrbls.USER.EMAIL_ID] : ""
     }))
-    navigate('/')
+    // navigate('/')
   }
 
   return (
