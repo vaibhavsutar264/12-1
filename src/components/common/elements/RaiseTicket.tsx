@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Download from '../../assets/images/svg/download.svg';
+import Download from '../../../assets/images/svg/download.svg';
 import { useParams } from 'react-router-dom'
 import {
     Box,
@@ -31,8 +31,8 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
-import { useSelector } from '../../redux/store'
-import { dataTables } from '../../utils/constants'
+import { useSelector } from '../../../redux/store'
+import { dataTables } from '../../../utils/constants'
 import { isAbsolute } from 'path'
 import Close from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
@@ -60,7 +60,9 @@ const RaiseTicket = ({ handleShow, showIt }: any) => {
                 position: 'absolute',
                 top: '40px',
                 right: '40px',
-                cursor: 'pointer'
+                '&:hover': {
+                    cursor: 'pointer',
+                }
             }} />
             <Stack>
                 <Typography variant='h5' component='h1' sx={{

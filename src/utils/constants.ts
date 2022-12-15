@@ -14,7 +14,10 @@ export const apiRoutes = {
   GET_INVOICES: '/orchestration/billing/invoices/getInvoices',
   VIEW_INVOICES: '/result_data/Download_Billing_Invoice',
   DOWNLOAD_INVOICES: '/orchestration/billing/invoices/downloadBillingInvoice',
-  DOWNLOAD_INVOICES_CDR: '/orchestration/billing/invoices/downloadBillingInvoiceCDR',
+  DOWNLOAD_INVOICES_CDR: '/orchestration/billing/invoices/downloadBillingInvoiceCDR', 
+
+  //account
+  GET_BILLING_DETAILS: '/orchestration/user/account_details/getAccountBillingDetails'
 }
 
 export const apiHelpers = {
@@ -46,6 +49,7 @@ export const thunkPaths = {
 export const slices = {
   AUTH_SLICE: 'auth',
   BILLING_SLICE: 'billing',
+  ACCOUNT_SLICE: 'accountDetails',
 }
 
 export const billingKeys = {
@@ -87,6 +91,7 @@ export const appRoutes = {
   RESET_PASSWORD: '/password/reset/:token',
   NOT_FOUND: '*',
   BILLING: '/invoices',
+  PDFVIEWER: '/invoices/viewpdf',
   INVOICE: '/invoices/:id',
   RAISE_TICKET: '/invoices/raiseticket',
   INVOICE_BILL: '/invoices/invoicebill',
@@ -114,7 +119,7 @@ export const dataTables = {
         sort: true,
         filter: true,
         filterData: {
-          element: "customerLe",
+          element: apiVrbls.BILLING.CUSTOMER_LE,
           values: masterData.map((e: any) => e[apiVrbls.BILLING.CUSTOMER_LE]).filter((it, i, ar) => ar.indexOf(it) === i)
         }
       },
@@ -130,7 +135,7 @@ export const dataTables = {
         sort: true,
         filter: true,
         filterData: {
-          element: "poNumber",
+          element: apiVrbls.BILLING.PO_NUMBER,
           values: masterData.map((e: any) => e[apiVrbls.BILLING.PO_NUMBER]).filter((it, i, ar) => ar.indexOf(it) === i)
         }
       },
@@ -140,7 +145,7 @@ export const dataTables = {
         sort: true,
         filter: true,
         filterData: {
-          element: "paymentStatus",
+          element: apiVrbls.BILLING.PAY_STATUS,
           values: masterData.map((e: any) => e[apiVrbls.BILLING.PAY_STATUS]).filter((it, i, ar) => ar.indexOf(it) === i)
         }
       },
@@ -150,8 +155,8 @@ export const dataTables = {
         sort: true,
         filter: true,
         filterData: {
-          element: "currency",
-          values: masterData.map((e: any) => e[apiVrbls.BILLING.INVOICE_AMT]).filter((it, i, ar) => ar.indexOf(it) === i)
+          element: apiVrbls.BILLING.CURENCY,
+          values: masterData.map((e: any) => e[apiVrbls.BILLING.CURENCY]).filter((it, i, ar) => ar.indexOf(it) === i)
         }
       },
       {

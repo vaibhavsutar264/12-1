@@ -119,7 +119,6 @@ const ResetPassword = () => {
                 username: user[apiVrbls.USER.EMAIL_ID]
             }))
         } catch (error) {
-            console.error(error)
             reset()
         }
     }

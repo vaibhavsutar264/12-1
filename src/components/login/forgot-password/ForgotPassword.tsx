@@ -131,6 +131,7 @@ const ForgotPassword = () => {
                                         id="ammount"
                                         label={t<string>('email')}
                                         variant="standard"
+                                        autoComplete='false'
                                         sx={{ width: 1, borderRadius: '10px !important' }}
                                         name="ammount"
                                         type="text"

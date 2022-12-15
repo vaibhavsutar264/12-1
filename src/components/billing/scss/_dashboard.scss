@@ -156,6 +156,11 @@
         color: #a1a1a1;
         margin: 0;
         opacity: 1;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        max-width: 130px;
+        overflow: hidden;
+        white-space:normal;
     }
 }
 
@@ -391,13 +396,19 @@
         }
 
         &:nth-child(1) {
+            background-color: rgb(26, 115, 232) !important;
 
             & .cardType__inner {
 
                 & .cardType__text {
 
+                    & p {
+                        color: #fff;
+                    }
+
                     & h3 {
-                        color: rgb(26, 115, 232) !important;
+                        // color: rgb(26, 115, 232);
+                        color: #fff;
                     }
                 }
             }
@@ -431,6 +442,25 @@
             }
         }
 
+        &:nth-child(2) {
+            background-color: rgb(54, 63, 94) !important;
+
+            & .cardType__inner {
+
+                & .cardType__text {
+
+                    & p {
+                        color: #fff;
+                    }
+
+                    & h3 {
+                        // color: rgb(26, 115, 232);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
 
         // Card no. 2 hover and active state
         &:nth-child(2):hover,
@@ -459,6 +489,26 @@
             }
         }
 
+        &:nth-child(3) {
+            background-color: rgb(229, 68, 87) !important;
+
+            & .cardType__inner {
+
+                & .cardType__text {
+
+                    & p {
+                        color: #fff;
+                    }
+
+                    & h3 {
+                        // color: rgb(26, 115, 232);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+
         // Card no. 3 hover and active state
         &:nth-child(3):hover,
         &:nth-child(3).active {
@@ -485,6 +535,27 @@
                 }
             }
         }
+
+
+        &:nth-child(4) {
+            background-color: rgb(61, 184, 135) !important;
+
+            & .cardType__inner {
+
+                & .cardType__text {
+
+                    & p {
+                        color: #fff;
+                    }
+
+                    & h3 {
+                        // color: rgb(26, 115, 232);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
 
         // Card no. 4 hover state
         &:nth-child(4):hover,
@@ -912,9 +983,62 @@ form.raise-ticket-input .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
 
 // Input styles inside
 .billing-details-input .css-1x51dt5-MuiInputBase-input-MuiInput-input {
-    color: #344857;
+    color: $grey;
     font-weight: 700;
     font-size: 16px;
     font-family: 'ubuntu';
     line-height: 18px;
+}
+
+
+// Billing Details styles starts here
+.bd-container {
+    background-color: $billingDetailsBg;
+    margin-top: 160px;
+    display: flex;
+    justify-content: flex-end;
+
+    .bd-inner-container {
+        width: calc(100% - 166px);
+        padding: 50px 40px;
+    }
+
+    .bd-single-container {
+        min-height: 400px;
+        padding-top: 40px;
+    }
+}
+
+
+// Invoice Bill styles starts here
+.ib-title {
+    text-transform: capitalize;
+    text-align: right;
+    max-width: unset;
+    padding: 0;
+}
+
+.ib-subtitle {
+    text-transform: uppercase;
+    min-width: 72px;
+}
+
+
+
+// Change logout icon and text color
+[data-testid="LogoutOutlinedIcon"], .logout-text {
+    color: #D63548;
+}
+
+[data-name="setting"]#setting path {
+    fill: $black;
+    opacity: 1;
+}
+
+.userinfo-dropdown:hover {
+    color: unset;
+}
+
+.MuiTooltip-popper[role="tooltip"] {
+    
 }

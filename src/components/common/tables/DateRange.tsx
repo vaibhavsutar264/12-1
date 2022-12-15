@@ -1,13 +1,13 @@
 import React from "react";
 
-// import { DateRangePicker } from 'rsuite';
+import { DateRangePicker } from 'rsuite';
 
-// import 'rsuite/dist/rsuite.css';
+import 'rsuite/dist/rsuite.css';
 
 function DateRange() {
     return (
         <div className="dates">
-            {/* <DateRangePicker />/ */}
+            <DateRangePicker />
         </div>
     );
 }

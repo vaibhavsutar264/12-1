@@ -81,16 +81,17 @@ const Login = () => {
         }
     }, [isError, message, isAuthenticated])
 
-    console.log(user);
 
 
     useEffect(() => {
         if (getFromLocalStorage('token') && getFromLocalStorage('token') !== null) {
             if (user) {
-                if (user.attributes[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
+                // if (user.attributes[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
+                if (user) {
                     navigate(appRoutes.SET_PASSWORD)
                 } else {
-                    navigate(appRoutes.BILLING)
+                    // navigate(appRoutes.BILLING)
+                    navigate(appRoutes.ROOT)
                 }
             }
         }

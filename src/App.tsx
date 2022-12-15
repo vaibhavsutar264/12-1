@@ -16,7 +16,6 @@ const App = () => {
     const clickEventHandler = (e: any) => {
         try {
             const trEle = e.target.classList.contains("clkIgnr");
-
             if (trEle === false) {
                 const d: any = document;
                 const w: any = window;

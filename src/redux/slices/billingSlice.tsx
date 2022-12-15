@@ -92,7 +92,6 @@ export const runFilters = ({ page, take, sort }: any) => {
             dispatch(billingSlice.actions.setSortData({ invocieData: filteredData, sortElement: sort.eleName }))
         }
         const con = getFilterConditons(filterValue);
-        console.log(con);
         if (con == "" || con == null) {
             filteredData = searchArray(invoiceData, searchValue)
         } else {
@@ -128,7 +127,6 @@ export const loadInvoices = (parms: any) => {
             }
             return d
         } catch (error) {
-            console.log(error);
             dispatch(billingSlice.actions.hasError())
             dispatch(billingSlice.actions.loadInvoices({ data: [] }))
             dispatch(billingSlice.actions.setpageData({ data: [], page: 1, take: 10 }))

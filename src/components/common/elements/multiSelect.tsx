@@ -26,7 +26,6 @@ export default function MultiSelect({ id, filterData, filterAction }: any) {
             const w: any = window;
             if (w.Oid != id) {
                 w.Oid = id;
-                console.log(id, "dom fired");
                 const d: any = document;
                 d.getElementById(id).style.display = "block"
             } else {

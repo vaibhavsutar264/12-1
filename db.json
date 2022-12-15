@@ -1562,7 +1562,7 @@
     }
   },
   "Download_Billing_Invoice": {
-    "Billing_invoice_download_link": "aws:s3:::://www. download_link.com",
+    "Billing_invoice_download_link": "https://imageio.forbes.com/specials-images/imageserve/5ef3f7eec4f2390006f0c356/GUI--Graphical-User-Interface--concept-/960x0.jpg?format=jpg&width=960",
     "Billing_Invoice_Id": 12342
   },
   "Download_Billing_InvoiceCDR": [

@@ -15,5 +15,5 @@ i18n.use(initReactI18next).use(LanguageDetector).init({
   resources,
   defaultNS: 'common',
   fallbackLng: 'English',
-  lng: localStorage.lng,
+  lng: localStorage.lng,  
 })

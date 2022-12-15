@@ -6,7 +6,6 @@ const Card = ({ data }: any) => {
         onClick={() => { dispatch(data.action) }}
         className="cardType__1"
         style={{
-            background: data.bgcolor,
             cursor: 'pointer'
         }}
     >
@@ -15,10 +14,10 @@ const Card = ({ data }: any) => {
                 {data.icon}
             </div>
             <div className="cardType__text">
-                <p className="cardType__name" style={{ color: data.textColor }}>
+                <p className="cardType__name">
                     {data.titel}
                 </p>
-                <h3 className="cardType__Number" data-testid = 'total-data-card' style={{ color: data.cntColor }}>
+                <h3 className="cardType__Number" data-testid = 'total-data-card'>
                     {data.value}
                 </h3>
             </div>

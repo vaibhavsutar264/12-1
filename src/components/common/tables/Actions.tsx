@@ -67,7 +67,6 @@ export const Actions = ({
       </div>
       {/* <div className="action__elementItem">{t<string>('datePicker')}</div> */}
       <div className="action__elementItem" id="date-picker">
-        <DateRange />
       </div>
       <div className="action__elementItem">
         <a href="/" className="iconCta">

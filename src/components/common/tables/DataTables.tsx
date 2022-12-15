@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Table from '@mui/material/Table'
+import { IconButton, Menu, MenuItem, ListItemIcon, Tooltip, ClickAwayListener } from '@mui/material'
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import TableBody from '@mui/material/TableBody'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
@@ -13,8 +17,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import useLocales from '../../../hooks/useLocales'
-import Time from '../icons/Time'
-import Pdf from '../icons/Pdf'
+import Time from '../icons/time'
+import Pdf from '../icons/pdf'
 import Ticket from '../icons/ticket'
 import Download from '../icons/download'
 import { Actions } from './Actions'
@@ -81,6 +85,27 @@ const DataTable = ({
         dispatch(handledownloadViewpdf(data))
     }
 
+    // Vertical Dropdown code
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    // Handle Tooltip closing & opening
+    const [opened, setOpen] = React.useState(false);
+
+    const handleTooltipClose = () => {
+        setOpen(false);
+    };
+
+    const handleTooltipOpen = () => {
+        setOpen(true);
+    };
+
     return (
         <>
             <Actions data={data} pagination={{ take, Total }} changeTake={(e: any) => { changeTake(e) }} />
@@ -93,9 +118,98 @@ const DataTable = ({
                     <TableHead className="TableHead">
                         <TableRow id="table-head">
                             <StyledTableCell>
-                                <a href="/">
+                                <IconButton 
+                                    id="basic-button"
+                                    aria-controls={open ? 'basic-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={open ? 'true' : undefined}
+                                    onClick={handleClick}
+                                    sx={{
+                                        position: 'relative',
+                                    }}
+                                >
                                     <MoreVertIcon />
-                                </a>{' '}
+                                </IconButton>
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                    }}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                      }}
+                                      transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                      }}
+                                >
+                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>Invoice Number</span></MenuItem>
+                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>Customer LE</span></MenuItem>
+                                    <MenuItem onClick={handleClose}>
+                                    <ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>Entity</span></MenuItem>
+                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>PO No.</span></MenuItem>
+                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>Status</span></MenuItem>
+                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>Invoice Amount</span></MenuItem>
+                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>Invoice Issued Date</span></MenuItem>
+                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                        {/* <Logout fontSize="small" /> */}
+                                        <DragIndicatorIcon fontSize='small' />
+                                        <CheckBoxIcon fontSize='small' />
+                                        {/* remove above icon and use below icon for when user unchecks the option */}
+                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                    </ListItemIcon><span>Due Date</span></MenuItem>
+                                </Menu>
+                                {/* <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                }}>
+                                    <MoreVertIcon />
+                                </a>{' '} */}
                             </StyledTableCell>
 
                             {/* Table Heads */}
@@ -138,15 +252,21 @@ const DataTable = ({
                                 ))}
                                 <TableCell style={{ width: 160 }} align="right">
                                     <ul className="actionButtons">
+                                    <Tooltip title="RAISE A TICKET">
+                                    <button className="actionButton__item" onClick={(e) => { handleShow() }}>
+                                    <span><Ticket /></span>
+                                    </button>
+                                    </Tooltip>
+                                    <Tooltip title="VIEW INVOICE">
+                                    <button className="actionButton__item" onClick={() => handleViewPdf(item)}>
+                                    <span> <Pdf /> </span>
+                                    </button>
+                                    </Tooltip>
+                                    <Tooltip title="DOWNLOAD">
                                         <button className="actionButton__item" onClick={() => handleDownload(item)} >
                                             <span><Download /></span>
                                         </button>
-                                        <button className="actionButton__item" onClick={(e) => { handleShow() }}>
-                                            <span><Ticket /></span>
-                                        </button>
-                                        <button className="actionButton__item" onClick={() => handleViewPdf(item)}>
-                                            <span> <Pdf /> </span>
-                                        </button>
+                                    </Tooltip>
                                     </ul>
                                 </TableCell>
                             </TableRow>

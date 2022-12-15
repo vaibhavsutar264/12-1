@@ -4,10 +4,11 @@ import {Box, Stack, Badge, Avatar, TextField, Button} from '@mui/material'
 import AvatarImg from '../../../assets/images/avatar.png'
 import AvatarBg from '../../../assets/images/avatar-bg.png'
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined'
+import { useSelector } from '../../../redux/store'
 
 
 const BillingAvatar = () => {
-
+  const { user } = useSelector((state: any) => state.auth);  
   const SmallAvatar = styled(Avatar)(({ theme }) => ({
     width: 44,
     height: 44,
@@ -53,9 +54,10 @@ const BillingAvatar = () => {
                     </Badge>
                     </Stack>
                 </Box>
+            
 
                 {/* 2nd row starts here */}
-                <Box
+                    <Box
                     component="form"
                     className='billing-details-input'
                     sx={{
@@ -67,31 +69,31 @@ const BillingAvatar = () => {
                         marginBottom: '40px',
                     }} noValidate autoComplete="off"
                     >
-                    <TextField label="first name" variant="standard" type="text" value="John" sx={{
+                    <TextField label="first name" value={`${user.firstname}`} variant="standard" type="text" sx={{
                         // border: '1px solid #eee',
                         borderRadius: '10px !important',
                         flexBasis: '45%',
                         textTransform: 'capitalize',
                     }}/>
-                    <TextField label="last name" variant="standard" type="text" value="Doe" sx={{
+                    <TextField label="last name" variant="standard" type="text" value={`${user.lastName}`} sx={{
                         // border: '1px solid #eee',
                         borderRadius: '10px !important',
                         flexBasis: '45%',
                         textTransform: 'capitalize',
                     }}/>
-                    <TextField label="mobile no" variant="standard" type="text" value="+91 8547958785" sx={{
+                    <TextField label="mobile no" variant="standard" type="text" value={`${user.attributes.phoneNumber}`} sx={{
                         // border: '1px solid #eee',
                         borderRadius: '10px !important',
                         flexBasis: '45%',
                         textTransform: 'capitalize',
                     }}/>
-                    <TextField label="communication" variant="standard" type="text" value="Phone" sx={{
+                    <TextField label="communication" variant="standard" type="text" value='Phone' sx={{
                         // border: '1px solid #eee',
                         borderRadius: '10px !important',
                         flexBasis: '45%',
                         textTransform: 'capitalize',
                     }}/>
-                    <TextField label="timezone" variant="standard" type="text" value="Net 30 day#344857s of the Invoice Date" sx={{
+                    <TextField label="timezone" variant="standard" type="text" value={`${user.attributes.timezone}`} sx={{
                         // border: '1px solid #eee',
                         borderRadius: '10px !important',
                         flexBasis: '100%',

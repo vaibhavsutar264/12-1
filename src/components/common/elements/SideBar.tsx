@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { styled } from '@mui/system'
 import { useEffect, useState } from 'react'
 import { Toggle } from '../../../themes/Toggle'
 import { useDarkMode } from '../../../themes/useDarkMode'
@@ -34,6 +35,8 @@ import { useTranslation } from 'react-i18next'
 import { logout, userInfo } from '../../../redux/slices/authSlice'
 import { useDispatch, useSelector } from '../../../redux/store'
 import Setting from '../icons/setting'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import Dashboard from '../icons/dashboard'
 import UserManagement from '../icons/userManagement'
 import Services from '../icons/services'
@@ -41,6 +44,7 @@ import Sms from '../icons/sms'
 import BillingInvoice from '../icons/billingInvoice'
 import Tickets from '../icons/tickets'
 import Support from '../icons/support'
+import { Sidebar } from 'rsuite'
 
 type SidebarProps = {
     toggleTheme: any
@@ -74,12 +78,32 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
     }
     const [theme, toggleTheme2] = useDarkMode()
     const themeMode = theme === appThemes.LIGHT_THEME ? lightTheme : darkTheme
-    console.log(themeMode.body);
 
     useEffect(() => {
+        // const divElement = document.getElementById(
+        //     'sidebar-top'
+        // ) as HTMLDivElement
+        // const imgElement = document.getElementById(
+        //     'tata-logo-invoice'
+        // ) as HTMLImageElement
+        // if(divElement.style.backgroundColor === '#1E2023'){
+        //     imgElement.src = Logo
+        // } else{
+        //     imgElement.src = DarkLogo
+        // }
+        // if(divElement.style.backgroundColor === '#fff'){
+        //     imgElement.src = DarkLogo
+        // } else{
+        //     imgElement.src = DarkLogo
+        // }
+        
         dispatch(userInfo())
-    }, [])
-    console.log(user);
+    }, [dispatch])
+
+    const divElement = document.getElementById(
+        'sidebar-top'
+    ) as HTMLDivElement
+    let getitem = getFromLocalStorage('theme')
 
     if (user == null) {
         navigate('/')
@@ -89,7 +113,11 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
             <div className="dashboard__navbar" id="sidebar-top">
                 <div className="dashboard__container">
                     <Link className="logo" to="/">
-                        <img id='tata-logo-invoice' src={themeMode.body == '#fff !important' ? DarkLogo : Logo} alt="CPAAS TCL" />
+                    {
+                        (getitem = 'light')? 
+                        (<img id='tata-logo-invoice' src={DarkLogo} alt="CPAAS TCL" />) : 
+                        (<img id='tata-logo-invoice' src={Logo} alt="CPAAS TCL" />)
+                    }
                     </Link>
                     <div className="right__elements">
                         <div className="right__elementsItem search__group">
@@ -214,9 +242,8 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                         </div>
                                     </div>
                                 </MenuItem>
-                                <Divider />
-                                <MenuItem onClick={handleClose}>
-                                    <a href="/" className="profile__dropLink">
+                                <MenuItem onClick={handleClose} style={{paddingTop:'8px'}}>
+                                    <a href="/" className="profile__dropLink userinfo-dropdown">
                                         <span className="icon">
                                             <Setting />
                                         </span>
@@ -224,26 +251,26 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                     </a>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <a href="/" className="profile__dropLink">
+                                    <a href="/" className="profile__dropLink userinfo-dropdown">
                                         <span className="icon">
-                                            <Setting />
+                                            <LockOutlinedIcon />
                                         </span>
                                         <span className="text">{t<string>('changePassword')}</span>
                                     </a>
                                 </MenuItem>
-                                <Divider />
-                                <MenuItem onClick={handelLogout}>
+                                <MenuItem onClick={handelLogout} style={{paddingTop:'12px'}}>
                                     <span className="icon">
-                                        <Setting />
+                                        <LogoutOutlinedIcon />
                                     </span>
-                                    <span className="text">{t<string>('logout')}</span>
+                                    <span className="text logout-text">{t<string>('logout')}</span>
                                 </MenuItem>
                             </Menu>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="dashboard__sidebar" id="sidebar-left">
+
+            <div className="dashboard__sidebar" id="sidebar-left" style={{transition: 'all 350ms 0ms ease-in'}}>
                 <div className="sidebar__inner">
                     <ul className="sidebar__list">
                         <li className="list__item">
@@ -251,7 +278,7 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                 <span className="link__icon">
                                     <Dashboard />
                                 </span>
-                                <span className="link__text">{t<string>('dashboard')}</span>
+                                <span className="link__text" id="link__text">{t<string>('dashboard')}</span>
                             </Link>
                         </li>
                         <li className="list__item">
@@ -259,7 +286,7 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                 <span className="link__icon">
                                     <UserManagement />
                                 </span>
-                                <span className="link__text">
+                                <span className="link__text" id="link__text">
                                     {t<string>('userManagement')}
                                 </span>
                             </Link>
@@ -269,7 +296,7 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                 <span className="link__icon">
                                     <Services />
                                 </span>
-                                <span className="link__text">{t<string>('services')}</span>
+                                <span className="link__text" id="link__text">{t<string>('services')}</span>
                             </Link>
                         </li>
                         <li className="list__item">
@@ -277,7 +304,7 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                 <span className="link__icon">
                                     <Sms />
                                 </span>
-                                <span className="link__text">{t<string>('sms')}</span>
+                                <span className="link__text" id="link__text">{t<string>('sms')}</span>
                             </Link>
                         </li>
                         <li className="list__item">
@@ -285,7 +312,7 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                 <span className="link__icon">
                                     <BillingInvoice />
                                 </span>
-                                <span className="link__text">
+                                <span className="link__text" id="link__text">
                                     {t<string>('billingInvoice')}
                                 </span>
                             </Link>
@@ -295,7 +322,7 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                 <span className="link__icon">
                                     <Tickets />
                                 </span>
-                                <span className="link__text">{t<string>('tickets')}</span>
+                                <span className="link__text" id="link__text">{t<string>('tickets')}</span>
                             </Link>
                         </li>
                         <li className="list__item">
@@ -303,15 +330,98 @@ export const SideBar = ({ toggleTheme }: SidebarProps) => {
                                 <span className="link__icon">
                                     <Support />
                                 </span>
-                                <span className="link__text">{t<string>('support')}</span>
+                                <span className="link__text" id="link__text">{t<string>('support')}</span>
                             </Link>
                         </li>
                     </ul>
                 </div>
-                <button type="button" className="sidebarToggle">
+                <button type="button" className="sidebarToggle" onClick={() => {
+                    const texts = document.querySelectorAll<HTMLElement>('#link__text');
+                    const sidebarLeft = document.querySelector('#sidebar-left') as HTMLElement;
+                    
+                    const text = document.querySelector('#link__text') as HTMLElement;
+
+
+
+                    if(text.style.display != 'none'){
+                    for(let i=0;i<texts.length;i++){
+                        texts[i].style.display = 'none'
+                    }
+
+                    sidebarLeft.style.width = 'max-content';
+                }
+                else {
+                    for(let i=0;i<texts.length;i++){
+                        texts[i].style.display = 'block'
+                    }
+
+                    sidebarLeft.style.width = '300px';
+                }
+
+
+                }}>
                     <KeyboardDoubleArrowLeftIcon />
                 </button>
             </div>
+
+{/* <div className="dashboard__sidebar" id="sidebar-left" style={{width: 'max-content'}}>
+                <div className="sidebar__inner">
+                    <ul className="sidebar__list">
+                        <li className="list__item">
+                            <Link className="item__link active" to="">
+                                <span className="link__icon">
+                                    <Dashboard />
+                                </span>
+                            </Link>
+                        </li>
+                        <li className="list__item">
+                            <Link className="item__link" to="">
+                                <span className="link__icon">
+                                    <UserManagement />
+                                </span>
+                            </Link>
+                        </li>
+                        <li className="list__item">
+                            <Link className="item__link" to="">
+                                <span className="link__icon">
+                                    <Services />
+                                </span>
+                            </Link>
+                        </li>
+                        <li className="list__item">
+                            <Link className="item__link" to="">
+                                <span className="link__icon">
+                                    <Sms />
+                                </span>
+                            </Link>
+                        </li>
+                        <li className="list__item">
+                            <Link className="item__link" to="">
+                                <span className="link__icon">
+                                    <BillingInvoice />
+                                </span>
+                            </Link>
+                        </li>
+                        <li className="list__item">
+                            <Link className="item__link" to="">
+                                <span className="link__icon">
+                                    <Tickets />
+                                </span>
+                            </Link>
+                        </li>
+                        <li className="list__item">
+                            <Link className="item__link" to="">
+                                <span className="link__icon">
+                                    <Support />
+                                </span>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" className="sidebarToggle" onClick={() => console.log('sidebar toggle will work')}>
+                    <KeyboardDoubleArrowLeftIcon />
+                </button>
+            </div> */}
         </>
     )
 }

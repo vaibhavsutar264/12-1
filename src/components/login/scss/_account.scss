@@ -103,7 +103,7 @@
             &.floating-item-3 {
                 width: 182px;
                 height: 122px;
-                background: white;
+                background: $white;
                 border-radius: 20px;
                 overflow: hidden;
                 display: flex;
@@ -117,7 +117,7 @@
             &.floating-item-7 {
                 width: 62px;
                 height: 62px;
-                background: white;
+                background: $white;
                 border-radius: 50%;
                 overflow: hidden;
                 display: flex;
@@ -313,13 +313,13 @@
 
         right: 7%;
         z-index: 1;
-        background: white;
+        background: $white;
         width: 575px;
         height: auto;
         padding: 78px 49px;
         border-radius: 39px;
         // transform: translateY(-50%);
-        box-shadow: 0px 30px 60px #00000033;
+        box-shadow: 0px 30px 60px $bShColor;
         animation: animform 500ms linear forwards;
         animation-delay: 0.5s;
         opacity: 0;
@@ -355,12 +355,12 @@
 
                     line-height: 24px !important;
                     letter-spacing: 0px;
-                    color: #d63548;
+                    color: $red;
                     // margin: 0px 0px 16px;
                     margin: 0px 0px 0px;
                     text-transform: capitalize;
                     opacity: 1;
-                    color: #344857 !important;
+                    color: $formTitle !important;
                 }
 
                 .sub__title {
@@ -369,7 +369,7 @@
                     font-size: 16px;
                     line-height: 16px;
                     letter-spacing: 0px;
-                    color: #858585;
+                    color: $subTitle;
                     max-width: 360px;
                     margin: 0 auto;
                     opacity: 0.6;
@@ -441,7 +441,7 @@
                             line-height: 18px;
                             font-family: $font-Ubuntu;
                             letter-spacing: 0px;
-                            color: #abaec5;
+                            color: $label;
                             opacity: 1;
                         }
 
@@ -454,7 +454,7 @@
                             line-height: 18px;
                             font-family: $font-Ubuntu;
                             letter-spacing: 0px;
-                            color: #11153b !important;
+                            color: $input !important;
                             opacity: 1;
                         }
                     }
@@ -511,7 +511,7 @@
                         &::before {
                             font-size: 20px;
                             font-weight: bold;
-                            color: #39be12;
+                            color: $success;
                             font-family: 'poppins', sans-serif;
                             position: absolute;
                             content: '\2713';
@@ -524,7 +524,7 @@
 
                         .MuiInputBase-root {
                             &::before {
-                                border-color: #75818a !important;
+                                border-color: $inputBorder !important;
                                 transition: 0.5s all ease-in-out;
                             }
                         }
@@ -558,7 +558,7 @@
                         height: 50px;
                     }
 
-                    border: 1px solid #e8ebf3 !important;
+                    border: 1px solid $inputBorder2 !important;
                     border-radius: 10px;
                     transition: none !important;
                 }
@@ -576,7 +576,7 @@
                     top: 4px !important;
                 }
 
-                color: rgba(0, 0, 0, 0.6) !important;
+                color: $labelShrink!important;
             }
         }
     }
@@ -598,7 +598,7 @@
     height: 31px;
     margin-right: 20px !important;
     margin-top: -30px !important;
-    background: #c9c9c94d !important;
+    background: $eyeIcon !important;
 
     @media only screen and (max-width: 1400px) {
         position: relative;
@@ -619,7 +619,7 @@
     font-size: 14px;
     line-height: 24px;
     letter-spacing: 0px;
-    color: #092133;
+    color: $formTitleDark;
     text-transform: capitalize;
     opacity: 1;
 }
@@ -633,10 +633,10 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #55595c;
-    background-color: #f7f7f9;
+    color: $grey3;
+    background-color: $whiteLight;
     background-clip: padding-box;
-    border: 0 solid #ced4da;
+    border: 0 solid $whiteDull;
     appearance: none;
     border-radius: 0;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -959,8 +959,8 @@
     left: 0;
     width: 267px;
     height: auto;
-    background: #ffffff;
-    box-shadow: 0px 30px 99px #00000033;
+    background: $white;
+    box-shadow: 0px 30px 99px $bShColor;
     opacity: 1;
     z-index: 10;
     padding: 20px 20px;
@@ -972,9 +972,9 @@
         top: -10px;
         left: 50%;
         transform: translateX(-50%) rotate(-45deg);
-        border-top: 10px solid #ffffff;
+        border-top: 10px solid $white;
         border-left: 10px solid transparent;
-        border-right: 10px solid #ffffff;
+        border-right: 10px solid $white;
         border-bottom: 10px solid transparent;
     }
 
@@ -996,7 +996,7 @@
             font-size: 13px;
             line-height: 16px;
             letter-spacing: 0px;
-            color: #171717;
+            color: $tooltipTitle;
             margin-bottom: 0;
             opacity: 1;
 
@@ -1019,13 +1019,13 @@
                 &.fulfilled {
                     .tooltip-icon {
                         svg {
-                            color: #0fef00;
+                            color: $tooltipSvg;
                             font-size: 18px;
                         }
                     }
 
                     .tooltip-text {
-                        color: #4a4a4a;
+                        color: $tooltipText;
                     }
                 }
 
@@ -1034,7 +1034,7 @@
 
                     svg {
                         font-size: 18px;
-                        color: #7d7d7d;
+                        color: $tooltipSvg2;
                     }
                 }
 
@@ -1044,7 +1044,7 @@
                     font-size: 12px;
                     line-height: 14px;
                     letter-spacing: 0px;
-                    color: #7d7d7d;
+                    color: $tooltipText2;
                 }
             }
         }
@@ -1053,7 +1053,7 @@
 
 p.text-error {
     // margin: 0px 0px 20px;
-    color: #d63548;
+    color: $red;
     font-size: 14px;
     line-height: 14px;
     margin: 0;
@@ -1061,20 +1061,20 @@ p.text-error {
 
 p.text-error-success {
     // margin: 0px 0px 20px;
-    color: #39be12;
+    color: $success;
     font-size: 14px;
     line-height: 14px;
     margin: 0;
 }
 
 #lang-background-white {
-    background-color: #3a4548;
+    background-color: $langBg;
     border-radius: 39px;
 }
 
 // .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
-//     background-color: #3a4548 !important;
-//     color: #fff;
+//     background-color: $grey2 !important;
+//     color: $white;
 //     position: relative;
 //     font-size: 16px;
 //     line-height: 18px;
@@ -1088,7 +1088,7 @@ p.text-error-success {
 //       transform: translateX(-50%);
 //       width: 80%;
 //       height: 1px;
-//       background-color: #fff;
+//       background-color: $white;
 //       opacity: 0.15;
 //     }
 // }
@@ -1099,8 +1099,8 @@ p.text-error-success {
 }
 
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
-    background-color: #fff !important;
-    color: #3a4548 !important;
+    background-color: $white !important;
+    color: $grey2 !important;
     border-bottom: none;
 }
 
@@ -1120,7 +1120,7 @@ p.text-error-success {
             transform: translateX(-50%);
             width: 70%;
             height: 1px;
-            background-color: #3a4548;
+            background-color: $grey2;
             opacity: 0.2;
         }
 
@@ -1141,30 +1141,30 @@ MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiPaper-r
 }
 
 .MuiInputLabel-shrink {
-    color: rgba(0, 0, 0, 0.6) !important;
-    // background-color: #fff !important;
+    color: $labelShrink !important;
+    // background-color: $white !important;
 }
 
 
 
 #date-picker [role="combobox"] {
     border-radius: 23px;
-    background-color: #f1f4f9 !important;
+    background-color: $actionInput !important;
 
     & input::placeholder {
-        color: #344857 !important;
+        color: $grey !important;
         font-weight: bold;
         letter-spacing: -0.42px;
     }
 
     & div.rs-calendar-table-cell.rs-calendar-table-cell-selected.rs-calendar-table-cell-selected-start>div {
-        background-color: #D63548 !important;
+        background-color: $red !important;
     }
 }
 
 
 #date-picker>div>div>div>div>div:nth-child(1)>span {
-    color: #344857 !important;
+    color: $grey !important;
     font-weight: bold;
     letter-spacing: -0.42px;
 }
@@ -1189,4 +1189,8 @@ MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiPaper-r
 
 .dashboard__wrapper~header {
     display: none !important;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }

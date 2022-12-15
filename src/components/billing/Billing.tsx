@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import RaiseTicket from './RaiseTicket'
+import RaiseTicket from '../common/elements/RaiseTicket'
 import { SideBar } from '../common/elements/SideBar'
 import DataTable from '../common/tables/DataTables'
 import { BreadCrums } from '../common/elements/BreadCrum'
@@ -11,10 +11,10 @@ import {
 } from '../../redux/store'
 import { cardFilter, ChangePageBilling, downloadBillingInvoice, downloadBillingInvoiceCDR, filterData, loadInvoices, searchData, sortData } from '../../redux/slices/billingSlice'
 import useLocales from '../../hooks/useLocales'
-import Invoice from '../common/icons/Invoice'
-import Overdue from '../common/icons/Overdue'
-import PaidInvoice from '../common/icons/PaidInvoice'
-import UnpaidInvoice from '../common/icons/UnpaidInvoice'
+import Invoice from '../common/icons/invoice'
+import Overdue from '../common/icons/overdue'
+import PaidInvoice from '../common/icons/paidInvoice'
+import UnpaidInvoice from '../common/icons/unpaidInvoice'
 import Card from '../common/elements/card'
 import { getCardCount } from '../../utils/helpers'
 
@@ -24,13 +24,13 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(loadInvoices({ searchValue: "" }))
-    }, [])
+    }, [dispatch])
     const { t } = useLocales()
     const cards = [
-        { titel: t('allInvoice'), value: getCardCount(MasterData, 'Payment_Status', ''), icon: <Invoice />, bgcolor: "white", textColor: "#1A73E8", cntColor: '#344857', action: cardFilter("Payment_Status", "") },
-        { titel: t('overdue'), value: getCardCount(MasterData, 'Payment_Status', 'overdue'), icon: <Overdue />, bgcolor: "#363f5e", textColor: "white", cntColor: 'white', action: cardFilter("Payment_Status", "overdue") },
-        { titel: t('unpaidInvoices'), value: getCardCount(MasterData, 'Payment_Status', 'pending'), icon: <UnpaidInvoice />, bgcolor: "#e54457", textColor: "white", cntColor: 'white', action: cardFilter("Payment_Status", "pending") },
-        { titel: t('paidInvoices'), value: getCardCount(MasterData, 'Payment_Status', 'completed'), icon: <PaidInvoice />, bgcolor: "#3DB887", textColor: "white", cntColor: 'white', action: cardFilter("Payment_Status", "completed") },
+        { titel: t('allInvoice'), value: getCardCount(MasterData, 'Payment_Status', ''), icon: <Invoice />, action: cardFilter("Payment_Status", "") },
+        { titel: t('overdue'), value: getCardCount(MasterData, 'Payment_Status', 'overdue'), icon: <Overdue />, action: cardFilter("Payment_Status", "overdue") },
+        { titel: t('unpaidInvoices'), value: getCardCount(MasterData, 'Payment_Status', 'pending'), icon: <UnpaidInvoice />, action: cardFilter("Payment_Status", "pending") },
+        { titel: t('paidInvoices'), value: getCardCount(MasterData, 'Payment_Status', 'completed'), icon: <PaidInvoice />, action: cardFilter("Payment_Status", "completed") },
     ]
 
     const [showIt, setShowIt] = useState(false);
@@ -38,7 +38,6 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
         setShowIt(!showIt);
     };
 
-    console.log(PageData);
 
     return (
         <div className="dashboard__wrapper">
