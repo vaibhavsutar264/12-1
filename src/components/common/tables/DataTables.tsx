@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, SyntheticEvent } from 'react'
 import Table from '@mui/material/Table'
 import { IconButton, Menu, MenuItem, ListItemIcon, Tooltip, ClickAwayListener } from '@mui/material'
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
@@ -28,6 +28,7 @@ import { getPageParms, setUlrParms } from '../../../utils/helpers'
 import { useDispatch as useAppDispatch } from '../../../redux/store'
 import { Link } from 'react-router-dom'
 import MultiSelect from '../elements/multiSelect'
+import { apiVrbls } from '../../../utils/constants';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -105,6 +106,225 @@ const DataTable = ({
     const handleTooltipOpen = () => {
         setOpen(true);
     };
+    const handleInvoiceClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const invoicenumElement = document.getElementById(
+            'hiding'
+        ) as HTMLElement
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[0].eleName = null
+        console.log(columns[0])
+    };
+
+
+    const handleInvoiceOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[0].eleName = 'Invoice_no'
+    };
+    const handleCustomerClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-customer'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-customer'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[1].eleName = null
+        console.log(columns[1])
+    };
+
+
+    const handleCustomerOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-customer'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-customer'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[1].eleName = 'Customer_LE'
+    };
+    const handleEntityClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-entity'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-entity'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[2].eleName = null
+        console.log(columns[2])
+    };
+
+    const handleEntityOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-entity'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-entity'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[2].eleName = 'Tata_Entity'
+    };
+
+    const handlePoClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-po'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-po'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[3].eleName = null
+        console.log(columns[0])
+    };
+
+
+    const handlePoOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-po'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-po'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[3].eleName = 'PO_number'
+    };
+    const handleStatusClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-status'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-status'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[4].eleName = null
+        console.log(columns[4])
+    };
+
+
+    const handleStatusOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-status'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-status'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[4].eleName = 'Payment_Status'
+    };
+    const handleAmountClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-invoice-amount'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-invoice-amount'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[5].eleName = null
+        console.log(columns[5])
+    };
+
+
+    const handleAmountOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-invoice-amount'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-invoice-amount'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[5].eleName = 'Invoice_amt'
+    };
+    const handleInvoiceIssueClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-invoice-issue'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-invoice-issue'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[6].eleName = null
+        console.log(columns[6])
+    };
+
+
+    const handleInvoiceIssueOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-invoice-issue'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-invoice-issue'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[6].eleName = 'Invoice_date'
+    };
+    const handleDueClose = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-due-date'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-due-date'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'block'
+        CheckoutElement.style.display = 'none'
+        columns[7].eleName = null
+        console.log(columns[7])
+    };
+
+
+    const handleDueOpen = (e: SyntheticEvent) => {
+        e.preventDefault()
+        const blankCheckoutElement = document.getElementById(
+            'checkbox-blank-due-date'
+        ) as HTMLElement
+        const CheckoutElement = document.getElementById(
+            'checkbox-due-date'
+        ) as HTMLElement
+        blankCheckoutElement.style.display = 'none'
+        CheckoutElement.style.display = 'block'
+        columns[7].eleName = 'Due_date'
+    };
 
     return (
         <>
@@ -147,76 +367,71 @@ const DataTable = ({
                                         horizontal: 'left',
                                       }}
                                 >
-                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                    <MenuItem ><ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handleInvoiceClose} id="checkbox" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handleInvoiceOpen} fontSize='small' id='checkbox-blank' />
                                     </ListItemIcon><span>Invoice Number</span></MenuItem>
-                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                    <MenuItem ><ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handleCustomerClose} id="checkbox-customer" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handleCustomerOpen} fontSize='small' id='checkbox-blank-customer' />
                                     </ListItemIcon><span>Customer LE</span></MenuItem>
-                                    <MenuItem onClick={handleClose}>
+                                    <MenuItem>
                                     <ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handleEntityClose} id="checkbox-entity" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handleEntityOpen} fontSize='small' id='checkbox-blank-entity' />
                                     </ListItemIcon><span>Entity</span></MenuItem>
-                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                    <MenuItem><ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handlePoClose} id="checkbox-po" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handlePoOpen} fontSize='small' id='checkbox-blank-po' />
                                     </ListItemIcon><span>PO No.</span></MenuItem>
-                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                    <MenuItem><ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handleStatusClose} id="checkbox-status" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handleStatusOpen} fontSize='small' id='checkbox-blank-status' />
                                     </ListItemIcon><span>Status</span></MenuItem>
-                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                    <MenuItem ><ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handleAmountClose} id="checkbox-invoice-amount" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handleAmountOpen} fontSize='small' id='checkbox-blank-invoice-amount' />
                                     </ListItemIcon><span>Invoice Amount</span></MenuItem>
-                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                    <MenuItem ><ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handleInvoiceIssueClose} id="checkbox-invoice-issue" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handleInvoiceIssueOpen} fontSize='small' id='checkbox-blank-invoice-issue' />
                                     </ListItemIcon><span>Invoice Issued Date</span></MenuItem>
-                                    <MenuItem onClick={handleClose}><ListItemIcon>
+                                    <MenuItem ><ListItemIcon>
                                         {/* <Logout fontSize="small" /> */}
                                         <DragIndicatorIcon fontSize='small' />
-                                        <CheckBoxIcon fontSize='small' />
+                                        <CheckBoxIcon onClick={handleDueClose} id="checkbox-due-date" fontSize='small' />
                                         {/* remove above icon and use below icon for when user unchecks the option */}
-                                        {/* <CheckBoxOutlineBlankIcon fontSize='small' /> */}
+                                        <CheckBoxOutlineBlankIcon onClick={handleDueOpen} fontSize='small' id='checkbox-blank-due-date' />
                                     </ListItemIcon><span>Due Date</span></MenuItem>
                                 </Menu>
-                                {/* <a href="#" onClick={(e) => {
-                                    e.preventDefault();
-                                }}>
-                                    <MoreVertIcon />
-                                </a>{' '} */}
                             </StyledTableCell>
 
                             {/* Table Heads */}
                             {columns.map((head: any, index: any) => (
                                 <StyledTableCell key={`${head.headTrans}${index}`} align="right">
                                     <div className="th_wrapper">
-                                        <button className='voidBtn' onClick={sort.bind(null, head)} key={`clickkey-${head.headTrans}${index}`} >
+                                        <button id='hiding' className='voidBtn' onClick={sort.bind(null, head)} key={`clickkey-${head.headTrans}${index}`} >
                                             {t<string>(`tables.${tableName}.${head.headTrans}`)}
                                         </button>
                                         <span>

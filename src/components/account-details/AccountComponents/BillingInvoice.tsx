@@ -4,7 +4,7 @@ import { useSelector } from '../../../redux/store';
 
 const BillingInvoice = () => {
     const { accountDetails } = useSelector((state: any) => state.account);  
-    const { sendInvoiceToContact } = accountDetails
+    // const { sendInvoiceToContact } = accountDetails
   return (
     <>
       {/* 2nd row container starts */}
@@ -65,13 +65,20 @@ const BillingInvoice = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>name</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{sendInvoiceToContact.name}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{sendInvoiceToContact.name}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -87,13 +94,20 @@ const BillingInvoice = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>address</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{sendInvoiceToContact.address}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{sendInvoiceToContact.address}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -109,13 +123,20 @@ const BillingInvoice = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>city</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{sendInvoiceToContact.city}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{sendInvoiceToContact.city}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -131,13 +152,20 @@ const BillingInvoice = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>country</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{sendInvoiceToContact.country}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{sendInvoiceToContact.country}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -153,13 +181,20 @@ const BillingInvoice = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>pin</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{sendInvoiceToContact.pin}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{sendInvoiceToContact.pin}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -175,13 +210,20 @@ const BillingInvoice = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>email id</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{sendInvoiceToContact.emailId}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{sendInvoiceToContact.emailId}</Typography>
+                        }}>name</Typography>
                     </Stack>
 
                     
@@ -198,13 +240,20 @@ const BillingInvoice = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>customer authorized rate notification recepient</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{sendInvoiceToContact.customerAuthorizedRateNotificationRecipient}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{sendInvoiceToContact.customerAuthorizedRateNotificationRecipient}</Typography>
+                        }}>name</Typography>
                     </Stack>
                 </Box>
                 </Box>

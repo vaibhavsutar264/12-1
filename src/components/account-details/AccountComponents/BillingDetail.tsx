@@ -7,7 +7,7 @@ import {getAcDetails} from '../../../redux/slices/accountSlice'
 const BillingDetail = () => {
     const { accountDetails } = useSelector((state: any) => state.account);  
     const { le1 } = accountDetails
-    const { billingDetails } = le1
+    // const { billingDetails } = le1
 
     useEffect(() => {
         dispatch(getAcDetails())
@@ -93,13 +93,20 @@ const BillingDetail = () => {
                         opacity: 0.7,
                         textTransform: 'capitalize',
                     }}>account name</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.accountName}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.accountName}</Typography>
+                        }}>name</Typography>
                     </Stack>
 
                     <Stack sx={{
@@ -115,13 +122,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>legal entity</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.legalEntity}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.legalEntity}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -137,13 +151,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>billing type</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.billingtype}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.billingtype}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -159,13 +180,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>billing cycle</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.billingCycle}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.billingCycle}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -181,13 +209,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>payment period</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.paymentPeriod}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.paymentPeriod}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -203,13 +238,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>VAT/GST No./Tax ID</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.vatOrGSTNoOrTxId}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.vatOrGSTNoOrTxId}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -225,13 +267,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>Company Pan or Equivalent No.</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.companyPAN}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.companyPAN}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -247,13 +296,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>applicable currency</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.applicableCurrency}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.applicableCurrency}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     <Stack sx={{
                         flexBasis: '30%',
@@ -268,13 +324,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>contact term</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.contractTerm}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.contractTerm}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     
                     <Stack sx={{
@@ -290,13 +353,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>rate change notification period(in days)</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.rateChangeNotificationPeriod}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.rateChangeNotificationPeriod}</Typography>
+                        }}>name</Typography>
                     </Stack>
 
                     <Stack sx={{
@@ -312,13 +382,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>rate & coverage change time zone</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.rateCoverageChangeTimeZone}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.rateCoverageChangeTimeZone}</Typography>
+                        }}>name</Typography>
                     </Stack>
                     <Stack sx={{
                         flexBasis: '30%',
@@ -333,13 +410,20 @@ const BillingDetail = () => {
                         flexBasis: '30%',
                         textTransform: 'capitalize',
                     }}>account status & remark</Typography>
+                        {/* <Typography component='span' sx={{
+                            color: '#344857',
+                            fontWeight: 700,
+                            fontSize: '16px',
+                            fontFamily: "ubuntu",
+                            lineHeight: '18px',
+                        }}>{billingDetails.accountStatus}</Typography> */}
                         <Typography component='span' sx={{
                             color: '#344857',
                             fontWeight: 700,
                             fontSize: '16px',
                             fontFamily: "ubuntu",
                             lineHeight: '18px',
-                        }}>{billingDetails.accountStatus}</Typography>
+                        }}>name</Typography>
                     </Stack>
                 </Box>
                 </Box>

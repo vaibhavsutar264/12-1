@@ -63,5 +63,10 @@ declare module 'styled-components' {
         inputLabelColor: string
         mailIconColor: string
         inputColor: string
+        toggleWrapper: string
+        sunModeColor: string
+        darkModeColor: string
+        sunModeBtnBg: string
+        darkModeBtnBg: string
     }
 }

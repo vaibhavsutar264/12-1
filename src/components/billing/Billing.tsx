@@ -19,6 +19,7 @@ import Card from '../common/elements/card'
 import { getCardCount } from '../../utils/helpers'
 
 export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
+
     const { isError, isLoading, isSuccess, PageData = [], MasterData = [], total, page, take } = useSelector((state: any) => state.billing);
 
     const dispatch = useAppDispatch();
@@ -38,12 +39,18 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
         setShowIt(!showIt);
     };
 
+    const [bDWidth, setBDWidth] = useState('300px');
+  const handleBDWidth = () => {
+    const currentWidth = bDWidth == '300px'? '130px' : '300px';
+    setBDWidth(currentWidth);
+  };
+
 
     return (
         <div className="dashboard__wrapper">
             <RaiseTicket handleShow={handleShow} showIt={showIt} />
-            <SideBar toggleTheme={toggleTheme} />
-            <div className="dashboard__content">
+            <SideBar toggleTheme={toggleTheme} handleBDWidth={handleBDWidth} />
+            <div className="dashboard__content" style={{ width: `calc(100% - ${bDWidth})`, marginLeft: `${bDWidth}` }}>
                 <div className="content__header">
                     <BreadCrums data={breadCrums.BILLING} />
                     <PageSearch searchFn={searchData} />
@@ -52,7 +59,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     {cards.map((q: any, i: any) => <Card data={q} key={`card-warpper${i}`} />)}
                 </div >
                 <DataTable
-                    handledownloadViewpdf={downloadBillingInvoiceCDR}
+                    handledownloadViewpdf={downloadBillingInvoice}
                     handledownloadPdf={downloadBillingInvoice}
                     handleShow={handleShow}
                     pageAction={ChangePageBilling}

@@ -62,6 +62,11 @@ export const lightTheme = {
     inputLabelColor: '#ABAEC5',
     mailIconColor: '#ABAEC5',
     inputColor: '#11153b',
+    toggleWrapper: '#F7F8FA !important',
+    sunModeColor: '#D63548',
+    darkModeColor: '#222',
+    sunModeBtnBg: '#fff !important',
+    darkModeBtnBg: 'transparent !important',
 }
 
 export const darkTheme = {
@@ -126,7 +131,12 @@ export const darkTheme = {
     inputFieldBg: '#fff !important',
     inputLabelColor: '#787785',
     mailIconColor: '#787785',
-    inputColor: '#363636 !important'
+    inputColor: '#363636 !important',
+    toggleWrapper: '#25292E !important',
+    sunModeColor: '#787785',
+    darkModeColor: '#D63548',
+    sunModeBtnBg: 'transparent !important',
+    darkModeBtnBg: '#fff !important',
 }
 
 export const GlobalStyles = createGlobalStyle<{ theme: string }>`
@@ -348,5 +358,20 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   }
   #email-box svg path, #password-box svg path, #confirm-password-box svg path {
     fill: ${({ theme }) => theme.mailIconColor};
+  }
+  .toggle__wrapper {
+    background: ${({ theme }) => theme.toggleWrapper};
+  }
+  .toggle__wrapper .lightMode {
+    background: ${({ theme }) => theme.sunModeBtnBg};
+  }
+  .toggle__wrapper .darkMode {
+    background: ${({ theme }) => theme.darkModeBtnBg};
+  }
+  .lightMode svg path {
+    fill: ${({ theme }) => theme.sunModeColor};
+  }
+  .darkMode svg path {
+    fill: ${({ theme }) => theme.darkModeColor};
   }
 `

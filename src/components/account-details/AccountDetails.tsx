@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Box, Grid} from '@mui/material'
 
 import BillingAvatar from './AccountComponents/BillingAvatar'
@@ -10,10 +10,16 @@ import {SideBar}  from '../common/elements/SideBar'
 
 const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
 
+  const [aDWidth, setADWidth] = useState('300px');
+  const handleADWidth = () => {
+    const currentWidth = aDWidth == '300px'? '130px' : '300px';
+    setADWidth(currentWidth);
+  };
+
   return (
     <>
-      <SideBar toggleTheme={toggleTheme} />
-    <Box className="bd-container">
+      <SideBar toggleTheme={toggleTheme} handleADWidth={handleADWidth} />
+    <Box className="bd-container" style={{ width: `calc(100% - ${aDWidth})`, marginLeft: `${aDWidth}` }}>
         <Grid className="bd-inner-container" container columns={{sm:8, md: 12}}>
 
             <Grid className="bd-single-container"  item container columnSpacing={5} columns={12} sm={12} md={12}>

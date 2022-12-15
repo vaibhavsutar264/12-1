@@ -1,5 +1,6 @@
 export const apiRoutes = {
   BASE_URL: 'http://115.112.43.74:8585',
+  // BASE_URL: 'http://api.sspdev.digodev.com',
 
   // User
   LOGIN: '/cpaas/token',
