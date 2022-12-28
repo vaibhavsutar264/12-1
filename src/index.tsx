@@ -1,5 +1,6 @@
 import './i18n'
 import { Suspense } from 'react'
+import { createRoot } from 'react-dom/client';
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { persistor, store } from './redux/store'
@@ -8,7 +9,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import 'react-toastify/dist/ReactToastify.css'
 
-ReactDOM.render(
+const container: any = document.getElementById('root');
+
+createRoot(container).render(
   <Suspense fallback={null}>
     <BrowserRouter>
       <Provider store={store}>
@@ -17,6 +20,5 @@ ReactDOM.render(
         </PersistGate>
       </Provider>
     </BrowserRouter>
-  </Suspense>,
-  document.getElementById('root')
+  </Suspense>
 )

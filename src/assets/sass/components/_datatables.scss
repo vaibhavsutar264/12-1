@@ -1,0 +1,53 @@
+ul.actionButtons {
+
+    & button.actionButton__item {
+        &:hover {
+            
+            & span {
+                
+                transition: all 200ms 0ms ease-in;
+                background-color: $red !important;
+
+            & svg {
+
+                & path {
+                    transition: all 200ms 0ms ease-in;
+                    fill: $white !important;
+
+                }
+            }
+
+        }
+        }
+
+    }
+}
+
+.overdue svg path {
+    fill: rgb(54, 63, 94) !important;
+    stroke: rgb(54, 63, 94) !important;
+}
+.overdue svg circle {
+    stroke: rgb(54, 63, 94) !important;
+    fill: rgb(54, 63, 94) !important;
+}
+
+
+.pending svg path {
+    fill: rgb(229, 68, 87) !important;
+    stroke: rgb(229, 68, 87) !important;
+}
+.pending svg circle {
+    stroke: rgb(229, 68, 87) !important;
+    fill: rgb(229, 68, 87) !important;
+}
+
+.completed svg path {
+    fill: rgb(61, 184, 135) !important;
+    stroke: rgb(61, 184, 135) !important;
+}
+.completed svg circle {
+    stroke: rgb(61, 184, 135) !important;
+    fill: rgb(61, 184, 135) !important;
+}
+

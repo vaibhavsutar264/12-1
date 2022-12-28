@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import ResetPassword from '../components/login/reset-password/ResetPassword'
+import ResetPassword from '../components/reset-password/ResetPassword'
 import { Provider } from 'react-redux'
 import { store, persistor } from '../redux/store'
 import userEvent from '@testing-library/user-event'
@@ -102,9 +102,9 @@ describe('App', () => {
     const passwordElement = screen.getByTestId(
       'password-element'
     ) as HTMLInputElement
-    typeIntoForm({ password: 'Vaibhav@123', confirmPassword: 'Vaibhav@1234' })
+    typeIntoForm({ password: 'Vaibhav@123', confirmPassword: 'Vaibhav@' })
     expect(passwordElement.value).toBe('Vaibhav@123')
-    expect(confirmPasswordElement.value).toBe('Vaibhav@1234')
+    expect(confirmPasswordElement.value).toBe('Vaibhav@')
     const NavigateToSetpasswordScreen = screen.getByRole('button', {
       name: /Done/i,
     })

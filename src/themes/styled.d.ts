@@ -23,6 +23,7 @@ declare module 'styled-components' {
         inputHeaderInputColor: string
         inputHeaderPlaceholderColor: string
         searchiconSidebar: string
+        searchiconSidebarOpacity: string
         notificationColor: string
         notificationBadgeBgColor: string
         breadcrumbColor: string
@@ -68,5 +69,40 @@ declare module 'styled-components' {
         darkModeColor: string
         sunModeBtnBg: string
         darkModeBtnBg: string
+        bdContainerBg: string
+        bdSingleContentBg: string
+        prefilledTitle: string
+        prefilledContent: string
+        billingDetailsInput: string
+        billingDetailsLabel: string
+        bdSingleContentTitle: string
+        helpText: string
+        bdSelectFormColor: string
+        modalBg: string
+        modalTitle: string
+        closeModalSvg: string
+        resendLink: string
+        langInvoicesBg: string
+        langInvoicesLoginscreensBg: string
+        langInvoicesTxt: string
+        selectEntityLabelBg: string
+        selectEntityLabel: string
+        selectEntityBorder: string
+        selectEntityLabelShrink: string
+        selectEntityInput: string
+        editableInputBorder: string
+        avatarInitialsBg: string
+        avatarInitials: string
+        datatableIconBg: string
+        iconCtaNBg: string
+        datatableIconHoverBg: string
+        iconCtaTxt: string
+        datatableIconHoverTxt: string
+        langInvoicesLoginscreensSvg: string
+        forgotPasswordLnkColor: string
+        cardBorder: string
+        cardHoverBorder: string
+        verticalDotsBg: string
+        verticalDots: string
     }
 }

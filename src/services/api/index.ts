@@ -9,6 +9,7 @@ import {
   logoutTransformer,
   resetPasswordTransformer,
   userInfoTransformer,
+  userInfoInternalTransformer
 } from '../../utils/transformers'
 import routes from './routes'
 const httpInstance = (transformer: any) =>
@@ -17,9 +18,8 @@ const httpInstance = (transformer: any) =>
     ...(transformer && { transformResponse: [transformer] }),
     headers: {
       [apiHelpers.HEADER_CONTENT_TYPE]: apiHelpers.CONTENT_TYPE_APP_JSON,
-      [apiHelpers.HEADER_AUTHORIZATION]: `${apiHelpers.TOKEN_TYPE} ${
-        getFromLocalStorage(localStorageVar.TOKEN_VAR) || null
-      }`,
+      [apiHelpers.HEADER_AUTHORIZATION]: `${apiHelpers.TOKEN_TYPE} ${getFromLocalStorage(localStorageVar.TOKEN_VAR) || null
+        }`,
     },
   })
 
@@ -61,7 +61,7 @@ const requests = {
   postPdf: (url: string, data: any, transformer: any) =>
     httpInstance(transformer).get(url, {
       responseType: 'blob',
-      headers: { 'Content-Type': 'application/pdf' },
+      headers: { [apiHelpers.HEADER_CONTENT_TYPE] : apiHelpers.CONTENT_TYPE_APP_PDF },
     }),
 }
 
@@ -84,9 +84,9 @@ const userLoginData = {
       body,
       resetPasswordTransformer
     ),
-  getUserInfo: (username: any) =>
+  getUserInfo: (emailId: any) =>
     requests.get(
-      `${routes.BASE_URL}${routes.GET_USER_INFO}?username=${username}`,
+      `${routes.BASE_URL}${routes.GET_USER_INFO}?username=${emailId}`,
       userInfoTransformer
     ),
 }
@@ -112,10 +112,11 @@ const billing = {
       null
     ),
 }
-
 const account = {
   getAccountDetails: () =>
-    requests.get(`${routes.BASE_URL}${routes.GET_BILLING_DETAILS}`, null),
+    requests.get(`${routes.BASE_URL}${routes.GET_ACCOUNT_BILLING_DETAILS}`, null),
+  editUserDetails: (body: any) =>
+    requests.post(`${routes.BASE_URL}${routes.UPDATE_USER_INFO}`, body, null),
 }
 
 export { userLoginData, billing, account }

@@ -34,7 +34,6 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { useSelector } from '../../../redux/store'
 import { dataTables } from '../../../utils/constants'
 import { isAbsolute } from 'path'
-import Close from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 
 const RaiseTicket = ({ handleShow, showIt }: any) => {

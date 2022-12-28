@@ -29,5 +29,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off', //for no any type on variable
+    "@typescript-eslint/no-explicit-any": ["off"],
   },
 }

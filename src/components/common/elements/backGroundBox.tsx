@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import { useDarkMode } from '../../../themes/useDarkMode'
 import { darkTheme, lightTheme } from '../../../themes/globalStyles'
 import useLocales from '../../../hooks/useLocales'
-import { typeVar } from '../../../utils/constants'
+import { typeVar, appThemes } from '../../../utils/constants'
 import Chart from '../icons/chart'
 import Video from '../icons/video'
 import PieChart from '../icons/pieChart'
@@ -21,7 +21,7 @@ import Whatsapp from '../icons/whatsapp'
 const BackgroundBox = () => {
     const { t } = useLocales()
     const [theme, toggleTheme] = useDarkMode()
-    const themeMode = theme === 'light' ? lightTheme : darkTheme
+    const themeMode = theme === appThemes.LIGHT_THEME ? lightTheme : darkTheme
     return (
         // Background animation
         <Box sx={{ flexGrow: 1 }} className="account__form__animation">

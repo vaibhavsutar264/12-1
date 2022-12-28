@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { dispatch } from '../store'
 import { account } from '../../services/api/index'
 import { slices } from '../../utils/constants'
+import { toast } from 'react-toastify'
 
 const initialState: any = {
     isError: false,
@@ -26,6 +27,11 @@ export const accountSlice = createSlice({
             state.isLoading = false
             state.isSuccess = true
             state.accountDetails = action.payload
+        },
+        updateDetails: (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.updateUser = action.payload
         }
     },
 })
@@ -42,7 +48,26 @@ export const getAcDetails = () => {
         try {
             const { data } = await account.getAccountDetails()
             if (data) {
-                dispatch(accountSlice.actions.getDetails(data.data.data.legalentities[0]))
+                dispatch(accountSlice.actions.getDetails(data.data.data))
+                // dispatch(accountSlice.actions.getDetails(data))
+            } else {
+                dispatch(accountSlice.actions.hasError())
+            }
+            return data
+        } catch (error) {
+            dispatch(accountSlice.actions.hasError())
+        }
+    }
+}
+
+
+export const updateUserDetails = (body: any) => {
+    return async () => {
+        try {
+            const { data } = await account.editUserDetails(body)
+            if (data) {
+                toast.success(data.data.message)
+                dispatch(accountSlice.actions.updateDetails(data))
             } else {
                 dispatch(accountSlice.actions.hasError())
             }

@@ -111,6 +111,8 @@ export const runFilters = ({ page, take, sort }: any) => {
 
     }
 }
+
+
 export const loadInvoices = (parms: any) => {
     return async () => {
         try {
@@ -196,7 +198,7 @@ export const ChangePageBilling = (page: any, take: any) => {
     }
 }
 
-export const searchData = (searchValue: any) => {
+export const searchData = (searchValue: any) => {   
     const { take } = store.getState().billing;
     return async () => {
         dispatch(billingSlice.actions.setSearchData({ searchValue }))

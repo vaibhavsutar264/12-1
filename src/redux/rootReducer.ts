@@ -7,6 +7,7 @@ import { encryptTransform } from 'redux-persist-transform-encrypt'
 import authReducer from './slices/authSlice'
 import billingReducer from './slices/billingSlice'
 import accountReducer from './slices/accountSlice'
+import commonReducer from './slices/commonSlice'
 
 
 // =================================
@@ -28,7 +29,8 @@ const rootPersistConfig = {
 const rootReducer = combineReducers({
   auth: authReducer,
   billing: billingReducer,
-  account: accountReducer
+  account: accountReducer,
+  common: commonReducer
 })
 
 export { rootPersistConfig, rootReducer }

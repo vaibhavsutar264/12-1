@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { localStorageVar } from '../utils/constants'
 import { getFromLocalStorage } from './useLocalStorage'
 
 type LangType = [
@@ -25,7 +26,7 @@ const LANGS: LangType = [
 
 export default function useLocales() {
   const { i18n, t } = useTranslation()
-  const langStorage = getFromLocalStorage('i18nextLng')
+  const langStorage = getFromLocalStorage(localStorageVar.I18_LANG_VAR)
   const currentLang = LANGS.find((_lang) => _lang.value === langStorage)
 
   const handleChangeLanguage = (newlang: any) => {

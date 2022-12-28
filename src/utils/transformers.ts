@@ -40,6 +40,29 @@ export const userInfoTransformer = (data: any) => {
     }
 }
 
+export const userInfoInternalTransformer = (data: any) => {
+    const resp = JSON.parse(data);
+    const defaultResp = {
+        "meta_data": {
+            "api_name": "userinfo"
+        },
+        "data": {
+            "data": null,
+            "message": "user Not found",
+            "status": 200
+        }
+    }
+    try {
+        if (resp) {
+            return resp
+        } else {
+            return defaultResp
+        }
+    } catch {
+        return defaultResp
+    }
+}
+
 export const resetPasswordTransformer = (data: any) => {
     const resp = JSON.parse(data);
     const defaultResp = {

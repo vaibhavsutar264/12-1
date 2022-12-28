@@ -7,7 +7,7 @@ import {
   getFromLocalStorage,
 } from '../../hooks/useLocalStorage'
 import { userLoginData } from '../../services/api/index'
-import { apiDefaultrespons, apiVrbls, localStorageVar, staticErrors } from '../../utils/constants'
+import { apiDefaultrespons, apiVrbls, localStorageVar, staticErrors, slices } from '../../utils/constants'
 import { toast } from 'react-toastify'
 
 const initialState: AuthState = {
@@ -19,13 +19,14 @@ const initialState: AuthState = {
   isAuthenticated: false,
   message: '',
   emailSent: '',
-  userInfo: '',
   resetmessage: '',
-  forgotMessage: ''
+  forgotMessage: '',
+  userEmail: '',
+  forgotPassEmail: false,
 }
 
 export const userSlice = createSlice({
-  name: 'auth',
+  name: slices.AUTH_SLICE,
   initialState,
   reducers: {
     startLoading(state) {
@@ -36,7 +37,7 @@ export const userSlice = createSlice({
       state.isLoading = false
       state.isError = true
       state.isAuthenticated = false
-      state.message = action.payload.data?.message
+      state.message = action.payload
     },
     loginSuccess: (state, action) => {
       state.isLoading = false
@@ -46,13 +47,12 @@ export const userSlice = createSlice({
       state.isAuthenticated = true
       state.message = action.payload.message
     },
-    getUserInfoSuccess: (state, action) => {
+    loginCredential: (state, action) => {
       state.isLoading = false
       state.isSuccess = true
       state.isError = false
-      state.userInfo = action.payload
+      state.userEmail = action.payload
       state.isAuthenticated = true
-      state.message = action.payload.message
     },
     setPasswordSuccess: (state, action) => {
       state.isLoading = false
@@ -60,10 +60,22 @@ export const userSlice = createSlice({
       state.message = action.payload.message as string
     },
     forgotPasswordSuccess: (state, action) => {
+      state.forgotPassEmail = true
       state.isLoading = false
       state.isSuccess = true
       state.emailSent = action.payload.message as string
       state.forgotMessage = action.payload.data
+    },
+    resetforgotPasswordparms: (state, action) => {
+      state.forgotPassEmail = false
+    },
+    resetLoginParms: (state, action) => {
+      state.isLoading = false
+      state.isSuccess = false
+      state.isError = false
+      state.user = null
+      state.isAuthenticated = false
+      state.message = ""
     },
     resetPasswordSuccess: (state, action) => {
       state.isLoading = false
@@ -73,7 +85,6 @@ export const userSlice = createSlice({
     logOutSuccess: (state) => {
       state.isLoading = false
       state.user = null
-      state.userInfo = null
       state.isAuthenticated = false
     },
   },
@@ -87,7 +98,7 @@ export const { startLoading, hasError } = userSlice.actions
 
 // -----------------------------------------------------------------
 
-export const login = (userData: UserLogin) => {
+export const login = (userData: UserLogin, emailcredential: any) => {
   dispatch(userSlice.actions.startLoading())
   return async () => {
     try {
@@ -100,10 +111,11 @@ export const login = (userData: UserLogin) => {
         dispatch(userSlice.actions.resetPasswordSuccess({ data: "" }))
         if (userInfo && userInfo.data.data) {
           dispatch(userSlice.actions.loginSuccess(userInfo.data.data))
+          dispatch(userSlice.actions.loginCredential(emailcredential))
           setInLocalStorage(localStorageVar.USER_VAR, token)
         } else {
           toast.error(userInfo.data.message)
-          dispatch(userSlice.actions.hasError(null))
+          dispatch(userSlice.actions.hasError(userInfo.data.message))
         }
       }
     } catch (response: any) {
@@ -114,24 +126,27 @@ export const login = (userData: UserLogin) => {
   }
 }
 
-
-export const userInfo = () => {
+export const getuserInfo = (email: any) => {
   dispatch(userSlice.actions.startLoading())
   return async () => {
     try {
-      const response: any = await userLoginData.getUserInfo(null)
-      const { data } = response
-      if (response) {
-        const firstName: any = data.data.data.firstname
-        const lastName: any = data.data.data.lastName
-        const emailId: any = data.data.data.emailId
-        const user = { firstName: firstName, lastName: lastName, emailId: emailId }
-        // const resp = { user }
-        dispatch(userSlice.actions.getUserInfoSuccess(user))
+      const { data: userInfo }: any = await userLoginData.getUserInfo(email);
+      if (userInfo && userInfo.data.data) {
+        dispatch(userSlice.actions.loginSuccess(userInfo.data.data))
+      } else {
+        toast.error(userInfo.data.message)
       }
-    } catch ({ data = apiDefaultrespons.LOGIN_ERRRO }) {
+    } catch (response: any) {
+      const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
+      toast.error(data.message)
       dispatch(userSlice.actions.hasError(data))
     }
+  }
+}
+
+export const resetLoginParms = () => {
+  return async () => {
+    dispatch(userSlice.actions.resetLoginParms(null))
   }
 }
 
@@ -151,10 +166,11 @@ export const logout = (body: any) => {
         removeFromLocalStorage(localStorageVar.USER_VAR)
       }
     } catch (response: any) {
-      const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
-      toast.error(data.message)
+      console.log(response);
       removeFromLocalStorage(localStorageVar.TOKEN_VAR)
       removeFromLocalStorage(localStorageVar.USER_VAR)
+      const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
+      toast.error(data.message)
       dispatch(userSlice.actions.logOutSuccess())
     }
   }
@@ -189,6 +205,12 @@ export const forgotPassword = (userEmail: Email) => {
       toast.error(data.message)
       dispatch(userSlice.actions.hasError(data))
     }
+  }
+}
+
+export const resetForgotPaswordPrms = () => {
+  return async () => {
+    dispatch(userSlice.actions.resetforgotPasswordparms(null))
   }
 }
 

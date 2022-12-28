@@ -48,8 +48,8 @@ export default function MultiSelect({ id, filterData, filterAction }: any) {
                     })}
                 </ul>
             </div>
-            <span className='clkIgnr' style={{ cursor: "pointer" }}>
-                <UnfoldMoreIcon className='clkIgnr' onClick={openWithDOm} />
+            <span className='clkIgnr' style={{ cursor: "pointer" }}>    
+                <UnfoldMoreIcon id='more-icon' className='clkIgnr' onClick={openWithDOm} />
             </span>
         </div>
     );

@@ -1,4 +1,4 @@
-import i18n from 'i18next'
+import i18n, {use} from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import English from './locales/translations/en.json'
@@ -10,7 +10,7 @@ const resources = {
 }
 
 export const availableLanguages = Object.keys(resources)
-
+// eslint-disable-next-line
 i18n.use(initReactI18next).use(LanguageDetector).init({
   resources,
   defaultNS: 'common',

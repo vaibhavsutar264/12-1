@@ -79,8 +79,16 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutli
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline,
 .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused
   .MuiOutlinedInput-notchedOutline {
-  border: 0 !important;
+  // border: 0 !important;
 }
+
+#lang-background-invoices {
+
+  & fieldset {
+    border: 0 !important;
+  }
+}
+
 div#demo-select-small {
   display: flex;
   align-items: center;
@@ -121,4 +129,23 @@ div#demo-select-small {
   width: 24px;
   height: auto;
   margin-right: 7px;
+}
+
+
+#lang-background-invoices {
+  
+  &.lang-background-loginscreens {
+    background-color: #fff;
+    border-radius: 30px;
+
+    & img {
+      left: 10px !important;
+    }
+
+    .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+      width: 112px !important;
+      padding-left: 20px !important;
+    }
+}
+
 }

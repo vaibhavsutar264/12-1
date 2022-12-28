@@ -22,6 +22,7 @@ export const lightTheme = {
     inputHeaderInputColor: '#222',
     inputHeaderPlaceholderColor: '#344857',
     searchiconSidebar: '#344857',
+    searchiconSidebarOpacity: '0.5',
     notificationColor: '#757575',
     notificationBadgeBgColor: '#D63548',
     breadcrumbColor: '#344857',
@@ -67,10 +68,45 @@ export const lightTheme = {
     darkModeColor: '#222',
     sunModeBtnBg: '#fff !important',
     darkModeBtnBg: 'transparent !important',
+    bdContainerBg: '#F7F8FA',
+    bdSingleContentBg: '#fff',
+    prefilledTitle: '#344857',
+    prefilledContent: '#344857',
+    billingDetailsInput: '#344857 !important',
+    billingDetailsLabel: '#344857',
+    bdSingleContentTitle: '#303030',
+    helpText: '#344857',
+    bdSelectFormColor: 'rgba(0, 0, 0, 0.6) !important',
+    modalBg: '#fff',
+    modalTitle: '#344857',
+    closeModalSvg: '#010101',
+    resendLink: '#d32f2f',
+    langInvoicesBg: 'transparent',
+    langInvoicesLoginscreensBg: '#fff !important',
+    langInvoicesLoginscreensSvg: '#222 !important',
+    langInvoicesTxt: '#344857 !important',
+    selectEntityLabelBg: '#fff !important',
+    selectEntityLabel: 'rgba(0, 0, 0, 0.6)',
+    selectEntityLabelShrink: '#333',
+    selectEntityBorder: 'rgba(0, 0, 0, 0.23)',
+    selectEntityInput: '#333 !important',
+    editableInputBorder: '',
+    avatarInitialsBg: '#E1E1E1 !important',
+    avatarInitials: '#344857 !important',
+    datatableIconBg: '#F7F8FA !important',
+    iconCtaNBg: '#fff !important',
+    datatableIconHoverBg: '#d63548 !important',
+    iconCtaTxt: '#d63548 a!important',
+    datatableIconHoverTxt: '#fff !important',
+    forgotPasswordLnkColor: '#092133 !important',
+    cardBorder: '#fff !important',
+    cardHoverBorder: '#fff', // dont bother about it
+    verticalDotsBg: '#fff !important',
+    verticalDots: '#344857 !important',
 }
 
 export const darkTheme = {
-    body: '#121212 !important',
+    body: '#fff !important',
     text: '#fff !important',
     textForLogin: 'white !important',
     primary:
@@ -92,6 +128,7 @@ export const darkTheme = {
     inputHeaderInputColor: '#fff',
     inputHeaderPlaceholderColor: '#787785',
     searchiconSidebar: '#787785',
+    searchiconSidebarOpacity: '1',
     notificationColor: '#fff',
     notificationBadgeBgColor: '#D63548',
     breadcrumbColor: '#9D9FA1',
@@ -137,6 +174,41 @@ export const darkTheme = {
     darkModeColor: '#D63548',
     sunModeBtnBg: 'transparent !important',
     darkModeBtnBg: '#fff !important',
+    bdContainerBg: '#1E2631',
+    bdSingleContentBg: '#252F3B',
+    prefilledTitle: '#787785',
+    prefilledContent: '#E8E8E8',
+    billingDetailsInput: '#E8E8E8 !important',
+    billingDetailsLabel: '#787785 !important',
+    bdSingleContentTitle: '#E8E8E8',
+    helpText: '#787785',
+    bdSelectFormColor: '#E8E8E8 !important',
+    modalBg: '#3A4548',
+    modalTitle: '#fff',
+    closeModalSvg: '#E8E8E8',
+    resendLink: '#ff6060',
+    langInvoicesBg: 'transparent',
+    langInvoicesLoginscreensBg: '#3A4548 !important',
+    langInvoicesLoginscreensSvg: '#fff !important',
+    langInvoicesTxt: '#fff',
+    selectEntityLabelBg: '#252f3b !important',
+    selectEntityLabel: '#fff',
+    selectEntityLabelShrink: '#fff !important',
+    selectEntityBorder: '#fff !important',
+    selectEntityInput: '#fff !important',
+    editableInputBorder: '#787785 !important',
+    avatarInitialsBg: '#343A47 !important',
+    avatarInitials: '#FFFFFF !important',
+    datatableIconBg: '#fff !important',
+    iconCtaNBg: '#d63548 !important',
+    datatableIconHoverBg: '#d63548 !importnt',
+    iconCtaTxt: '#fff !important',
+    datatableIconHoverTxt: '#fff !importnt',
+    forgotPasswordLnkColor: '#9D9FA1 !important',
+    cardBorder: 'transparent !important',
+    cardHoverBorder: 'transparent !important',
+    verticalDotsBg: 'transparent !important',
+    verticalDots: '#9D9FA1 !important',
 }
 
 export const GlobalStyles = createGlobalStyle<{ theme: string }>`
@@ -175,7 +247,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
     border-color: ${({ theme }) => theme.successBorder} !important;
   }
   .password-toggle svg {
-    color: ${({ theme }) => theme.text};
+    // color: ${({ theme }) => theme.text};
   }
   .title {
     color: ${({ theme }) => theme.text};
@@ -199,15 +271,18 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
     color: ${({ theme }) => theme.inputColor};
   }
   #mail-icon{
-    color: ${({ theme }) => theme.textForLogin};
+    // color: ${({ theme }) => theme.textForLogin};
     opacity: ${({ theme }) => theme.opacity};
   }
   #unlock-icon{
-    color: ${({ theme }) => theme.textForLogin};
+    // color: ${({ theme }) => theme.textForLogin};
     opacity: ${({ theme }) => theme.opacity};
   }
   #forgot-password{
     color: ${({ theme }) => theme.forgotPasswordColor};
+  }
+  .forgot-password{
+    color: ${({ theme }) => theme.forgotPasswordLnkColor};
   }
   #sidebar-top{
     background-color: ${({ theme }) => theme.sidebarTopBg};
@@ -244,6 +319,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   }
   #searchicon-sidebar {
     color: ${({ theme }) => theme.searchiconSidebar};
+    opacity: ${({ theme }) => theme.searchiconSidebarOpacity};
   }
   #notification-badge > span {
     background-color: ${({ theme }) => theme.notificationBadgeBgColor};
@@ -268,6 +344,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   }
   #searchproducts-input > button > svg {
     color: ${({ theme }) => theme.searchProductsIconColor};
+    opacity: ${({ theme }) => theme.searchiconSidebarOpacity}
   }
   .dashboard__sidebar .sidebar__list .list__item .item__link.active {
     background-color: ${({ theme }) => theme.sidebarActiveLinkBg};
@@ -356,9 +433,6 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   .account__screen .account__form .form__inner .account__form__body .input-wrapper .MuiFormControl-root label {
     color: ${({ theme }) => theme.inputLabelColor};
   }
-  #email-box svg path, #password-box svg path, #confirm-password-box svg path {
-    fill: ${({ theme }) => theme.mailIconColor};
-  }
   .toggle__wrapper {
     background: ${({ theme }) => theme.toggleWrapper};
   }
@@ -373,5 +447,107 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   }
   .darkMode svg path {
     fill: ${({ theme }) => theme.darkModeColor};
+  }
+  .bd-container {
+    background-color: ${({ theme }) => theme.bdContainerBg};
+  }
+  .bd-single-content {
+    background-color: ${({ theme }) => theme.bdSingleContentBg};
+  }
+  .prefilled-title {
+    color: ${({ theme }) => theme.prefilledTitle};
+  }
+  .prefilled-content {
+    color: ${({ theme }) => theme.prefilledContent};
+  }
+  .billing-details-input label {
+    color: ${({ theme }) => theme.billingDetailsLabel};
+  }
+  .billing-details-input input {
+    color: ${({ theme }) => theme.billingDetailsInput};
+  }
+  .bd-container h1 {
+    color: ${({ theme }) => theme.bdSingleContentTitle};
+  }
+  .bd-container h6 {
+    color: ${({ theme }) => theme.helpText};
+  }
+  .bd-single-content .select-form label, .bd-single-content .select-form svg {
+    color: ${({ theme }) => theme.bdSelectFormColor};
+  }
+  .bd-single-content .select-form .MuiInputBase-root::before {
+    border-bottom: 1px solid ${({ theme }) => theme.bdSelectFormColor};
+  }
+  [role=dialog][aria-labelledby=responsive-dialog-title] {
+    background-color: ${({ theme }) => theme.modalBg};
+  }
+  [role=dialog][aria-labelledby=responsive-dialog-title] h2, [role=dialog][aria-labelledby=responsive-dialog-title] .MuiDialogTitle-root+.css-ypiqx9-MuiDialogContent-root, [role=dialog][aria-labelledby=responsive-dialog-title] .darker-text, [role=dialog][aria-labelledby=responsive-dialog-title] .bolder-text, [role=dialog][aria-labelledby=responsive-dialog-title] .lighter-text, [role=dialog][aria-labelledby=responsive-dialog-title] .MuiTypography-body1 {
+    color: ${({ theme }) => theme.modalTitle};
+  }
+  [role=dialog][aria-labelledby=responsive-dialog-title] button svg {
+    color: ${({ theme }) => theme.closeModalSvg};
+  }
+  [role=dialog][aria-labelledby=responsive-dialog-title] .MuiLink-underlineAlways {
+    color: ${({ theme }) => theme.resendLink};
+  }
+  #lang-background-invoices {
+    background-color: ${({ theme }) => theme.langInvoicesBg};
+  }
+  #lang-background-invoices.lang-background-loginscreens {
+    background-color: ${({ theme }) => theme.langInvoicesLoginscreensBg};
+  }
+  #lang-background-invoices.lang-background-loginscreens svg {
+    color: ${({ theme }) => theme.langInvoicesLoginscreensSvg};
+  }
+  #demo-select-small {
+    color: ${({ theme }) => theme.langInvoicesTxt};
+  }
+  #select-entity-form label {
+    background-color: ${({ theme }) => theme.selectEntityLabelBg};
+    color: ${({ theme }) => theme.selectEntityLabel};
+  }
+  #select-entity-form .MuiInputLabel-shrink {
+    color: ${({ theme }) => theme.selectEntityLabelShrink};
+  }
+  #select-entity-form fieldset {
+    border-color: ${({ theme }) => theme.selectEntityBorder};
+  }
+  #select-entity-form [role="button"], #select-entity-form svg {
+    color: ${({ theme }) => theme.selectEntityInput};
+  }
+  .billing-details-input fieldset {
+    border-color: ${({ theme }) => theme.editableInputBorder};
+  }
+  .MuiAvatar-root.avatar-initials {
+    background-color: ${({ theme }) => theme.avatarInitialsBg};
+    color: ${({ theme }) => theme.avatarInitials};
+  }
+  .actionButtons .actionButton__item span {
+    background-color: ${({ theme }) => theme.datatableIconBg};
+  }
+  .action__elements .action__elementItem .iconCta:hover {
+    background-color: ${({ theme }) => theme.datatableIconHoverBg};
+  }
+  .action__elementItem .iconCta {
+    background: ${({ theme }) => theme.iconCtaNBg};
+  }
+  .action__elementItem .iconCta a, .action__elementItem .iconCta svg path {
+    color: ${({ theme }) => theme.iconCtaTxt};
+    fill: ${({ theme }) => theme.iconCtaTxt};
+  }
+  .card-wrapper-1 .cardType__1 {
+    border: 1px solid ${({ theme }) => theme.cardBorder};
+  }
+  .card-wrapper-1 .cardType__1:nth-child(1):hover, .card-wrapper-1 .cardType__1:nth-child(1).active,
+  .card-wrapper-1 .cardType__1:nth-child(2):hover, .card-wrapper-1 .cardType__1:nth-child(2).active,
+  .card-wrapper-1 .cardType__1:nth-child(3):hover, .card-wrapper-1 .cardType__1:nth-child(3).active,
+  .card-wrapper-1 .cardType__1:nth-child(4):hover, .card-wrapper-1 .cardType__1:nth-child(4).active {
+    border: 1px solid ${({ theme }) => theme.cardHoverBorder};
+  }
+  table tr th button#basic-button {
+    background-color: ${({ theme }) => theme.verticalDotsBg};
+  }
+  table tr th button#basic-button svg {
+    color: ${({ theme }) => theme.verticalDots};
   }
 `

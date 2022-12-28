@@ -51,9 +51,9 @@ export const PageSearch = ({ searchFn }: { searchFn: any }) => {
                             e.target.placeholder = '';
                         }}
                         onBlur={(e) => {
-                            e.target.placeholder = `${t<string>('searchProductsOrdersAndClients')}`
+                            e.target.placeholder = `${t<string>('searchInvoiceNoEntity')}`
                         }}
-                        placeholder={t<string>('searchProductsOrdersAndClients')}
+                        placeholder={t<string>('searchInvoiceNoEntity')}
                         inputProps={{
                             'aria-label': 'Search Products, Orders and Clients',
                             'data-testid': 'search-element',

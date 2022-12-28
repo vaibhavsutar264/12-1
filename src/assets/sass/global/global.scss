@@ -14,95 +14,104 @@
 @import '../abstract/variables';
 @import '../abstract/mixin';
 
+// Sass components
+@import '../components/sidebar';
+
 // Pages
-@import '../../../components/Home/homeScreen';
-@import '../../../components/login/scss/account';
-@import '../../../components/billing/scss/dashboard';
-@import '../../../components/Notfound/notfound';
-@import '../../../components/common/tables/scss/tables';
+@import '../components/homeScreen';
+@import '../components/loading';
+@import '../components/account';
+@import '../components/billing';
+@import '../components/modal';
+@import '../components/notfound';
+@import '../components/tables';
+@import '../components/account_details';
+@import '../components/datatables';
+@import '../components/common';
+@import '../components/raiseTicket';
+
 
 
 .voidBtn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: right;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 21px;
-  letter-spacing: 0px;
-  color: $voidBtn !important;
-  text-transform: uppercase;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: right;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 21px;
+    letter-spacing: 0px;
+    color: $voidBtn !important;
+    text-transform: uppercase;
 }
 
-@import '../../../components/loader/loading';
 
 
 .multi-select-cs-parent {
-  position: relative;
+    position: relative;
 }
 
 
 .multi-select-cs {
-  background-color: $white;
-  border-radius: 10px;
-  display: none;
-  right: 0px;
-  top: 18px;
-  max-height: 300px;
-  overflow: auto;
-  position: absolute;
-  border-color: $border2;
-  padding: 10px 25px 10px 10px;
-  border: solid 1px;
+    background-color: $white;
+    border-radius: 10px;
+    display: none;
+    right: 0px;
+    top: 18px;
+    max-height: 300px;
+    overflow: auto;
+    position: absolute;
+    border-color: $border2;
+    padding: 10px 25px 10px 10px;
+    border: solid 1px;
 }
 
 .multi-select-cs .check-Box {
-  width: 38px;
-  height: 20px;
+    width: 38px;
+    height: 20px;
 }
 
 .multi-select-cs .label {
-  cursor: pointer;
-  user-select: none;
+    cursor: pointer;
+    user-select: none;
 }
 
 .multi-select-cs .span-label {
-  display: inline !important;
-  font-size: 14px;
-  position: relative;
-  top: -4px;
-  left: -3px;
+    display: inline !important;
+    font-size: 14px;
+    position: relative;
+    top: -4px;
+    left: -3px;
 }
 
 .multi-select-cs ul {
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 .multi-select-cs ul li {
-  float: left;
+    float: left;
 }
 
 /* width */
 .multi-select-cs::-webkit-scrollbar {
-  width: 1px;
+    width: 1px;
 }
 
 /* Track */
 .multi-select-cs::-webkit-scrollbar-track {
-  background: $white2;
+    background: $white2;
 }
 
 /* Handle */
 .multi-select-cs::-webkit-scrollbar-thumb {
-  background: $grey4;
+    background: $grey4;
 }
 
 /* Handle on hover */
 .multi-select-cs::-webkit-scrollbar-thumb:hover {
-  background: $grey5;
+    background: $grey5;
 }
 
 // .cardType__1:hover {
@@ -121,3 +130,7 @@
 //   color: #344857 !important;
 // }
 
+body {
+    padding-right: 0 !important;
+    overflow: unset !important;
+}

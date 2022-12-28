@@ -1,11 +1,15 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useLocales from '../../hooks/useLocales'
-import { useDarkMode } from '../../themes/useDarkMode'
-import Header from '../header/Header'
-import CustomizedDialogs from '../common/elements/DialogBox'
+import { appRoutes } from '../../utils/constants'
 
 const HomeScreen = () => {
   const { t } = useLocales()
-  const [theme, toggleTheme] = useDarkMode()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    navigate(appRoutes.LOGIN)
+  })
   return (
     <>
       <div className="main-div">
@@ -16,7 +20,6 @@ const HomeScreen = () => {
           <h1 className="h1-padding">TCL-CPAAS {t<string>('home')}</h1>
         </div>
       </div>
-      {/* <CustomizedDialogs /> */}
     </>
   )
 }
