@@ -190,22 +190,23 @@
 
 
     // border on table row hover
+    
     tbody tr:hover {
         & th, & td {
-            border: 2px solid rgb(26, 115, 232) !important;
+            border: 2px solid rgb(26, 115, 232) ;
         }
 
         & th {
-            border-right: 0 !important;
+            border-right: 0 ;
         }
 
         & td {
-            border-left: 0 !important;
-            border-right: 0 !important;
+            border-left: 0 ;
+            border-right: 0 ;
         }
 
         & td:last-child  {
-            border-right: 2px solid rgb(26, 115, 232) !important;
+            border-right: 2px solid rgb(26, 115, 232) ;
         }
     }
 
@@ -220,9 +221,9 @@
         border-spacing: 0px 8px;
     }
 
-    #table-data:hover {
-        border: 1px solid orangered;
-    }
+    // #table-data:hover {
+    //     border: 1px solid orangered;
+    // }
 
 
 

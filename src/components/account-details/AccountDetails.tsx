@@ -30,7 +30,7 @@ const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
     <>
       <Box
         className="bd-container"
-        style={{ width: `calc(100% - ${dashBoardWidth})`, marginLeft: `${dashBoardWidth}` }}
+        style={{ width: `${window.innerWidth - +`${dashBoardWidth}`.split('p')[0]}px`, marginLeft: `${dashBoardWidth}` }}
       >
         <Grid
           className="bd-inner-container"

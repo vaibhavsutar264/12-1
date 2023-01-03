@@ -1,48 +1,22 @@
 import { useState } from 'react';
 import { useDispatch } from '../../../redux/store'
 
-const Card = ({ data }: any) => {
+const Card = ({ data, id }: any) => {
     const dispatch = useDispatch();
     const [active, setActive] = useState(null)
-    const buttonElement = document.getElementById(
-        'button'
-    )
-    const nameElement = document.getElementById(
-        'name'
-    )
-    const cardElement = document.getElementById(
-        'cardType__inner'
-    )
-//     if(blankCheckoutElement){
-//     if(blankCheckoutElement.style.backgroundColor == '#fff'){
-//         blankCheckoutElement.onclick =()=>{
-//             blankCheckoutElement.style.backgroundColor = 'red'
-//         }
-//     }
-// }
-
-    // blankCheckoutElement
-    // blankCheckoutElement.onclick(function (){
-    //     blankCheckoutElement.classList("active").siblings().removeClass("active");
-    //   })
-
 
     const handleClick = (event : any) => {
-        // 👇️ toggle class on click
-        console.log(cardElement);
-        
-        event.currentTarget.classList.toggle('active');
         dispatch(data.action)
-        if(event.currentTarget.classList == 'active'){
-            event.currentTarget.classList.remove('active')
-        }
       };
+
+    //   console.log(fourthElement?.style.backgroundColor);
+      
     return <button
         onClick={handleClick}
-        id='button'
-        className={`cardType__1 ${active == data.titel && 'active'}`}
+        className={`cardType__1 ${(data.titel == 'ALL INVOICES')? 'active': ""}`}
         style={{
-            cursor: 'pointer'
+            cursor: 'pointer',
+            backgroundColor: ((data.titel == 'ALL INVOICES')? 'rgb(26, 115, 232)': ((data.titel == 'OVERDUE')? 'rgb(54, 63, 94)': ((data.titel == 'UNPAID INVOICES')? 'rgb(229, 68, 87)': ((data.titel == 'PAID INVOICES')? 'rgb(61, 184, 135)': ''))))
         }}
     >
         <div id='cardType__inner' className="cardType__inner">

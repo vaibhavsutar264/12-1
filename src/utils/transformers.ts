@@ -17,6 +17,23 @@ export const loginTransformer = (data: any) => {
     }
 }
 
+export const refrshTokenTransformer = (data: any) => {
+    const resp = JSON.parse(data);
+    const defaultResp = {
+        "meta_data": { "api_name": "token" },
+        "data": { "data": null, "message": "Incorrect username or password", "status": 200 }
+    }
+    try {
+        if (resp.data && resp.data.message && resp.data.status && resp.data.data) {
+            return resp
+        } else {
+            return defaultResp
+        }
+    } catch {
+        return defaultResp
+    }
+}
+
 export const userInfoTransformer = (data: any) => {
     const resp = JSON.parse(data);
     const defaultResp = {

@@ -29,10 +29,7 @@ const Header = ({ toggleTheme }: { toggleTheme: any }) => {
   const { user } = useSelector((state: any) => state.auth || []);
   const logoutHandler = async (e: SyntheticEvent) => {
     e.preventDefault()
-    dispatch(logout({
-      refreshToken: `${localStorage.getItem(localStorageVar.TOKEN_VAR)}`,
-      username: user != null ? user[apiVrbls.USER.EMAIL_ID] : ""
-    }))
+    dispatch(logout())
     navigate('/')
   }
 

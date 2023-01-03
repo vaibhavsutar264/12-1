@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { dispatch } from '../store'
+import { dispatch, store } from '../store'
 import { UserLogin, Password, Email, AuthState } from '../../types/authType'
 import {
   removeFromLocalStorage,
@@ -9,6 +9,7 @@ import {
 import { userLoginData } from '../../services/api/index'
 import { apiDefaultrespons, apiVrbls, localStorageVar, staticErrors, slices } from '../../utils/constants'
 import { toast } from 'react-toastify'
+import { removeLocalValues } from '../../utils/helpers'
 
 const initialState: AuthState = {
   user: null,
@@ -105,7 +106,10 @@ export const login = (userData: UserLogin, emailcredential: any) => {
       const { data }: any = await userLoginData.login(userData)
       if (data) {
         const token: any = data.data.data[apiVrbls.USER.ACCESS_TOKEN]
-        if (token) { setInLocalStorage(localStorageVar.TOKEN_VAR, token) }
+        if (token) {
+          setInLocalStorage(localStorageVar.TOKEN_VAR, token);
+          setInLocalStorage(localStorageVar.REFRESH_TOKEN, data.data.data[apiVrbls.USER.ACCESS_TOKEN]);
+        }
         const user = { token: token, email: userData.email }
         const { data: userInfo }: any = await userLoginData.getUserInfo(userData.email);
         dispatch(userSlice.actions.resetPasswordSuccess({ data: "" }))
@@ -150,31 +154,36 @@ export const resetLoginParms = () => {
   }
 }
 
-export const logout = (body: any) => {
+
+
+export const logout = () => {
   dispatch(userSlice.actions.startLoading())
   return async () => {
     try {
+      const body = {
+        refreshToken: `${getFromLocalStorage(localStorageVar.REFRESH_TOKEN)}`,
+        username: store.getState().user ? store.getState().user[apiVrbls.USER.EMAIL_ID] : 'null',
+      }
       const { data } = await userLoginData.logout(body)
       dispatch(userSlice.actions.logOutSuccess())
       if (data) {
         toast.success(data.data.message);
-        removeFromLocalStorage(localStorageVar.TOKEN_VAR)
-        removeFromLocalStorage(localStorageVar.USER_VAR)
+        removeLocalValues();
       } else {
         toast.error(data.data.message)
-        removeFromLocalStorage(localStorageVar.TOKEN_VAR)
-        removeFromLocalStorage(localStorageVar.USER_VAR)
+        removeLocalValues();
       }
     } catch (response: any) {
       console.log(response);
-      removeFromLocalStorage(localStorageVar.TOKEN_VAR)
-      removeFromLocalStorage(localStorageVar.USER_VAR)
+      removeLocalValues();
       const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
       toast.error(data.message)
       dispatch(userSlice.actions.logOutSuccess())
     }
   }
 }
+
+
 export const updatePassword = (passwordData: Password) => {
   dispatch(userSlice.actions.startLoading())
   return async () => {

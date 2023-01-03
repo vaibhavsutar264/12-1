@@ -162,13 +162,23 @@ export const downloadBillingInvoice = (data: any) => {
     return async () => {
         const response = await billing.downloadInvoice(data)
         if (response) {
+            // window.open(URL.createObjectURL(response.data));
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.pdf'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+        }
+    }
+}
+
+export const viewBillingInvoice = (data: any) => {
+    dispatch(billingSlice.actions.startLoading())
+    return async () => {
+        const response = await billing.downloadInvoice(data)
+        if (response) {
             window.open(URL.createObjectURL(response.data));
-            // const url = window.URL.createObjectURL(new Blob([response.data]));
-            // const link = document.createElement('a');
-            // link.href = url;
-            // link.setAttribute('download', 'file.pdf'); //or any other extension
-            // document.body.appendChild(link);
-            // link.click();
         }
     }
 }
@@ -178,7 +188,12 @@ export const downloadBillingInvoiceCDR = (data: any) => {
     return async () => {
         const response = await billing.downloadInvoiceCdr(data)
         if (response) {
-            window.open(URL.createObjectURL(response.data));
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.pdf'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
         }
     }
 }

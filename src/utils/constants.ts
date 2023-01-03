@@ -4,13 +4,14 @@ import PaidInvoice from "../components/common/icons/paidInvoice"
 import UnpaidInvoice from "../components/common/icons/unpaidInvoice"
 
 export const apiRoutes = {
-    BASE_URL: 'http://115.112.43.74:8585',
-    // BASE_URL: '',
+    // BASE_URL: 'http://115.112.43.74:8585',
+    BASE_URL: '',
     // BASE_URL: 'http://localhost:8585',
     // BASE_URL: 'http://api.sspdev.digodev.com',
 
     // User
     LOGIN: '/cpaas/token',
+    REFRESH_TOKEN: '/cpaas/refreshToken',
     MOCKLOGIN: '/auth/login',
     SET_PASSWORD: '/api/v1/auth/password',
     FORGOT_PASSWORD: '/cpaas/forgotPassword',
@@ -45,6 +46,7 @@ export const appThemes = {
 export const localStorageVar = {
     THEME_VAR: 'theme',
     TOKEN_VAR: 'token',
+    REFRESH_TOKEN: 'refreshToken',
     USER_VAR: 'user',
     I18_LANG_VAR: 'i18nextLng',
     LANG_VAR: 'lng',
@@ -99,6 +101,7 @@ export const appRoutes = {
     CHECK_PROTECTED: '/checkprotected',
     SET_PASSWORD: '/setpassword',
     FORGOT_PASSWORD: '/forgot-password',
+    DATE: '/date',
     RESET_PASSWORD: '/password/reset/:token',
     NOT_FOUND: '*',
     BILLING: '/invoices',
@@ -110,6 +113,7 @@ export const appRoutes = {
     DASHBOARD: '/dashboard',
     ACCOUNT_DETAILS: '/accountdetails',
     WELOCME: '/welcome',
+    CUSTOMER_LE_FILTER: '/customer-le-filter',
 }
 
 export const breadCrums = {
@@ -211,6 +215,7 @@ export const staticErrors = {
 export const apiVrbls = {
     USER: {
         ACCESS_TOKEN: "access_token",
+        REFRESH_TOKEN: "refresh_token",
         IS_LOGGED_IN_FIRST: "isLoginFirstTime",
         EMAIL_ID: "emailId"
     },

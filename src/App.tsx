@@ -1,18 +1,46 @@
 import './i18n'
-import Header from './components/onBoardingLayout/Header'
 import { Toggle } from './themes/Toggle'
 import { useDarkMode } from './themes/useDarkMode'
 import { GlobalStyles, lightTheme, darkTheme } from './themes/globalStyles'
 import { ThemeProvider } from 'styled-components'
 import useAuth from './hooks/useAuth'
 import './assets/sass/global/global.scss'
-import { appThemes } from './utils/constants'
+import { appThemes, localStorageVar } from './utils/constants'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import Routes from './route/Routes'
 import { useEffect } from 'react'
+import { useIdleTimer } from 'react-idle-timer'
+import { useDispatch as useAppDispatch } from './redux/store'
+import { logout } from './redux/slices/authSlice'
 
 const App = () => {
+    const dispatch = useAppDispatch()
+    const onIdle = () => {
+        if (localStorage.getItem(localStorageVar.TOKEN_VAR)) {
+            dispatch(logout());
+        }
+    }
+    const idelTimeOut = useIdleTimer({
+        onIdle,
+        timeout: 30 * 1000 *60,
+        promptTimeout: 0,
+        events: [
+            'mousemove',
+            'keydown',
+            'wheel',
+            'DOMMouseScroll',
+            'mousewheel',
+            'mousedown',
+            'touchstart',
+            'touchmove',
+            'MSPointerDown',
+            'MSPointerMove',
+            'visibilitychange'
+        ],
+        immediateEvents: [],
+    })
+
     const clickEventHandler = (e: any) => {
         try {
             const trEle = e.target.classList.contains("clkIgnr");

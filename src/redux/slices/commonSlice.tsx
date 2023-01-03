@@ -22,7 +22,7 @@ export default commonSlice.reducer
 
 export const updateWidth = () => {
     return async () => {
-        const currentWidth = store.getState().common.dashBoardWidth == '300px' ? '130px' : '300px';
+        const currentWidth = store.getState().common.dashBoardWidth == '300px' ? '86px' : '300px';
         dispatch(commonSlice.actions.upddatewidth(currentWidth))
     }
 }

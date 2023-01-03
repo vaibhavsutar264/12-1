@@ -273,7 +273,7 @@
                 padding: 10px 15px;
                 margin-bottom: 10px;
 
-                &.active {
+                &.sidebar-active {
                     background: #f7f8fa;
                     border-radius: 12px;
                     opacity: 1;
@@ -437,7 +437,7 @@
         }
 
         &:nth-child(1) {
-            background-color: rgb(26, 115, 232) !important;
+            // background-color: rgb(26, 115, 232);
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;
@@ -510,7 +510,7 @@
         }
 
         &:nth-child(2) {
-            background-color: rgb(54, 63, 94) !important;
+            // background-color: rgb(54, 63, 94) !important;
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;
@@ -571,7 +571,7 @@
         }
 
         &:nth-child(3) {
-            background-color: rgb(229, 68, 87) !important;
+            // background-color: rgb(229, 68, 87) !important;
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;
@@ -633,7 +633,7 @@
 
 
         &:nth-child(4) {
-            background-color: rgb(61, 184, 135) !important;
+            // background-color: rgb(61, 184, 135) !important;
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;

@@ -16,9 +16,18 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import Ticket from '../common/icons/tickets'
 import { reset, updateWidth } from '../../redux/slices/commonSlice'
 
+type SidebarProps = {
+  toggleTheme: any
+  handleADWidth?: any
+  handleBDWidth?: any
+}
 
-export const SideBar = () => {
 
+export const SideBar = ({
+  toggleTheme,
+  handleADWidth,
+  handleBDWidth,
+}: SidebarProps) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const dispatch = useDispatch()
   const { user } = useSelector((state: any) => state.auth || [])
@@ -27,7 +36,7 @@ export const SideBar = () => {
 
 
   const getActiveClass = (path: any) => {
-    return window.location.pathname.includes(path) ? 'active' : ''
+    return window.location.pathname.includes(path) ? 'sidebar-active' : ''
   }
   if (user == null) {
     navigate('/')
@@ -36,6 +45,8 @@ export const SideBar = () => {
   React.useEffect(() => {
     dispatch(reset())
   }, [])
+
+  const [sidebarWidth, setSidebarWidth] = React.useState<boolean>(false);
 
   return (
     <>
@@ -64,9 +75,6 @@ export const SideBar = () => {
                 <span className="link__text" id="link__text">
                   {t<string>('dashboard')}
                 </span>
-                {/* <span className="link__text" id="link__col-text">
-                  {t<string>('dashboard')}
-                </span> */}
               </Link>
             </li>
             <li className="list__item">
@@ -77,9 +85,6 @@ export const SideBar = () => {
                 <span className="link__text" id="link__text">
                   {t<string>('userManagement')}
                 </span>
-                {/* <span className="link__text" id="link__col-text">
-                  {t<string>('userManagement')}
-                </span> */}
               </Link>
             </li>
             <li className="list__item">
@@ -90,9 +95,6 @@ export const SideBar = () => {
                 <span className="link__text" id="link__text">
                   {t<string>('services')}
                 </span>
-                {/* <span className="link__text" id="link__col-text">
-                  {t<string>('services')}
-                </span> */}
               </Link>
             </li>
             <li className="list__item">
@@ -103,9 +105,6 @@ export const SideBar = () => {
                 <span className="link__text" id="link__text">
                   {t<string>('sms')}
                 </span>
-                {/* <span className="link__text" id="link__col-text">
-                  {t<string>('sms')}
-                </span> */}
               </Link>
             </li>
             <li className="list__item">
@@ -119,9 +118,6 @@ export const SideBar = () => {
                 <span className="link__text" id="link__text">
                   {t<string>('billingInvoice')}
                 </span>
-                {/* <span className="link__text" id="link__col-text">
-                  {t<string>('billingInvoice')}
-                </span> */}
               </Link>
             </li>
             <li className="list__item">
@@ -133,9 +129,6 @@ export const SideBar = () => {
                 <span className="link__text" id="link__text">
                   {t<string>('tickets')}
                 </span>
-                {/* <span className="link__text" id="link__col-text">
-                  {t<string>('tickets')}
-                </span> */}
               </Link>
             </li>
             <li className="list__item">
@@ -146,9 +139,6 @@ export const SideBar = () => {
                 <span className="link__text" id="link__text">
                   {t<string>('support')}
                 </span>
-                {/* <span className="link__text" id="link__col-text">
-                  {t<string>('support')}
-                </span> */}
               </Link>
             </li>
           </ul>
@@ -169,7 +159,7 @@ export const SideBar = () => {
               for (let i = 0; i < texts.length; i++) {
                 texts[i].style.display = 'none'
               }
-              sidebarLeft.style.width = '130px'
+              sidebarLeft.style.width = 'max-content'
             } else {
               console.log(sidebarLeft.style.width)
               for (let i = 0; i < texts.length; i++) {
@@ -179,10 +169,9 @@ export const SideBar = () => {
             }
           }}
         >
-          {isOpen ? <KeyboardDoubleArrowRightIcon /> : <KeyboardDoubleArrowLeftIcon />}
-
-
+          {isOpen ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
         </button>
+
       </div>
     </>
   )

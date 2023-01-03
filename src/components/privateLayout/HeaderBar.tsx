@@ -54,12 +54,7 @@ export const HeaderBar = ({
         setAnchorEl(null)
     }
     const handelLogout = () => {
-        dispatch(
-            logout({
-                refreshToken: `${getFromLocalStorage(localStorageVar.TOKEN_VAR)}`,
-                username: user[apiVrbls.USER.EMAIL_ID],
-            })
-        )
+        dispatch(logout())
     }
     const getitem = getFromLocalStorage(localStorageVar.THEME_VAR)
     if (user == null) {

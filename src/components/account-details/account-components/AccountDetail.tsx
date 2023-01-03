@@ -28,6 +28,7 @@ const AccountDetail = ({
   useEffect(() => {
     try {
       setLeEntity(accountDetails.legalentities[0][GetLegalEntities()[0]])
+      console.log(accountDetails.legalentities[0][GetLegalEntities()[0]])
       setsendInvoice(accountDetails.legalentities[0].sendInvoiceToContact)
       setLegalEntity(GetLegalEntities()[0])
     } catch { }

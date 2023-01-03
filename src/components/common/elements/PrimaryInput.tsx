@@ -98,7 +98,6 @@ export const PrimaryInput = ({ register, label, formState, fieldName, typeName, 
                 >
                     {getIcon()}
                 </InputLabel>
-                {typeName == 'email' && validateEmail(val) && <span className='checkIcon'><DoneIcon color='success' /></span>}
                 <TextField
                     className="input-field"
                     id={fieldName}
@@ -107,6 +106,8 @@ export const PrimaryInput = ({ register, label, formState, fieldName, typeName, 
                         try {
                             if (setpassword == true) {
                                 settoolTipOpen(true)
+                            } else {
+                                settoolTipOpen(false)
                             }
                             onInput(e.target.value);
                         } catch { }

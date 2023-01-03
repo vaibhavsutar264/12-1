@@ -1,3 +1,6 @@
+import { removeFromLocalStorage, setInLocalStorage } from "../hooks/useLocalStorage";
+import { apiVrbls, localStorageVar } from "./constants";
+
 export const GetShowPages = (curr: any, take: any, total: any) => {
     let show = [];
     const totalPages = Math.ceil(total / take);
@@ -77,4 +80,26 @@ export const getCardCount = (array: any, element: any, value: any) => {
 
 export const validateEmail = (email: any) => {
     return /^[^ ]+@[^ ]+\.[a-z]{2,4}$/.test(email)
+}
+
+export const setRefreshTokens = (data: any) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const token: any = data.data.data[apiVrbls.USER.ACCESS_TOKEN]
+            console.log(token);
+            if (token) {
+                setInLocalStorage(localStorageVar.TOKEN_VAR, token);
+                setInLocalStorage(localStorageVar.REFRESH_TOKEN, data.data.data[apiVrbls.USER.ACCESS_TOKEN]);
+            }
+            resolve(true);
+        } catch {
+            reject();
+        }
+    })
+}
+
+export const removeLocalValues = () => {
+    removeFromLocalStorage(localStorageVar.TOKEN_VAR)
+    removeFromLocalStorage(localStorageVar.REFRESH_TOKEN)
+    removeFromLocalStorage(localStorageVar.USER_VAR)
 }

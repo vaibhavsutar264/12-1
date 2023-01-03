@@ -48,7 +48,7 @@ export type Profile = {
 
 export type Password = {
   newPassword: string,
-  username: string
+  username: any
 }
 
 export type Email = {

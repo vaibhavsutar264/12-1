@@ -22,6 +22,7 @@ function Routes({ toggleTheme }: { toggleTheme: any }) {
                 { path: appRoutes.ROOT, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={HomeScreen} /> },
                 { path: appRoutes.RESET_PASSWORD, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={ResetPassword} /> },
                 { path: appRoutes.FORGOT_PASSWORD, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={ForgotPassword} /> },
+                { path: appRoutes.DATE, element: <DateFilter /> },
             ],
         },
         {
@@ -31,6 +32,7 @@ function Routes({ toggleTheme }: { toggleTheme: any }) {
                 { path: appRoutes.SET_PASSWORD, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={SetPassword} /> },
                 { path: appRoutes.ACCOUNT_DETAILS, element: <PrivateLayout toggleTheme={toggleTheme} Component={AccountDetails} /> },
                 { path: appRoutes.WELOCME, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={Welcome} /> },
+                { path: appRoutes.CUSTOMER_LE_FILTER, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={CustomerLeFilter} /> },
                 { path: appRoutes.BILLING, element: <PrivateLayout toggleTheme={toggleTheme} Component={Billing} /> },
                 { path: appRoutes.DASHBOARD, element: <PrivateLayout toggleTheme={toggleTheme} Component={Dashboard} /> },
             ],
@@ -51,5 +53,7 @@ const PrivateLayout = Loadable(lazy(() => import('../components/privateLayout/Pr
 const OnBoardingLayout = Loadable(lazy(() => import('../components/onBoardingLayout/onBoardingLayout')))
 const AccountDetails = Loadable(lazy(() => import('../components/account-details/AccountDetails')))
 const Welcome = Loadable(lazy(() => import('../components/welcome/welcome')))
+const DateFilter = Loadable(lazy(() => import('../components/Date/DateFilter')))
+const CustomerLeFilter = Loadable(lazy(() => import('../components/common/tables/filter-and-sort/CustomerLeFilter')))
 
 export default Routes

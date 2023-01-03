@@ -62,3 +62,20 @@
   background-color: unset !important;
   box-shadow: none !important;
 }
+
+.showDate {
+  border: solid 1px #3448571A;
+  border-radius: 20px;
+  padding: 10px;
+  background: #F1F4F9;
+  font-family: ubuntu;
+  color: #344857;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cal {
+  padding-left: 32px;
+  position: relative;
+  top: 7px;
+}

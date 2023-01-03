@@ -22,7 +22,7 @@ const AccountAvatar = () => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    // dispatch(getuserInfo(user.emailId));
+    dispatch(getuserInfo(user.emailId));
     if (user) {
       setFirstname(user.firstname)
       setLastName(user.lastName)
