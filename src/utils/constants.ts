@@ -5,8 +5,8 @@ import UnpaidInvoice from "../components/common/icons/unpaidInvoice"
 
 export const apiRoutes = {
     // BASE_URL: 'http://115.112.43.74:8585',
-    BASE_URL: '',
-    // BASE_URL: 'http://localhost:8585',
+    // BASE_URL: '',
+    BASE_URL: 'http://localhost:8585',
     // BASE_URL: 'http://api.sspdev.digodev.com',
 
     // User
@@ -112,7 +112,7 @@ export const appRoutes = {
     SUPPORT: '/support',
     DASHBOARD: '/dashboard',
     ACCOUNT_DETAILS: '/accountdetails',
-    WELOCME: '/welcome',
+    WELCOME: '/welcome',
     CUSTOMER_LE_FILTER: '/customer-le-filter',
 }
 

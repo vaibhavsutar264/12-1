@@ -1,15 +1,28 @@
 
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore'
+import { useEffect } from 'react';
 import { useDispatch as useAppDispatch } from '../../../redux/store'
 
 
-export default function MultiSelect({ id, filterData, filterAction }: any) {
+export default function MultiSelect({ id, filterData, filterAction, columns, data }: any) {
     const { element, values } = filterData;
     const dispatch = useAppDispatch();
     const handelFilter = (value: any, event: any) => {
         dispatch(filterAction(element, value, event.target.checked))
     }
+    
+    // useEffect(() => {
+    //     if(columns){
+    //         if(columns[0].eleName === null){
+    //             columns[0].eleName = null
+    //           }
+    //         }
+    // }, [columns])
+    // let variable =  data.map((item: any) =>( item.Customer_LE))  
+    // variable = null
 
+    // console.log(data.map((item: any) =>( item.Customer_LE)))
+    
 
     const openWithDOm = () => {
         new Promise((res: any, rej) => {
@@ -18,6 +31,12 @@ export default function MultiSelect({ id, filterData, filterAction }: any) {
                 const d: any = document;
                 d.getElementById(w.Oid).style.display = "none";
                 res();
+                
+    let variable = data.map((item: any) =>( item.Customer_LE))
+    console.log(variable)
+    if(variable == null){
+      variable = null
+    }
             } catch {
                 res();
             }

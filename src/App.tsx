@@ -13,6 +13,8 @@ import { useEffect } from 'react'
 import { useIdleTimer } from 'react-idle-timer'
 import { useDispatch as useAppDispatch } from './redux/store'
 import { logout } from './redux/slices/authSlice'
+import { store } from './redux/store'
+import ErrorBoundary from './components/error-boundary/ErrorBoundary'
 
 const App = () => {
     const dispatch = useAppDispatch()
@@ -65,7 +67,9 @@ const App = () => {
     return (
         <ThemeProvider theme={themeMode}>
             <GlobalStyles />
+            <ErrorBoundary>
             <Routes toggleTheme={toggleTheme} />
+            </ErrorBoundary>
             <Toggle theme={theme} toggleTheme={toggleTheme} />
             <ToastContainer />
         </ThemeProvider>

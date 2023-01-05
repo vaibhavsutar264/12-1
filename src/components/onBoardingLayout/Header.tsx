@@ -20,6 +20,7 @@ import {
 import { apiVrbls, localStorageVar, typeVar } from '../../utils/constants'
 import { useSelector } from 'react-redux'
 import TclLogo from '../common/elements/Logo'
+import LanguageSelector from '../../layouts/dashboard/header/LanguageSelector'
 
 const Header = ({ toggleTheme }: { toggleTheme: any }) => {
   const { i18n } = useTranslation()
@@ -49,39 +50,7 @@ const Header = ({ toggleTheme }: { toggleTheme: any }) => {
               ) : (window.location.pathname.match(/^\/login/) ? ('') : <Link to="/login">{t<string>('loginBtn')}</Link>)}
             </li>
             <li className="item">
-              <FormControl
-                sx={{
-                  m: 1,
-                  minWidth: 100,
-                  position: 'relative',
-                }}
-                size="small"
-                id="lang-background-invoices" className='lang-background-loginscreens'
-              >
-                <img
-                  src={(getitem == 'light') ? Globe : GlobeDark}
-                  alt="" style={{ width: '18px', height: '18px', position: 'absolute', top: '50%', left: '-12px', transform: 'translateY(-50%)', }} />
-                <Select
-                  MenuProps={{
-                    disableScrollLock: true,
-                  }}
-                  className='buidfix1'
-                  labelId="demo-select-small"
-                  id="demo-select-small"
-                  value={i18n.language == ('en-ZA') ? "English" : (i18n.language == ('en-US') ? "English" : i18n.language)}
-                  label="Language"
-                  onChange={(e) => {
-                    i18n.changeLanguage(e.target.value)
-                    setInLocalStorage(localStorageVar.LANG_VAR, e.target.value)
-                  }}
-                >
-                  {availableLanguages.map((language) => (
-                    <MenuItem key={language} value={language}>
-                      {language == 'en-ZA' ? "English" : language}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+            <LanguageSelector/>
             </li>
             <li className="item">
 

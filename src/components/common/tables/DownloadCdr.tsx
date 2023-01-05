@@ -17,9 +17,11 @@ import {
     useDispatch as useAppDispatch,
     useSelector
 } from '../../../redux/store'
+import useLocales from '../../../hooks/useLocales';
 
 
-export default function DownloadCdr(item: any) {
+export default function DownloadCdr( item: any ) {
+    const { t } = useLocales()
     const dispatch = useAppDispatch();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -91,11 +93,11 @@ export default function DownloadCdr(item: any) {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem onClick={() => handleDownload(item)}>
-                    Invoice
+                {t<string>('invoice')}
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={() => handleDownloadCdr(item)}>
-                    Cdr
+                {t<string>('cdr')}
                 </MenuItem>
 
             </Menu>

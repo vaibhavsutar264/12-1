@@ -21,6 +21,7 @@ import { validateEmail } from '../../utils/helpers'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ForgotPasswordSchema } from '../../utils/yupschemas'
+import { FormProvider, RHFTextField } from '../hook-form'
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
@@ -51,7 +52,6 @@ const ForgotPassword = () => {
         dispatch(forgotPassword(userEmail))
     }
 
-
     useEffect(() => {
         dispatch(resetForgotPaswordPrms())
     }, [])
@@ -62,13 +62,13 @@ const ForgotPassword = () => {
                 <div className="form__inner">
                     <Box sx={{ width: 1 }} className="account__form__header">
                         <h3 className="title">{t<string>('forgotPassword')}</h3>
-                       {/* <span className="box-help-text">{t<string>('forgotPassHelpTxt')}</span> */}
+                       <span className="box-help-text">{t<string>('forgotPassHelpTxt')}</span>
                     </Box>
                     <Box
                         sx={{ flexGrow: 1, paddingTop: '0 !important' }}
                         className="account__form__body"
                     >
-                        <form onSubmit={handleSubmit((d) => forgotPass(d))} action="#" method="post">
+                        <FormProvider onSubmit={handleSubmit((d) => forgotPass(d))}>
                             <FormGroup>
                                 {/* Email Input feilds */}
                                 <PrimaryInput
@@ -107,7 +107,7 @@ const ForgotPassword = () => {
                                     </ColorButton>
                                 </FormControl>
                             </FormGroup>
-                        </form>
+                        </FormProvider>
                     </Box>
                 </div>
             </Box>

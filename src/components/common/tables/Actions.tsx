@@ -35,7 +35,7 @@ export const Actions = ({
     const modifyTake = (e: any) => {
         changeTake(+e.target.value)
     }
-    console.log(data)
+    // console.log(data)
     useEffect(() => {
         const l: any = document.getElementById('PageNumberInput')
         l.value = pagination.take
@@ -54,7 +54,7 @@ export const Actions = ({
     const ExportToCsv = {
         filename: 'InvoicesData.csv',
         headers: headers,
-        data: data,
+        data: data, 
     }
 
     const handleDownload = (title: any) => {

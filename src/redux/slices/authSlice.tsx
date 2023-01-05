@@ -32,7 +32,6 @@ export const userSlice = createSlice({
   reducers: {
     startLoading(state) {
       state.isLoading = true
-      state.isAuthenticated = false
     },
     hasError(state, action) {
       state.isLoading = false
@@ -162,7 +161,7 @@ export const logout = () => {
     try {
       const body = {
         refreshToken: `${getFromLocalStorage(localStorageVar.REFRESH_TOKEN)}`,
-        username: store.getState().user ? store.getState().user[apiVrbls.USER.EMAIL_ID] : 'null',
+        username: store.getState().auth?.user ? store.getState().auth.user[apiVrbls.USER.EMAIL_ID] : 'null',
       }
       const { data } = await userLoginData.logout(body)
       dispatch(userSlice.actions.logOutSuccess())

@@ -24,6 +24,7 @@ import { base64Encode } from '../../utils/Base64EncodeDecode'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryInput } from '../common/elements/PrimaryInput'
 import { setPasswordSchema } from '../../utils/yupschemas'
+import { FormProvider, RHFTextField } from '../hook-form'
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
@@ -57,7 +58,7 @@ const SetPassword = () => {
     const { t } = useLocales()
 
     if (resetmessage === "SUCCESS") {
-        navigate(appRoutes.WELOCME)
+        navigate(appRoutes.WELCOME)
     }
     const { register, handleSubmit, formState, control, getValues } = useForm<any>({
         mode: "onChange",
@@ -103,7 +104,7 @@ const SetPassword = () => {
                         <p className="error__msg">{message && message}</p>
                     </Box>
                     <Box sx={{ flexGrow: 1 }} className="account__form__body">
-                        <form onSubmit={handleSubmit((d) => setPass(d))} action="#" method="post">
+                        <FormProvider onSubmit={handleSubmit((d) => setPass(d))}>
                             <FormGroup>
                                 <PrimaryInput
                                     register={{ ...register('newPass') }}
@@ -156,7 +157,7 @@ const SetPassword = () => {
                                     </ColorButton>
                                 </FormControl>
                             </FormGroup>
-                        </form>
+                        </FormProvider>
                     </Box>
                 </div>
             </Box>

@@ -3,8 +3,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import Table from '@mui/material/Table'
 import {
   IconButton,
-  Menu,
-  MenuItem,
   ListItemIcon,
   Tooltip,
   ClickAwayListener,
@@ -58,6 +56,11 @@ import PersonAdd from '@mui/icons-material/PersonAdd'
 import Loader from './loader-and-snackbar/Loader'
 import SnackbarComponent from './loader-and-snackbar/Snackbar'
 import { CSSProperties } from 'styled-components'
+
+import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
+import '@szhsin/react-menu/dist/transitions/slide.css';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -115,10 +118,10 @@ const DataTable = ({
   const [allData, setAllData] = useState(data)
   const [startDate, setstartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
-  useEffect(() => {
-    setFilteredData(data)
-    setAllData(data)
-  }, [data])
+  // useEffect(() => {
+  //   setFilteredData(data)
+  //   setAllData(data)
+  // }, [data])
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -137,7 +140,7 @@ const DataTable = ({
     setstartDate(date.selection.startDate)
     console.log(date.selection.startDate)
     setEndDate(date.selection.endDate)
-    setFilteredData(filtered)
+    // setFilteredData(filtered)
   }
 
   function useHover(
@@ -172,8 +175,8 @@ const DataTable = ({
   //     }
   // for (let index = 0; index < data.length; index++) {
   //     console.log(data[index].Payment_Status)
-
   // }
+
   const changeTake = (take: any) => {
     updateData(page, take)
   }
@@ -247,11 +250,13 @@ const DataTable = ({
 
   const handleInvoiceClose = (e: SyntheticEvent) => {
     e.preventDefault()
+    if(columns[0]){
+      columns[0].eleName = null
+    }
     const blankCheckoutElement = document.getElementById(
       'checkbox-blank'
     ) as HTMLElement
     const CheckoutElement = document.getElementById('checkbox') as HTMLElement
-    columns[0].eleName = null
     const invoiceIdHeadElement = document.getElementsByName('Invoice Number')[0]
     invoiceIdHeadElement.style.display = invoiceState ? 'block' : 'none'
     setInvoiceState(!invoiceState)
@@ -263,11 +268,13 @@ const DataTable = ({
 
   const handleInvoiceOpen = (e: SyntheticEvent) => {
     e.preventDefault()
+    if(columns[0]){
+    columns[0].eleName = 'Invoice_no'
+    }
     const blankCheckoutElement = document.getElementById(
       'checkbox-blank'
       ) as HTMLElement
       const CheckoutElement = document.getElementById('checkbox') as HTMLElement
-      columns[0].eleName = 'Invoice_no'
     const invoiceIdHeadElement = document.getElementsByName('Invoice Number')[0]
     invoiceIdHeadElement.style.display = invoiceState ? 'block' : 'none'
     setInvoiceState(!invoiceState)
@@ -286,7 +293,9 @@ const DataTable = ({
     const customerIdHeadElement = document.getElementsByName(
         `${t<string>('tables.billing.customerLe')}`
         )[0]
+        if(columns[1]){
         columns[1].eleName = null
+        }
     customerIdHeadElement.style.display = customerState ? 'block' : 'none'
     setCustomerState(!customerState)
 
@@ -306,7 +315,9 @@ const DataTable = ({
     const customerIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.customerLe')}`
       )[0]
+      if(columns[1]){
       columns[1].eleName = 'Customer_LE'
+      }
     customerIdHeadElement.style.display = customerState ? 'block' : 'none'
     setCustomerState(!customerState)
     customerIdHeadElement.style.display = 'flex'
@@ -324,7 +335,9 @@ const DataTable = ({
     const entityIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.entity')}`
     )[0]
+    if(columns[2]){
     columns[2].eleName = null
+    }
     entityIdHeadElement.style.display = entityState ? 'block' : 'none'
     setEntityState(!entityState)
 
@@ -344,7 +357,9 @@ const DataTable = ({
     const entityIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.entity')}`
     )[0]
+    if(columns[2]){
     columns[2].eleName = 'Tata_Entity'
+    }
     entityIdHeadElement.style.display = entityState ? 'block' : 'none'
     setEntityState(!entityState)
     entityIdHeadElement.style.display = 'flex'
@@ -363,7 +378,9 @@ const DataTable = ({
     const poIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.poNo')}`
     )[0]
+    if(columns[3]){
     columns[3].eleName = null
+    }
     poIdHeadElement.style.display = poState ? 'block' : 'none'
     setPoState(!poState)
 
@@ -383,7 +400,9 @@ const DataTable = ({
     const poIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.poNo')}`
     )[0]
+    if(columns[3]){
     columns[3].eleName = 'PO_number'
+    }
     poIdHeadElement.style.display = poState ? 'block' : 'none'
     setPoState(!poState)
 
@@ -402,7 +421,9 @@ const DataTable = ({
     const statusIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.status')}`
     )[0]
+    if(columns[4]){
     columns[4].eleName = null
+    }
     statusIdHeadElement.style.display = statusState ? 'block' : 'none'
     setStatusState(!statusState)
 
@@ -422,7 +443,9 @@ const DataTable = ({
     const statusIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.status')}`
     )[0]
+    if(columns[4]){
     columns[4].eleName = 'Payment_Status'
+    }
     statusIdHeadElement.style.display = statusState ? 'block' : 'none'
     setStatusState(!statusState)
 
@@ -441,7 +464,9 @@ const DataTable = ({
     const amountIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.invoiceAmount')}`
     )[0]
+    if(columns[5]){
     columns[5].eleName = null
+    }
     amountIdHeadElement.style.display = amountState ? 'block' : 'none'
     setAmountState(!amountState)
 
@@ -461,7 +486,9 @@ const DataTable = ({
     const amountIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.invoiceAmount')}`
     )[0]
+    if(columns[5]){
     columns[5].eleName = 'Invoice_amt'
+    }
     amountIdHeadElement.style.display = amountState ? 'block' : 'none'
     setAmountState(!amountState)
 
@@ -480,7 +507,9 @@ const DataTable = ({
     const invoiceIssueIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.invoiceIssuedDate')}`
     )[0]
+    if(columns[6]){
     columns[6].eleName = null
+    }
     invoiceIssueIdHeadElement.style.display = invoiceIssueState
       ? 'block'
       : 'none'
@@ -502,7 +531,9 @@ const DataTable = ({
     const invoiceIssueIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.invoiceIssuedDate')}`
       )[0]
+      if(columns[6]){
       columns[6].eleName = 'Invoice_date'
+      }
     invoiceIssueIdHeadElement.style.display = invoiceIssueState
       ? 'block'
       : 'none'
@@ -522,7 +553,9 @@ const DataTable = ({
     const dueIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.dueDate')}`
       )[0]
+      if(columns[7]){
       columns[7].eleName = 'null'
+      }
     dueIdHeadElement.style.display = dueState ? 'block' : 'none'
     setDueState(!dueState)
     dueIdHeadElement.style.display = 'none'
@@ -541,7 +574,10 @@ const DataTable = ({
     const dueIdHeadElement = document.getElementsByName(
       `${t<string>('tables.billing.dueDate')}`
     )[0]
+    if(columns[7]){
     columns[7].eleName = 'Due_date'
+    console.log('ddd')
+    }
     dueIdHeadElement.style.display = dueState ? 'block' : 'none'
     setDueState(!dueState)
 
@@ -650,25 +686,75 @@ const DataTable = ({
     },
   ]
   const result1 : any[] = [];
-  const [items, setItems] = useState(filtereColumnData)
+  // const [items, setItems] = useState(filtereColumnData)
 
-  useEffect(() => {
-    // setItems(filtereColumnData)
-  }, [items])
 
-  const onDragEnd = (result: any) => {
-    if (!result.destination) {
-      return
-    }
 
-    const reorderedItems = reorder(
-      items,
-      result.source.index,
-      result.destination.index
-    )
-    // filtereColumnData = reorderedItems
-    setItems(reorderedItems)
-  }
+  // const onDragEnd = (result: any) => {
+  //   if (!result.destination) {
+  //     return
+  //   }
+
+  //   const reorderedItems = reorder(
+  //     items,
+  //     result.source.index,
+  //     result.destination.index
+  //   )
+  //   // filtereColumnData = reorderedItems
+  //   setItems(reorderedItems)
+  // }
+
+  const [menuItemsData, setmenuItemsData] = useState(result1)
+	// const [newFruitItem, setNewFruitItem] = React.useState("")
+    useEffect(() => {
+    setmenuItemsData(filtereColumnData)
+  }, [ columns, dueState, invoiceIssueState,amountState,statusState,poState,entityState,customerState,invoiceState])
+
+	//save reference for dragItem and dragOverItem
+	const dragItem = React.useRef<any>(null)
+	const dragOverItem = React.useRef<any>(null)
+
+	//const handle drag sorting
+	const handleSort = () => {
+		//duplicate items
+		// eslint-disable-next-line prefer-const
+		let _menuItemsData = [...menuItemsData]
+
+		//remove and save the dragged item content
+		const draggedItemContent = _menuItemsData.splice(dragItem.current, 1)[0]
+
+		//switch the position
+		_menuItemsData.splice(dragOverItem.current, 0, draggedItemContent)
+
+		//reset the position ref
+		dragItem.current = null
+		dragOverItem.current = null
+
+		//update the actual array
+		setmenuItemsData(_menuItemsData)
+    // filtereColumnData = _menuItemsData
+	}
+
+
+  // const btnForColumn = document.getElementById("hiding-part");
+
+  // btnForColumn?.addEventListener("click", function() {
+  //     if(columns[1].eleName == null){
+  //       columns[1].eleName = ""
+  //     }
+  // });
+
+  // useEffect(() => {
+  // }, data)
+  
+  // let variable = data.map((item: any) =>( item.Customer_LE))
+  // if(variable == null){
+  //   variable = null
+  // }
+  // console.log(data.map((item: any) =>( item.Customer_LE)))
+  // console.log(data);
+  
+  
 
   return (
     <>
@@ -695,37 +781,17 @@ const DataTable = ({
           <TableHead className="TableHead ">
             <TableRow id="table-head">
               <StyledTableCell>
-                <IconButton
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
-                  onClick={handleClick}
-                  sx={{
-                    position: 'relative',
-                  }}
-                >
-                  <MoreVertIcon />
-                </IconButton>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                  }}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                >
-                {filtereColumnData.map((item: any)=>{
-                  return (<><MenuItem>
+                <Menu menuButton={<MenuButton id="border-removing"> 
+                  <MoreVertIcon /></MenuButton>} transition>
+                {menuItemsData.map((item: any, index)=>{
+                  return (<><MenuItem
+                    key={index} 
+						        className="list-item"
+						        draggable
+						        onDragStart={(e: any) => (dragItem.current = index)}
+						        onDragEnter={(e: any) => (dragOverItem.current = index)}
+						        onDragEnd={handleSort}
+						        onDragOver={(e: any) => e.preventDefault()}>
                   <ListItemIcon>
                     {/* <Logout fontSize="small" /> */}
                     <DragIndicatorIcon fontSize="small" />
@@ -766,13 +832,15 @@ const DataTable = ({
                       key={`clickkey-${head.headTrans}${index}`}
                     >
                       {t<string>(`tables.${tableName}.${head.headTrans}`)}
-                      <span>
+                      <span id='hiding-part'>
                         {' '}
                         {head && head.filter ? (
                           <MultiSelect
                             filterAction={filterAction}
                             filterData={head.filterData}
                             id={`filter-${head.headTrans}${index}`}
+                            columns={columns}
+                            data={data}
                           />
                         ) : null}{' '}
                       </span>
@@ -794,8 +862,8 @@ const DataTable = ({
             className="TableBody"
             data-
           >
-            {filteredData &&
-              filteredData.map((item: any, index: any) => (
+            {data &&
+              data.map((item: any, index: any) => (
                 <TableRow
                   style={
                     isHover == true

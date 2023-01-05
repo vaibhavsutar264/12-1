@@ -62,7 +62,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
 
     // console.log(cards[0])
     // cards.map((q: any, i: any) => console.log(q))
-    console.log(mainElement?.firstChild?.firstChild)
+    // console.log(mainElement?.firstChild?.firstChild)
 
 //     const nodes = document.getElementById('main-div')?.childNodes;
 // for(let i=0; i<4; i++) {
@@ -81,9 +81,13 @@ const btns = btnContainer.getElementsByClassName("cardType__1");
 if(btns !== undefined){
     for (let i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function() {
-        const current = document.getElementsByClassName(" active");
-        current[0].className = current[0].className.replace(" active", "");
-        btns[i].className = "cardType__1 active";
+        const current = document.getElementsByClassName("active");
+        current[0].classList.remove('active')
+        btns[i].classList.add('active')
+    //     $('.blue').removeClass('red')
+	// $(this).addClass('red');
+    //     current[0].className = current[0].className.replace(" active", "");
+    //     btns[i].className = "cardType__1 active";
       });
     }
     }
@@ -116,7 +120,7 @@ if(btns !== undefined){
                     <PageSearch searchFn={searchData} />
                 </div>
                 <div id="main-div" className="card-wrapper-1">
-                {cards.map((q: any, i: any) => <Card data={q} key={`card-warpper${i}`} />)}
+                {cards.map((q: any, i: any) => <Card data={q} key={i} />)}
                 </div >
                 <DataTable
                     handledownloadViewpdf={viewBillingInvoice}

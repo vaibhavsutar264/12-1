@@ -31,7 +31,7 @@ function Routes({ toggleTheme }: { toggleTheme: any }) {
             children: [
                 { path: appRoutes.SET_PASSWORD, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={SetPassword} /> },
                 { path: appRoutes.ACCOUNT_DETAILS, element: <PrivateLayout toggleTheme={toggleTheme} Component={AccountDetails} /> },
-                { path: appRoutes.WELOCME, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={Welcome} /> },
+                { path: appRoutes.WELCOME, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={Welcome} /> },
                 { path: appRoutes.CUSTOMER_LE_FILTER, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={CustomerLeFilter} /> },
                 { path: appRoutes.BILLING, element: <PrivateLayout toggleTheme={toggleTheme} Component={Billing} /> },
                 { path: appRoutes.DASHBOARD, element: <PrivateLayout toggleTheme={toggleTheme} Component={Dashboard} /> },

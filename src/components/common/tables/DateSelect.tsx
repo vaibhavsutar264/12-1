@@ -14,7 +14,6 @@ export const DateSelect = () => {
   const [calendarOpen, setCalendarOpen] = React.useState(false);
 
   const getDate = () => {
-    console.log(selectedDate);
     const s = `${new Date(selectedDate[0]).toDateString()}`.split(" ");
     const e = `${new Date(selectedDate[1]).toDateString()}`.split(" ");
     return `${s[1]} ${s[2]} ${s[3]} - ${e[1]} ${e[2]} ${e[3]} `

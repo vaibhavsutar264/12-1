@@ -22,6 +22,8 @@ import { useForm } from 'react-hook-form'
 import { PrimaryInput } from '../common/elements/PrimaryInput'
 import { validateEmail } from '../../utils/helpers'
 import { LoginFormSchema } from '../../utils/yupschemas'
+import SetPassword from '../set-password/SetPassword'
+import { FormProvider, RHFTextField } from '../hook-form'
 
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -41,7 +43,7 @@ const Login = () => {
     const { t } = useLocales()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const { user, isError, isAuthenticated } = useAppSelector((state: any) => state.auth || {})
+    const { user, isError, isAuthenticated, resetmessage } = useAppSelector((state: any) => state.auth || {})
     const [val, setVal] = useState('')
     useEffect(() => {
         if (!isAuthenticated) {
@@ -50,7 +52,7 @@ const Login = () => {
         if (getFromLocalStorage(localStorageVar.TOKEN_VAR) && getFromLocalStorage(localStorageVar.TOKEN_VAR) !== null) {
             if (user) {
                 if (user.attributes[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
-                    navigate(appRoutes.SET_PASSWORD)
+                    // navigate(appRoutes.SET_PASSWORD)
                 } else {
                     navigate(appRoutes.DASHBOARD)
                 }
@@ -70,8 +72,12 @@ const Login = () => {
         dispatch(login(userDetails, d.user))
     }
 
+    // if (resetmessage === "SUCCESS") {
+    //     navigate(appRoutes.WELCOME)
+    // }
+
     return (
-        <>
+        <>{(user == null) ? (
             <Box
                 sx={{ flexGrow: 1 }}
                 id="login-form"
@@ -87,7 +93,7 @@ const Login = () => {
                         </p>
                     </Box>
                     <Box sx={{ flexGrow: 1 }} className="account__form__body">
-                        <form onSubmit={handleSubmit((d) => DoLogin(d))} action="#" method="post">
+                        <FormProvider onSubmit={handleSubmit((d) => DoLogin(d))}>
                             <FormGroup>
                                 {/* Email id Input */}
                                 <PrimaryInput
@@ -150,10 +156,12 @@ const Login = () => {
                                     </ColorButton>
                                 </FormControl>
                             </FormGroup>
-                        </form>
+                        </FormProvider>
                     </Box>
                 </div>
-            </Box>
+            </Box> ) : (
+                <SetPassword/>
+            )}
         </>
     )
 }
