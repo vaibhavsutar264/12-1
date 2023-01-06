@@ -84,7 +84,7 @@ export const { startLoading, hasError } = billingSlice.actions
 // -----------------------------------------------------------------
 export const runFilters = ({ page, take, sort }: any) => {
     return async () => {
-        const { invoiceData, searchValue, filterValue = [] } = store.getState().billing;
+        const { invoiceData, searchValue, filterValue = [] } = store.getState().billing || {};
         let filteredData: any = []
         if (sort) {
             const dm = JSON.parse(JSON.stringify(invoiceData))
@@ -100,10 +100,10 @@ export const runFilters = ({ page, take, sort }: any) => {
             })
         }
         const d = {
-            data: filteredData.slice((page - 1) * take, (page * take)),
+            data: filteredData?.slice((page - 1) * take, (page * take)),
             page: page,
             take: take,
-            total: filteredData.length,
+            total: filteredData?.length,
             searchValue: searchValue
         }
         dispatch(billingSlice.actions.setFilterData(d))
@@ -199,7 +199,8 @@ export const downloadBillingInvoiceCDR = (data: any) => {
 }
 
 export const cardFilter = (element: any, value: any) => {
-    const { take } = store.getState().billing;
+    const detailsOfBilling = store.getState().billing || {};
+    const { take } = detailsOfBilling
     return async () => {
         const f = [{ element: element, values: [value] }]
         dispatch(billingSlice.actions.setFilterParms({ filterValue: f }));
@@ -214,7 +215,8 @@ export const ChangePageBilling = (page: any, take: any) => {
 }
 
 export const searchData = (searchValue: any) => {   
-    const { take } = store.getState().billing;
+    const detailsOfBilling = store.getState().billing || {};
+    const { take } = detailsOfBilling
     return async () => {
         dispatch(billingSlice.actions.setSearchData({ searchValue }))
         dispatch(runFilters({ page: 1, take, sort: false }))
@@ -222,7 +224,8 @@ export const searchData = (searchValue: any) => {
 }
 export const sortData = (Field: any, dr: any) => {
     const { eleName } = Field;
-    const { take } = store.getState().billing;
+    const detailsOfBilling = store.getState().billing || {};
+    const { take } = detailsOfBilling
     setUlrParms(1, take)
     return async () => {
         dispatch(runFilters({ page: 1, take, sort: { eleName, dr } }))
@@ -230,7 +233,7 @@ export const sortData = (Field: any, dr: any) => {
 }
 
 export const filterData = (element: any, value: any, checked: any) => {
-    const { filterValue = [], take } = store.getState().billing;
+    const { filterValue = [], take } = store.getState().billing  || {}; 
     let fild = JSON.parse(JSON.stringify(filterValue.filter((e: any) => e.element == element)));
     return async () => {
         let eleFound = false;

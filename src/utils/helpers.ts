@@ -52,8 +52,7 @@ export const searchArray = (array: any, value: any) => {
     if (value == "") {
         return array
     } else {
-        return array.filter((d: any) => `${Object.values(d).join(",")}`.toLowerCase().includes(`${value}`.toLowerCase()))
-
+        return array && array.filter((d: any) => `${Object.values(d).join(",")}`.toLowerCase().includes(`${value}`.toLowerCase()))
     }
 }
 
@@ -73,7 +72,7 @@ export const getCardCount = (array: any, element: any, value: any) => {
     if (value === "") {
         return array.length
     } else {
-        return array.filter((s: any) => s[element] == value).length;
+        return array && array.filter((s: any) => s[element] == value).length;
     }
 }
 

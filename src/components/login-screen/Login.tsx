@@ -107,6 +107,7 @@ const Login = () => {
                                     onInput={setVal}
                                     variantForInput={"standard"}
                                     sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                    dataTestId='email-element'
                                 />
                                 {/* Password Input */}
                                 <PrimaryInput
@@ -118,6 +119,7 @@ const Login = () => {
                                     typeName={'password'}
                                     variantForInput={"standard"}
                                     sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                    dataTestId='password-element'
                                 />
                                 <FormControl
                                     className="input-wrapper password-checkHide no-margin fp-margin"

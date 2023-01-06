@@ -21,7 +21,7 @@ import moment from 'moment'
 
 export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
 
-    const { isError, isLoading, isSuccess, PageData = [], MasterData = [], total, page, take } = useSelector((state: any) => state.billing);
+    const { PageData = [], MasterData = [], total, page, take } = useSelector((state: any) => state.billing || {});
     const { dashBoardWidth } = useSelector((state: any) => state.common);
     const [startDate, setStartDate] = useState(moment().subtract(1, "months").format('YYYY-MM-DD'));
     const [endDate, setEndDate] = useState(moment().format('YYYY-MM-DD'));

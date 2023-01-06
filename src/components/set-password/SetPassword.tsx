@@ -117,6 +117,7 @@ const SetPassword = () => {
                                     setpassword={true}
                                     variantForInput={"standard"}
                                     sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                    dataTestId='password-element'
                                 />
                                 <PrimaryInput
                                     register={{ ...register('cnfPassword') }}
@@ -127,6 +128,7 @@ const SetPassword = () => {
                                     onInput={setcnfPass}
                                     variantForInput={"standard"}
                                     sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                    dataTestId='confirm-password-element'
                                 />
                                 <div style={{ position: 'relative', minHeight: '15px' }}>
                                     {!formState.errors.newPass && !formState.errors.cnfPassword && passval != '' &&

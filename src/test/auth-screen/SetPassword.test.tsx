@@ -25,7 +25,6 @@ describe('@SetPassword screen testing..', () => {
         const passwordElement = await screen.getByTestId('password-element') as HTMLInputElement
         const confirmPasswordElement = await screen.getByTestId('confirm-password-element') as HTMLInputElement
         const submitButton = screen.getByRole('button', { name: /Done/i, }) as HTMLInputElement
-
         expect(submitButton.type).toBe('submit')
         expect(passwordElement).toBeInTheDocument()
         expect(confirmPasswordElement).toBeInTheDocument()

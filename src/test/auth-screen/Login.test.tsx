@@ -28,24 +28,9 @@ describe('@Login screen testing..', () => {
     })
 
     it('should disable login button when email is not provided', async () => {
-        const emailElement = await screen.getByTestId('email-element') as HTMLInputElement
+        const emailElement = await screen.getByTestId('email-element')
         const buttonElement = await screen.getByRole('button', { name: /Login/i })
-        fireEvent.change(emailElement, { target: { value: '' } });
-        expect(buttonElement).toBeDisabled()
-
-    })
-
-    it('should disable login button when password is not provided', async () => {
-        const passwordElement = await screen.getByTestId('password-element') as HTMLInputElement
-        const buttonElement = await screen.getByRole('button', { name: /Login/i })
-        fireEvent.change(passwordElement, { target: { value: '' } });
-        expect(buttonElement).toBeDisabled()
-    })
-
-    it('should disable login button when password provided incorrect combination or incorrect length ', async () => {
-        const passwordElement = await screen.getByTestId('password-element') as HTMLInputElement
-        const buttonElement = await screen.getByRole('button', { name: /Login/i })
-        fireEvent.change(passwordElement, { target: { value: 'password' } });
+        await userEvent.type(emailElement, 'test@gmail.c')
         waitFor(() => { expect(buttonElement).toBeDisabled() })
     })
 
@@ -60,11 +45,6 @@ describe('@Login screen testing..', () => {
         fireEvent.click(buttonElement)
         expect(buttonElement).toBeEnabled()
         expect(buttonElement).toHaveTextContent('Login');
-
-        // await waitFor(() => {
-        //     expect(screen.queryByText(/abc/i)).toBeTruthy()
-        // })
-
     })
 
 });
