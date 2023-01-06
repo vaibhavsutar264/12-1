@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import {downloadBillingInvoice, downloadBillingInvoiceCDR} from '../../../redux/slices/billingSlice'
+import { downloadBillingInvoice, downloadBillingInvoiceCDR } from '../../../redux/slices/billingSlice'
 import {
     useDispatch as useAppDispatch,
     useSelector
@@ -20,7 +20,7 @@ import {
 import useLocales from '../../../hooks/useLocales';
 
 
-export default function DownloadCdr( item: any ) {
+export default function DownloadCdr(item: any) {
     const { t } = useLocales()
     const dispatch = useAppDispatch();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -41,22 +41,22 @@ export default function DownloadCdr( item: any ) {
 
     return (
         <React.Fragment>
-            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                <Tooltip title="Download">
-                    <IconButton
-
-                        onClick={handleClick}
-                        size="small"
-                        sx={{ ml: 2 }}
-                        aria-controls={open ? 'account-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                    >
-                        {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-                        <Download />
-                    </IconButton>
-                </Tooltip>
-            </Box>
+            {/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}> */}
+            <Tooltip title="DOWNLOAD">
+                <IconButton
+                    className='download-cdr'
+                    onClick={handleClick}
+                    size="small"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? 'account-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                >
+                    {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
+                    <Download />
+                </IconButton>
+            </Tooltip>
+            {/* </Box> */}
             <Menu
                 anchorEl={anchorEl}
                 id="account-menu"
@@ -93,11 +93,11 @@ export default function DownloadCdr( item: any ) {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem onClick={() => handleDownload(item)}>
-                {t<string>('invoice')}
+                    {t<string>('invoice')}
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={() => handleDownloadCdr(item)}>
-                {t<string>('cdr')}
+                    {t<string>('cdr')}
                 </MenuItem>
 
             </Menu>

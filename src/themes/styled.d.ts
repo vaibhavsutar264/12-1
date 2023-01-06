@@ -2,6 +2,7 @@ import 'styled-components'
 
 declare module 'styled-components' {
     export interface DefaultTheme {
+        html: string
         body: string
         text: string
         textForLogin: string
@@ -47,6 +48,8 @@ declare module 'styled-components' {
         resultsColor: string
         pageNumberInputColor: string
         pageNumberInputBg: string
+        showDateColor: string
+        showDateBg: string
         iconCtaColor: string
         iconCtaBg: string
         iconCtaBorder: string
@@ -94,6 +97,7 @@ declare module 'styled-components' {
         avatarInitialsBg: string
         avatarInitials: string
         datatableIconBg: string
+        datatableIconColor: string
         iconCtaNBg: string
         datatableIconHoverBg: string
         iconCtaTxt: string

@@ -1,5 +1,5 @@
 // give more space between icon and text
-[aria-labelledby="basic-button"].css-6hp17o-MuiList-root-MuiMenu-list > li {
+[aria-labelledby="basic-button"].css-6hp17o-MuiList-root-MuiMenu-list>li {
     justify-content: flex-start;
     gap: 6px;
 
@@ -9,12 +9,12 @@
     }
 
     // remove border bottom from li's ::after
-    .css-6hp17o-MuiList-root-MuiMenu-list > li::after {
+    .css-6hp17o-MuiList-root-MuiMenu-list>li::after {
         content: none;
     }
 }
 
-#hiding{
+#hiding {
     display: flex;
     font-family: ubuntu;
 }
@@ -24,17 +24,17 @@
     visibility: hidden;
     background-color: #fff;
     padding: 20px;
-    -webkit-box-shadow: 0 0 50px 0 rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
     opacity: 0;
     transition: opacity 0.5s ease;
-  }
-  
-  
-  .table-cell-tooltip:hover + .tooltip {
+}
+
+
+.table-cell-tooltip:hover+.tooltip {
     visibility: visible;
     transition: opacity 0.5s ease;
     opacity: 1;
-  }
+}
 
 .iconCta {
 
@@ -59,177 +59,192 @@
 
 
 
-.right__menu [aria-labelledby="basic-button"].css-6hp17o-MuiList-root-MuiMenu-list
-    {
+.right__menu [aria-labelledby="basic-button"].css-6hp17o-MuiList-root-MuiMenu-list {
 
 
 
-        padding: 22px !important;
+    padding: 22px !important;
     background-color: #fff;
 
-        & > li {
+    &>li {
         padding: 0 !important;
 
 
 
-    &:nth-child(1){
-        padding-bottom: 20px !important;
+        &:nth-child(1) {
+            padding-bottom: 20px !important;
 
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 1px;
-            background-color: rgba(112, 112, 112, 0.1019607843);
-            opacity: 1;
-         }
-    }
-    &:nth-child(2){
-        padding-top: 20px !important;
-        padding-bottom: 20px !important;
-        padding-left: 12px !important;
-
-        & span.icon {
-            margin-right: 14px;
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 1px;
+                background-color: rgba(112, 112, 112, 0.1019607843);
+                opacity: 1;
+            }
         }
-    }
-    &:nth-child(3){
-        padding-bottom: 20px !important;
-        padding-left: 12px !important;
 
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 1px;
-            background-color: rgba(112, 112, 112, 0.1019607843);
-            opacity: 1;
-         }
+        &:nth-child(2) {
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            padding-left: 12px !important;
+
+            & span.icon {
+                margin-right: 14px;
+            }
+        }
+
+        &:nth-child(3) {
+            padding-bottom: 20px !important;
+            padding-left: 12px !important;
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 1px;
+                background-color: rgba(112, 112, 112, 0.1019607843);
+                opacity: 1;
+            }
+        }
+
+        &:nth-child(4) {
+            padding-top: 20px !important;
+            padding-left: 12px !important;
+        }
+
     }
-    &:nth-child(4){
-        padding-top: 20px !important;
-        padding-left: 12px !important;
-    }
+}
+
+
+// Table Grid row styles
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+    background-color: unset !important;
+    // display: none;
+
+
+    /* width */
 
 }
-    }
+
+tbody .css-1q1u3t4-MuiTableRow-root {
+    // border-bottom: 0 !important;
+    // margin-bottom: 2px;
+    // border-radius: 10px;
+    // display: table;
+}
 
 
-    // Table Grid row styles
-    .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
-        background-color: unset !important;
-    }
+// .MuiTableCell-body {
+//     border-bottom: 5px solid rgb(17 19 21) !important;
+// }
 
-    tbody .css-1q1u3t4-MuiTableRow-root {
-        // border-bottom: 0 !important;
-        // margin-bottom: 2px;
-        // border-radius: 10px;
-        // display: table;
-    }
+th.MuiTableCell-root {
+
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-right: 0 !important;
+}
 
 
-    // .MuiTableCell-body {
-    //     border-bottom: 5px solid rgb(17 19 21) !important;
+td.MuiTableCell-root:last-child {
+
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-left: 0 !important;
+
+}
+
+tbody th,
+tbody td {
+    border: none !important;
+    // border: 2px solid rgb(26, 115, 232) !important;
+
+    // &:hover {
+    //     border: 2px solid #ff0 !important;
     // }
+}
 
-    th.MuiTableCell-root {
-   
-        border-top-left-radius: 16px;
-        border-bottom-left-radius: 16px;
+
+
+// transparent border on table row which changes color on hover
+tbody tr {
+
+    & th,
+    & td {
+        border: 2px solid transparent !important;
+    }
+
+    & th {
         border-right: 0 !important;
     }
-    
-    
-    td.MuiTableCell-root:last-child  {
-    
-        border-top-right-radius: 16px;
-        border-bottom-right-radius: 16px;
-        border-left: 0 !important;
-        
-    }
 
-    tbody th, tbody td {
-        border: none !important;
-        // border: 2px solid rgb(26, 115, 232) !important;
-
-        // &:hover {
-        //     border: 2px solid #ff0 !important;
-        // }
-    }
-
-
-
-    // transparent border on table row which changes color on hover
-    tbody tr {
-        & th, & td {
-            border: 2px solid transparent !important;
-        }
-
-        & th {
-            border-right: 0 !important;
-        }
-
-        & td {
-            border-left: 0 !important;
-            border-right: 0 !important;
-        }
-
-        & td:last-child  {
-            border-right: 2px solid transparent !important;
-        }
-    }
-
-
-
-
-
-    // border on table row hover
-    tbody tr:hover {
-        & th, & td {
-            border: 2px solid rgb(26, 115, 232) !important;
-        }
-
-        & th {
-            border-right: 0 !important;
-        }
-
-        & td {
-            border-left: 0 !important;
-            border-right: 0 !important;
-        }
-
-        & td:last-child  {
-            border-right: 2px solid rgb(26, 115, 232) !important;
-        }
-    }
-
-    tbody tr td {
+    & td {
         border-left: 0 !important;
         border-right: 0 !important;
     }
 
+    & td:last-child {
+        border-right: 2px solid transparent !important;
+    }
+}
 
-    .MuiTableContainer-root.table__Container table {
-        border-collapse: separate;
-        border-spacing: 0px 8px;
+
+
+
+
+// border on table row hover
+tbody tr:hover {
+
+    & th,
+    & td {
+        border: 2px solid rgb(26, 115, 232) !important;
     }
 
-    #table-data:hover {
-        border: 1px solid orangered;
+    & th {
+        border-right: 0 !important;
     }
 
-    .MuiButtonBase-root {
-        display: flex !important;
-    }
-    
-    #border-removing{
-        border: none
+    & td {
+        border-left: 0 !important;
+        border-right: 0 !important;
     }
 
-    
+    & td:last-child {
+        border-right: 2px solid rgb(26, 115, 232) !important;
+    }
+}
+
+tbody tr td {
+    border-left: 0 !important;
+    border-right: 0 !important;
+}
+
+
+.MuiTableContainer-root.table__Container table {
+    border-collapse: separate;
+    border-spacing: 0px 8px;
+}
+
+#table-data:hover {
+    border: 1px solid orangered;
+}
+
+.MuiButtonBase-root {
+    display: flex !important;
+}
+
+#border-removing {
+    border: none
+}
+
+
+.dashboard__content .css-1hecsjb-MuiStack-root {
+    // display: none;
+}
