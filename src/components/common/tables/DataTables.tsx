@@ -766,9 +766,9 @@ const DataTable = ({
         <>
             <CustomerLeFilter />
             {/* <EntityFilter /> */}
-            {/* <InvoiceAmtFilter /> */}
-            <InvoiceNoFilter />
+            {/* <InvoiceNoFilter /> */}
             {/* <PoNoFilter /> */}
+            <InvoiceAmtFilter />
             {/* <StatusFilter /> */}
             {/* <Loader /> */}
             {/* <SnackbarComponent /> */} 

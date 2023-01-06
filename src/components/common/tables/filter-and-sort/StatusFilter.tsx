@@ -4,6 +4,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { Divider } from '@mui/material';
 
 export default function StatusFilter() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -27,7 +30,7 @@ export default function StatusFilter() {
                 StatusFilter
             </Button>
             <Menu
-                id="basic-menu"
+                id="basic-menu-status"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
@@ -35,10 +38,19 @@ export default function StatusFilter() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}><input type='search' placeholder='Search' /></MenuItem>
-                <MenuItem onClick={handleClose}><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
-                <MenuItem onClick={handleClose}><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
-                <MenuItem onClick={handleClose}>CLEAR</MenuItem>
+                <MenuItem><CheckBoxOutlineBlankIcon />Select All</MenuItem>
+                <Divider />
+                <MenuItem><CheckBoxOutlineBlankIcon />Overdue</MenuItem>
+                <MenuItem><CheckBoxOutlineBlankIcon />Unpaid</MenuItem>
+                <MenuItem><CheckBoxOutlineBlankIcon />Paid</MenuItem>
+                <MenuItem>
+                    <div>
+                        CLEAR
+                    </div>
+                    <div>
+                        APPLY
+                    </div>
+                </MenuItem>
             </Menu>
         </div>
     );

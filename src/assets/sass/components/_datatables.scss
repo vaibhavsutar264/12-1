@@ -71,7 +71,9 @@ ul.actionButtons {
 #basic-menu-customerle,
 #basic-menu-entity,
 #basic-menu-invoiceno,
-#basic-menu-pono {
+#basic-menu-pono,
+#basic-menu-status,
+#basic-menu-amt {
     & ul {
         width: 300px;
         display: flex;
@@ -98,6 +100,44 @@ ul.actionButtons {
                 text-decoration: underline;
                 text-decoration-thickness: 1px;
             }
+        }
+    }
+}
+
+
+
+// Specifically for status
+#basic-menu-status {
+    & ul {
+        width: 250px;
+        gap: 8px;
+
+        & li {
+
+            & svg {}
+
+            &:last-child {
+                display: flex;
+                gap: 16px;
+            }
+        }
+    }
+}
+
+// Specifically for invoice amt
+#basic-menu-status {
+    & ul {
+
+        & li {
+
+            & svg {}
+
+            &:nth-child(2) {
+                display: flex;
+                gap: 16px;
+            }
+
+            &:last-child {}
         }
     }
 }
