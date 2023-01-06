@@ -24,10 +24,10 @@ export default function InvoiceNoFilter() {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                InvoiceAmtFilter
+                InvoiceNoFilter
             </Button>
             <Menu
-                id="basic-menu"
+                id="basic-menu-invoiceno"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
@@ -35,10 +35,10 @@ export default function InvoiceNoFilter() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}><input type='search' placeholder='Search' /></MenuItem>
-                <MenuItem onClick={handleClose}><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
-                <MenuItem onClick={handleClose}><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
-                <MenuItem onClick={handleClose}>CLEAR</MenuItem>
+                <MenuItem><input type='search' placeholder='Search' className='inside_search' /></MenuItem>
+                <MenuItem><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
+                <MenuItem><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
+                <MenuItem>CLEAR</MenuItem>
             </Menu>
         </div>
     );
