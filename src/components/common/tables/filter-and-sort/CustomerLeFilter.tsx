@@ -16,7 +16,7 @@ export default function CustomerLeFilter() {
     };
 
     return (
-        <div style={{ position: "fixed", top: 0, zIndex: 100, }}>
+        <div style={{ position: "fixed", top: 0, zIndex: 100, }} className='customer-le-menu'>
             <Button
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
@@ -27,7 +27,7 @@ export default function CustomerLeFilter() {
                 CustomerLeFilter
             </Button>
             <Menu
-                id="basic-menu"
+                id="basic-menu-customerle"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
@@ -35,10 +35,10 @@ export default function CustomerLeFilter() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}><input type='search' placeholder='Search' /></MenuItem>
-                <MenuItem onClick={handleClose}><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
-                <MenuItem onClick={handleClose}><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
-                <MenuItem onClick={handleClose}>CLEAR</MenuItem>
+                <MenuItem><input type='search' placeholder='Search' className='inside_search' /></MenuItem>
+                <MenuItem><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
+                <MenuItem><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
+                <MenuItem>CLEAR</MenuItem>
             </Menu>
         </div>
     );
