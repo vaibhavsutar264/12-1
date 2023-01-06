@@ -81,6 +81,7 @@ const ForgotPassword = () => {
                                     onInput={setVal}
                                     variantForInput={"standard"}
                                     sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                    dataTestId='email-element'
                                 />
                                 {/* submit button */}
                                 <FormControl
