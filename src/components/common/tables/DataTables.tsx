@@ -741,20 +741,39 @@ const DataTable = ({
     const tablerowbody = document.getElementById("table-body-element");
     const tablecellbody = tablerowbody?.getElementsByClassName("MuiTableRow-root")
     // console.log(tablecellbody)
+    
+    const [tableData, setTableData] = useState(data);
+    const onSearch = (e: any,head: any,index: any)=>{
+      console.log(head)
+      // const filterData = data.filter((obj : any)=>obj[head['Payment_Status']].toString().includes(e.target.value));
+      const filterData = data.filter((obj : any)=>obj[head['eleName']].toString().includes(e.target.value));
+      console.log(filterData)
+      setTableData(filterData);
+    }
 
+    const onSortAscending =(e: any,head: any)=>{
+      const sortedDataAscending =  [...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']]);
+      console.log(sortedDataAscending)
+      setTableData(sortedDataAscending);
+    } 
+    const onSortDescending =(e: any,head: any)=>{
+      const sortedDataDescending = [...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']]);
+      console.log(sortedDataDescending)
+      setTableData(sortedDataDescending);
+    }
 
     return (
         <>
-            {/* <CustomerLeFilter /> */}
+            <CustomerLeFilter />
             {/* <EntityFilter /> */}
             {/* <InvoiceAmtFilter /> */}
             <InvoiceNoFilter />
             {/* <PoNoFilter /> */}
             {/* <StatusFilter /> */}
             {/* <Loader /> */}
-            {/* <SnackbarComponent /> */}
+            {/* <SnackbarComponent /> */} 
             <Actions
-                data={filteredData}
+                data={tableData}
                 pagination={{ take, Total }}
                 changeTake={(e: any) => {
                     changeTake(e)
@@ -815,7 +834,7 @@ const DataTable = ({
                                             id="hiding"
                                             name={t<string>(`tables.${tableName}.${head.headTrans}`)}
                                             className="voidBtn"
-                                            onClick={sort.bind(null, head)}
+                                            // onClick={sort.bind(null, head)}
                                             key={`clickkey-${head.headTrans}${index}`}
                                         >
                                             {t<string>(`tables.${tableName}.${head.headTrans}`)}
@@ -831,6 +850,8 @@ const DataTable = ({
                                                     />
                                                 ) : null}{' '}
                                             </span>
+                                            <CustomerLeFilter sortDataAscending={(e: any)=>onSortAscending(e,head)} sortDataDescending={(e : any)=>onSortDescending(e,head)}  idForSearch={`input-${index}`} onChangeForSearch={(e: any)=>onSearch(e,head,index)}/>
+                                            <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button>
                                         </button>
                                     </div>
                                 </StyledTableCell>
@@ -847,11 +868,10 @@ const DataTable = ({
                     <TableBody
                         data-testid="table-body-element"
                         className="TableBody"
-                        data-
                         id="table-body-element"
                     >
-                        {data &&
-                            data.map((item: any, index: any) => (
+                        {tableData &&
+                          tableData.map((item: any, index: any) => (
                                 <TableRow
                                     style={
                                         isHover == true

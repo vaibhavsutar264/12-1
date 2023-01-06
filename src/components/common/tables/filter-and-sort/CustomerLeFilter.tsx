@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
 
-export default function CustomerLeFilter() {
+export default function CustomerLeFilter({idForSearch,onChangeForSearch,sortDataAscending,sortDataDescending}: any) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -35,9 +35,9 @@ export default function CustomerLeFilter() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem><input type='search' placeholder='Search' className='inside_search' /></MenuItem>
-                <MenuItem><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
-                <MenuItem><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
+                <MenuItem><input id={idForSearch} onChange={onChangeForSearch} placeholder={'Search'} className='inside_search' /></MenuItem>
+                <MenuItem onClick={sortDataAscending} ><ArrowUpwardRoundedIcon  />Sorting Ascending (A-Z)</MenuItem>
+                <MenuItem onClick={sortDataDescending} ><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
                 <MenuItem>CLEAR</MenuItem>
             </Menu>
         </div>
