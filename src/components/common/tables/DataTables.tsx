@@ -62,6 +62,8 @@ import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
 
 
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -736,24 +738,9 @@ const DataTable = ({
     }
 
 
-    // const btnForColumn = document.getElementById("hiding-part");
-
-    // btnForColumn?.addEventListener("click", function() {
-    //     if(columns[1].eleName == null){
-    //       columns[1].eleName = ""
-    //     }
-    // });
-
-    // useEffect(() => {
-    // }, data)
-
-    // let variable = data.map((item: any) =>( item.Customer_LE))
-    // if(variable == null){
-    //   variable = null
-    // }
-    // console.log(data.map((item: any) =>( item.Customer_LE)))
-    // console.log(data);
-
+    const tablerowbody = document.getElementById("table-body-element");
+    const tablecellbody = tablerowbody?.getElementsByClassName("MuiTableRow-root")
+    // console.log(tablecellbody)
 
 
     return (
@@ -761,8 +748,8 @@ const DataTable = ({
             {/* <CustomerLeFilter /> */}
             {/* <EntityFilter /> */}
             {/* <InvoiceAmtFilter /> */}
-            {/* <InvoiceNoFilter /> */}
-            <PoNoFilter />
+            <InvoiceNoFilter />
+            {/* <PoNoFilter /> */}
             {/* <StatusFilter /> */}
             {/* <Loader /> */}
             {/* <SnackbarComponent /> */}
@@ -861,6 +848,7 @@ const DataTable = ({
                         data-testid="table-body-element"
                         className="TableBody"
                         data-
+                        id="table-body-element"
                     >
                         {data &&
                             data.map((item: any, index: any) => (
