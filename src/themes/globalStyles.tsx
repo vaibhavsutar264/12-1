@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const lightTheme = {
+    html: '#fff !important',
     body: '#fff !important',
     text: '#121212 !important',
     textForLogin: '#11153b !important',
@@ -46,6 +47,8 @@ export const lightTheme = {
     resultsColor: '#555555',
     pageNumberInputColor: '#344857',
     pageNumberInputBg: '#F1F4F9',
+    showDateColor: '#344857',
+    showDateBg: '#F1F4F9',
     iconCtaColor: '#D63548',
     iconCtaBg: '#F1F4F9',
     iconCtaBorder: '#D63548',
@@ -94,6 +97,7 @@ export const lightTheme = {
     avatarInitialsBg: '#E1E1E1 !important',
     avatarInitials: '#344857 !important',
     datatableIconBg: '#F7F8FA !important',
+    datatableIconColor: '',
     iconCtaNBg: '#fff !important',
     datatableIconHoverBg: '#d63548 !important',
     iconCtaTxt: '#d63548 a!important',
@@ -106,6 +110,7 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
+    html: '#111315 !important',
     body: '#fff !important',
     text: '#fff !important',
     textForLogin: 'white !important',
@@ -117,13 +122,13 @@ export const darkTheme = {
     label: '#ffffff',
     successBorder: '#195583',
     opacity: '0.5',
-    sidebarBg: '#1E2023',
-    sidebarTopBg: '#1E2023',
-    sidebarLeftBg: '#1E2023',
-    inputBg: '#25292E',
+    sidebarBg: '#282F3C',
+    sidebarTopBg: '#282F3C',
+    sidebarLeftBg: '#282F3C',
+    inputBg: '#343A47',
     inputHeaderBorder: 'none',
-    dashboardContentBg: '#111315',
-    tableHeaderBg: '#111315',
+    dashboardContentBg: '#1E2631',
+    tableHeaderBg: '#1E2631',
     dashboardTitle: '#fff',
     inputHeaderInputColor: '#fff',
     inputHeaderPlaceholderColor: '#787785',
@@ -133,11 +138,11 @@ export const darkTheme = {
     notificationBadgeBgColor: '#D63548',
     breadcrumbColor: '#9D9FA1',
     breadcrumbSeparatorColor: '#9D9FA1',
-    searchProductsInputBg: '#23252A',
+    searchProductsInputBg: '#222D3B',
     searchProductsInputColor: '#fff',
     searchProductsPlaceholderColor: '#787785',
     searchProductsIconColor: '#787785',
-    sidebarActiveLinkBg: '#25292E',
+    sidebarActiveLinkBg: '#343A47',
     sidebarLinkColor: '#787785',
     sidebarSvgPathColor: '#787785',
     languageColor: '#344857',
@@ -145,21 +150,23 @@ export const darkTheme = {
     languageSvgColor: '#fff !important',
     usernameColor: '#fff',
     usernameSvgColor: '#fff !important',
-    sidebarToggleBg: '#32363B',
+    sidebarToggleBg: '#282F3C',
     sidebarToggleSvgPathColor: '#D63548',
-    prevNextBg: '#25292E',
+    prevNextBg: '#222D3B',
     prevNextSvgPathColor: '#344857',
     resultsColor: '#787785',
     pageNumberInputColor: '#787785',
-    pageNumberInputBg: '#25292E',
+    pageNumberInputBg: '#222D3B',
+    showDateColor: '#787785',
+    showDateBg: '#222D3B',
     iconCtaColor: '#fff',
     iconCtaBg: '#D63548',
     iconCtaBorder: '#D63548',
     verticalTableOptionsBg: '#32363B',
     verticalTableOptionsSvgPath: '#fff',
     basicButonExpandedBg: '#0B0D0E',
-    pagniationSelectedBg: '#344857',
-    tableDataRowBg: '#1E2023',
+    pagniationSelectedBg: '#222D3B',
+    tableDataRowBg: '#252F3B',
     tableDataRowBrBtmColor: '#1E2023',
     tableBodyTdColor: '#fff',
     formTitleColor: '#fff !important',
@@ -169,7 +176,7 @@ export const darkTheme = {
     inputLabelColor: '#787785',
     mailIconColor: '#787785',
     inputColor: '#363636 !important',
-    toggleWrapper: '#25292E !important',
+    toggleWrapper: '#343A47 !important',
     sunModeColor: '#787785',
     darkModeColor: '#D63548',
     sunModeBtnBg: 'transparent !important',
@@ -199,7 +206,8 @@ export const darkTheme = {
     editableInputBorder: '#787785 !important',
     avatarInitialsBg: '#343A47 !important',
     avatarInitials: '#FFFFFF !important',
-    datatableIconBg: '#fff !important',
+    datatableIconBg: '#2B3744 !important',
+    datatableIconColor: '#fff !important',
     iconCtaNBg: '#d63548 !important',
     datatableIconHoverBg: '#d63548 !importnt',
     iconCtaTxt: '#fff !important',
@@ -317,6 +325,9 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   div.dashboard__wrapper > div.dashboard__content > div.content__header > div.content__breadcrum > h3{
     color: ${({ theme }) => theme.dashboardTitle};
   }
+  .dashboard__content .content__header .content__breadcrum .content_pageTitle {
+    color: ${({ theme }) => theme.dashboardTitle};
+  }
   #searchicon-sidebar {
     color: ${({ theme }) => theme.searchiconSidebar};
     opacity: ${({ theme }) => theme.searchiconSidebarOpacity};
@@ -346,7 +357,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
     color: ${({ theme }) => theme.searchProductsIconColor};
     opacity: ${({ theme }) => theme.searchiconSidebarOpacity}
   }
-  .dashboard__sidebar .sidebar__list .list__item .item__link.active {
+  .dashboard__sidebar .sidebar__list .list__item .item__link.sidebar-active {
     background-color: ${({ theme }) => theme.sidebarActiveLinkBg};
   }
   .dashboard__sidebar .sidebar__list .list__item .item__link .link__icon svg path {
@@ -388,6 +399,10 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   #PageNumberInput {
     color: ${({ theme }) => theme.pageNumberInputColor};
     background-color: ${({ theme }) => theme.pageNumberInputBg};
+  }
+  .showDate {
+    color: ${({ theme }) => theme.showDateColor};
+    background-color: ${({ theme }) => theme.showDateBg};
   }
   div.dashboard__content > div.action__elements a.iconCta {
     color: ${({ theme }) => theme.iconCtaColor};
@@ -522,8 +537,12 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
     background-color: ${({ theme }) => theme.avatarInitialsBg};
     color: ${({ theme }) => theme.avatarInitials};
   }
-  .actionButtons .actionButton__item span {
+  .actionButtons .actionButton__item span, .actionButtons button.download-cdr  {
     background-color: ${({ theme }) => theme.datatableIconBg};
+  }
+
+  .actionButtons .actionButton__item span svg path, .actionButtons button.download-cdr svg path {
+    fill: ${({ theme }) => theme.datatableIconColor};
   }
   .action__elements .action__elementItem .iconCta:hover {
     background-color: ${({ theme }) => theme.datatableIconHoverBg};
@@ -549,5 +568,8 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   }
   table tr th button#basic-button svg {
     color: ${({ theme }) => theme.verticalDots};
+  }
+  html {
+    background-color: ${({ theme }) => theme.html};
   }
 `

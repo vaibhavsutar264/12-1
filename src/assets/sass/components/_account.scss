@@ -434,6 +434,10 @@
 
                             top: 7px;
 
+                            &.MuiFormLabel-filled {
+                                z-index: 1;
+                            }
+
                             // arhan input code
                             @media only screen and (max-width: 1400px) {
                                 top: -4px;
@@ -460,6 +464,12 @@
                             letter-spacing: 0px;
                             color: $input !important;
                             opacity: 1;
+                            border-radius: 10px;
+
+                            @media only screen and (max-width:1400px) {
+                                padding-bottom: 6px;
+                                padding-top: 8px;
+                            }
                         }
                     }
 
@@ -717,7 +727,7 @@
 
     .account__screen {
         .account__form {
-            width: 360px;
+            // width: 360px;
             padding: 50px 35px;
             padding-top: 88px;
             padding-bottom: 82px;
@@ -1063,7 +1073,12 @@ p.text-error {
     margin: 0;
     font-weight: 600;
     position: absolute;
-    bottom: -32px;
+    bottom: -28px;
+
+    @media only screen and (max-width:1400px) {
+        bottom: -22px;
+    }
+
     left: 5px;
     font-family: 'Poppins';
 }
@@ -1196,6 +1211,7 @@ MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiPaper-r
 // setting form responsiveness
 #login-form {
     height: auto;
+    // min-height: 500px;
     max-height: 70vh;
     // overflow: hidden;
     top: 20vh;
@@ -1206,6 +1222,13 @@ MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiPaper-r
         height: auto;
         max-height: 60vh;
         top: 33vh;
+    }
+
+    @media only screen and (max-width:1400px) {
+        .MuiInputAdornment-root {
+            position: relative;
+            top: 2px;
+        }
     }
 }
 
