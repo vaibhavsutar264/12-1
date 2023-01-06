@@ -14,11 +14,11 @@ import CheckIcon from '@mui/icons-material/Check'
 import LinearProgress from '@mui/material/LinearProgress'
 import CloseIcon from '@mui/icons-material/Close'
 
-export const PrimaryInput = ({ register, label, formState, fieldName, typeName, onInput, setpassword = false }: any) => {
+export const PrimaryInput = ({ onChange,sxForInput,classNameInput,register,variantForInput, label, formState, fieldName, typeName, onInput,valueForInput, setpassword = false }: any) => {
     const { t } = useLocales();
     const [val, setVal] = useState('');
     const [toolTipOpen, settoolTipOpen] = useState(false)
-    const [values, setValues] = useState<any>({ showPassword: typeName == 'email' ? true : false })
+    const [values, setValues] = useState<any>({ showPassword: (typeName == 'email' || 'text') ? true : false })
     const getClassName = () => {
         if (typeName == 'email') {
             return "input-wrapper yes-margin";
@@ -34,6 +34,8 @@ export const PrimaryInput = ({ register, label, formState, fieldName, typeName, 
             return <MailOutlineIcon id="mail-icon" style={iconstyle} />;
         } else if (typeName == 'password') {
             return <LockOpenIcon id="unlock-icon" style={iconstyle} />;
+        } else {
+            return null
         }
     }
     const handleClickShowPassword = () => {
@@ -99,8 +101,9 @@ export const PrimaryInput = ({ register, label, formState, fieldName, typeName, 
                     {getIcon()}
                 </InputLabel>
                 <TextField
-                    className="input-field"
+                    className={classNameInput}
                     id={fieldName}
+                    defaultValue={valueForInput}
                     onInput={(e: any) => {
                         setVal(e.target.value);
                         try {
@@ -112,13 +115,14 @@ export const PrimaryInput = ({ register, label, formState, fieldName, typeName, 
                             onInput(e.target.value);
                         } catch { }
                     }}
+                    onChange={onChange}
                     label={t<string>(label)}
-                    variant="standard"
+                    variant={variantForInput}
                     type={values.showPassword ? 'text' : 'password'}
                     {...register}
                     autoComplete="false"
                     onPaste={handlePasteChange}
-                    sx={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                    sx={sxForInput}
                     InputProps={
                         {
                             ...(typeName === 'password') && {

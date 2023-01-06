@@ -74,10 +74,13 @@ const ForgotPassword = () => {
                                 <PrimaryInput
                                     register={{ ...register('user') }}
                                     label={'enterYourRegisteredEmailId'}
+                                    classNameInput={"input-field"}
                                     fieldName={'user'}
                                     formState={formState}
                                     typeName={'email'}
                                     onInput={setVal}
+                                    variantForInput={"standard"}
+                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                 />
                                 {/* submit button */}
                                 <FormControl

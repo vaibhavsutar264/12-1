@@ -736,24 +736,9 @@ const DataTable = ({
 	}
 
 
-  // const btnForColumn = document.getElementById("hiding-part");
-
-  // btnForColumn?.addEventListener("click", function() {
-  //     if(columns[1].eleName == null){
-  //       columns[1].eleName = ""
-  //     }
-  // });
-
-  // useEffect(() => {
-  // }, data)
-  
-  // let variable = data.map((item: any) =>( item.Customer_LE))
-  // if(variable == null){
-  //   variable = null
-  // }
-  // console.log(data.map((item: any) =>( item.Customer_LE)))
-  // console.log(data);
-  
+  const tablerowbody = document.getElementById("table-body-element");
+  const tablecellbody = tablerowbody?.getElementsByClassName("MuiTableRow-root")
+  // console.log(tablecellbody)
   
 
   return (
@@ -861,6 +846,7 @@ const DataTable = ({
             data-testid="table-body-element"
             className="TableBody"
             data-
+            id="table-body-element"
           >
             {data &&
               data.map((item: any, index: any) => (
