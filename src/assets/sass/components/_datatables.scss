@@ -72,7 +72,8 @@ ul.actionButtons {
 #basic-menu-entity,
 #basic-menu-invoiceno,
 #basic-menu-pono,
-#basic-menu-status {
+#basic-menu-status,
+#basic-menu-amt {
     & ul {
         width: 300px;
         display: flex;
@@ -119,6 +120,24 @@ ul.actionButtons {
                 display: flex;
                 gap: 16px;
             }
+        }
+    }
+}
+
+// Specifically for invoice amt
+#basic-menu-status {
+    & ul {
+
+        & li {
+
+            & svg {}
+
+            &:nth-child(2) {
+                display: flex;
+                gap: 16px;
+            }
+
+            &:last-child {}
         }
     }
 }

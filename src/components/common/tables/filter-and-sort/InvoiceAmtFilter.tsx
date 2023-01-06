@@ -4,6 +4,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import { Divider } from '@mui/material';
+
 
 export default function InvoiceAmtFilter() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -27,7 +31,7 @@ export default function InvoiceAmtFilter() {
                 InvoiceAmtFilter
             </Button>
             <Menu
-                id="basic-menu"
+                id="basic-menu-amt"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
@@ -35,10 +39,20 @@ export default function InvoiceAmtFilter() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}><input type='search' placeholder='Search' /></MenuItem>
-                <MenuItem onClick={handleClose}><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
-                <MenuItem onClick={handleClose}><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
-                <MenuItem onClick={handleClose}>CLEAR</MenuItem>
+                <MenuItem><input type='search' placeholder='Currency' className='inside_search' /></MenuItem>
+                <MenuItem>
+                    <Button sx={{ color: '#717171', }} variant="text" startIcon={<DeleteIcon />}>
+                        INR
+                    </Button>
+                    <Button sx={{ color: '#717171', }} variant="text" startIcon={<SendIcon />}>
+                        USD
+                    </Button>
+                </MenuItem>
+                <MenuItem><input type='search' placeholder='Amount' className='inside_search' /></MenuItem>
+                <Divider />
+                <MenuItem><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
+                <MenuItem><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
+                <MenuItem>CLEAR</MenuItem>
             </Menu>
         </div>
     );
