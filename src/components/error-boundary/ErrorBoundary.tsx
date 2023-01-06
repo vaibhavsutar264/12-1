@@ -21,7 +21,7 @@ export class ErrorBoundary extends Component<any, { hasError: boolean }> {
 
 	render() {
 		if (this.state.hasError) {
-			return <h1>Something went wrong.</h1>
+			return <div style={{display:'flex' , justifyContent: "center", alignItems: "center"}}><h1 >Oops, Something has gone wrong</h1></div>
 		}
 		return this.props.children
 	}

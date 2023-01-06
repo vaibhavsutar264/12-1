@@ -14,6 +14,7 @@ export const PageSearch = ({ searchFn }: { searchFn: any }) => {
     const { t } = useLocales()
     const [searchValue, setSearchValue] = useState('')
     const handleSearch = async (e: any) => {
+        e.preventDefault()
         dispatch(searchFn(searchValue))
     }
     const chnageEvent = async (e: any) => {
@@ -61,6 +62,13 @@ export const PageSearch = ({ searchFn }: { searchFn: any }) => {
                         type="search"
                         value={searchValue}
                         onChange={(e) => chnageEvent(e.target.value)}
+                        onKeyPress= {(e) => {
+                            if (e.key === 'Enter') {
+                                e.preventDefault()
+                                handleSearch(e)
+                              // write your functionality here
+                            }
+                    }}
                     />
                     <IconButton
                         data-testid="search-button-element"

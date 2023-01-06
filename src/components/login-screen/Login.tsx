@@ -65,6 +65,7 @@ const Login = () => {
         resolver: yupResolver(LoginFormSchema),
     });
     const DoLogin = (d: any) => {
+        console.log(d)
         const userDetails: any = {
             email: d.user,
             password: d.password
@@ -98,19 +99,25 @@ const Login = () => {
                                 {/* Email id Input */}
                                 <PrimaryInput
                                     register={{ ...register('user') }}
+                                    classNameInput={"input-field"}
                                     label={'enterYourEmailID'}
                                     fieldName={'user'}
                                     formState={formState}
                                     typeName={'email'}
                                     onInput={setVal}
+                                    variantForInput={"standard"}
+                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                 />
                                 {/* Password Input */}
                                 <PrimaryInput
                                     register={{ ...register('password') }}
+                                    classNameInput={"input-field"}
                                     label={'password'}
                                     fieldName={'password'}
                                     formState={formState}
                                     typeName={'password'}
+                                    variantForInput={"standard"}
+                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                 />
                                 <FormControl
                                     className="input-wrapper password-checkHide no-margin fp-margin"

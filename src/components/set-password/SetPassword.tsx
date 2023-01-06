@@ -109,11 +109,14 @@ const SetPassword = () => {
                                 <PrimaryInput
                                     register={{ ...register('newPass') }}
                                     label={'password'}
+                                    classNameInput={"input-field"}
                                     fieldName={'newPass'}
                                     formState={formState}
                                     typeName={'password'}
                                     onInput={setPassVal}
                                     setpassword={true}
+                                    variantForInput={"standard"}
+                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                 />
                                 <PrimaryInput
                                     register={{ ...register('cnfPassword') }}
@@ -122,6 +125,8 @@ const SetPassword = () => {
                                     formState={formState}
                                     typeName={'password'}
                                     onInput={setcnfPass}
+                                    variantForInput={"standard"}
+                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                 />
                                 <div style={{ position: 'relative', minHeight: '15px' }}>
                                     {!formState.errors.newPass && !formState.errors.cnfPassword && passval != '' &&

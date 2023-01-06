@@ -1255,10 +1255,12 @@ form.raise-ticket-input .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
     }
 
     & legend {
-
         & span {
-
             display: none;
         }
     }
 }
+
+// input[type="search"]::-webkit-clear-button {
+//     display: none;
+// }
