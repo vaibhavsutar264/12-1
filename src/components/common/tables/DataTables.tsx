@@ -747,10 +747,10 @@ const DataTable = ({
         <>
             {/* <CustomerLeFilter /> */}
             {/* <EntityFilter /> */}
-            {/* <InvoiceAmtFilter /> */}
-            <InvoiceNoFilter />
+            {/* <InvoiceNoFilter /> */}
             {/* <PoNoFilter /> */}
-            {/* <StatusFilter /> */}
+            {/* <InvoiceAmtFilter /> */}
+            <StatusFilter />
             {/* <Loader /> */}
             {/* <SnackbarComponent /> */}
             <Actions
