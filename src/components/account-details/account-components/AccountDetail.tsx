@@ -27,12 +27,11 @@ const AccountDetail = ({
 
   useEffect(() => {
     try {
-      setLeEntity(accountDetails.legalentities[0][GetLegalEntities()[0]])
-      console.log(accountDetails.legalentities[0][GetLegalEntities()[0]])
+      setLeEntity(accountDetails.legalentities[0])
       setsendInvoice(accountDetails.legalentities[0].sendInvoiceToContact)
-      setLegalEntity(GetLegalEntities()[0])
+      setLegalEntity(0)
     } catch { }
-  },[accountDetails.legalentities, setsendInvoice, setLegalEntity] )
+  }, [accountDetails.legalentities, setsendInvoice, setLegalEntity])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const GetLegalEntities = () => {
@@ -44,20 +43,18 @@ const AccountDetail = ({
   }
   const handleChange = (event: any) => {
     try {
-      const index = GetLegalEntities().indexOf(event.target.value)
-      console.log([GetLegalEntities()[0]]);
-      console.log(event.target.value);
-      
-      console.log(accountDetails.legalentities[0][GetLegalEntities()[0]])
-      console.log(accountDetails.legalentities[index][event.target.value])
-      setLeEntity(accountDetails.legalentities[index][event.target.value])
-      setsendInvoice(accountDetails.legalentities[index].sendInvoiceToContact)
+      setLeEntity(accountDetails.legalentities[+event.target.value])
+      setsendInvoice(accountDetails.legalentities[+event.target.value].sendInvoiceToContact)
       setLegalEntity(event.target.value)
     } catch (e) {
       console.log(e);
     }
 
   }
+
+  console.log(accountDetails.legalentities);
+  console.log("accountDetails", leEntity);
+
 
   return (
     <>
@@ -123,7 +120,7 @@ const AccountDetail = ({
                 },
               }}
             >
-              {GetLegalEntities().length > 0 && (
+              {accountDetails.legalentities.length > 0 && (
                 <FormControl fullWidth>
                   <Select
                     MenuProps={{
@@ -134,9 +131,9 @@ const AccountDetail = ({
                     onChange={handleChange}
                     inputProps={{ 'aria-label': 'Without label' }}
                   >
-                    {GetLegalEntities().map((val: any, index: any) => (
-                      <MenuItem value={val} key={`legalEnt${index}`}>
-                        Legal Entity Name {index + 1}
+                    {accountDetails.legalentities.map((val: any, index: any) => (
+                      <MenuItem value={index} key={`legalEnt${index}`}>
+                        {val.legalEntityName}
                       </MenuItem>
                     ))}
                   </Select>
@@ -232,7 +229,7 @@ const AccountDetail = ({
                   lineHeight: '18px',
                 }}
               >
-                {leEntity && leEntity?.billingDetails.legalEntity}
+                {leEntity && leEntity?.legalEntityName}
               </Typography>
             </Stack>
 

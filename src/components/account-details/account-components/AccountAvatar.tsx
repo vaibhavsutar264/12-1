@@ -6,10 +6,7 @@ import { useSelector, useDispatch } from '../../../redux/store'
 import { updateUserDetails } from '../../../redux/slices/accountSlice'
 import { getuserInfo } from '../../../redux/slices/authSlice'
 import useLocales from '../../../hooks/useLocales'
-import { FormProvider, RHFTextField } from '../../hook-form'
-import { useForm } from 'react-hook-form'
-import { LoginFormSchema } from '../../../utils/yupschemas'
-import { yupResolver } from '@hookform/resolvers/yup'
+
 
 const AccountAvatar = () => {
   const { t } = useLocales()
@@ -26,8 +23,6 @@ const AccountAvatar = () => {
 
   useEffect(() => {
     dispatch(getuserInfo(user.emailId));
-  }, [])
-  useEffect(() => {
     if (user) {
       setFirstname(user.firstname)
       setLastName(user.lastName)
@@ -35,12 +30,12 @@ const AccountAvatar = () => {
       setTimezone(user.attributes.timezone)
       setCommunication(user.attributes.preferredCommunicationMode)
     }
-  }, [user])
+  }, [])
 
 
-  const editUserDetails = (d: any) => {
-    // e.preventDefault()
-    const body: any = {
+  const editUserDetails = async (e: SyntheticEvent) => {
+    e.preventDefault()
+    const body = {
       firstname: firstname,
       lastName: lastName,
       phoneNumber: phoneNumber,
@@ -49,15 +44,9 @@ const AccountAvatar = () => {
     }
     dispatch(updateUserDetails(body))
     setEditable(false)
-    // dispatch(getuserInfo(user.emailId));
   }
 
-  const { register, handleSubmit, formState, control, getValues } = useForm<any>({
-    mode: "onChange",
-    resolver: yupResolver(LoginFormSchema),
-});
-
-  const resetDetails = () => {
+  const abcd = () => {
     setEditable(!false)
     setOpen(!false)
   }
@@ -88,20 +77,20 @@ const AccountAvatar = () => {
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
               <Avatar
-                alt="Profile picture"
+                alt="Travis Howard"
                 className='avatar-initials'
                 sx={{
                   width: '156px',
                   height: '156px',
                 }}
               >
-                {(firstname.charAt(0) + lastName.charAt(0)) || null}
+                {firstname.charAt(0) + lastName.charAt(0)}
               </Avatar>
             </Badge>
           </Stack>
         </Box>
 
-        <FormProvider onSubmit={handleSubmit((d: any) => editUserDetails(d))}>
+        <form>
           <Box
             component="form"
             className="billing-details-input"
@@ -128,7 +117,6 @@ const AccountAvatar = () => {
             <TextField
               className={editable ? '' : 'removeBorder'}
               label={t<string>('firstName')}
-              { ...register('firstName') }
               value={firstname}
               onChange={(e) => {setFirstname(e.target.value);setOpen(false) }}
               variant={editable ? 'outlined' : 'standard'}
@@ -143,7 +131,6 @@ const AccountAvatar = () => {
             <TextField
               className={editable ? '' : 'removeBorder'}
               label={t<string>('lastName')}
-              { ...register('lastName') }
               variant={editable ? 'outlined' : 'standard'}
               type="text"
               value={lastName}
@@ -158,7 +145,6 @@ const AccountAvatar = () => {
             <TextField
               className={editable ? '' : 'removeBorder'}
               label={t<string>('mobileNo')}
-              { ...register('phoneNumber') }
               variant={editable ? 'outlined' : 'standard'}
               type="text"
               value={phoneNumber}
@@ -173,7 +159,6 @@ const AccountAvatar = () => {
             <TextField
               className={editable ? '' : 'removeBorder'}
               label={t<string>('communication')}
-              { ...register('communication') }
               variant={editable ? 'outlined' : 'standard'}
               type="text"
               value={communication}
@@ -188,7 +173,6 @@ const AccountAvatar = () => {
             <TextField
               className={editable ? '' : 'removeBorder'}
               label={t<string>('timezone')}
-              { ...register('timezone') }
               variant={editable ? 'outlined' : 'standard'}
               type="text"
               value={timezone}
@@ -206,7 +190,7 @@ const AccountAvatar = () => {
             type="button"
             id='button-edit'
             disabled={open}
-            onClick={editable ? editUserDetails : resetDetails}
+            onClick={editable ? editUserDetails : abcd}
             sx={{
               textTransform: 'uppercase',
               borderRadius: '100px',
@@ -225,7 +209,7 @@ const AccountAvatar = () => {
           >
             {editable ? t<string>('save') : t<string>('editPersonalDetails')}
           </Button>
-        </FormProvider>
+        </form>
       </Box>
     </>
   )
