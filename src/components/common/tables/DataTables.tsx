@@ -746,20 +746,46 @@ const DataTable = ({
     const onSearch = (e: any,head: any,index: any)=>{
       console.log(head)
       // const filterData = data.filter((obj : any)=>obj[head['Payment_Status']].toString().includes(e.target.value));
-      const filterData = data.filter((obj : any)=>obj[head['eleName']].toString().includes(e.target.value));
+      const filterData = tableData.filter((obj : any)=>obj[head['eleName']].toString().includes(e.target.value));
       console.log(filterData)
       setTableData(filterData);
     }
 
-    const onSortAscending =(e: any,head: any)=>{
-      const sortedDataAscending =  [...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']]);
-      console.log(sortedDataAscending)
-      setTableData(sortedDataAscending);
+    // useEffect(() => {
+    //   first
+    
+    //   return () => {
+    //     second
+    //   }
+    // }, [third])
+    
+
+    const onSortAscending =(e: any,head: any, index: any)=>{
+    //   const sortedDataAscending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']]) : [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]));
+    //   console.log(sortedDataAscending)
+    //   const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]) )
+    //   setTableData(sortedDataAscending);
+
+      if(index == 0 || index == 3) {
+        const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']])
+        setTableData(sortedDataAscending);
+      } else {
+        const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]) )
+        setTableData(sortedDataAscending);
+      }
     } 
-    const onSortDescending =(e: any,head: any)=>{
-      const sortedDataDescending = [...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']]);
-      console.log(sortedDataDescending)
-      setTableData(sortedDataDescending);
+    const onSortDescending =(e: any,head: any, index: any)=>{
+    //   const sortedDataDescending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']]) : [...data].sort((a : any,b: any)=>b[head['eleName']].localeCompare(a[head['eleName']]));
+    //   console.log(sortedDataDescending)
+      if(index == 0 || index == 3) {
+        const sortedDataDescending = [...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']])
+        setTableData(sortedDataDescending);
+      } else {
+        const sortedDataDescending = [...data].sort((a : any,b: any)=>b[head['eleName']].localeCompare(a[head['eleName']]) )
+        setTableData(sortedDataDescending);
+      }
+      
+      
     }
 
     return (
@@ -850,8 +876,8 @@ const DataTable = ({
                                                     />
                                                 ) : null}{' '}
                                             </span>
-                                            <CustomerLeFilter sortDataAscending={(e: any)=>onSortAscending(e,head)} sortDataDescending={(e : any)=>onSortDescending(e,head)}  idForSearch={`input-${index}`} onChangeForSearch={(e: any)=>onSearch(e,head,index)}/>
-                                            <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button>
+                                            <CustomerLeFilter headTitle={index} sortDataAscending={(e: any)=>onSortAscending(e,head,index)} sortDataDescending={(e : any)=>onSortDescending(e,head,index)}  idForSearch={`input-${index}`} onChangeForSearch={(e: any)=>onSearch(e,head,index)}/>
+                                            {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                                         </button>
                                     </div>
                                 </StyledTableCell>

@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
 
-export default function CustomerLeFilter({idForSearch,onChangeForSearch,sortDataAscending,sortDataDescending}: any) {
+export default function CustomerLeFilter({idForSearch,onChangeForSearch,sortDataAscending,sortDataDescending, headTitle}: any) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,7 +24,7 @@ export default function CustomerLeFilter({idForSearch,onChangeForSearch,sortData
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                CustomerLeFilter
+                CustomerLeFilter{headTitle}
             </Button>
             <Menu
                 id="basic-menu-customerle"
