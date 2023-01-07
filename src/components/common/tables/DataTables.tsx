@@ -790,16 +790,16 @@ const DataTable = ({
 
     return (
         <>
-            <CustomerLeFilter />
+            {/* <CustomerLeFilter /> */}
             {/* <EntityFilter /> */}
             {/* <InvoiceNoFilter /> */}
             {/* <PoNoFilter /> */}
-            <InvoiceAmtFilter />
+            {/* <InvoiceAmtFilter /> */}
             {/* <StatusFilter /> */}
             {/* <Loader /> */}
             {/* <SnackbarComponent /> */} 
             <Actions
-                data={tableData}
+                data={data}
                 pagination={{ take, Total }}
                 changeTake={(e: any) => {
                     changeTake(e)
