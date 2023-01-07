@@ -52,10 +52,14 @@
     "paidInvoices": "bezahlte Rechnungen",
     "dashboard": "Armaturenbrett",
     "billingInvoiceshead": "Abrechnungsrechnungen",
+    "changePasswordhead": "Passwort ändern",
     "searchProductsOrdersAndClients": "Suchen Sie nach Produkten, Bestellungen und Kunden",
     "searchInvoiceNoEntity": "Suche Rechnungsnummer, Kunde Le Entity....",
     "searchWithinSite": "Suchen Sie innerhalb der Website",
     "enterYourRegisteredEmailId": "Geben Sie Ihre registrierte E-Mail-ID ein",
+    "oldPassword": "Altes Passwort",
+    "newPassword": "Neues Passwort",
+    "confirmNewPassword": "Neues Passwort bestätigen",
     "language": "Sprache",
     "userManagement": "Benutzerverwaltung",
     "services": "Dienstleistungen",
@@ -115,6 +119,7 @@
     "contactTerm": "Vertragslaufzeit",
     "rateChange...days": "Benachrichtigungszeitraum für Preisänderungen (in Tagen)",
     "rate&cover...zone": "Rate & CoverLegalEntity Zeitzone ändern",
-    "accountStatusAndRemark": "Kontostatus & Bemerkung"
+    "accountStatusAndRemark": "Kontostatus & Bemerkung",
+     "changePasswordInstruction": "Ihr neues Passwort muss sich vom vorherigen Passwort unterscheiden"
   }
 }
