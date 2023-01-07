@@ -39,7 +39,7 @@ export const Actions = ({
     useEffect(() => {
         const l: any = document.getElementById('PageNumberInput')
         l.value = pagination.take
-    })
+    },[data])
     const headers = [
         { label: 'Invoice No.', key: billingKeys.INVOICE_NUMBER },
         { label: 'Customer LE', key: billingKeys.CUSTOMER_LE },
