@@ -787,8 +787,6 @@ const DataTable = ({
             const sortedDataDescending = [...data].sort((a: any, b: any) => b[head['eleName']].localeCompare(a[head['eleName']]))
             setTableData(sortedDataDescending);
         }
-
-
     }
 
     return (
@@ -805,7 +803,7 @@ const DataTable = ({
             {/* <CDRDownloading /> */}
             {/* <CDRDownloaded /> */}
             <Actions
-                data={tableData}
+                data={data}
                 pagination={{ take, Total }}
                 changeTake={(e: any) => {
                     changeTake(e)

@@ -43,6 +43,7 @@ const AccountAvatar = () => {
       communication: communication
     }
     dispatch(updateUserDetails(body))
+    dispatch(getuserInfo(user.emailId));
     setEditable(false)
   }
 
