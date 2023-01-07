@@ -105,6 +105,7 @@ export const appRoutes = {
     RESET_PASSWORD: '/password/reset/:token',
     NOT_FOUND: '*',
     BILLING: '/invoices',
+    CHANGE_PASSWORD: '/change-password',
     USER_MANAGEMENT: '/user-management',
     SERVICES: '/services',
     SMS: '/sms',
@@ -123,6 +124,13 @@ export const breadCrums = {
             { transName: 'billingInvoiceshead', type: 'text', linkURL: '' },
         ],
         PageName: 'billingInvoiceshead',
+    },
+    CHANGE_PASSWORD: {
+        path: [
+            { transName: 'dashboard', type: 'link', linkURL: appRoutes.CHANGE_PASSWORD },
+            { transName: 'changePasswordhead', type: 'text', linkURL: '' },
+        ],
+        PageName: 'changePasswordhead',
     },
 }
 

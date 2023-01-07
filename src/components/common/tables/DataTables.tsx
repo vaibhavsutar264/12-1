@@ -798,7 +798,7 @@ const DataTable = ({
             {/* <Loader /> */}
             {/* <CDRError /> */}
             {/* <CDRPreparing /> */}
-            <CDRDownloading />
+            {/* <CDRDownloading /> */}
             {/* <CDRDownloaded /> */}
             <Actions
                 data={data}
@@ -864,6 +864,7 @@ const DataTable = ({
                                             className="voidBtn"
                                             // onClick={sort.bind(null, head)}
                                             key={`clickkey-${head.headTrans}${index}`}
+                                            onClick={() => { window.alert('found it') }}
                                         >
                                             {t<string>(`tables.${tableName}.${head.headTrans}`)}
                                             <span id='hiding-part'>
@@ -878,7 +879,7 @@ const DataTable = ({
                                                     />
                                                 ) : null}{' '}
                                             </span>
-                                            <CustomerLeFilter headTitle={index} sortDataAscending={(e: any) => onSortAscending(e, head, index)} sortDataDescending={(e: any) => onSortDescending(e, head, index)} idForSearch={`input-${index}`} onChangeForSearch={(e: any) => onSearch(e, head, index)} />
+                                            {/* <CustomerLeFilter headTitle={index} sortDataAscending={(e: any) => onSortAscending(e, head, index)} sortDataDescending={(e: any) => onSortDescending(e, head, index)} idForSearch={`input-${index}`} onChangeForSearch={(e: any) => onSearch(e, head, index)} /> */}
                                             {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                                         </button>
                                     </div>

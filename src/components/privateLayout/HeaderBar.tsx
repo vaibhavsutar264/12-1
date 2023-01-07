@@ -231,7 +231,7 @@ export const HeaderBar = ({
                                     </a>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <a href="/" className="profile__dropLink userinfo-dropdown">
+                                    <a href="/change-password" className="profile__dropLink userinfo-dropdown">
                                         <span className="icon">
                                             <LockOutlinedIcon />
                                         </span>

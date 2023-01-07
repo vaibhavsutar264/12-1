@@ -51,10 +51,14 @@
     "paidInvoices": "PAID INVOICES",
     "dashboard": "Dashboard",
     "billingInvoiceshead": "Billing Invoices",
+    "changePasswordhead": "Change Password",
     "searchProductsOrdersAndClients": "Search Products, Orders and Clients",
     "searchInvoiceNoEntity": "Search Invoice no, Customer Le Entity....",
     "searchWithinSite": "Search within site",
     "enterYourRegisteredEmailId": "Enter your Registered Email ID",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
     "language": "Language",
     "userManagement": "User Management",
     "services": "Services",
@@ -114,6 +118,7 @@
     "contactTerm": "Contract Term",
     "rateChange...days": "Rate Change Notification Period(In Days)",
     "rate&cover...zone": "Rate & CoverLegalEntity Change Time Zone",
-    "accountStatusAndRemark": "Account Status & Remark"
+    "accountStatusAndRemark": "Account Status & Remark",
+    "changePasswordInstruction": "Your new password must be different from previous password"
   }
 }
