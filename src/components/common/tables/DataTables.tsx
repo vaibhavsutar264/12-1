@@ -54,7 +54,10 @@ import Logout from '@mui/icons-material/Logout'
 import Settings from '@mui/icons-material/Settings'
 import PersonAdd from '@mui/icons-material/PersonAdd'
 import Loader from './loader-and-snackbar/Loader'
-import SnackbarComponent from './loader-and-snackbar/Snackbar'
+import CDRError from './loader-and-snackbar/CDRError'
+import CDRPreparing from './loader-and-snackbar/CDRPreparing'
+import CDRDownloading from './loader-and-snackbar/CDRDownloading'
+import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
 import { CSSProperties } from 'styled-components'
 
 import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu';
@@ -749,10 +752,13 @@ const DataTable = ({
             {/* <EntityFilter /> */}
             {/* <InvoiceNoFilter /> */}
             {/* <PoNoFilter /> */}
-            <InvoiceAmtFilter />
+            {/* <InvoiceAmtFilter /> */}
             {/* <StatusFilter /> */}
             {/* <Loader /> */}
-            {/* <SnackbarComponent /> */}
+            {/* <CDRError /> */}
+            {/* <CDRPreparing /> */}
+            <CDRDownloading />
+            {/* <CDRDownloaded /> */}
             <Actions
                 data={filteredData}
                 pagination={{ take, Total }}
