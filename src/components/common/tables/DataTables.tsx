@@ -787,8 +787,6 @@ const DataTable = ({
             const sortedDataDescending = [...data].sort((a: any, b: any) => b[head['eleName']].localeCompare(a[head['eleName']]))
             setTableData(sortedDataDescending);
         }
-
-
     }
 
     return (

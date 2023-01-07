@@ -14,6 +14,7 @@ import TicketRaised from '../../assets/images/svg/ticket-raised.svg'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 function ModalMail({ open, setOpen, modalData }: any) {
+    console.log(modalData.action)
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 

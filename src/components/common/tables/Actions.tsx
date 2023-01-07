@@ -35,6 +35,7 @@ export const Actions = ({
     const modifyTake = (e: any) => {
         changeTake(+e.target.value)
     }
+    const [loading, setLoading] = useState(false)
     // console.log(data)
     useEffect(() => {
         const l: any = document.getElementById('PageNumberInput')
@@ -60,6 +61,26 @@ export const Actions = ({
     const handleDownload = (title: any) => {
         dispatch(downloadBillingInvoice(title))
     }
+
+    const downloadDetails = (event : any) => {
+        // if(!this.state.loading) {
+        //   this.setState({
+        //     loading: true
+        //   });
+        //   axios.get("/api/users").then((userListJson) => {
+        //     this.setState({
+        //       listOfUsers: userListJson,
+        //       loading: false
+        //     });
+        //     done(true); // Proceed and get data from dataFromListOfUsersState function
+        //   }).catch(() => {
+        //     this.setState({
+        //       loading: false
+        //     });
+        //     done(false);
+        //   });
+        // }
+      }
 
     return (
         <div className="action__elements">
@@ -88,7 +109,7 @@ export const Actions = ({
                     <span className="icon">
                         <Export />
                     </span>
-                    <CSVLink {...ExportToCsv} className="text" data-testid="csv-link">
+                    <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
                         {t<string>('exportToCsv')}
                     </CSVLink>
                 </span>
