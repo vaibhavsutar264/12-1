@@ -54,7 +54,10 @@ import Logout from '@mui/icons-material/Logout'
 import Settings from '@mui/icons-material/Settings'
 import PersonAdd from '@mui/icons-material/PersonAdd'
 import Loader from './loader-and-snackbar/Loader'
-import SnackbarComponent from './loader-and-snackbar/Snackbar'
+import CDRError from './loader-and-snackbar/CDRError'
+import CDRPreparing from './loader-and-snackbar/CDRPreparing'
+import CDRDownloading from './loader-and-snackbar/CDRDownloading'
+import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
 import { CSSProperties } from 'styled-components'
 
 import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu';
@@ -741,51 +744,51 @@ const DataTable = ({
     const tablerowbody = document.getElementById("table-body-element");
     const tablecellbody = tablerowbody?.getElementsByClassName("MuiTableRow-root")
     // console.log(tablecellbody)
-    
+
     const [tableData, setTableData] = useState(data);
-    const onSearch = (e: any,head: any,index: any)=>{
-      console.log(head)
-      // const filterData = data.filter((obj : any)=>obj[head['Payment_Status']].toString().includes(e.target.value));
-      const filterData = tableData.filter((obj : any)=>obj[head['eleName']].toString().includes(e.target.value));
-      console.log(filterData)
-      setTableData(filterData);
+    const onSearch = (e: any, head: any, index: any) => {
+        console.log(head)
+        // const filterData = data.filter((obj : any)=>obj[head['Payment_Status']].toString().includes(e.target.value));
+        const filterData = tableData.filter((obj: any) => obj[head['eleName']].toString().includes(e.target.value));
+        console.log(filterData)
+        setTableData(filterData);
     }
 
     // useEffect(() => {
     //   first
-    
+
     //   return () => {
     //     second
     //   }
     // }, [third])
-    
 
-    const onSortAscending =(e: any,head: any, index: any)=>{
-    //   const sortedDataAscending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']]) : [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]));
-    //   console.log(sortedDataAscending)
-    //   const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]) )
-    //   setTableData(sortedDataAscending);
 
-      if(index == 0 || index == 3) {
-        const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']])
-        setTableData(sortedDataAscending);
-      } else {
-        const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]) )
-        setTableData(sortedDataAscending);
-      }
-    } 
-    const onSortDescending =(e: any,head: any, index: any)=>{
-    //   const sortedDataDescending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']]) : [...data].sort((a : any,b: any)=>b[head['eleName']].localeCompare(a[head['eleName']]));
-    //   console.log(sortedDataDescending)
-      if(index == 0 || index == 3) {
-        const sortedDataDescending = [...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']])
-        setTableData(sortedDataDescending);
-      } else {
-        const sortedDataDescending = [...data].sort((a : any,b: any)=>b[head['eleName']].localeCompare(a[head['eleName']]) )
-        setTableData(sortedDataDescending);
-      }
-      
-      
+    const onSortAscending = (e: any, head: any, index: any) => {
+        //   const sortedDataAscending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']]) : [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]));
+        //   console.log(sortedDataAscending)
+        //   const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]) )
+        //   setTableData(sortedDataAscending);
+
+        if (index == 0 || index == 3) {
+            const sortedDataAscending = [...data].sort((a: any, b: any) => a[head['eleName']] - b[head['eleName']])
+            setTableData(sortedDataAscending);
+        } else {
+            const sortedDataAscending = [...data].sort((a: any, b: any) => a[head['eleName']].localeCompare(b[head['eleName']]))
+            setTableData(sortedDataAscending);
+        }
+    }
+    const onSortDescending = (e: any, head: any, index: any) => {
+        //   const sortedDataDescending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']]) : [...data].sort((a : any,b: any)=>b[head['eleName']].localeCompare(a[head['eleName']]));
+        //   console.log(sortedDataDescending)
+        if (index == 0 || index == 3) {
+            const sortedDataDescending = [...data].sort((a: any, b: any) => b[head['eleName']] - a[head['eleName']])
+            setTableData(sortedDataDescending);
+        } else {
+            const sortedDataDescending = [...data].sort((a: any, b: any) => b[head['eleName']].localeCompare(a[head['eleName']]))
+            setTableData(sortedDataDescending);
+        }
+
+
     }
 
     return (
@@ -797,7 +800,10 @@ const DataTable = ({
             {/* <InvoiceAmtFilter /> */}
             {/* <StatusFilter /> */}
             {/* <Loader /> */}
-            {/* <SnackbarComponent /> */} 
+            {/* <CDRError /> */}
+            {/* <CDRPreparing /> */}
+            <CDRDownloading />
+            {/* <CDRDownloaded /> */}
             <Actions
                 data={data}
                 pagination={{ take, Total }}
@@ -876,7 +882,7 @@ const DataTable = ({
                                                     />
                                                 ) : null}{' '}
                                             </span>
-                                            <CustomerLeFilter headTitle={index} sortDataAscending={(e: any)=>onSortAscending(e,head,index)} sortDataDescending={(e : any)=>onSortDescending(e,head,index)}  idForSearch={`input-${index}`} onChangeForSearch={(e: any)=>onSearch(e,head,index)}/>
+                                            <CustomerLeFilter headTitle={index} sortDataAscending={(e: any) => onSortAscending(e, head, index)} sortDataDescending={(e: any) => onSortDescending(e, head, index)} idForSearch={`input-${index}`} onChangeForSearch={(e: any) => onSearch(e, head, index)} />
                                             {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                                         </button>
                                     </div>
@@ -897,7 +903,7 @@ const DataTable = ({
                         id="table-body-element"
                     >
                         {tableData &&
-                          tableData.map((item: any, index: any) => (
+                            tableData.map((item: any, index: any) => (
                                 <TableRow
                                     style={
                                         isHover == true
