@@ -754,13 +754,11 @@ const DataTable = ({
         setTableData(filterData);
     }
 
-    // useEffect(() => {
-    //   first
-
-    //   return () => {
-    //     second
-    //   }
-    // }, [third])
+    useEffect(() => {
+      
+        setTableData(data)
+        
+      },[data]);
 
 
     const onSortAscending = (e: any, head: any, index: any) => {
