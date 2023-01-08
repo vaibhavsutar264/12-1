@@ -114,7 +114,7 @@ const DataTable = ({
     handledownloadViewpdf,
 }: any) => {
     const { t } = useLocales()
-    const { data, columns, tableName } = TableData
+    const { data, columns, tableName, allMasterData } = TableData
     const dispatch = useAppDispatch()
     const totalCount = Math.ceil(Total / take)
     const [sortdir, setSortdir]: any = useState(null)
@@ -789,6 +789,10 @@ const DataTable = ({
         }
     }
 
+    const clearFilter = ()=>{
+        setTableData(data)
+    }
+
     const downloadCompleteShowing = async()=>{
         // {loading ? await !loading? <CDRDownloaded /> : null: null}
         if(loading){
@@ -894,13 +898,15 @@ const DataTable = ({
                                                         filterAction={filterAction}
                                                         filterData={head.filterData}
                                                         id={`filter-${head.headTrans}${index}`}
-                                                        columns={[...columns]}
-                                                        data={[...data]}
+                                                        columns={columns}
+                                                        data={[...tableData]}
+                                                        onChangeForSearch={(e: any) => onSearch(e, head, index)}
+                                                        idForSearch={`input-${index}`}
                                                     />
                                                 ) : null}{' '}
                                             </span>
                                             {(index == 0 || index==1 || index==2 || index==3 )?
-                                            <CustomerLeFilter headTitle={index} sortDataAscending={(e: any) => onSortAscending(e, head, index)} sortDataDescending={(e: any) => onSortDescending(e, head, index)} idForSearch={`input-${index}`} onChangeForSearch={(e: any) => onSearch(e, head, index)} /> : ""}
+                                            <CustomerLeFilter headTitle={index} sortDataAscending={(e: any) => onSortAscending(e, head, index)} sortDataDescending={(e: any) => onSortDescending(e, head, index)} idForSearch={`input-${index}`} onChangeForSearch={(e: any) => onSearch(e, head, index)} clearFilter={clearFilter}/> : ""}
                                             {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                                         </button>
                                     </div>

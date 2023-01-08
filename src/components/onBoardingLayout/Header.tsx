@@ -20,7 +20,7 @@ import {
 import { apiVrbls, localStorageVar, typeVar } from '../../utils/constants'
 import { useSelector } from 'react-redux'
 import TclLogo from '../common/elements/Logo'
-import LanguageSelector from '../../layouts/dashboard/header/LanguageSelector'
+import LanguageSelector from '../header-sub-components/LanguageSelector'
 
 const Header = ({ toggleTheme }: { toggleTheme: any }) => {
   const { i18n } = useTranslation()

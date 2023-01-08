@@ -1,13 +1,14 @@
 import { FC, useState } from 'react'
 import { Select, MenuItem } from '@mui/material'
-import useLocales from '../../../hooks/useLocales'
+import useLocales from '../../hooks/useLocales'
 import FormControl from '@mui/material/FormControl'
-import Globe from '../../../assets/images/svg/globe.svg'
-import GlobeDark from '../../../assets/images/svg/globe-dark.svg'
-import { getFromLocalStorage, setInLocalStorage } from '../../../hooks/useLocalStorage'
-import { localStorageVar } from '../../../utils/constants'
+import Globe from '../../assets/images/svg/globe.svg'
+// import GlobeDark from '../../assets/images/svg/globe-dark.svg'
+import GlobeDark from '../../assets/images/svg/globe-dark.svg'
+import { getFromLocalStorage, setInLocalStorage } from '../../hooks/useLocalStorage'
+import { localStorageVar } from '../../utils/constants'
 import { useTranslation } from 'react-i18next'
-import { availableLanguages } from '../../../i18n'
+import { availableLanguages } from '../../i18n'
 
 const LanguageSelector: FC = () => {
     const { i18n } = useTranslation()
