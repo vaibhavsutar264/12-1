@@ -13,7 +13,7 @@ export interface State extends SnackbarOrigin {
 
 export default function CDRDownloading() {
     const [state, setState] = React.useState<State>({
-        open: false,
+        open: true,
         vertical: 'top',
         horizontal: 'center',
     });
@@ -55,7 +55,7 @@ export default function CDRDownloading() {
 
     return (
         <Stack spacing={2} sx={{ maxWidth: 300 }} style={{ position: 'fixed', top: 100, right: 0, zIndex: 1000, maxWidth: '300px' }} className='cdr-downloading'>
-            {buttons}
+            {/* {buttons} */}
             <Snackbar
                 anchorOrigin={{ vertical, horizontal }}
                 open={open}

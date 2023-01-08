@@ -123,6 +123,8 @@ const DataTable = ({
     const [allData, setAllData] = useState(data)
     const [startDate, setstartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
+    const [loading, setLoading] = useState(false)
+    const [completed, setCompleted] = useState(false)
     // useEffect(() => {
     //   setFilteredData(data)
     //   setAllData(data)
@@ -754,13 +756,11 @@ const DataTable = ({
         setTableData(filterData);
     }
 
-    // useEffect(() => {
-    //   first
+    useEffect(() => {
 
-    //   return () => {
-    //     second
-    //   }
-    // }, [third])
+        setTableData(data)
+
+    }, [data]);
 
 
     const onSortAscending = (e: any, head: any, index: any) => {
@@ -789,6 +789,17 @@ const DataTable = ({
         }
     }
 
+    const downloadCompleteShowing = async () => {
+        // {loading ? await !loading? <CDRDownloaded /> : null: null}
+        if (loading) {
+            if (await !loading) {
+                return <CDRDownloaded />
+            } else {
+                return null
+            }
+        }
+    }
+
     return (
         <>
             {/* <CustomerLeFilter /> */}
@@ -800,7 +811,10 @@ const DataTable = ({
             {/* <Loader /> */}
             {/* <CDRError /> */}
             {/* <CDRPreparing /> */}
-            {/* <CDRDownloading /> */}
+            {loading ? <CDRDownloading /> : null}
+            {completed ? <CDRDownloaded /> : null}
+            {downloadCompleteShowing}
+            {/* {loading ? !loading? <CDRDownloaded /> : null: null} */}
             {/* <CDRDownloaded /> */}
             <Actions
                 data={data}
@@ -810,6 +824,10 @@ const DataTable = ({
                 }}
                 selectionRange={selectionRange}
                 handleSelect={handleSelect}
+                loading={loading}
+                setLoading={setLoading}
+                completed={completed}
+                setCompleted={setCompleted}
             />
             <p data-testid="para-element"></p>
             <TableContainer component={Paper} className="table__Container buildfix4">
@@ -860,30 +878,31 @@ const DataTable = ({
                                     align="right"
                                 >
                                     <div className="th_wrapper">
-                                        {/* <button
+                                        <button
                                             id="hiding"
                                             name={t<string>(`tables.${tableName}.${head.headTrans}`)}
                                             className="voidBtn"
                                             // onClick={sort.bind(null, head)}
                                             key={`clickkey-${head.headTrans}${index}`}
-                                            onClick={() => { window.alert('found it') }}
-                                        > */}
-                                        {/* {t<string>(`tables.${tableName}.${head.headTrans}`)} */}
-                                        {/* <span id='hiding-part'>
+                                        // onClick={() => { window.alert('found it') }}
+                                        >
+
+                                            {t<string>(`tables.${tableName}.${head.headTrans}`)}
+                                            <span id='hiding-part'>
                                                 {' '}
                                                 {head && head.filter ? (
                                                     <MultiSelect
                                                         filterAction={filterAction}
                                                         filterData={head.filterData}
                                                         id={`filter-${head.headTrans}${index}`}
-                                                        columns={columns}
-                                                        data={data}
+                                                        columns={[...columns]}
+                                                        data={[...data]}
                                                     />
                                                 ) : null}{' '}
-                                            </span> */}
-                                        <CustomerLeFilter headTitle={index} sortDataAscending={(e: any) => onSortAscending(e, head, index)} sortDataDescending={(e: any) => onSortDescending(e, head, index)} idForSearch={`input-${index}`} onChangeForSearch={(e: any) => onSearch(e, head, index)} />
-                                        {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
-                                        {/* </button> */}
+                                            </span>
+                                            {(index == 0 || index == 1 || index == 2 || index == 3) ?
+                                                <CustomerLeFilter headTitle={index} sortDataAscending={(e: any) => onSortAscending(e, head, index)} sortDataDescending={(e: any) => onSortDescending(e, head, index)} idForSearch={`input-${index}`} onChangeForSearch={(e: any) => onSearch(e, head, index)} /> : ''}
+                                        </button>
                                     </div>
                                 </StyledTableCell>
                             ))}

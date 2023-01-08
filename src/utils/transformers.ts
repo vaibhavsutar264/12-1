@@ -103,6 +103,30 @@ export const resetPasswordTransformer = (data: any) => {
     }
 }
 
+
+export const changePasswordTransformer = (data: any) => {
+    const resp = JSON.parse(data);
+    const defaultResp = {
+        "meta_data": {
+            "api_name": "changePassword"
+        },
+        "data": {
+            "data": null,
+            "message": staticErrors.serverInactive,
+            "status": 200
+        }
+    }
+    try {
+        if (resp.data && resp.data.message && resp.data.status && resp.data.data) {
+            return resp
+        } else {
+            return defaultResp
+        }
+    } catch {
+        return defaultResp
+    }
+}
+
 export const forgotPasswordTransformer = (data: any) => {
     const resp = JSON.parse(data);
     const defaultResp = {

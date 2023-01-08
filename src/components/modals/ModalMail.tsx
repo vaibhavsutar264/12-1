@@ -12,9 +12,11 @@ import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import PasswordProtected from '../../assets/images/svg/password-protected.svg'
 import TicketRaised from '../../assets/images/svg/ticket-raised.svg'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import ForgotPassword from '../forgot-password/ForgotPassword';
+
 
 function ModalMail({ open, setOpen, modalData }: any) {
-    console.log(modalData.action)
+    //console.log(modalData)
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 

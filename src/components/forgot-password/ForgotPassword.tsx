@@ -37,6 +37,7 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }))
 
 const ForgotPassword = () => {
+   
     const { forgotPassEmail } = useAppSelector((state: any) => state.auth)
     const dispatch = useAppDispatch()
     const { t } = useLocales()
@@ -47,11 +48,14 @@ const ForgotPassword = () => {
         resolver: yupResolver(ForgotPasswordSchema),
     });
     const forgotPass = (d: any) => {
-        const userEmail: Email = { email: d.user }
-        console.log(userEmail);
-        dispatch(forgotPassword(userEmail))
-    }
+        alert('hi');
+        // const userEmail: Email = { email: d.user }
+        const emailData = { email : getValues().user}
+        // console.log(userEmail);
 
+        dispatch(forgotPassword(emailData))
+    }
+    
     useEffect(() => {
         dispatch(resetForgotPaswordPrms())
     }, [])

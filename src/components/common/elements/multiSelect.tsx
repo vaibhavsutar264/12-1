@@ -11,13 +11,13 @@ export default function MultiSelect({ id, filterData, filterAction, columns, dat
         dispatch(filterAction(element, value, event.target.checked))
     }
     
-    // useEffect(() => {
-    //     if(columns){
-    //         if(columns[0].eleName === null){
-    //             columns[0].eleName = null
-    //           }
-    //         }
-    // }, [columns])
+    useEffect(() => {
+        if(columns){
+            if(columns[0].eleName === null){
+                columns[0].eleName = null
+              }
+            }
+    }, [columns])
     // let variable =  data.map((item: any) =>( item.Customer_LE))  
     // variable = null
 

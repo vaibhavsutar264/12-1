@@ -21,6 +21,7 @@ const initialState: AuthState = {
   message: '',
   emailSent: '',
   resetmessage: '',
+  changeMessage: '',
   forgotMessage: '',
   userEmail: '',
   forgotPassEmail: false,
@@ -82,10 +83,19 @@ export const userSlice = createSlice({
       state.isSuccess = true
       state.resetmessage = action.payload.data
     },
+    changePasswordSuccess: (state, action) => {
+      state.isLoading = false
+      state.isSuccess = true
+      state.changeMessage = action.payload.data
+    },
+    resetChangePasswordSuccess: (state, action) => {
+      state.changeMessage = null
+    },
     logOutSuccess: (state) => {
       state.isLoading = false
       state.user = null
       state.isAuthenticated = false
+      state.changeMessage = null
     },
   },
 })
@@ -231,6 +241,33 @@ export const resetPassword = (body: any) => {
         if (data.data.data == "SUCCESS") {
           toast.success("Password reset successfull");
           dispatch(userSlice.actions.resetPasswordSuccess(data.data))
+        } else {
+          toast.success(data.data.message)
+          dispatch(userSlice.actions.hasError(data))
+        }
+      }
+    } catch (response: any) {
+      const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
+      toast.error(data.message)
+      dispatch(userSlice.actions.hasError(data))
+    }
+  }
+}
+
+
+// const resetChangePasswordData = 
+export const changePassword = (body: any) => {
+  dispatch(userSlice.actions.startLoading())
+  return async () => {
+    try {
+      const { data } = await userLoginData.changePassword(body)
+      if (data.data) {
+        if (data.data.data == "SUCCESS") {
+          toast.success("Password changed successfull");
+          dispatch(userSlice.actions.changePasswordSuccess(data.data))
+          // setTimeout((data)=>{
+          //   dispatch(userSlice.actions.resetChangePasswordSuccess(data))
+          // }, 5000);
         } else {
           toast.success(data.data.message)
           dispatch(userSlice.actions.hasError(data))

@@ -24,7 +24,7 @@ export default function CustomerLeFilter({ idForSearch, onChangeForSearch, sortD
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                CustomerLeFilter{headTitle}
+
             </Button>
             <Menu
                 id="basic-menu-customerle"

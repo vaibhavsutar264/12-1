@@ -18,6 +18,8 @@ export const apiRoutes = {
     RESET_PASSWORD: '/cpaas/resetPassword',
     GET_USER_INFO: '/cpaas/userinfo',
     LOGOUT: '/cpaas/logout',
+    CHANGE_PASSWORD: '/cpaas/changePassword',
+
 
     // Billing
     GET_INVOICES: '/orchestration/billing/invoices/getInvoices',

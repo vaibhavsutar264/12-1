@@ -8,6 +8,7 @@ export type AuthState = {
   message: string | undefined
   emailSent: string | undefined
   resetmessage: any
+  changeMessage: any
   forgotMessage: any
   userEmail: any
   forgotPassEmail: boolean
@@ -47,6 +48,7 @@ export type Profile = {
 }
 
 export type Password = {
+  oldPassword?: string,
   newPassword: string,
   username: any
 }
