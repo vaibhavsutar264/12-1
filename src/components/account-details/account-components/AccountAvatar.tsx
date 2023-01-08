@@ -88,7 +88,7 @@ const AccountAvatar = () => {
                                     height: '156px',
                                 }}
                             >
-                                {firstname.charAt(0) + lastName.charAt(0)}
+                                {firstname.charAt(0) + lastName.charAt(0) || null}
                             </Avatar>
                         </Badge>
                     </Stack>
