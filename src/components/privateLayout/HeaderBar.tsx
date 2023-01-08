@@ -145,7 +145,7 @@ export const HeaderBar = ({
                                         disableScrollLock: true,
                                     }}
                                     labelId="demo-select-small"
-                                    id="demo-select-small"
+                                    id="demo-select-small-out"
                                     value={i18n.language == ('en-ZA' || 'en-US') ? 'English' : i18n.language}
                                     label="Language"
                                     onChange={(e) => {

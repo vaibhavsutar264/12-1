@@ -88,6 +88,7 @@ declare module 'styled-components' {
         langInvoicesBg: string
         langInvoicesLoginscreensBg: string
         langInvoicesTxt: string
+        langInvoicesOutTxt: string
         selectEntityLabelBg: string
         selectEntityLabel: string
         selectEntityBorder: string
