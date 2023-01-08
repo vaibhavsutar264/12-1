@@ -12,7 +12,8 @@ import {
   logoutTransformer,
   resetPasswordTransformer,
   userInfoTransformer,
-  refrshTokenTransformer
+  refrshTokenTransformer,
+  changePasswordTransformer
 } from '../../utils/transformers'
 import routes from './routes'
 
@@ -119,6 +120,12 @@ const userLoginData = {
       `${routes.BASE_URL}${routes.RESET_PASSWORD}`,
       body,
       resetPasswordTransformer
+    ),
+  changePassword: (body: any) =>
+    requests.post(
+      `${routes.BASE_URL}${routes.CHANGE_PASSWORD}`,
+      body,
+      changePasswordTransformer
     ),
   getUserInfo: (emailId: any) =>
     requests.get(

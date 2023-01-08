@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BreadCrums } from '../common/elements/BreadCrum'
-import { breadCrums, dataTables } from '../../utils/constants'
+import { appRoutes, breadCrums, dataTables } from '../../utils/constants'
 import {
     useSelector
 } from '../../redux/store'
@@ -8,8 +8,8 @@ import {
     useDispatch as useAppDispatch,
     useSelector as useAppSelector,
 } from '../../redux/store'
-import { Email } from '../../types/authType'
-import { forgotPassword, resetForgotPaswordPrms } from '../../redux/slices/authSlice'
+import { Password } from '../../types/authType'
+import { changePassword, forgotPassword, resetForgotPaswordPrms } from '../../redux/slices/authSlice'
 import { Typography } from '@mui/material'
 import {
     Box,
@@ -27,7 +27,9 @@ import { PrimaryInput } from '../common/elements/PrimaryInput'
 import { validateEmail } from '../../utils/helpers'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { ForgotPasswordSchema } from '../../utils/yupschemas'
+import { changePasswordSchema, ForgotPasswordSchema } from '../../utils/yupschemas'
+import { base64Encode } from '../../utils/Base64EncodeDecode'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -48,29 +50,38 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 
 
 export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
-
-    const { dashBoardWidth } = useSelector((state: any) => state.common);
-
-    // form ( from forgot password )
-
-    const { forgotPassEmail } = useAppSelector((state: any) => state.auth)
+    const { dashBoardWidth } = useAppSelector((state: any) => state.common);
+    const navigate = useNavigate()
+    const [oldPassval, setOldPassVal] = useState('');
+    const [newPassval, setNewPassVal] = useState('');
+    const [cnfPass, setCnfPass] = useState('');
+    const { isError, isSuccess, message, user, changeMessage } = useAppSelector(
+        (state: any) => state.auth || {}
+    )
     const dispatch = useAppDispatch()
     const { t } = useLocales()
-    const [val, setVal] = useState('')
 
-    const { register, handleSubmit, formState, getValues } = useForm<any>({
+    // if (changeMessage === "SUCCESS") {
+    //     navigate(appRoutes.ACCOUNT_DETAILS)
+    // }
+    const { register, handleSubmit, formState, control, getValues } = useForm<any>({
         mode: "onChange",
-        resolver: yupResolver(ForgotPasswordSchema),
+        resolver: yupResolver(changePasswordSchema),
     });
-    const forgotPass = (d: any) => {
-        const userEmail: Email = { email: d.user }
-        console.log(userEmail);
-        dispatch(forgotPassword(userEmail))
-    }
+    const changePass = (d: any) => {
+        try {
+            const userPassword: Password = {
+                oldPassword: d.oldPassword,
+                newPassword: base64Encode(d.newPass),
+                username: null
+            }
+            dispatch(changePassword(userPassword))
+            navigate(appRoutes.ACCOUNT_DETAILS)
 
-    useEffect(() => {
-        dispatch(resetForgotPaswordPrms())
-    }, [])
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <div >
@@ -101,45 +112,45 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                             sx={{ flexGrow: 1, paddingTop: '0 !important' }}
                             className="account__form__body"
                         >
-                            <FormProvider onSubmit={handleSubmit((d) => forgotPass(d))}>
+                            <FormProvider onSubmit={handleSubmit((d) => changePass(d))}>
                                 <FormGroup>
                                     {/* Email Input feilds */}
                                     <PrimaryInput
-                                        register={{ ...register('user') }}
+                                        register={{ ...register('oldPassword') }}
                                         label={'oldPassword'}
                                         classNameInput={"input-field"}
                                         fieldName={'user'}
                                         formState={formState}
                                         typeName={'password'}
-                                        onInput={setVal}
+                                        onInput={setOldPassVal}
                                         variantForInput={"standard"}
                                         sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                         dataTestId='email-element'
                                     />
-                                    <PrimaryInput
-                                        register={{ ...register('user') }}
-                                        label={'newPassword'}
-                                        classNameInput={"input-field"}
-                                        fieldName={'user'}
-                                        formState={formState}
-                                        typeName={'password'}
-                                        onInput={setVal}
-                                        variantForInput={"standard"}
-                                        sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
-                                        dataTestId='email-element'
-                                    />
-                                    <PrimaryInput
-                                        register={{ ...register('user') }}
-                                        label={'confirmNewPassword'}
-                                        classNameInput={"input-field"}
-                                        fieldName={'user'}
-                                        formState={formState}
-                                        typeName={'password'}
-                                        onInput={setVal}
-                                        variantForInput={"standard"}
-                                        sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
-                                        dataTestId='email-element'
-                                    />
+                                     <PrimaryInput
+                                    register={{ ...register('newPass') }}
+                                    label={'password'}
+                                    classNameInput={"input-field"}
+                                    fieldName={'newPass'}
+                                    formState={formState}
+                                    typeName={'password'}
+                                    onInput={setNewPassVal}
+                                    setpassword={true}
+                                    variantForInput={"standard"}
+                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                    dataTestId='password-element'
+                                />
+                                <PrimaryInput
+                                    register={{ ...register('cnfPassword') }}
+                                    label={'confirmPassword'}
+                                    fieldName={'cnfPassword'}
+                                    formState={formState}
+                                    typeName={'password'}
+                                    onInput={setCnfPass}
+                                    variantForInput={"standard"}
+                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                    dataTestId='confirm-password-element'
+                                />
                                     {/* submit button */}
                                     <FormControl
                                         className="input-wrapper submitBtn"
@@ -152,20 +163,20 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                         }}
                                     >
                                         <ColorButton
-                                            type="submit"
-                                            id="btn-enable-style"
-                                            data-testid="button-element"
-                                            variant="contained"
-                                            className={`customBtn-01 ${(validateEmail(val)) ? 'btn-enable-style' : 'no-pointers'} `}
-                                            sx={{
-                                                fontSize: '18px',
-                                                lineHeight: '21px',
-                                                fontFamily: 'ubuntu',
-                                                letterSpacing: '-0.72px',
-                                            }}
-                                        >
-                                            DONE
-                                        </ColorButton>
+                                        variant="contained"
+                                        id="btn-enable-style"
+                                        data-testid="button-element"
+                                        type="submit"
+                                        name="submit"
+                                        sx={{
+                                            fontSize: '18px',
+                                            lineHeight: '21px',
+                                            fontFamily: 'ubuntu',
+                                            letterSpacing: '-0.72px',
+                                        }}
+                                        className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `} >
+                                        {t<string>('done')}
+                                    </ColorButton>
                                     </FormControl>
                                 </FormGroup>
                             </FormProvider>

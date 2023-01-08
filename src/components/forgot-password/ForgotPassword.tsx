@@ -37,6 +37,7 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }))
 
 const ForgotPassword = () => {
+   
     const { forgotPassEmail } = useAppSelector((state: any) => state.auth)
     const dispatch = useAppDispatch()
     const { t } = useLocales()

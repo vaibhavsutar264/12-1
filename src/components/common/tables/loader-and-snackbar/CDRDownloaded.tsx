@@ -13,7 +13,7 @@ export interface State extends SnackbarOrigin {
 
 export default function CDRDownloaded() {
     const [state, setState] = React.useState<State>({
-        open: false,
+        open: true,
         vertical: 'top',
         horizontal: 'center',
     });
@@ -35,7 +35,7 @@ export default function CDRDownloaded() {
                     horizontal: 'right',
                 })}
             >
-                Top-Right
+                
             </Button>
         </React.Fragment>
     );

@@ -26,3 +26,14 @@ export const setPasswordSchema = Yup.object().shape({
         .min(8, "password must be at least 8 characters"),
     cnfPassword: Yup.string().required("Confirm password is required")
 })
+
+
+export const changePasswordSchema = Yup.object().shape({
+    oldPassword: Yup.string().required("old password is required"),
+    newPass: Yup.string().required("Please enter password")
+        .matches(/[A-Z]/, "Password must contain atleast one uppercase")
+        .matches(/[a-z]/, "Password must contain atleast one lowercase")
+        .matches(/[@#&]/, "Password must contain special character @,#,&")
+        .min(8, "password must be at least 8 characters"),
+    cnfPassword: Yup.string().required("Confirm password is required")
+})

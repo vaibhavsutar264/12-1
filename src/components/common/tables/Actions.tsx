@@ -23,23 +23,34 @@ export const Actions = ({
     pagination,
     changeTake,
     selectionRange,
-    handleSelect
+    handleSelect,
+    loading,
+    setLoading,
+    completed,
+    setCompleted
 }: {
     data: []
     pagination: any
     changeTake: any
     selectionRange: any
     handleSelect: any
+    loading: any
+    setLoading: any
+    completed: any
+    setCompleted: any
 }) => {
     const { t } = useLocales()
     const modifyTake = (e: any) => {
         changeTake(+e.target.value)
     }
-    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
+    const [dataStored, setDataStored] = useState([])
+    
     // console.log(data)
     useEffect(() => {
         const l: any = document.getElementById('PageNumberInput')
         l.value = pagination.take
+        setDataStored(dataStored)
     },[data])
     const headers = [
         { label: 'Invoice No.', key: billingKeys.INVOICE_NUMBER },
@@ -52,36 +63,32 @@ export const Actions = ({
         { label: 'Due date', key: billingKeys.DUE_DATE },
     ]
 
+    const dataFromAllDataTable = () => {
+      return dataStored
+    }
     const ExportToCsv = {
         filename: 'InvoicesData.csv',
         headers: headers,
-        data: data, 
+        data: dataStored, 
     }
 
     const handleDownload = (title: any) => {
         dispatch(downloadBillingInvoice(title))
     }
 
-    const downloadDetails = (event : any) => {
-        // if(!this.state.loading) {
-        //   this.setState({
-        //     loading: true
-        //   });
-        //   axios.get("/api/users").then((userListJson) => {
-        //     this.setState({
-        //       listOfUsers: userListJson,
-        //       loading: false
-        //     });
-        //     done(true); // Proceed and get data from dataFromListOfUsersState function
-        //   }).catch(() => {
-        //     this.setState({
-        //       loading: false
-        //     });
-        //     done(false);
-        //   });
-        // }
+    const downloadDetails = async () => {
+        if(!loading) {
+            setLoading(true)
+        }
+        if(await data !== null){
+            setTimeout(() => {
+                setDataStored(data)
+                setLoading(false)
+                setCompleted(true)
+            }, 1000); 
+        }
+        return 
       }
-
     return (
         <div className="action__elements">
             <div className="action__elementItem">
@@ -110,7 +117,7 @@ export const Actions = ({
                         <Export />
                     </span>
                     <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
-                        {t<string>('exportToCsv')}
+                    {loading ? 'Loading csv...' : t<string>('exportToCsv')}
                     </CSVLink>
                 </span>
             </div>
