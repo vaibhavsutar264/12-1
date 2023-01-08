@@ -117,7 +117,8 @@ export const Actions = ({
                     </span>
                     {dataStored && (
                     <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
-                    {loading ? 'Loading csv...' : t<string>('exportToCsv')}
+                    {loading ? 'EXPORTING' : t<string>('exportToCsv')}
+                    {/* {loading ? 'EXPORTING' : t<string>('exportToCsv')} */}
                     </CSVLink>)}
                 </span>
             </div>

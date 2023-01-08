@@ -29,7 +29,7 @@ export const BreadCrums = ({ data }: { data: any }) => {
                 </Breadcrumbs>
             </Stack>
             <h3 className="content_pageTitle">
-                {t<string>('billingInvoiceshead')}
+                {t<string>(data.path[1].transName)}
             </h3>
         </div>
     )
