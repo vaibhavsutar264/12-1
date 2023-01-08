@@ -804,6 +804,9 @@ const DataTable = ({
   const clearFilter = () => {
     setTableData(data)
   }
+  const clearFilterMasterData = () => {
+    setTableData(data)
+  }
 
   const downloadCompleteShowing = async () => {
     // {loading ? await !loading? <CDRDownloaded /> : null: null}
@@ -823,7 +826,7 @@ const DataTable = ({
       {/* <InvoiceNoFilter /> */}
       {/* <PoNoFilter /> */}
       {/* <InvoiceAmtFilter /> */}
-      {/* <StatusFilter /> */}
+      <StatusFilter />
       {/* <Loader /> */}
       {/* <CDRError /> */}
       {errorinDownload ? <CDRError /> : null}
@@ -917,7 +920,9 @@ const DataTable = ({
                       <span id="hiding-part">
                         {' '}
                         {head && head.filter ? (
-                          <MultiSelect
+                            // <StatusFilter />
+                          <StatusFilter
+                            clearFilter={clearFilterMasterData}
                             filterAction={filterAction}
                             filterData={head.filterData}
                             id={`filter-${head.headTrans}${index}`}
