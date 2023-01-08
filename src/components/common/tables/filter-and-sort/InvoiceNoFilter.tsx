@@ -16,7 +16,7 @@ export default function InvoiceNoFilter() {
     };
 
     return (
-        <div style={{ position: "fixed", top: 0, zIndex: 100, }}>
+        <div style={{ position: "relative", top: 0, zIndex: 100, }}>
             <Button
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}

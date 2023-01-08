@@ -757,10 +757,10 @@ const DataTable = ({
     }
 
     useEffect(() => {
-      
+
         setTableData(data)
-        
-      },[data]);
+
+    }, [data]);
 
 
     const onSortAscending = (e: any, head: any, index: any) => {
@@ -795,10 +795,10 @@ const DataTable = ({
 
     const downloadCompleteShowing = async()=>{
         // {loading ? await !loading? <CDRDownloaded /> : null: null}
-        if(loading){
-            if(await !loading){
-                return  <CDRDownloaded />
-            } else{
+        if (loading) {
+            if (await !loading) {
+                return <CDRDownloaded />
+            } else {
                 return null
             }
         }
@@ -888,8 +888,9 @@ const DataTable = ({
                                             className="voidBtn"
                                             // onClick={sort.bind(null, head)}
                                             key={`clickkey-${head.headTrans}${index}`}
-                                            // onClick={() => { window.alert('found it') }}
+                                        // onClick={() => { window.alert('found it') }}
                                         >
+
                                             {t<string>(`tables.${tableName}.${head.headTrans}`)}
                                             <span id='hiding-part'>
                                                 {' '}
