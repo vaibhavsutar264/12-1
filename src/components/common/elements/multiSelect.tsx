@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch as useAppDispatch } from '../../../redux/store'
 
 
-export default function MultiSelect({ id, filterData, filterAction, columns, data }: any) {
+export default function MultiSelect({ id, filterData, filterAction, columns, data,idForSearch,onChangeForSearch }: any) {
     const { element, values } = filterData;
     const dispatch = useAppDispatch();
     const handelFilter = (value: any, event: any) => {
@@ -31,12 +31,6 @@ export default function MultiSelect({ id, filterData, filterAction, columns, dat
                 const d: any = document;
                 d.getElementById(w.Oid).style.display = "none";
                 res();
-                
-    let variable = data.map((item: any) =>( item.Customer_LE))
-    console.log(variable)
-    if(variable == null){
-      variable = null
-    }
             } catch {
                 res();
             }
@@ -53,10 +47,18 @@ export default function MultiSelect({ id, filterData, filterAction, columns, dat
         })
     }
 
-    return (
+    const inputResist =()=>{
+        const w: any = window;
+        const d: any = document;
+        (d.getElementById(id).style.display ="flex")
+    }
+
+    return (<>
         <div className='multi-select-cs-parent clkIgnr'>
-            <div className='multi-select-cs clkIgnr' id={id}>
+            <div className='multi-select-cs clkIgnr resist-hide-element' id={id} >
                 <ul className='clkIgnr'>
+                {/* <li className='clkIgnr' ></li> */}
+                <input onClick={inputResist} style={{display: "block !important"}} id={idForSearch} onChange={onChangeForSearch} placeholder={'Search'} className='inside_search' />
                     {values && values.map((w: any, i: any) => {
                         return <li className='clkIgnr' key={`eleCheck-${w}-${i}`}>
                             <label className="clkIgnr label">
@@ -71,5 +73,6 @@ export default function MultiSelect({ id, filterData, filterAction, columns, dat
                 <UnfoldMoreIcon id='more-icon' className='clkIgnr' onClick={openWithDOm} />
             </span>
         </div>
+        </>
     );
 }

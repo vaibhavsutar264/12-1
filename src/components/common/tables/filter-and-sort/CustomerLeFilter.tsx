@@ -7,8 +7,7 @@ import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 
-
-export default function CustomerLeFilter({ idForSearch, onChangeForSearch, sortDataAscending, sortDataDescending, headTitle }: any) {
+export default function CustomerLeFilter({idForSearch,onChangeForSearch,sortDataAscending,sortDataDescending, headTitle, clearFilter}: any) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,7 +47,7 @@ export default function CustomerLeFilter({ idForSearch, onChangeForSearch, sortD
                 <MenuItem><input id={idForSearch} onChange={onChangeForSearch} placeholder={'Search'} className='inside_search' /></MenuItem>
                 <MenuItem onClick={sortDataAscending} ><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
                 <MenuItem onClick={sortDataDescending} ><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
-                <MenuItem>CLEAR</MenuItem>
+                <MenuItem onClick={clearFilter}>CLEAR</MenuItem>
             </Menu>
         </div>
     );

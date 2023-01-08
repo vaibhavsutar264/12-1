@@ -34,7 +34,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import Globe from '../../assets/images/svg/globe.svg'
 import GlobeDark from '../../assets/images/svg/globe-dark.svg'
 import TclLogo from '../common/elements/Logo'
-import LanguageSelector from '../../layouts/dashboard/header/LanguageSelector'
+import LanguageSelector from '../header-sub-components/LanguageSelector'
 
 
 export const HeaderBar = ({

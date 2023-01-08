@@ -64,14 +64,14 @@ export const Actions = ({
     ]
 
     const dataFromAllDataTable = () => {
-        if(!loading) {
-            setLoading(true)
-        }
-            // setTimeout(() => {
-                setDataStored(data)
-                setLoading(false)
-                setCompleted(true)
-            // }, 1000); 
+        // if(!loading) {
+        //     setLoading(true)
+        // }
+        //     // setTimeout(() => {
+        //         setDataStored(data)
+        //         setLoading(false)
+        //         setCompleted(true)
+        //     // }, 1000); 
       return dataStored
     }
     const downloadDetails = async () => {
@@ -124,10 +124,10 @@ export const Actions = ({
                     <span className="icon">
                         <Export />
                     </span>
-                    {dataStored && 
+                    {dataStored && (
                     <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
                     {loading ? 'Loading csv...' : t<string>('exportToCsv')}
-                    </CSVLink>}
+                    </CSVLink>)}
                 </span>
             </div>
         </div>

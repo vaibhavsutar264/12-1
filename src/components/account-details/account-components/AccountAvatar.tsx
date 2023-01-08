@@ -50,7 +50,7 @@ const AccountAvatar = () => {
         setEditable(false)
     }
 
-    const abcd = () => {
+    const resetDetails = () => {
         setEditable(!false)
         setOpen(!false)
     }
@@ -280,7 +280,7 @@ const AccountAvatar = () => {
                         type="button"
                         id='button-edit'
                         disabled={open}
-                        onClick={editable ? editUserDetails : abcd}
+                        onClick={editable ? editUserDetails : resetDetails}
                         sx={{
                             textTransform: 'uppercase',
                             borderRadius: '100px',

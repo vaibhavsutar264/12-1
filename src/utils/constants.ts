@@ -143,6 +143,11 @@ export const dataTables = {
                 ...v, icon: v[apiVrbls.BILLING.PAY_STATUS]
             }
         }),
+        allMasterData: masterData.map((v: any) => {
+            return {
+                ...v, icon: v[apiVrbls.BILLING.PAY_STATUS]
+            }
+        }),
         columns: [
             { eleName: apiVrbls.BILLING.INVOICE_ID, headTrans: 'id', sort: true, filter: false },
             {
