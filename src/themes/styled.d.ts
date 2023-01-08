@@ -87,6 +87,8 @@ declare module 'styled-components' {
         resendLink: string
         langInvoicesBg: string
         langInvoicesLoginscreensBg: string
+        headerLangSvg: string
+        headerLangBg: string
         langInvoicesTxt: string
         langInvoicesOutTxt: string
         selectEntityLabelBg: string

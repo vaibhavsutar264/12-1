@@ -6,6 +6,7 @@ import {
   ListItemIcon,
   Tooltip,
   ClickAwayListener,
+  Button,
 } from '@mui/material'
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
@@ -825,8 +826,8 @@ const DataTable = ({
       {/* <EntityFilter /> */}
       {/* <InvoiceNoFilter /> */}
       {/* <PoNoFilter /> */}
-      {/* <InvoiceAmtFilter /> */}
-      <StatusFilter />
+      {/* <InvoiceAmtFilter />
+      <StatusFilter /> */}
       {/* <Loader /> */}
       {/* <CDRError /> */}
       {errorinDownload ? <CDRError /> : null}
@@ -917,9 +918,9 @@ const DataTable = ({
                       // onClick={() => { window.alert('found it') }}
                     >
                       {t<string>(`tables.${tableName}.${head.headTrans}`)}
-                      <span id="hiding-part">
+                      {/* <span id="hiding-part">
                         {' '}
-                        {head && head.filter ? (
+                        {head && head.filter && index == 4 ? (
                             // <StatusFilter />
                           <StatusFilter
                             clearFilter={clearFilterMasterData}
@@ -934,10 +935,10 @@ const DataTable = ({
                             idForSearch={`input-${index}`}
                           />
                         ) : null}{' '}
-                      </span>
-                      {index == 0 || index == 1 || index == 2 || index == 3 ? (
+                      </span> */}
+                      {index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5? (
                         <CustomerLeFilter
-                          headTitle={index}
+                          indexNumber={index}
                           sortDataAscending={(e: any) =>
                             onSortAscending(e, head, index)
                           }
@@ -949,6 +950,11 @@ const DataTable = ({
                             onSearch(e, head, index)
                           }
                           clearFilter={clearFilter}
+                          filterAction={filterAction}
+                          filterData={head.filterData}
+                          id={`filter-${head.headTrans}${index}`}
+                          columns={columns}
+                          data={[...tableData]}
                         />
                       ) : (
                         ''
@@ -958,15 +964,14 @@ const DataTable = ({
                   </div>
                 </StyledTableCell>
               ))}
-
               <StyledTableCell align="right">
-                <div className="th_wrapper">
-                  <span>&nbsp;</span>
-                </div>
-              </StyledTableCell>
+                <Button onClick={clearFilter} className="th_wrapper">
+                     <span  className='clear-filters'>Clear all filters</span>
+                </Button>
+            </StyledTableCell>
             </TableRow>
           </TableHead>
-          {/* Table Body */}
+          {/* Table Body */}    
           <TableBody
             data-testid="table-body-element"
             className="TableBody"

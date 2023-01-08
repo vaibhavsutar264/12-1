@@ -33,7 +33,7 @@ const LanguageSelector: FC = () => {
             id="lang-background-invoices"
         >
             <img
-                src={getitem == 'light' ? GlobeDark : GlobeDark}
+                src={getitem == 'light' ? Globe : GlobeDark}
                 alt=""
                 style={{
                     width: '18px',

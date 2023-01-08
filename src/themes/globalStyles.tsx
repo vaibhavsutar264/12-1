@@ -87,8 +87,10 @@ export const lightTheme = {
     langInvoicesBg: 'transparent',
     langInvoicesLoginscreensBg: '#fff !important',
     langInvoicesLoginscreensSvg: '#222 !important',
+    headerLangSvg: '#3A4548 !important',
+    headerLangBg: '#fff !important',
     langInvoicesTxt: '#344857 !important',
-    langInvoicesOutTxt: '#fff !important',
+    langInvoicesOutTxt: '#344857 !important',
     selectEntityLabelBg: '#fff !important',
     selectEntityLabel: 'rgba(0, 0, 0, 0.6)',
     selectEntityLabelShrink: '#333',
@@ -198,6 +200,8 @@ export const darkTheme = {
     langInvoicesBg: 'transparent',
     langInvoicesLoginscreensBg: '#3A4548 !important',
     langInvoicesLoginscreensSvg: '#fff !important',
+    headerLangSvg: '#fff !important',
+    headerLangBg: '#3A4548 !important',
     langInvoicesTxt: '#fff',
     langInvoicesOutTxt: '#fff !important',
     selectEntityLabelBg: '#252f3b !important',
@@ -515,6 +519,12 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   }
   #lang-background-invoices.lang-background-loginscreens svg {
     color: ${({ theme }) => theme.langInvoicesLoginscreensSvg};
+  }
+  .header-lang-bg {
+    background-color: ${({ theme }) => theme.headerLangBg};
+  }
+   .header-lang-bg svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+    color: ${({ theme }) => theme.headerLangSvg};
   }
   #demo-select-small-out {
     color: ${({ theme }) => theme.langInvoicesTxt};
