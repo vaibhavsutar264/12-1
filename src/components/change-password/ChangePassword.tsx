@@ -90,7 +90,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                 marginLeft: `${dashBoardWidth}`, width: `calc(100% - ${dashBoardWidth}.split('p')[0]}px`
             }}>
                 <div className="content__header">
-                    <BreadCrums data={breadCrums.BILLING} />
+                    <BreadCrums data={breadCrums.CHANGE_PASSWORD} />
                 </div>
                 <Typography
                     className="helper__title"
@@ -127,30 +127,30 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                         sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                         dataTestId='email-element'
                                     />
-                                     <PrimaryInput
-                                    register={{ ...register('newPass') }}
-                                    label={'password'}
-                                    classNameInput={"input-field"}
-                                    fieldName={'newPass'}
-                                    formState={formState}
-                                    typeName={'password'}
-                                    onInput={setNewPassVal}
-                                    setpassword={true}
-                                    variantForInput={"standard"}
-                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
-                                    dataTestId='password-element'
-                                />
-                                <PrimaryInput
-                                    register={{ ...register('cnfPassword') }}
-                                    label={'confirmPassword'}
-                                    fieldName={'cnfPassword'}
-                                    formState={formState}
-                                    typeName={'password'}
-                                    onInput={setCnfPass}
-                                    variantForInput={"standard"}
-                                    sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
-                                    dataTestId='confirm-password-element'
-                                />
+                                    <PrimaryInput
+                                        register={{ ...register('newPass') }}
+                                        label={'password'}
+                                        classNameInput={"input-field"}
+                                        fieldName={'newPass'}
+                                        formState={formState}
+                                        typeName={'password'}
+                                        onInput={setNewPassVal}
+                                        setpassword={true}
+                                        variantForInput={"standard"}
+                                        sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                        dataTestId='password-element'
+                                    />
+                                    <PrimaryInput
+                                        register={{ ...register('cnfPassword') }}
+                                        label={'confirmPassword'}
+                                        fieldName={'cnfPassword'}
+                                        formState={formState}
+                                        typeName={'password'}
+                                        onInput={setCnfPass}
+                                        variantForInput={"standard"}
+                                        sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
+                                        dataTestId='confirm-password-element'
+                                    />
                                     {/* submit button */}
                                     <FormControl
                                         className="input-wrapper submitBtn"
@@ -163,20 +163,20 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                         }}
                                     >
                                         <ColorButton
-                                        variant="contained"
-                                        id="btn-enable-style"
-                                        data-testid="button-element"
-                                        type="submit"
-                                        name="submit"
-                                        sx={{
-                                            fontSize: '18px',
-                                            lineHeight: '21px',
-                                            fontFamily: 'ubuntu',
-                                            letterSpacing: '-0.72px',
-                                        }}
-                                        className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `} >
-                                        {t<string>('done')}
-                                    </ColorButton>
+                                            variant="contained"
+                                            id="btn-enable-style"
+                                            data-testid="button-element"
+                                            type="submit"
+                                            name="submit"
+                                            sx={{
+                                                fontSize: '18px',
+                                                lineHeight: '21px',
+                                                fontFamily: 'ubuntu',
+                                                letterSpacing: '-0.72px',
+                                            }}
+                                            className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `} >
+                                            {t<string>('done')}
+                                        </ColorButton>
                                     </FormControl>
                                 </FormGroup>
                             </FormProvider>

@@ -88,6 +88,7 @@ export const lightTheme = {
     langInvoicesLoginscreensBg: '#fff !important',
     langInvoicesLoginscreensSvg: '#222 !important',
     langInvoicesTxt: '#344857 !important',
+    langInvoicesOutTxt: '#fff !important',
     selectEntityLabelBg: '#fff !important',
     selectEntityLabel: 'rgba(0, 0, 0, 0.6)',
     selectEntityLabelShrink: '#333',
@@ -198,6 +199,7 @@ export const darkTheme = {
     langInvoicesLoginscreensBg: '#3A4548 !important',
     langInvoicesLoginscreensSvg: '#fff !important',
     langInvoicesTxt: '#fff',
+    langInvoicesOutTxt: '#fff !important',
     selectEntityLabelBg: '#252f3b !important',
     selectEntityLabel: '#fff',
     selectEntityLabelShrink: '#fff !important',
@@ -514,8 +516,11 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   #lang-background-invoices.lang-background-loginscreens svg {
     color: ${({ theme }) => theme.langInvoicesLoginscreensSvg};
   }
-  #demo-select-small {
+  #demo-select-small-out {
     color: ${({ theme }) => theme.langInvoicesTxt};
+  }
+   #demo-select-small {
+    color: ${({ theme }) => theme.langInvoicesOutTxt};
   }
   #select-entity-form label {
     background-color: ${({ theme }) => theme.selectEntityLabelBg};

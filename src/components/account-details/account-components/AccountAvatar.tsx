@@ -160,8 +160,8 @@ const AccountAvatar = () => {
                                 textTransform: 'capitalize',
                             }}
                         />
-                        {/* <TextField
-                            className={editable ? '' : 'removeBorder'}
+                        <TextField
+                            className={editable ? 'hide-this-field' : 'removeBorder'}
                             label={t<string>('communication')}
                             variant={editable ? 'outlined' : 'standard'}
                             type="text"
@@ -173,9 +173,9 @@ const AccountAvatar = () => {
                                 minWidth: '110px',
                                 textTransform: 'capitalize',
                             }}
-                        /> */}
-                        {/* <TextField
-                            className={editable ? '' : 'removeBorder'}
+                        />
+                        <TextField
+                            className={editable ? 'hide-this-field' : 'removeBorder'}
                             label={t<string>('timezone')}
                             variant={editable ? 'outlined' : 'standard'}
                             type="text"
@@ -186,9 +186,10 @@ const AccountAvatar = () => {
                                 flexBasis: '100%',
                                 textTransform: 'capitalize',
                             }}
-                        /> */}
+                        />
                         <Box
                             id="select-entity-form"
+                            className={editable ? '' : 'hide-this-field'}
                             sx={{
                                 flexBasis: '45%',
                                 minWidth: '110px',
@@ -211,7 +212,7 @@ const AccountAvatar = () => {
                                 },
                             }}
                         >
-                            <FormControl fullWidth disabled>
+                            <FormControl fullWidth>
                                 <Select
                                     MenuProps={{
                                         disableScrollLock: true,
@@ -232,6 +233,7 @@ const AccountAvatar = () => {
                         {/* Timezone dropdown */}
                         <Box
                             id="select-entity-form"
+                            className={editable ? '' : 'hide-this-field'}
                             sx={{
                                 minWidth: 200,
                                 '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
@@ -253,7 +255,7 @@ const AccountAvatar = () => {
                                 },
                             }}
                         >
-                            <FormControl fullWidth disabled>
+                            <FormControl fullWidth>
                                 <Select
                                     MenuProps={{
                                         disableScrollLock: true,

@@ -145,7 +145,7 @@ export const HeaderBar = ({
                                         disableScrollLock: true,
                                     }}
                                     labelId="demo-select-small"
-                                    id="demo-select-small"
+                                    id="demo-select-small-out"
                                     value={i18n.language == ('en-ZA' || 'en-US') ? 'English' : i18n.language}
                                     label="Language"
                                     onChange={(e) => {
@@ -231,7 +231,7 @@ export const HeaderBar = ({
                                     </a>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <a href="/" className="profile__dropLink userinfo-dropdown">
+                                    <a href="/change-password" className="profile__dropLink userinfo-dropdown">
                                         <span className="icon">
                                             <LockOutlinedIcon />
                                         </span>

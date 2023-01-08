@@ -12,59 +12,59 @@ import { availableLanguages } from '../../i18n'
 
 const LanguageSelector: FC = () => {
     const { i18n } = useTranslation()
-  const { t, allLang, currentLang, onChangeLang } = useLocales()
-  const [lng, setLng] = useState(currentLang?.value)
+    const { t, allLang, currentLang, onChangeLang } = useLocales()
+    const [lng, setLng] = useState(currentLang?.value)
 
-  const handleLanguageChange = (event: any) => {
-    const newlang = event.target.value
-    setLng(newlang)
-    onChangeLang(newlang)
-  }
-  const getitem = getFromLocalStorage(localStorageVar.THEME_VAR)
-  return (
-    <FormControl
-    sx={{
-        m: 1,
-        minWidth: 100,
-        position: 'relative',
-    }}
-    size="small"
-    // id="lang-background-white"
-    id="lang-background-invoices"
->
-    <img
-        src={getitem == 'light' ? Globe : GlobeDark}
-        alt=""
-        style={{
-            width: '18px',
-            height: '18px',
-            position: 'absolute',
-            top: '50%',
-            left: '-12px',
-            transform: 'translateY(-50%)',
-        }}
-    />
-    <Select
-        MenuProps={{
-            disableScrollLock: true,
-        }}
-        labelId="demo-select-small"
-        id="demo-select-small"
-        value={i18n.language == ('en-ZA' || 'en-US') ? 'English' : i18n.language}
-        label="Language"
-        onChange={(e) => {
-            i18n.changeLanguage(e.target.value)
-            setInLocalStorage('lng', e.target.value)
-        }}
-    >   
-        {availableLanguages.map((language : any) => (
-            <MenuItem key={language} value={language}>
-                {language == 'en-ZA' ? 'English' : language}
-            </MenuItem>
-        ))}
-    </Select>
-</FormControl>
-  )
+    const handleLanguageChange = (event: any) => {
+        const newlang = event.target.value
+        setLng(newlang)
+        onChangeLang(newlang)
+    }
+    const getitem = getFromLocalStorage(localStorageVar.THEME_VAR)
+    return (
+        <FormControl
+            sx={{
+                m: 1,
+                minWidth: 100,
+                position: 'relative',
+            }}
+            size="small"
+            // id="lang-background-white"
+            id="lang-background-invoices"
+        >
+            <img
+                src={getitem == 'light' ? GlobeDark : GlobeDark}
+                alt=""
+                style={{
+                    width: '18px',
+                    height: '18px',
+                    position: 'absolute',
+                    top: '50%',
+                    left: '-12px',
+                    transform: 'translateY(-50%)',
+                }}
+            />
+            <Select
+                MenuProps={{
+                    disableScrollLock: true,
+                }}
+                labelId="demo-select-small"
+                id="demo-select-small"
+                value={i18n.language == ('en-ZA' || 'en-US') ? 'English' : i18n.language}
+                label="Language"
+                onChange={(e) => {
+                    i18n.changeLanguage(e.target.value)
+                    setInLocalStorage('lng', e.target.value)
+                }}
+            >
+                {availableLanguages.map((language: any) => (
+                    <MenuItem key={language} value={language}>
+                        {language == 'en-ZA' ? 'English' : language}
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
+    )
 }
 
 export default LanguageSelector
