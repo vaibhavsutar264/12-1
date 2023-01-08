@@ -157,7 +157,7 @@ export const viewInvoice = (id: any) => {
         }
     }
 }
-export const downloadBillingInvoice = (data: any) => {
+export const downloadBillingInvoice = (data: any, setErrorinDownload: any) => {
     dispatch(billingSlice.actions.startLoading())
     return async () => {
         const response = await billing.downloadInvoice(data)
@@ -169,6 +169,8 @@ export const downloadBillingInvoice = (data: any) => {
             link.setAttribute('download', 'file.pdf'); //or any other extension
             document.body.appendChild(link);
             link.click();
+        }else{
+            setErrorinDownload(true)
         }
     }
 }

@@ -77,7 +77,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
             }
             dispatch(changePassword(userPassword))
             navigate(appRoutes.ACCOUNT_DETAILS)
-
+            
         } catch (error) {
             console.error(error)
         }

@@ -234,7 +234,7 @@ export const HeaderBar = ({
                                     <a href="/change-password" className="profile__dropLink userinfo-dropdown">
                                         <span className="icon">
                                             <LockOutlinedIcon />
-                                        </span>
+                                        </span> 
                                         <span className="text">{t<string>('changePassword')}</span>
                                     </a>
                                 </MenuItem>

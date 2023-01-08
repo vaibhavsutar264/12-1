@@ -154,7 +154,7 @@ export const dataTables = {
                 eleName: apiVrbls.BILLING.CUSTOMER_LE,
                 headTrans: 'customerLe',
                 sort: true,
-                filter: true,
+                filter: false,
                 filterData: {
                     element: apiVrbls.BILLING.CUSTOMER_LE,
                     values: masterData.map((e: any) => e[apiVrbls.BILLING.CUSTOMER_LE]).filter((it, i, ar) => ar.indexOf(it) === i)
@@ -170,7 +170,7 @@ export const dataTables = {
                 eleName: apiVrbls.BILLING.PO_NUMBER,
                 headTrans: 'poNo',
                 sort: true,
-                filter: true,
+                filter: false,
                 filterData: {
                     element: apiVrbls.BILLING.PO_NUMBER,
                     values: masterData.map((e: any) => e[apiVrbls.BILLING.PO_NUMBER]).filter((it, i, ar) => ar.indexOf(it) === i)
