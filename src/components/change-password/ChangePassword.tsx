@@ -143,6 +143,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                     <PrimaryInput
                                         register={{ ...register('cnfPassword') }}
                                         label={'confirmPassword'}
+                                        classNameInput={"input-field"}
                                         fieldName={'cnfPassword'}
                                         formState={formState}
                                         typeName={'password'}
