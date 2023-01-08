@@ -1,11 +1,14 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles'
-import { Box, Stack, Badge, Avatar, TextField, Button } from '@mui/material'
+import {
+    Box, Stack, Badge, Avatar, TextField, Button, FormControl, Select, MenuItem
+} from '@mui/material'
 import AvatarBg from '../../../assets/images/avatar-bg.png'
 import { useSelector, useDispatch } from '../../../redux/store'
 import { updateUserDetails } from '../../../redux/slices/accountSlice'
 import { getuserInfo } from '../../../redux/slices/authSlice'
 import useLocales from '../../../hooks/useLocales'
+
 
 
 const AccountAvatar = () => {
@@ -157,7 +160,7 @@ const AccountAvatar = () => {
                                 textTransform: 'capitalize',
                             }}
                         />
-                        <TextField
+                        {/* <TextField
                             className={editable ? '' : 'removeBorder'}
                             label={t<string>('communication')}
                             variant={editable ? 'outlined' : 'standard'}
@@ -170,8 +173,8 @@ const AccountAvatar = () => {
                                 minWidth: '110px',
                                 textTransform: 'capitalize',
                             }}
-                        />
-                        <TextField
+                        /> */}
+                        {/* <TextField
                             className={editable ? '' : 'removeBorder'}
                             label={t<string>('timezone')}
                             variant={editable ? 'outlined' : 'standard'}
@@ -183,7 +186,93 @@ const AccountAvatar = () => {
                                 flexBasis: '100%',
                                 textTransform: 'capitalize',
                             }}
-                        />
+                        /> */}
+                        <Box
+                            id="select-entity-form"
+                            sx={{
+                                flexBasis: '45%',
+                                minWidth: '110px',
+                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                {
+                                    top: '1px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                                '& [role="button"]': {
+                                    color: '#222',
+                                    textTransform: 'capitalize',
+                                    fontWeight: 400,
+                                },
+                                '& label': {
+                                    top: '-9px',
+                                    // top: LegalEntity.length > 1 ? '1px' : '-11px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                            }}
+                        >
+                            <FormControl fullWidth>
+                                <Select
+                                    MenuProps={{
+                                        disableScrollLock: true,
+                                    }}
+                                    id="demo-simple-select"
+                                    value='phone'
+                                    // onChange={handleChange}
+                                    inputProps={{ 'aria-label': 'Without label' }}
+                                >
+                                    <MenuItem value='phone'>Phone
+                                    </MenuItem>
+                                    <MenuItem value='email'>Email
+                                    </MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+
+                        {/* Timezone dropdown */}
+                        <Box
+                            id="select-entity-form"
+                            sx={{
+                                minWidth: 200,
+                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                {
+                                    top: '1px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                                '& [role="button"]': {
+                                    color: '#222',
+                                    textTransform: 'capitalize',
+                                    fontWeight: 400,
+                                },
+                                '& label': {
+                                    top: '-9px',
+                                    // top: LegalEntity.length > 1 ? '1px' : '-11px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                            }}
+                        >
+                            <FormControl fullWidth>
+                                <Select
+                                    MenuProps={{
+                                        disableScrollLock: true,
+                                    }}
+                                    id="demo-simple-select"
+                                    value='utc+5:30'
+                                    // onChange={handleChange}
+                                    inputProps={{ 'aria-label': 'Without label' }}
+                                >
+                                    <MenuItem value='utc0:00'>UTC 0:00
+                                    </MenuItem>
+                                    <MenuItem value='utc+1:30'>UTC +1:30
+                                    </MenuItem>
+                                    <MenuItem value='utc+5:30'>UTC +5:30
+                                    </MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+
                     </Box>
                     <Button
                         color="error"
