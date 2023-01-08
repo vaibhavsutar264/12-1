@@ -211,7 +211,7 @@ const AccountAvatar = () => {
                                 },
                             }}
                         >
-                            <FormControl fullWidth>
+                            <FormControl fullWidth disabled>
                                 <Select
                                     MenuProps={{
                                         disableScrollLock: true,
@@ -253,7 +253,7 @@ const AccountAvatar = () => {
                                 },
                             }}
                         >
-                            <FormControl fullWidth>
+                            <FormControl fullWidth disabled>
                                 <Select
                                     MenuProps={{
                                         disableScrollLock: true,
