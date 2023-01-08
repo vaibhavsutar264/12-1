@@ -29,7 +29,7 @@ const AccountAvatar = () => {
   const [firstname, setFirstname] = useState('')
   const [lastName, setLastName] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [timezone, setTimezone] = useState('')
+  const [timezone, setTimezone] = useState('utc0:00')
   const [communication, setCommunication] = useState('')
   const [editable, setEditable] = useState<boolean>(false)
   const [open, setOpen] = useState(false)

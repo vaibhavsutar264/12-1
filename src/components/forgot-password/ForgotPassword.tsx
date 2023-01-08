@@ -48,7 +48,6 @@ const ForgotPassword = () => {
         resolver: yupResolver(ForgotPasswordSchema),
     });
     const forgotPass = (d: any) => {
-        alert('hi');
         // const userEmail: Email = { email: d.user }
         const emailData = { email : getValues().user}
         // console.log(userEmail);

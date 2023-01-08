@@ -20,7 +20,11 @@ import {
 import useLocales from '../../../hooks/useLocales';
 
 
-export default function DownloadCdr(item: any) {
+export default function DownloadCdr({item,loading,
+    setLoading,
+    completed,
+    setCompleted,
+    setErrorinDownload}: any) {
     const { t } = useLocales()
     const dispatch = useAppDispatch();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,8 +36,23 @@ export default function DownloadCdr(item: any) {
         setAnchorEl(null);
     };
 
-    const handleDownload = (data: any) => {
-        dispatch(downloadBillingInvoice(data))
+    const handleDownload = async(data: any) => {
+        // if(!loading) {
+            setLoading(true)
+        // }
+        // if(await data !== null){
+            setTimeout(() => {
+                dispatch(downloadBillingInvoice(data,setErrorinDownload))
+            }, 2000); 
+                setTimeout(() => {
+                if(!completed) {
+                    setCompleted(true)
+                    setLoading(false)
+                }
+                }, 3000); 
+                // setCompleted(true)
+                // setLoading(false)
+        // }
     }
     const handleDownloadCdr = (data: any) => {
         dispatch(downloadBillingInvoiceCDR(data))

@@ -24,27 +24,19 @@ export const Actions = ({
     changeTake,
     selectionRange,
     handleSelect,
-    loading,
-    setLoading,
-    completed,
-    setCompleted
 }: {
     data: []
     pagination: any
     changeTake: any
     selectionRange: any
     handleSelect: any
-    loading: any
-    setLoading: any
-    completed: any
-    setCompleted: any
 }) => {
     const { t } = useLocales()
     const modifyTake = (e: any) => {
         changeTake(+e.target.value)
     }
-    // const [loading, setLoading] = useState(false)
-    const [dataStored, setDataStored] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [dataStored, setDataStored] = useState(data)
     
     // console.log(data)
     useEffect(() => {
@@ -82,7 +74,6 @@ export const Actions = ({
             setTimeout(() => {
                 setDataStored(data)
                 setLoading(false)
-                setCompleted(true)
             }, 1000); 
         }
         return dataStored
@@ -93,9 +84,9 @@ export const Actions = ({
         data: dataStored
     }
 
-    const handleDownload = (title: any) => {
-        dispatch(downloadBillingInvoice(title))
-    }
+    // const handleDownload = (title: any) => {
+    //     dispatch(downloadBillingInvoice(title))
+    // }
 
     return (
         <div className="action__elements">
