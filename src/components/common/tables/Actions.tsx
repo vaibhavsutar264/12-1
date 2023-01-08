@@ -64,18 +64,16 @@ export const Actions = ({
     ]
 
     const dataFromAllDataTable = () => {
+        if(!loading) {
+            setLoading(true)
+        }
+            // setTimeout(() => {
+                setDataStored(data)
+                setLoading(false)
+                setCompleted(true)
+            // }, 1000); 
       return dataStored
     }
-    const ExportToCsv = {
-        filename: 'InvoicesData.csv',
-        headers: headers,
-        data: dataStored, 
-    }
-
-    const handleDownload = (title: any) => {
-        dispatch(downloadBillingInvoice(title))
-    }
-
     const downloadDetails = async () => {
         if(!loading) {
             setLoading(true)
@@ -87,8 +85,18 @@ export const Actions = ({
                 setCompleted(true)
             }, 1000); 
         }
-        return 
+        return dataStored
       }
+    const ExportToCsv = {
+        filename: 'InvoicesData.csv',
+        headers: headers,
+        data: dataStored
+    }
+
+    const handleDownload = (title: any) => {
+        dispatch(downloadBillingInvoice(title))
+    }
+
     return (
         <div className="action__elements">
             <div className="action__elementItem">
@@ -116,9 +124,10 @@ export const Actions = ({
                     <span className="icon">
                         <Export />
                     </span>
+                    {dataStored && 
                     <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
                     {loading ? 'Loading csv...' : t<string>('exportToCsv')}
-                    </CSVLink>
+                    </CSVLink>}
                 </span>
             </div>
         </div>
