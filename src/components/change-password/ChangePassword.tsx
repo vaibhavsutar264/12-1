@@ -84,6 +84,8 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
         }
     }
 
+    const [open, setOpen] = useState<boolean>(false);
+
     return (
         <div >
             <div className="dashboard__content" style={{
@@ -176,7 +178,11 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                                 fontFamily: 'ubuntu',
                                                 letterSpacing: '-0.72px',
                                             }}
-                                            className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `} >
+                                            className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `}
+                                            onClick={() => {
+                                                setOpen(true);
+                                            }}
+                                        >
                                             {t<string>('done')}
                                         </ColorButton>
                                     </FormControl>
@@ -187,7 +193,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                     </div>
                 </Box>
             </div>
-            {/* <ModalPassChanged modalData={{ email: getValues().user, action: forgotPass }} open={forgotPassEmail} setOpen={(status: any) => { dispatch(resetForgotPaswordPrms()) }} /> */}
+            <ModalPassChanged open={open} />
         </div>
     )
 }

@@ -15,7 +15,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ForgotPassword from '../forgot-password/ForgotPassword';
 
 
-function ModalPassChanged({ open, setOpen, modalData }: any) {
+function ModalPassChanged({ open, setOpen }: any) {
     //console.log(modalData)
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -39,12 +39,11 @@ function ModalPassChanged({ open, setOpen, modalData }: any) {
                 <IconButton onClick={handleClose}><CloseRoundedIcon /></IconButton>
                 <img src={TicketRaised} alt="" />
                 <DialogTitle id="responsive-dialog-title" textAlign='center'>
-                    {"Check Your Mail"}
+                    {"Password Updated"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText textAlign='center'>
-                        <p className='darker-text'>We have sent a link on your registered email <span className='bolder-text'>{modalData.email}</span></p>
-                        <p className='lighter-text'>Didn&lsquo;t receive link? <Link style={{ cursor: 'pointer' }} onClick={modalData.action} color='error' underline='always'>Resend</Link></p>
+                        <p className='darker-text'>Your password has been changed successfully</p>
                     </DialogContentText>
                 </DialogContent>
             </Dialog>
