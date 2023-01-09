@@ -86,17 +86,17 @@ const ResetPassword = () => {
             >
                 <div className="form__inner">
                     <Box sx={{ width: 1 }} className="account__form__header">
-                    <h3 className="title">{t<string>('resetPassword')}</h3>
-                    <Typography
-                        className="helper__title"
-                        variant="body1"
-                        sx={{
-                            textAlign: 'center',
-                            fontFamily: 'ubuntu',
-                            letterSpacing: 0,
-                            opacity: 0.6,
-                        }}
-                    >{t<string>('resetPasswordSubTitle')}</Typography>
+                        <h3 className="title">{t<string>('resetPassword')}</h3>
+                        <Typography
+                            className="helper__title"
+                            variant="body1"
+                            sx={{
+                                textAlign: 'center',
+                                fontFamily: 'ubuntu',
+                                letterSpacing: 0,
+                                opacity: 0.6,
+                            }}
+                        >{t<string>('resetPasswordSubTitle')}</Typography>
                     </Box>
                     <Box sx={{ width: 1 }} className="account__form__error">
                         <p className="error__msg">{message && message}</p>
@@ -120,6 +120,7 @@ const ResetPassword = () => {
                                 <PrimaryInput
                                     register={{ ...register('cnfPassword') }}
                                     label={'confirmPassword'}
+                                    classNameInput={"input-field"}
                                     fieldName={'cnfPassword'}
                                     formState={formState}
                                     typeName={'password'}
