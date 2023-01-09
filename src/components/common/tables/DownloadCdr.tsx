@@ -37,25 +37,25 @@ export default function DownloadCdr({item,loading,
     };
 
     const handleDownload = async(data: any) => {
-        // if(!loading) {
-            setLoading(true)
-        // }
-        // if(await data !== null){
-            setTimeout(() => {
-                dispatch(downloadBillingInvoice(data,setErrorinDownload))
-            }, 2000); 
-                setTimeout(() => {
-                if(!completed) {
-                    setCompleted(true)
-                    setLoading(false)
-                }
-                }, 3000); 
-                // setCompleted(true)
-                // setLoading(false)
-        // }
+        dispatch(downloadBillingInvoice(data))
     }
     const handleDownloadCdr = (data: any) => {
-        dispatch(downloadBillingInvoiceCDR(data))
+                // if(!loading) {
+                    setLoading(true)
+                    // }
+                    // if(await data !== null){
+                        setTimeout(() => {
+                            dispatch(downloadBillingInvoiceCDR(data,setErrorinDownload))
+                        }, 2000); 
+                            setTimeout(() => {
+                            if(!completed) {
+                                setCompleted(true)
+                                setLoading(false)
+                            }
+                            }, 3000); 
+                            // setCompleted(true)
+                            // setLoading(false)
+                    // }
     }
 
     return (
