@@ -30,6 +30,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { changePasswordSchema, ForgotPasswordSchema } from '../../utils/yupschemas'
 import { base64Encode } from '../../utils/Base64EncodeDecode'
 import { useNavigate } from 'react-router-dom'
+import ModalPassChanged from '../modals/ModalPassChanged'
 
 
 
@@ -77,7 +78,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
             }
             dispatch(changePassword(userPassword))
             navigate(appRoutes.ACCOUNT_DETAILS)
-            
+
         } catch (error) {
             console.error(error)
         }
@@ -186,6 +187,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                     </div>
                 </Box>
             </div>
+            {/* <ModalPassChanged modalData={{ email: getValues().user, action: forgotPass }} open={forgotPassEmail} setOpen={(status: any) => { dispatch(resetForgotPaswordPrms()) }} /> */}
         </div>
     )
 }

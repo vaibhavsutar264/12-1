@@ -1,12 +1,12 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 
 const UserInfoCard = () => {
     return (
         <Box className='single-card'>
-            <Typography variant='h4'>content is king</Typography>
-            <Typography variant='h4'>content is king</Typography>
-            <Typography variant='h4'>content is king</Typography>
+            <Typography variant='h4'>emma smith</Typography>
+            <Button href='mailto:johndeo@company.com'>johndeo@company.com</Button>
+            <Box component='span'>Created on 02 Sep 21</Box>
         </Box>
     )
 }

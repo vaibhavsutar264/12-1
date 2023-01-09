@@ -18,7 +18,7 @@ export const PrimaryInput = ({ onChange, sxForInput, classNameInput, register, v
     const { t } = useLocales();
     const [val, setVal] = useState('');
     const [toolTipOpen, settoolTipOpen] = useState(false)
-    const [values, setValues] = useState<any>({ showPassword: (typeName == 'email' || 'text') ? false : true })
+    const [values, setValues] = useState<any>({ showPassword: (typeName == 'email' || 'text') ? true : false })
     const getClassName = () => {
         if (typeName == 'email') {
             return "input-wrapper yes-margin";
