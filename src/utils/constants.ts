@@ -134,6 +134,13 @@ export const breadCrums = {
         ],
         PageName: 'changePasswordhead',
     },
+    USER_MANAGEMENT: {
+        path: [
+            { transName: 'dashboard', type: 'link', linkURL: appRoutes.USER_MANAGEMENT },
+            { transName: 'userManagementhead', type: 'text', linkURL: '' },
+        ],
+        PageName: 'userManagementhead',
+    },
 }
 
 export const dataTables = {

@@ -338,6 +338,7 @@
     // grid-area: dashboardContent;
     margin-top: 90px;
     // display: none !important;
+    min-height: calc(100vh - 90px);
 
     .content__header {
         width: 100%;

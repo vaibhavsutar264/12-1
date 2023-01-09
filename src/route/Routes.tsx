@@ -35,6 +35,7 @@ function Routes({ toggleTheme }: { toggleTheme: any }) {
                 { path: appRoutes.CUSTOMER_LE_FILTER, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={CustomerLeFilter} /> },
                 { path: appRoutes.BILLING, element: <PrivateLayout toggleTheme={toggleTheme} Component={Billing} /> },
                 { path: appRoutes.CHANGE_PASSWORD, element: <PrivateLayout toggleTheme={toggleTheme} Component={ChangePassword} /> },
+                { path: appRoutes.USER_MANAGEMENT, element: <PrivateLayout toggleTheme={toggleTheme} Component={UserManagement} /> },
                 { path: appRoutes.DASHBOARD, element: <PrivateLayout toggleTheme={toggleTheme} Component={Dashboard} /> },
             ],
         },
@@ -50,6 +51,7 @@ const Notfound = Loadable(lazy(() => import('../components/notfound/Notfound')))
 const HomeScreen = Loadable(lazy(() => import('../components/home/HomeScreen')))
 const Billing = Loadable(lazy(() => import('../components/billing/Billing')))
 const ChangePassword = Loadable(lazy(() => import('../components/change-password/ChangePassword')))
+const UserManagement = Loadable(lazy(() => import('../components/user-management/UserManagement')))
 const Dashboard = Loadable(lazy(() => import('../components/dashboard/Dashboard')))
 const PrivateLayout = Loadable(lazy(() => import('../components/privateLayout/PrivateLayout')))
 const OnBoardingLayout = Loadable(lazy(() => import('../components/onBoardingLayout/onBoardingLayout')))
