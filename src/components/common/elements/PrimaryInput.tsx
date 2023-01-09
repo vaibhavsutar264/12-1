@@ -14,11 +14,11 @@ import CheckIcon from '@mui/icons-material/Check'
 import LinearProgress from '@mui/material/LinearProgress'
 import CloseIcon from '@mui/icons-material/Close'
 
-export const PrimaryInput = ({ onChange,sxForInput,classNameInput,register,variantForInput, label, formState, fieldName, typeName, onInput,valueForInput,dataTestId, setpassword = false }: any) => {
+export const PrimaryInput = ({ onChange, sxForInput, classNameInput, register, variantForInput, label, formState, fieldName, typeName, onInput, valueForInput, dataTestId, setpassword = false }: any) => {
     const { t } = useLocales();
     const [val, setVal] = useState('');
     const [toolTipOpen, settoolTipOpen] = useState(false)
-    const [values, setValues] = useState<any>({ showPassword: (typeName == 'email' || 'text') ? true : false })
+    const [values, setValues] = useState<any>({ showPassword: (typeName == 'email' || 'text') ? false : true })
     const getClassName = () => {
         if (typeName == 'email') {
             return "input-wrapper yes-margin";

@@ -22,6 +22,9 @@ import Card from '../common/elements/card'
 import { getCardCount } from '../../utils/helpers'
 import { getAcDetails } from '../../redux/slices/accountSlice'
 import moment from 'moment'
+import { Actions } from '../common/tables/Actions'
+import UserInfoCard from '../common/elements/UserInfoCard'
+
 
 export const UserManagement = ({ toggleTheme }: { toggleTheme: any }) => {
 
@@ -95,6 +98,16 @@ export const UserManagement = ({ toggleTheme }: { toggleTheme: any }) => {
                 <div id="main-div" className="card-wrapper-1 user-management-cards">
                     {cards.map((q: any, i: any) => <Card data={q} key={i} />)}
                 </div >
+                {/* <Actions
+                    data={allMasterData}
+                    pagination={{ take, Total }}
+                    changeTake={(e: any) => {
+                        changeTake(e)
+                    }}
+                    selectionRange={selectionRange}
+                    handleSelect={handleSelect}
+                /> */}
+                <UserInfoCard />
             </div>
         </div>
     )

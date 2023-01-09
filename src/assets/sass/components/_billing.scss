@@ -1286,3 +1286,16 @@ form.raise-ticket-input .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
 // input[type="search"]::-webkit-clear-button {
 //     display: none;
 // }
+
+
+.bd-single-content {
+    & .MuiAvatar-root.avatar-initials {
+        // background-color: red !important;
+        color: #fff !important;
+
+        & svg {
+            width: 56px;
+            height: 56px;
+        }
+    }
+}
