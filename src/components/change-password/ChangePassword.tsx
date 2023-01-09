@@ -193,7 +193,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                     </div>
                 </Box>
             </div>
-            <ModalPassChanged open={open} />
+            <ModalPassChanged open={open} setOpen={setOpen} />
         </div>
     )
 }
