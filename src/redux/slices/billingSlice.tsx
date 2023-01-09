@@ -157,7 +157,7 @@ export const viewInvoice = (id: any) => {
         }
     }
 }
-export const downloadBillingInvoice = (data: any, setErrorinDownload: any) => {
+export const downloadBillingInvoice = (data: any) => {
     dispatch(billingSlice.actions.startLoading())
     return async () => {
         const response = await billing.downloadInvoice(data)
@@ -169,8 +169,6 @@ export const downloadBillingInvoice = (data: any, setErrorinDownload: any) => {
             link.setAttribute('download', 'file.pdf'); //or any other extension
             document.body.appendChild(link);
             link.click();
-        }else{
-            setErrorinDownload(true)
         }
     }
 }
@@ -186,7 +184,7 @@ export const viewBillingInvoice = (data: any) => {
 }
 
 
-export const downloadBillingInvoiceCDR = (data: any) => {
+export const downloadBillingInvoiceCDR = (data: any, setErrorinDownload: any) => {
     return async () => {
         const response = await billing.downloadInvoiceCdr(data)
         if (response) {
@@ -196,6 +194,8 @@ export const downloadBillingInvoiceCDR = (data: any) => {
             link.setAttribute('download', 'file.pdf'); //or any other extension
             document.body.appendChild(link);
             link.click();
+        }else{
+            setErrorinDownload(true)
         }
     }
 }
