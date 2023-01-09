@@ -120,7 +120,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
             }}>
                 <div className="content__header">
                     <BreadCrums data={breadCrums.BILLING} />
-                    <PageSearch searchFn={searchData} />
+                    <PageSearch searchFn={searchData} searchPlaceholder='searchInvoiceNoEntity' />
                 </div>
                 <div id="main-div" className="card-wrapper-1">
                     {cards.map((q: any, i: any) => <Card data={q} key={i} />)}

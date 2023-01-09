@@ -9,7 +9,7 @@ import { useDispatch as useAppDispatch } from '../../../redux/store'
 import useLocales from '../../../hooks/useLocales'
 import { useState } from 'react'
 
-export const PageSearch = ({ searchFn }: { searchFn: any }) => {
+export const PageSearch = ({ searchFn, searchPlaceholder }: { searchFn: any, searchPlaceholder: string }) => {
     const dispatch = useAppDispatch()
     const { t } = useLocales()
     const [searchValue, setSearchValue] = useState('')
@@ -54,7 +54,7 @@ export const PageSearch = ({ searchFn }: { searchFn: any }) => {
                         onBlur={(e) => {
                             e.target.placeholder = `${t<string>('searchInvoiceNoEntity')}`
                         }}
-                        placeholder={t<string>('searchInvoiceNoEntity')}
+                        placeholder={t<string>(searchPlaceholder)}
                         inputProps={{
                             'aria-label': 'Search Products, Orders and Clients',
                             'data-testid': 'search-element',
@@ -62,13 +62,13 @@ export const PageSearch = ({ searchFn }: { searchFn: any }) => {
                         type="search"
                         value={searchValue}
                         onChange={(e) => chnageEvent(e.target.value)}
-                        onKeyPress= {(e) => {
+                        onKeyPress={(e) => {
                             if (e.key === 'Enter') {
                                 e.preventDefault()
                                 handleSearch(e)
-                              // write your functionality here
+                                // write your functionality here
                             }
-                    }}
+                        }}
                     />
                     <IconButton
                         data-testid="search-button-element"

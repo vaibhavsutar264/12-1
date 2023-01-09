@@ -80,7 +80,8 @@ export const SideBar = ({
                             </Link>
                         </li>
                         <li className="list__item">
-                            <Link className="item__link" to="">
+                            <Link className={`item__link ${getActiveClass(appRoutes.USER_MANAGEMENT)}`}
+                                to={appRoutes.USER_MANAGEMENT}>
                                 <span className="link__icon">
                                     <PersonOutlineOutlinedIcon />
                                 </span>

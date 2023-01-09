@@ -90,9 +90,9 @@ export const UserManagement = ({ toggleTheme }: { toggleTheme: any }) => {
             }}>
                 <div className="content__header">
                     <BreadCrums data={breadCrums.USER_MANAGEMENT} />
-                    <PageSearch searchFn={searchData} />
+                    <PageSearch searchFn={searchData} searchPlaceholder='search' />
                 </div>
-                <div id="main-div" className="card-wrapper-1">
+                <div id="main-div" className="card-wrapper-1 user-management-cards">
                     {cards.map((q: any, i: any) => <Card data={q} key={i} />)}
                 </div >
             </div>
