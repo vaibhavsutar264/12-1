@@ -50,7 +50,7 @@ const LanguageSelector: FC = () => {
                 }}
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={i18n.language == ('en-ZA') ? 'English' : ('en-US')? 'English':('en-GB')? 'English': i18n.language}
+                value={i18n.language == ('en-ZA') ? 'English' : i18n.language == ('en-US')? 'English':i18n.language == ('en-GB')? 'English': i18n.language}
                 label="Language"
                 onChange={(e) => {
                     i18n.changeLanguage(e.target.value)
