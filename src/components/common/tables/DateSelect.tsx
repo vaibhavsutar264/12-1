@@ -1,35 +1,42 @@
 import React from "react";
 import {
   DateRangePicker,
-  DateRangeDelimiter,
   LocalizationProvider,
-  DateRange,
 } from "@material-ui/pickers"
 import DateFnsUtils from "@material-ui/pickers/adapter/date-fns"
-import { Button } from "@mui/material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-
-export const DateSelect = () => {
-  const [selectedDate, handleDateChange] = React.useState<any>([null, null]);
-  const [calendarOpen, setCalendarOpen] = React.useState(false);
-
-  const getDate = () => {
-    const s = `${new Date(selectedDate[0]).toDateString()}`.split(" ");
-    const e = `${new Date(selectedDate[1]).toDateString()}`.split(" ");
+import { useDispatch } from "../../../redux/store";
+import { updateCal } from "../../../redux/slices/billingSlice";
+import { useSelector } from "react-redux";
+export const DateSelect = ({ dateRange, setDateRange }: any) => {
+  const getDate = (dateRange: any) => {
+    const s = `${new Date(dateRange[0]).toDateString()}`.split(" ");
+    const e = `${new Date(dateRange[1]).toDateString()}`.split(" ");
     return `${s[1]} ${s[2]} ${s[3]} - ${e[1]} ${e[2]} ${e[3]} `
   }
+  const { calOpen } = useSelector((state: any) => state.billing || {});
+
+  const dispatch = useDispatch();
+  const dateChangeFn = (date: any) => {
+    if (date[1] != null) {
+      dispatch(updateCal(false));
+      setDateRange(date);
+    }
+  }
+
   return (
     <LocalizationProvider dateAdapter={DateFnsUtils}>
       <DateRangePicker
-        open={calendarOpen}
+        onOpen={() => { setDateRange([dateRange[0], null]) }}
+        open={calOpen}
         startText="from"
         endText="to"
-        value={selectedDate}
-        onChange={(date: any) => handleDateChange(date)}
+        value={dateRange}
+        onChange={(date: any) => dateChangeFn(date)}
         renderInput={(startProps: any, endProps: any) => (
           <div>
-            <button onClick={() => setCalendarOpen((calendarOpen) => !calendarOpen)} className="showDate">
-              {getDate()}
+            <button onClick={() => dispatch(updateCal(!calOpen))} className="showDate">
+              {(dateRange[0] == null && dateRange[1] == null) ? 'Select date' : getDate(dateRange)}
               <span className="cal"><CalendarMonthIcon /></span>
             </button>
           </div>

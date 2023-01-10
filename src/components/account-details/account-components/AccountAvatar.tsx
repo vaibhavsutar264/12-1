@@ -31,7 +31,7 @@ const AccountAvatar = () => {
     const [firstname, setFirstname] = useState('')
     const [lastName, setLastName] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
-    const [timezone, setTimezone] = useState('utc0:00')
+    const [timezone, setTimezone] = useState('')
     const [communication, setCommunication] = useState('')
     const [editable, setEditable] = useState<boolean>(false)
     const [open, setOpen] = useState(false)
@@ -42,8 +42,8 @@ const AccountAvatar = () => {
             setFirstname(user.firstname)
             setLastName(user.lastName)
             setPhoneNumber(user.attributes.phoneNumber)
-            setTimezone(user.attributes.timezone)
-            setCommunication(user.attributes.preferredCommunicationMode)
+            setTimezone(user?.attributes?.timezone)
+            setCommunication(user?.attributes?.preferredCommunicationMode)
         }
     }, [dispatch])
 
@@ -98,23 +98,14 @@ const AccountAvatar = () => {
                             overlap="circular"
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                         >
-                            <Avatar
-                                alt="Travis Howard"
-                                className="avatar-initials"
-                                sx={{
-                                    width: '156px',
-                                    height: '156px',
-                                }}
-                            >
-                                {firstname.charAt(0) + lastName.charAt(0) || null}
-                            </Avatar>
-                            {/* <Avatar className="avatar-initials"
+                            <Avatar className="avatar-initials"
                                 sx={{
                                     width: '156px',
                                     height: '156px',
                                 }}>
-                                <PersonSharpIcon />
-                            </Avatar> */}
+                                {/* <PersonSharpIcon /> */}
+                                {firstname.charAt(0) + lastName.charAt(0) || null}
+                            </Avatar>
                         </Badge>
                     </Stack>
                 </Box>

@@ -22,28 +22,22 @@ export const Actions = ({
     data,
     pagination,
     changeTake,
-    selectionRange,
-    handleSelect,
-}: {
-    data: []
-    pagination: any
-    changeTake: any
-    selectionRange: any
-    handleSelect: any
-}) => {
+    setDateRange,
+    dateRange,
+}: any) => {
     const { t } = useLocales()
     const modifyTake = (e: any) => {
         changeTake(+e.target.value)
     }
     const [loading, setLoading] = useState(false)
     const [dataStored, setDataStored] = useState(data)
-    
+
     // console.log(data)
     useEffect(() => {
         const l: any = document.getElementById('PageNumberInput')
         l.value = pagination.take
         setDataStored(dataStored)
-    },[data])
+    }, [data])
     const headers = [
         { label: 'Invoice No.', key: billingKeys.INVOICE_NUMBER },
         { label: 'Customer LE', key: billingKeys.CUSTOMER_LE },
@@ -64,20 +58,20 @@ export const Actions = ({
         //         setLoading(false)
         //         setCompleted(true)
         //     // }, 1000); 
-      return dataStored
+        return dataStored
     }
     const downloadDetails = async () => {
-        if(!loading) {
+        if (!loading) {
             setLoading(true)
         }
-        if(await data !== null){
+        if (await data !== null) {
             setTimeout(() => {
                 setDataStored(data)
                 setLoading(false)
-            }, 1000); 
+            }, 1000);
         }
         return dataStored
-      }
+    }
     const ExportToCsv = {
         filename: 'InvoicesData.csv',
         headers: headers,
@@ -108,7 +102,7 @@ export const Actions = ({
                 </div>
             </div>
             <div className="action__elementItem" id="date-picker">
-                <DateSelect />
+                <DateSelect setDateRange={setDateRange} dateRange={dateRange} />
             </div>
             <div className="action__elementItem">
                 <span className="iconCta">
@@ -116,10 +110,10 @@ export const Actions = ({
                         <Export />
                     </span>
                     {dataStored && (
-                    <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
-                    {loading ? 'EXPORTING' : t<string>('exportToCsv')}
-                    {/* {loading ? 'EXPORTING' : t<string>('exportToCsv')} */}
-                    </CSVLink>)}
+                        <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
+                            {loading ? 'EXPORTING' : t<string>('exportToCsv')}
+                            {/* {loading ? 'EXPORTING' : t<string>('exportToCsv')} */}
+                        </CSVLink>)}
                 </span>
             </div>
         </div>

@@ -15,6 +15,7 @@ import { useDispatch as useAppDispatch } from './redux/store'
 import { logout } from './redux/slices/authSlice'
 import { store } from './redux/store'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
+import { updateCal } from './redux/slices/billingSlice'
 
 const App = () => {
     const dispatch = useAppDispatch()
@@ -25,7 +26,7 @@ const App = () => {
     }
     const idelTimeOut = useIdleTimer({
         onIdle,
-        timeout: 30 * 1000 *60,
+        timeout: 30 * 1000 * 60,
         promptTimeout: 0,
         events: [
             'mousemove',
@@ -45,6 +46,13 @@ const App = () => {
 
     const clickEventHandler = (e: any) => {
         try {
+            const date = document.getElementsByClassName('MuiPickersPopper-root');
+            if (date.length > 0) {
+                const clEl = document.querySelector(`.MuiPickersPopper-root .${e.target.classList[0]}`)
+                if (clEl == null) {
+                    dispatch(updateCal(false));
+                }
+            }
             const trEle = e.target.classList.contains("clkIgnr");
             if (trEle === false) {
                 const d: any = document;
@@ -68,7 +76,7 @@ const App = () => {
         <ThemeProvider theme={themeMode}>
             <GlobalStyles />
             <ErrorBoundary>
-            <Routes toggleTheme={toggleTheme} />
+                <Routes toggleTheme={toggleTheme} />
             </ErrorBoundary>
             <Toggle theme={theme} toggleTheme={toggleTheme} />
             <ToastContainer />

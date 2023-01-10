@@ -5,8 +5,8 @@ import UnpaidInvoice from "../components/common/icons/unpaidInvoice"
 
 export const apiRoutes = {
     // BASE_URL: 'http://115.112.43.74:8585',
-    // BASE_URL: '',
-    BASE_URL: 'http://localhost:8585',
+    BASE_URL: '',
+    // BASE_URL: 'http://localhost:8585',
     // BASE_URL: 'http://api.sspdev.digodev.com',
 
     // User
@@ -163,7 +163,7 @@ export const dataTables = {
             }
         }),
         columns: [
-            { eleName: apiVrbls.BILLING.INVOICE_ID, headTrans: 'id', sort: true, filter: false },
+            { eleName: apiVrbls.BILLING.INVOICE_ID, headTrans: 'id', sort: true, filter: false, isActive: true },
             {
                 eleName: apiVrbls.BILLING.CUSTOMER_LE,
                 headTrans: 'customerLe',
@@ -172,13 +172,15 @@ export const dataTables = {
                 filterData: {
                     element: apiVrbls.BILLING.CUSTOMER_LE,
                     values: masterData.map((e: any) => e[apiVrbls.BILLING.CUSTOMER_LE]).filter((it, i, ar) => ar.indexOf(it) === i)
-                }
+                },
+                isActive: true
             },
             {
                 eleName: apiVrbls.BILLING.TATA_ENTITY,
                 headTrans: 'entity',
                 sort: true,
                 filter: false,
+                isActive: true
             },
             {
                 eleName: apiVrbls.BILLING.PO_NUMBER,
@@ -188,7 +190,8 @@ export const dataTables = {
                 filterData: {
                     element: apiVrbls.BILLING.PO_NUMBER,
                     values: masterData.map((e: any) => e[apiVrbls.BILLING.PO_NUMBER]).filter((it, i, ar) => ar.indexOf(it) === i)
-                }
+                },
+                isActive: true
             },
             {
                 eleName: apiVrbls.BILLING.PAY_STATUS,
@@ -198,7 +201,8 @@ export const dataTables = {
                 filterData: {
                     element: apiVrbls.BILLING.PAY_STATUS,
                     values: masterData.map((e: any) => e[apiVrbls.BILLING.PAY_STATUS]).filter((it, i, ar) => ar.indexOf(it) === i)
-                }
+                },
+                isActive: true
             },
             {
                 eleName: apiVrbls.BILLING.INVOICE_AMT,
@@ -208,15 +212,17 @@ export const dataTables = {
                 filterData: {
                     element: apiVrbls.BILLING.CURENCY,
                     values: masterData.map((e: any) => e[apiVrbls.BILLING.CURENCY]).filter((it, i, ar) => ar.indexOf(it) === i)
-                }
+                },
+                isActive: true
             },
             {
                 eleName: apiVrbls.BILLING.INVOICE_DATE,
                 headTrans: 'invoiceIssuedDate',
                 sort: true,
                 filter: false,
+                isActive: true
             },
-            { eleName: 'Due_date', headTrans: 'dueDate', sort: true, filter: false },
+            { eleName: 'Due_date', headTrans: 'dueDate', sort: true, filter: false,isActive: true },
         ],
         tableName: 'billing',
     }),
