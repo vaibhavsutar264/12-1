@@ -125,7 +125,6 @@ export const HeaderBar = ({
                                     position: 'relative',
                                 }}
                                 size="small"
-                                // id="lang-background-white"
                                 id="lang-background-invoices"
                             >
                                 <img
@@ -234,7 +233,7 @@ export const HeaderBar = ({
                                     <a href="/change-password" className="profile__dropLink userinfo-dropdown">
                                         <span className="icon">
                                             <LockOutlinedIcon />
-                                        </span> 
+                                        </span>
                                         <span className="text">{t<string>('changePassword')}</span>
                                     </a>
                                 </MenuItem>

@@ -3,7 +3,6 @@ import { Select, MenuItem } from '@mui/material'
 import useLocales from '../../hooks/useLocales'
 import FormControl from '@mui/material/FormControl'
 import Globe from '../../assets/images/svg/globe.svg'
-// import GlobeDark from '../../assets/images/svg/globe-dark.svg'
 import GlobeDark from '../../assets/images/svg/globe-dark.svg'
 import { getFromLocalStorage, setInLocalStorage } from '../../hooks/useLocalStorage'
 import { localStorageVar } from '../../utils/constants'
@@ -29,7 +28,6 @@ const LanguageSelector: FC = () => {
                 position: 'relative',
             }}
             size="small"
-            // id="lang-background-white"
             id="lang-background-invoices"
         >
             <img
