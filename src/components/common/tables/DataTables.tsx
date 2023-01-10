@@ -1,5 +1,4 @@
 import React, { useState, useEffect, SyntheticEvent, ChangeEvent } from 'react'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import Table from '@mui/material/Table'
 import {
   IconButton,
@@ -408,7 +407,7 @@ const DataTable = ({
                           </ListItemIcon>
                           <Button
                             onClick={(e)=>changeActive(item)}
-                            style={item.isActive ?activeStyle:{}}
+                            // style={item.isActive ?activeStyle:{}}
                           >
                             {item.eleName}
                           </Button>
@@ -420,11 +419,11 @@ const DataTable = ({
               </StyledTableCell>
               {/* Table Heads */}
               {columnsDropdown.map((head: any, index: any) => (
-                <StyledTableCell
+                head.isActive && <StyledTableCell
                   key={`${head.headTrans}${index}`}
                   align="right"
                 >
-                 {head.isActive && <div className="th_wrapper">
+                 <div className="th_wrapper">
                       <button
                       id="hiding"
                       name={t<string>(`tables.${tableName}.${head.headTrans}`)}
@@ -459,7 +458,7 @@ const DataTable = ({
                       )}
                       {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                     </button>
-                  </div>}
+                  </div>
                 </StyledTableCell>
               ))}
               <StyledTableCell align="right">

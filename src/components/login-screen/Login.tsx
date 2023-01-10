@@ -46,6 +46,7 @@ const Login = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const { user, isError, isAuthenticated, resetmessage } = useAppSelector((state: any) => state.auth || {})
+    const [showError, setShowError] = useState(false)
     const [val, setVal] = useState('')
     useEffect(() => {
         if (!isAuthenticated) {
@@ -72,7 +73,13 @@ const Login = () => {
             email: d.user,
             password: d.password
         }
-        dispatch(login(userDetails, d.user))
+
+        try {
+            dispatch(login(userDetails, d.user,setShowError))
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
 
     // if (resetmessage === "SUCCESS") {
@@ -173,7 +180,7 @@ const Login = () => {
             </Box>) : (
             <SetPassword />
         )}
-            <ModalLoginError />
+            {showError ? <ModalLoginError /> : ""}
         </>
     )
 }

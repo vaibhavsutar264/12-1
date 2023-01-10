@@ -142,7 +142,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     setEndDate={setEndDate}
                     TableData={dataTables.BILLING(PageData, MasterData)} />
             </div>
-            <ModalTicketError />
+            {/* <ModalTicketError /> */}
         </div>
     )
 }

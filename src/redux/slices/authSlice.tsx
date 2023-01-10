@@ -108,7 +108,7 @@ export const { startLoading, hasError } = userSlice.actions
 
 // -----------------------------------------------------------------
 
-export const login = (userData: UserLogin, emailcredential: any) => {
+export const login = (userData: UserLogin, emailcredential: any, setShowError: any) => {
   dispatch(userSlice.actions.startLoading())
   return async () => {
     try {
@@ -127,14 +127,16 @@ export const login = (userData: UserLogin, emailcredential: any) => {
           dispatch(userSlice.actions.loginCredential(emailcredential))
           setInLocalStorage(localStorageVar.USER_VAR, token)
         } else {
+          // setShowError(true)
           toast.error(userInfo.data.message)
           dispatch(userSlice.actions.hasError(userInfo.data.message))
         }
       }
     } catch (response: any) {
       const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
-      toast.error(data.message)
       dispatch(userSlice.actions.hasError(data))
+      setShowError(true)
+      toast.error(data.message)
     }
   }
 }

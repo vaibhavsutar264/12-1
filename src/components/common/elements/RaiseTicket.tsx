@@ -35,11 +35,20 @@ import { useSelector } from '../../../redux/store'
 import { dataTables } from '../../../utils/constants'
 import { isAbsolute } from 'path'
 import AddIcon from '@mui/icons-material/Add';
+import ModalTicketError from '../../modals/ModalTicketError';
 
 const RaiseTicket = ({ handleShow, showIt }: any) => {
-
+    const [showError, setShowError] = useState(false)
+    const handleSubmitTicket =()=>{
+        try {
+            setShowError(true)
+        } catch (error) {
+            setShowError(true)
+        }
+    }
 
     return (
+        <>
         <Box sx={{
             bgcolor: '#fff',
             boxShadow: 24,
@@ -260,7 +269,7 @@ const RaiseTicket = ({ handleShow, showIt }: any) => {
 
                 <Box>
                     <Stack direction='row' spacing={2}>
-                        <Button variant='contained' color='error' sx={{
+                        <Button variant='contained' color='error' onClick={handleSubmitTicket} sx={{
                             textTransform: 'uppercase',
                             borderRadius: '23px',
                             paddingX: '48px',
@@ -281,6 +290,8 @@ const RaiseTicket = ({ handleShow, showIt }: any) => {
                 </Box>
             </Stack>
         </Box >
+            {showError ? <ModalTicketError /> : ""}
+            </>
     )
 }
 
