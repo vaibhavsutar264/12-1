@@ -137,7 +137,7 @@ const userLoginData = {
 const billing = {
   loadInvoices: (data: any) =>
     requests.get(
-      `${routes.BASE_URL}${routes.GET_INVOICES}?q=${data.searchValue}`,
+      `${routes.BASE_URL}${routes.GET_INVOICES}?q=${data.searchValue}${data.fromDate ? `&fromDate=${data.fromDate}`: ''}${data.toDate ? `&toDate=${data.toDate}`: ''}`,
       billingTransformer
     ),
   viewInvoice: (data: any) =>

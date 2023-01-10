@@ -112,6 +112,8 @@ const DataTable = ({
   handleShow,
   handledownloadPdf,
   handledownloadCdrPdf,
+  setDateRange,
+  dateRange,
   handledownloadViewpdf,
 }: any) => {
   const { t } = useLocales()
@@ -121,30 +123,28 @@ const DataTable = ({
   const [sortdir, setSortdir]: any = useState(null)
 
   const [allData, setAllData] = useState(data)
-  const [startDate, setstartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
   const [loading, setLoading] = useState(false)
   const [completed, setCompleted] = useState(false)
   const [errorinDownload, setErrorinDownload] = useState(false)
 
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection',
-  }
-  //   console.log((startDate).toLocaleDateString().substring(0,10))
-
-  const handleSelect = (date: any) => {
-    const filtered = data.filter((item: any) => {
-      const invoiceDate = new Date(item['Invoice_date'])
-      return (
-        invoiceDate >= date.selection.startDate &&
-        invoiceDate <= date.selection.endDate
-      )
-    })
-    setstartDate(date.selection.startDate)
-    setEndDate(date.selection.endDate)
-  }
+//   const selectionRange = {
+//     startDate: startDate,
+//     endDate: endDate,
+//     key: 'selection',
+//   }
+//   //   console.log((startDate).toLocaleDateString().substring(0,10))
+// 
+//   const handleSelect = (date: any) => {
+//     const filtered = data.filter((item: any) => {
+//       const invoiceDate = new Date(item['Invoice_date'])
+//       return (
+//         invoiceDate >= date.selection.startDate &&
+//         invoiceDate <= date.selection.endDate
+//       )
+//     })
+//     setstartDate(date.selection.startDate)
+//     setEndDate(date.selection.endDate)
+//   }
 
   function useHover(
     styleOnHover: CSSProperties,
@@ -360,13 +360,13 @@ const DataTable = ({
       {/* {loading ? !loading? <CDRDownloaded /> : null: null} */}
       {/* <CDRDownloaded /> */}
       <Actions
+        setDateRange={setDateRange}
+        dateRange={dateRange}
         data={allMasterData}
         pagination={{ take, Total }}
         changeTake={(e: any) => {
           changeTake(e)
         }}
-        selectionRange={selectionRange}
-        handleSelect={handleSelect}
       />
       <TableContainer component={Paper} className="table__Container buildfix4">
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -463,12 +463,12 @@ const DataTable = ({
               ))}
               <StyledTableCell align="right">
                 <Button onClick={clearFilter} className="th_wrapper">
-                     <span  className='clear-filters'>Clear all filters</span>
+                  <span className='clear-filters'>Clear all filters</span>
                 </Button>
-            </StyledTableCell>
+              </StyledTableCell>
             </TableRow>
           </TableHead>
-          {/* Table Body */}    
+          {/* Table Body */}
           <TableBody
             data-testid="table-body-element"
             className="TableBody"
@@ -482,10 +482,10 @@ const DataTable = ({
                       ? item.icon == 'overdue'
                         ? boxStyle
                         : item.icon == 'pending'
-                        ? pendingStyle
-                        : item.icon == 'completed'
-                        ? completedStyle
-                        : noStyle
+                          ? pendingStyle
+                          : item.icon == 'completed'
+                            ? completedStyle
+                            : noStyle
                       : noStyle
                   }
                   onMouseEnter={handleMouseEnter}
