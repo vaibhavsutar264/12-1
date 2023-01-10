@@ -370,7 +370,7 @@ const DataTable = ({
       />
       <TableContainer component={Paper} className="table__Container buildfix4">
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-          <TableHead className="TableHead ">
+          <TableHead className="TableHead" id="table-head-element-display-fix">
             <TableRow id="table-head">
               <StyledTableCell>
                 <Menu

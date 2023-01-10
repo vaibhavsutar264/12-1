@@ -837,6 +837,7 @@
 .TableHead {
     // background: #f7f8fa !important;
     background: #f7f8fa;
+    display: table-caption !important;
 
     th {
         background: transparent !important;
@@ -890,6 +891,7 @@
 }
 
 .TableBody {
+    display: table-caption !important;
     tr {
         td {
             text-align: left;
@@ -900,7 +902,7 @@
             color: #344857;
             opacity: 1;
 
-            max-width: 160px;
+            // max-width: 160px;
             overflow: hidden;
 
             &:nth-child(4) {
