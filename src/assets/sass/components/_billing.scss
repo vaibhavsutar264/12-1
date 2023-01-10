@@ -1,13 +1,6 @@
 .dashboard__wrapper {
     width: 100%;
-    // height: 100vh;
-    // display: grid;
-    // grid-template-areas:
-    //     'dashboardNavbar dashboardNavbar dashboardNavbar'
-    //     'dashboardSidebar dashboardContent dashboardContent'
-    //     'dashboardSidebar dashboardContent dashboardContent';
     background: #f7f8fa;
-    // overflow: hidden;
 }
 
 #checkbox-blank,
@@ -107,8 +100,6 @@
                 button {
                     background: white;
                     width: 225px;
-                    // arhan
-                    // width: 300px;
                     height: 90px;
                     padding: 0;
                     margin: 0;
@@ -335,9 +326,7 @@
 
 .dashboard__content {
     padding: 30px 50px;
-    // grid-area: dashboardContent;
     margin-top: 90px;
-    // display: none !important;
     min-height: calc(100vh - 90px);
 
     .content__header {
@@ -403,12 +392,7 @@
 }
 
 .card-wrapper-1 {
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    // grid-gap: 20px;
     margin: 50px 0px;
-    // arhan
-    // display: none;
     display: flex;
     flex-wrap: wrap;
     column-gap: 20px;
@@ -469,7 +453,6 @@
         }
 
         &:nth-child(1) {
-            // background-color: rgb(26, 115, 232);
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;
@@ -507,7 +490,6 @@
                     }
 
                     & h3 {
-                        // color: rgb(26, 115, 232);
                         color: #fff;
                     }
                 }
@@ -548,7 +530,6 @@
         }
 
         &:nth-child(2) {
-            // background-color: rgb(54, 63, 94) !important;
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;
@@ -574,7 +555,6 @@
                     }
 
                     & h3 {
-                        // color: rgb(26, 115, 232);
                         color: #fff;
                     }
                 }
@@ -613,7 +593,6 @@
         }
 
         &:nth-child(3) {
-            // background-color: rgb(229, 68, 87) !important;
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;
@@ -639,7 +618,6 @@
                     }
 
                     & h3 {
-                        // color: rgb(26, 115, 232);
                         color: #fff;
                     }
                 }
@@ -679,7 +657,6 @@
 
 
         &:nth-child(4) {
-            // background-color: rgb(61, 184, 135) !important;
             background-image: url('../../../assets/images/card2active.png');
             padding-left: 0;
             padding-right: 0;
@@ -705,7 +682,6 @@
                     }
 
                     & h3 {
-                        // color: rgb(26, 115, 232);
                         color: #fff;
                     }
                 }
@@ -800,7 +776,6 @@
     align-items: center;
     justify-content: flex-end;
     padding-bottom: 10px;
-    // display: none;
 
     @media only screen and (max-width: 1340px) {
         justify-content: center;
@@ -835,7 +810,6 @@
 }
 
 .TableHead {
-    // background: #f7f8fa !important;
     background: #f7f8fa;
 
     th {
@@ -924,8 +898,6 @@
                 width: 46px;
                 height: 46px;
                 background: #f7f8fa;
-                // border-radius: 50%;
-                // arhan
                 border-radius: 10px;
                 display: flex;
                 align-items: center;
@@ -1229,8 +1201,6 @@ form.raise-ticket-input .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
     justify-content: flex-end;
     position: absolute;
     top: 0;
-    // width: calc(100% - 300px);
-    // margin-left: 300px;
 
     .content__header {
         padding-left: 62px;
@@ -1299,14 +1269,9 @@ form.raise-ticket-input .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
     }
 }
 
-// input[type="search"]::-webkit-clear-button {
-//     display: none;
-// }
-
 
 .bd-single-content {
     & .MuiAvatar-root.avatar-initials {
-        // background-color: red !important;
         color: #fff !important;
 
         & svg {
