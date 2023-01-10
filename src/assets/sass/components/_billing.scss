@@ -806,7 +806,7 @@
 
 .TableHead {
     background: #f7f8fa;
-    display: table-caption !important;
+    display: table !important;
 
     th {
         background: transparent !important;
@@ -819,6 +819,11 @@
         text-transform: uppercase;
         border-bottom: 0px;
         opacity: 1;
+        width: 160px;
+        &:nth-child(1) {
+            width: 85px !important;
+
+        }
 
         a {
             width: 46px;
@@ -858,7 +863,7 @@
 }
 
 .TableBody {
-    display: table-caption !important;
+    display: table !important;
     tr {
         td {
             text-align: left;
@@ -868,9 +873,7 @@
             letter-spacing: -0.64px;
             color: #344857;
             opacity: 1;
-
-            // max-width: 160px;
-            overflow: hidden;
+            overflow: hidden !important;
 
             &:nth-child(4) {
                 height: 84px;
