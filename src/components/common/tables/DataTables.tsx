@@ -128,24 +128,24 @@ const DataTable = ({
   const [completed, setCompleted] = useState(false)
   const [errorinDownload, setErrorinDownload] = useState(false)
 
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection',
-  }
-  //   console.log((startDate).toLocaleDateString().substring(0,10))
-
-  const handleSelect = (date: any) => {
-    const filtered = data.filter((item: any) => {
-      const invoiceDate = new Date(item['Invoice_date'])
-      return (
-        invoiceDate >= date.selection.startDate &&
-        invoiceDate <= date.selection.endDate
-      )
-    })
-    setstartDate(date.selection.startDate)
-    setEndDate(date.selection.endDate)
-  }
+//   const selectionRange = {
+//     startDate: startDate,
+//     endDate: endDate,
+//     key: 'selection',
+//   }
+//   //   console.log((startDate).toLocaleDateString().substring(0,10))
+// 
+//   const handleSelect = (date: any) => {
+//     const filtered = data.filter((item: any) => {
+//       const invoiceDate = new Date(item['Invoice_date'])
+//       return (
+//         invoiceDate >= date.selection.startDate &&
+//         invoiceDate <= date.selection.endDate
+//       )
+//     })
+//     setstartDate(date.selection.startDate)
+//     setEndDate(date.selection.endDate)
+//   }
 
   function useHover(
     styleOnHover: CSSProperties,
