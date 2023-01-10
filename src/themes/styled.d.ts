@@ -111,5 +111,8 @@ declare module 'styled-components' {
         cardHoverBorder: string
         verticalDotsBg: string
         verticalDots: string
+        borderRemovingBg: string
+        borderRemovingColor: string
+        trFirstIcon: string
     }
 }

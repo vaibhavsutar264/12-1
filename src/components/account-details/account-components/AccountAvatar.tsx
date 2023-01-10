@@ -18,6 +18,7 @@ import { updateUserDetails } from '../../../redux/slices/accountSlice'
 import { getuserInfo } from '../../../redux/slices/authSlice'
 import useLocales from '../../../hooks/useLocales'
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import InputLabel from '@mui/material/InputLabel';
 
 const AccountAvatar = () => {
     const { t } = useLocales()
@@ -30,7 +31,7 @@ const AccountAvatar = () => {
     const [firstname, setFirstname] = useState('')
     const [lastName, setLastName] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
-    const [timezone, setTimezone] = useState('utc0:00')
+    const [timezone, setTimezone] = useState('')
     const [communication, setCommunication] = useState('')
     const [editable, setEditable] = useState<boolean>(false)
     const [open, setOpen] = useState(false)
@@ -41,8 +42,8 @@ const AccountAvatar = () => {
             setFirstname(user.firstname)
             setLastName(user.lastName)
             setPhoneNumber(user.attributes.phoneNumber)
-            setTimezone(user.attributes.timezone)
-            setCommunication(user.attributes.preferredCommunicationMode)
+            setTimezone(user?.attributes?.timezone)
+            setCommunication(user?.attributes?.preferredCommunicationMode)
         }
     }, [dispatch])
 
@@ -97,16 +98,6 @@ const AccountAvatar = () => {
                             overlap="circular"
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                         >
-                            {/* <Avatar
-                alt="Travis Howard"
-                className="avatar-initials"
-                sx={{
-                  width: '156px',
-                  height: '156px',
-                }}
-              >
-                {firstname.charAt(0) + lastName.charAt(0) || null}
-              </Avatar> */}
                             <Avatar className="avatar-initials"
                                 sx={{
                                     width: '156px',
@@ -221,7 +212,8 @@ const AccountAvatar = () => {
                                 textTransform: 'capitalize',
                             }}
                         />
-                        <Box
+                        {/* Communications dropdown */}
+                        {/* <Box
                             id="select-entity-form"
                             className={editable ? '' : 'hide-this-field'}
                             sx={{
@@ -261,10 +253,48 @@ const AccountAvatar = () => {
                                     <MenuItem value="email">Email</MenuItem>
                                 </Select>
                             </FormControl>
+                        </Box> */}
+
+                        <Box id="select-entity-form"
+                            className={editable ? '' : 'hide-this-field'}
+                            sx={{
+                                flexBasis: '45%',
+                                minWidth: '110px',
+                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                {
+                                    top: '1px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                                '& [role="button"]': {
+                                    color: '#222',
+                                    textTransform: 'capitalize',
+                                    fontWeight: 400,
+                                },
+                                '& label': {
+                                    top: '-9px',
+                                    // top: LegalEntity.length > 1 ? '1px' : '-11px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                            }}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Communication</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={communication}
+                                    label="Communication"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value='phone'>Phone</MenuItem>
+                                    <MenuItem value='email'>Email</MenuItem>
+                                </Select>
+                            </FormControl>
                         </Box>
 
                         {/* Timezone dropdown */}
-                        <Box
+                        {/* <Box
                             id="select-entity-form"
                             className={editable ? '' : 'hide-this-field'}
                             sx={{
@@ -305,7 +335,50 @@ const AccountAvatar = () => {
                                     <MenuItem value="utc+5:30">UTC +5:30</MenuItem>
                                 </Select>
                             </FormControl>
+                        </Box> */}
+
+                        <Box
+                            id="select-entity-form"
+                            className={editable ? '' : 'hide-this-field'}
+                            sx={{
+                                minWidth: 200,
+                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                {
+                                    top: '1px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                                '& [role="button"]': {
+                                    color: '#222',
+                                    textTransform: 'capitalize',
+                                    fontWeight: 400,
+                                },
+                                '& label': {
+                                    top: '-9px',
+                                    // top: LegalEntity.length > 1 ? '1px' : '-11px',
+                                    height: 'min-content',
+                                    backgroundColor: '#fff !important',
+                                },
+                            }}
+                        >
+
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Timezone</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    label="Timezone"
+                                    value={timezone}
+                                    onChange={handleTimeChange}
+                                >
+                                    <MenuItem value="utc0:00">UTC 0:00</MenuItem>
+                                    <MenuItem value="utc+1:30">UTC +1:30</MenuItem>
+                                    <MenuItem value="utc+5:30">UTC +5:30</MenuItem>
+                                </Select>
+                            </FormControl>
                         </Box>
+
+
                     </Box>
                     <Button
                         color="error"

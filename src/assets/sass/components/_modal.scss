@@ -105,3 +105,38 @@
 .css-ypiqx9-MuiDialogContent-root {
     overflow-y: unset !important;
 }
+
+// last line middle inside popup
+.modal-ticket-error {
+
+    & .lighter-text {
+        text-align: center;
+        padding-bottom: 12vh;
+
+        font-size: 16px;
+        line-height: 1.5;
+        font-family: ubuntu;
+        opacity: 1;
+    }
+
+    [role=dialog][aria-labelledby=responsive-dialog-title] .css-hlj6pa-MuiDialogActions-root {
+        padding-bottom: 0;
+    }
+}
+
+.modal-login-error {
+
+    & .lighter-text {
+        text-align: center;
+        padding-bottom: 12vh;
+
+        font-size: 16px;
+        line-height: 1.5;
+        font-family: ubuntu;
+        opacity: 1;
+    }
+
+    [role=dialog][aria-labelledby=responsive-dialog-title] .css-hlj6pa-MuiDialogActions-root {
+        padding-bottom: 0;
+    }
+}

@@ -121,17 +121,13 @@ const DataTable = ({
   const totalCount = Math.ceil(Total / take)
   const [sortdir, setSortdir]: any = useState(null)
 
-  const [filteredData, setFilteredData] = useState(data)
   const [allData, setAllData] = useState(data)
   const [startDate, setstartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const [loading, setLoading] = useState(false)
   const [completed, setCompleted] = useState(false)
   const [errorinDownload, setErrorinDownload] = useState(false)
-  // useEffect(() => {
-  //   setFilteredData(data)
-  //   setAllData(data)
-  // }, [data])
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -148,9 +144,7 @@ const DataTable = ({
       )
     })
     setstartDate(date.selection.startDate)
-    // console.log(date.selection.startDate)
     setEndDate(date.selection.endDate)
-    // setFilteredData(filtered)
   }
 
   function useHover(
@@ -162,30 +156,7 @@ const DataTable = ({
     const onMouseLeave = () => setStyle(styleOnNotHover)
     return { style, onMouseEnter, onMouseLeave }
   }
-  const obj = data.filter((o: any) => o.Payment_Status == 'completed')
-  // console.log('obj values', obj)
-  // let BorderStyleColor = 'red'
   const hover = useHover({ borderColor: 'green', userSelect: 'none' })
-  // data.map((e: any) => Object.keys(e)[0])
-  // console.log(data.map((e: any) => e.Payment_Status))
-  const paymentStatusValues = data.map((e: any) => e.Payment_Status)
-  // console.log(paymentStatusValues[Object.keys(e)[5]])
-  // paymentStatusValues[0]
-  const trElement = document.getElementById('table-data')
-  const tdElement = trElement?.getElementsByClassName('table-cell-tooltip')
-
-  // if(trElement !== undefined){
-  //     for (let i = 0; i < trElement.length; i++) {
-  //         trElement[i].addEventListener("mouseover", function() {
-  //         const current = document.getElementsByClassName("active");
-  //         current[0].className = current[0].className.replace(" active", "");
-  //         btns[i].className = "cardType__1 active";
-  //       });
-  //     }
-  //     }
-  // for (let index = 0; index < data.length; index++) {
-  //     console.log(data[index].Payment_Status)
-  // }
 
   const changeTake = (take: any) => {
     updateData(page, take)
@@ -244,357 +215,6 @@ const DataTable = ({
     setOpen(true)
   }
 
-  const [invoiceState, setInvoiceState] = useState<boolean>(true)
-  const [customerState, setCustomerState] = useState<boolean>(true)
-  const [entityState, setEntityState] = useState<boolean>(true)
-  const [poState, setPoState] = useState<boolean>(true)
-  const [statusState, setStatusState] = useState<boolean>(true)
-  const [amountState, setAmountState] = useState<boolean>(true)
-  const [invoiceIssueState, setInvoiceIssueState] = useState<boolean>(true)
-  const [dueState, setDueState] = useState<boolean>(true)
-  // const handleInvoice = (e: SyntheticEvent) => {
-  //     const invoiceIdHeadElement = document.getElementsByName('Invoice Number')[0]
-  //     invoiceIdHeadElement.style.display = invoiceState? 'block': 'none'
-  //     setInvoiceState(!invoiceState);
-  // };
-
-  const handleInvoiceClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    if (columns[0]) {
-      columns[0].eleName = null
-    }
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById('checkbox') as HTMLElement
-    const invoiceIdHeadElement = document.getElementsByName('Invoice Number')[0]
-    invoiceIdHeadElement.style.display = invoiceState ? 'block' : 'none'
-    setInvoiceState(!invoiceState)
-    // const invoiceIdHeadElement = document.getElementsByName('Invoice_no')[0]
-    invoiceIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handleInvoiceOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    if (columns[0]) {
-      columns[0].eleName = 'Invoice_no'
-    }
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById('checkbox') as HTMLElement
-    const invoiceIdHeadElement = document.getElementsByName('Invoice Number')[0]
-    invoiceIdHeadElement.style.display = invoiceState ? 'block' : 'none'
-    setInvoiceState(!invoiceState)
-    invoiceIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-  const handleCustomerClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-customer'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-customer'
-    ) as HTMLElement
-    const customerIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.customerLe')}`
-    )[0]
-    if (columns[1]) {
-      columns[1].eleName = null
-    }
-    customerIdHeadElement.style.display = customerState ? 'block' : 'none'
-    setCustomerState(!customerState)
-
-    customerIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handleCustomerOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-customer'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-customer'
-    ) as HTMLElement
-    const customerIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.customerLe')}`
-    )[0]
-    if (columns[1]) {
-      columns[1].eleName = 'Customer_LE'
-    }
-    customerIdHeadElement.style.display = customerState ? 'block' : 'none'
-    setCustomerState(!customerState)
-    customerIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-  const handleEntityClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-entity'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-entity'
-    ) as HTMLElement
-    const entityIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.entity')}`
-    )[0]
-    if (columns[2]) {
-      columns[2].eleName = null
-    }
-    entityIdHeadElement.style.display = entityState ? 'block' : 'none'
-    setEntityState(!entityState)
-
-    entityIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handleEntityOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-entity'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-entity'
-    ) as HTMLElement
-    const entityIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.entity')}`
-    )[0]
-    if (columns[2]) {
-      columns[2].eleName = 'Tata_Entity'
-    }
-    entityIdHeadElement.style.display = entityState ? 'block' : 'none'
-    setEntityState(!entityState)
-    entityIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-
-  const handlePoClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-po'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-po'
-    ) as HTMLElement
-    const poIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.poNo')}`
-    )[0]
-    if (columns[3]) {
-      columns[3].eleName = null
-    }
-    poIdHeadElement.style.display = poState ? 'block' : 'none'
-    setPoState(!poState)
-
-    poIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handlePoOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-po'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-po'
-    ) as HTMLElement
-    const poIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.poNo')}`
-    )[0]
-    if (columns[3]) {
-      columns[3].eleName = 'PO_number'
-    }
-    poIdHeadElement.style.display = poState ? 'block' : 'none'
-    setPoState(!poState)
-
-    poIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-  const handleStatusClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-status'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-status'
-    ) as HTMLElement
-    const statusIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.status')}`
-    )[0]
-    if (columns[4]) {
-      columns[4].eleName = null
-    }
-    statusIdHeadElement.style.display = statusState ? 'block' : 'none'
-    setStatusState(!statusState)
-
-    statusIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handleStatusOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-status'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-status'
-    ) as HTMLElement
-    const statusIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.status')}`
-    )[0]
-    if (columns[4]) {
-      columns[4].eleName = 'Payment_Status'
-    }
-    statusIdHeadElement.style.display = statusState ? 'block' : 'none'
-    setStatusState(!statusState)
-
-    statusIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-  const handleAmountClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-invoice-amount'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-invoice-amount'
-    ) as HTMLElement
-    const amountIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.invoiceAmount')}`
-    )[0]
-    if (columns[5]) {
-      columns[5].eleName = null
-    }
-    amountIdHeadElement.style.display = amountState ? 'block' : 'none'
-    setAmountState(!amountState)
-
-    amountIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handleAmountOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-invoice-amount'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-invoice-amount'
-    ) as HTMLElement
-    const amountIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.invoiceAmount')}`
-    )[0]
-    if (columns[5]) {
-      columns[5].eleName = 'Invoice_amt'
-    }
-    amountIdHeadElement.style.display = amountState ? 'block' : 'none'
-    setAmountState(!amountState)
-
-    amountIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-  const handleInvoiceIssueClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-invoice-issue'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-invoice-issue'
-    ) as HTMLElement
-    const invoiceIssueIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.invoiceIssuedDate')}`
-    )[0]
-    if (columns[6]) {
-      columns[6].eleName = null
-    }
-    invoiceIssueIdHeadElement.style.display = invoiceIssueState
-      ? 'block'
-      : 'none'
-    setInvoiceIssueState(!invoiceIssueState)
-
-    invoiceIssueIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handleInvoiceIssueOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-invoice-issue'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-invoice-issue'
-    ) as HTMLElement
-    const invoiceIssueIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.invoiceIssuedDate')}`
-    )[0]
-    if (columns[6]) {
-      columns[6].eleName = 'Invoice_date'
-    }
-    invoiceIssueIdHeadElement.style.display = invoiceIssueState
-      ? 'block'
-      : 'none'
-    setInvoiceIssueState(!invoiceIssueState)
-    invoiceIssueIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-  const handleDueClose = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-due-date'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-due-date'
-    ) as HTMLElement
-    const dueIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.dueDate')}`
-    )[0]
-    if (columns[7]) {
-      columns[7].eleName = 'null'
-    }
-    dueIdHeadElement.style.display = dueState ? 'block' : 'none'
-    setDueState(!dueState)
-    dueIdHeadElement.style.display = 'none'
-    blankCheckoutElement.style.display = 'block'
-    CheckoutElement.style.display = 'none'
-  }
-
-  const handleDueOpen = (e: SyntheticEvent) => {
-    e.preventDefault()
-    const blankCheckoutElement = document.getElementById(
-      'checkbox-blank-due-date'
-    ) as HTMLElement
-    const CheckoutElement = document.getElementById(
-      'checkbox-due-date'
-    ) as HTMLElement
-    const dueIdHeadElement = document.getElementsByName(
-      `${t<string>('tables.billing.dueDate')}`
-    )[0]
-    if (columns[7]) {
-      columns[7].eleName = 'Due_date'
-    }
-    dueIdHeadElement.style.display = dueState ? 'block' : 'none'
-    setDueState(!dueState)
-
-    dueIdHeadElement.style.display = 'flex'
-    blankCheckoutElement.style.display = 'none'
-    CheckoutElement.style.display = 'block'
-  }
-
   const [isHover, setIsHover] = useState(false)
 
   const handleMouseEnter = () => {
@@ -620,150 +240,10 @@ const DataTable = ({
     // cursor: 'pointer',
   }
 
-  const filtereColumnData: any[] = [
-    {
-      id: 'Invoice Number',
-      content: 'Invoice Number',
-      onClickOpenMenuItem: handleInvoiceOpen,
-      onClickCloseMenuItem: handleInvoiceClose,
-      idForOpen: 'checkbox-blank',
-      idForClose: 'checkbox',
-      state: invoiceState,
-      isActive: false
-    },
-    {
-      id: 'Customer LE',
-      content: 'Customer LE',
-      onClickOpenMenuItem: handleCustomerOpen,
-      onClickCloseMenuItem: handleCustomerClose,
-      idForOpen: 'checkbox-blank-customer',
-      idForClose: 'checkbox-customer',
-      state: customerState,
-      isActive: false
-    },
-    {
-      id: 'Entity',
-      content: 'Entity',
-      onClickOpenMenuItem: handleEntityOpen,
-      onClickCloseMenuItem: handleEntityClose,
-      idForOpen: 'checkbox-blank-entity',
-      idForClose: 'checkbox-entity',
-      state: entityState,
-      isActive: false
-    },
-    {
-      id: 'PO No.',
-      content: 'PO No.',
-      onClickOpenMenuItem: handlePoOpen,
-      onClickCloseMenuItem: handlePoClose,
-      idForOpen: 'checkbox-blank-po',
-      idForClose: 'checkbox-po',
-      state: poState,
-      isActive: false
-    },
-    {
-      id: 'Status',
-      content: 'Status',
-      onClickOpenMenuItem: handleStatusOpen,
-      onClickCloseMenuItem: handleStatusClose,
-      idForOpen: 'checkbox-blank-status',
-      idForClose: 'checkbox-status',
-      state: statusState,
-      isActive: false
-    },
-    {
-      id: 'Invoice Amount',
-      content: 'Invoice Amount',
-      onClickOpenMenuItem: handleAmountOpen,
-      onClickCloseMenuItem: handleAmountClose,
-      idForOpen: 'checkbox-blank-invoice-amount',
-      idForClose: 'checkbox-invoice-amount',
-      state: amountState,
-      isActive: false
-    },
-    {
-      id: 'Invoice Issued Date',
-      content: 'Invoice Issued Date',
-      onClickOpenMenuItem: handleInvoiceIssueOpen,
-      onClickCloseMenuItem: handleInvoiceIssueClose,
-      idForOpen: 'checkbox-blank-invoice-issue',
-      idForClose: 'checkbox-invoice-issue',
-      state: invoiceIssueState,
-      isActive: false
-    },
-    {
-      id: 'Due Date',
-      content: 'Due Date',
-      onClickOpenMenuItem: handleDueOpen,
-      onClickCloseMenuItem: handleDueClose,
-      idForOpen: 'checkbox-blank-due-date',
-      idForClose: 'checkbox-due-date',
-      state: dueState,
-      isActive: false
-    },
-  ]
+ 
+  
+  
   const result1: any[] = []
-  // const [items, setItems] = useState(filtereColumnData)
-
-  // const onDragEnd = (result: any) => {
-  //   if (!result.destination) {
-  //     return
-  //   }
-
-  //   const reorderedItems = reorder(
-  //     items,
-  //     result.source.index,
-  //     result.destination.index
-  //   )
-  //   // filtereColumnData = reorderedItems
-  //   setItems(reorderedItems)
-  // }
-
-  const [menuItemsData, setmenuItemsData] = useState(result1)
-  // const [newFruitItem, setNewFruitItem] = React.useState("")
-  useEffect(() => {
-    setmenuItemsData(filtereColumnData)
-  }, [
-    columns,
-    dueState,
-    invoiceIssueState,
-    amountState,
-    statusState,
-    poState,
-    entityState,
-    customerState,
-    invoiceState,
-  ])
-
-  //save reference for dragItem and dragOverItem
-  const dragItem = React.useRef<any>(null)
-  const dragOverItem = React.useRef<any>(null)
-
-  //const handle drag sorting
-  const handleSort = () => {
-    //duplicate items
-    // eslint-disable-next-line prefer-const
-    let _menuItemsData = [...menuItemsData]
-
-    //remove and save the dragged item content
-    const draggedItemContent = _menuItemsData.splice(dragItem.current, 1)[0]
-
-    //switch the position
-    _menuItemsData.splice(dragOverItem.current, 0, draggedItemContent)
-
-    //reset the position ref
-    dragItem.current = null
-    dragOverItem.current = null
-
-    //update the actual array
-    setmenuItemsData(_menuItemsData)
-    // filtereColumnData = _menuItemsData
-  }
-
-  const tablerowbody = document.getElementById('table-body-element')
-  const tablecellbody = tablerowbody?.getElementsByClassName('MuiTableRow-root')
-  // console.log(tablecellbody)
-
   const [tableData, setTableData] = useState(data)
   const onSearch = (e: any, head: any, index: any) => {
     const filterData = tableData.filter((obj: any) =>
@@ -777,10 +257,6 @@ const DataTable = ({
   }, [data])
 
   const onSortAscending = (e: any, head: any, index: any) => {
-    //   const sortedDataAscending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>a[head['eleName']]-b[head['eleName']]) : [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]));
-    //   console.log(sortedDataAscending)
-    //   const sortedDataAscending = [...data].sort((a : any,b: any)=>a[head['eleName']].localeCompare(b[head['eleName']]) )
-    //   setTableData(sortedDataAscending);
 
     if (index == 0 || index == 3) {
       const sortedDataAscending = [...data].sort(
@@ -795,8 +271,6 @@ const DataTable = ({
     }
   }
   const onSortDescending = (e: any, head: any, index: any) => {
-    //   const sortedDataDescending = (index == 0 || 3)?[...data].sort((a : any,b: any)=>b[head['eleName']]-a[head['eleName']]) : [...data].sort((a : any,b: any)=>b[head['eleName']].localeCompare(a[head['eleName']]));
-    //   console.log(sortedDataDescending)
     if (index == 0 || index == 3) {
       const sortedDataDescending = [...data].sort(
         (a: any, b: any) => b[head['eleName']] - a[head['eleName']]
@@ -818,7 +292,6 @@ const DataTable = ({
   }
 
   const downloadCompleteShowing = async () => {
-    // {loading ? await !loading? <CDRDownloaded /> : null: null}
     if (loading) {
       if (await !loading) {
         return <CDRDownloaded />
@@ -828,22 +301,7 @@ const DataTable = ({
     }
   }
 
-  // const changeActive =(item: any)=>{
-  //   console.log(item)
-  //   if(item.key !== 'date' && item.key !== 'app'){
-  //     let colm = [...menuItemsData];
-  //     colm = colm.map(obj=>{
-  //       if(obj.key === item.key){
-  //         obj['isActive'] = !obj['isActive'];
-  //       }
-  //       return obj;
-  //     });
-  //     setmenuItemsData(colm);
-  //   }
-  //   }
-
     const [columnsDropdown,setColumnsDropdown] = useState(result1);
-    // const dispatch = useDispatch();
 
   
     const changeActive =(item: any)=>{
@@ -859,30 +317,9 @@ const DataTable = ({
       }
       }
   
-    const apply = ()=>{
-      // dispatch({
-      //   type: SET_COLUMNS,
-      //   columns:columns
-      // });
-    }
-  
     useEffect(()=>{
       setColumnsDropdown(columns);
     },[])
-    
-    // const handleChange = (item: SyntheticEvent) => {
-    //   console.log(item)
-    //   if(item.eleName !== 'date' && item.eleName !== 'app'){
-    //     let colm = [...columnsDropdown];
-    //     colm = colm.map(obj=>{
-    //       if(obj.eleName === item.eleName){
-    //         obj['isActive'] = !obj['isActive'];
-    //       }
-    //       return obj;
-    //     });
-    //     setColumnsDropdown(colm);
-    //   }
-    // }
 
     const allowDrop = (ev: any) =>{
       ev.preventDefault();

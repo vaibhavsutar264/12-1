@@ -18,6 +18,8 @@ import Card from '../common/elements/card'
 import { getCardCount } from '../../utils/helpers'
 import { getAcDetails } from '../../redux/slices/accountSlice'
 import moment from 'moment'
+import ModalTicketError from '../modals/ModalTicketError'
+
 
 export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
 
@@ -140,6 +142,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     setEndDate={setEndDate}
                     TableData={dataTables.BILLING(PageData, MasterData)} />
             </div>
+            <ModalTicketError />
         </div>
     )
 }

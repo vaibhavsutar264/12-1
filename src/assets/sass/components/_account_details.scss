@@ -73,3 +73,20 @@
 .hide-this-field {
     display: none !important;
 }
+
+#select-entity-form {
+
+    & label.Mui-focused {
+        top: 14px;
+    }
+
+    .MuiInputBase-root {
+        height: 48px;
+
+        & #demo-simple-select {
+            position: relative;
+            top: 0px;
+            padding-bottom: 6px;
+        }
+    }
+}

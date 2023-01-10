@@ -110,6 +110,9 @@ export const lightTheme = {
     cardHoverBorder: '#fff', // dont bother about it
     verticalDotsBg: '#fff !important',
     verticalDots: '#344857 !important',
+    borderRemovingBg: '#f7f8fa',
+    borderRemovingColor: '#222',
+    trFirstIcon: '#F7F8FA',
 }
 
 export const darkTheme = {
@@ -223,6 +226,9 @@ export const darkTheme = {
     cardHoverBorder: 'transparent !important',
     verticalDotsBg: 'transparent !important',
     verticalDots: '#9D9FA1 !important',
+    borderRemovingBg: '#2B3744',
+    borderRemovingColor: '#eee',
+    trFirstIcon: '#2B3744',
 }
 
 export const GlobalStyles = createGlobalStyle<{ theme: string }>`
@@ -586,5 +592,12 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   }
   html {
     background-color: ${({ theme }) => theme.html};
+  }
+  #border-removing {
+    background-color: ${({ theme }) => theme.borderRemovingBg};
+    color: ${({ theme }) => theme.borderRemovingColor};
+  }
+  .TableBody tr th a {
+    background-color: ${({ theme }) => theme.trFirstIcon};
   }
 `

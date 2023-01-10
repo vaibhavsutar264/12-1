@@ -10,14 +10,10 @@ import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/system';
 import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import PasswordProtected from '../../assets/images/svg/password-protected.svg'
-import TicketRaised from '../../assets/images/svg/ticket-raised.svg'
-import PasswordChanged from '../../assets/images/svg/password-changed.svg'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ForgotPassword from '../forgot-password/ForgotPassword';
 
-
-function ModalPassChanged({ open, setOpen }: any) {
-    //console.log(modalData)
+function ModalTicketError() {
+    const [open, setOpen] = React.useState(true);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -36,20 +32,27 @@ function ModalPassChanged({ open, setOpen }: any) {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
+                className='modal-ticket-error'
             >
                 <IconButton onClick={handleClose}><CloseRoundedIcon /></IconButton>
-                <img src={PasswordChanged} alt="" />
+                <img src={PasswordProtected} alt="" />
                 <DialogTitle id="responsive-dialog-title" textAlign='center'>
-                    {"Password Updated"}
+                    {"Oops"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText textAlign='center'>
-                        <p className='darker-text'>Your password has been changed successfully</p>
+                        Unable to raise a ticket. Please try again
                     </DialogContentText>
                 </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>
+                        retry
+                    </Button>
+                </DialogActions>
+                <p className='lighter-text'>Need more help? <Link style={{ cursor: 'pointer' }} color='error' underline='always'>Contact Us</Link></p>
             </Dialog>
         </div>
     );
 }
 
-export default ModalPassChanged;
+export default ModalTicketError;

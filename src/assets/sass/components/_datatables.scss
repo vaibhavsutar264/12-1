@@ -180,8 +180,13 @@ ul.actionButtons {
     font-family: ubuntu;
     text-decoration: underline;
     text-transform: uppercase;
-    color: #D63548;
+    color: $red;
     font-size: 12px;
     line-height: 21px;
     cursor: pointer;
+}
+
+
+thead th:first-of-type ul[role='menu'] li svg[data-testid="CheckBoxIcon"] path {
+    fill: $red;
 }

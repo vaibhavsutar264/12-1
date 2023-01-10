@@ -242,7 +242,11 @@ tbody tr td {
 }
 
 #border-removing {
-    border: none
+    border: none;
+    border-radius: 100px;
+    padding: 0;
+    width: 36px;
+    height: 36px;
 }
 
 
