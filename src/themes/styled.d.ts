@@ -94,7 +94,7 @@ declare module 'styled-components' {
         selectEntityLabelBg: string
         selectEntityLabel: string
         selectEntityBorder: string
-        selectEntityLabelShrink: string
+        // selectEntityLabelShrink: string
         selectEntityInput: string
         editableInputBorder: string
         avatarInitialsBg: string

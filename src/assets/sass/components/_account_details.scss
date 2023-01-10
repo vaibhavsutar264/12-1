@@ -63,15 +63,15 @@
 // select text styles
 
 #select-entity-form [role="button"] {
-    color: #344857 !important;
     font-family: ubuntu;
     font-weight: 700;
     font-size: 16px;
     letter-spacing: -0.64px;
 }
 
-.hide-this-field {
-    display: none !important;
+
+.bd-single-content form .hide-this-field {
+    display: none;
 }
 
 #select-entity-form {
@@ -115,4 +115,9 @@
             }
         }
     }
+}
+
+// Style labels for input boxes
+.billing-details-input label {
+    font-size: 14px;
 }

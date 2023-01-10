@@ -93,9 +93,8 @@ export const lightTheme = {
     langInvoicesOutTxt: '#344857 !important',
     selectEntityLabelBg: '#fff !important',
     selectEntityLabel: 'rgba(0, 0, 0, 0.6)',
-    selectEntityLabelShrink: '#333',
     selectEntityBorder: 'rgba(0, 0, 0, 0.23)',
-    selectEntityInput: '#333 !important',
+    selectEntityInput: '#344857 !important',
     editableInputBorder: '',
     avatarInitialsBg: '#E1E1E1 !important',
     avatarInitials: '#344857 !important',
@@ -209,7 +208,6 @@ export const darkTheme = {
     langInvoicesOutTxt: '#fff !important',
     selectEntityLabelBg: '#252f3b !important',
     selectEntityLabel: '#fff',
-    selectEntityLabelShrink: '#fff !important',
     selectEntityBorder: '#fff !important',
     selectEntityInput: '#fff !important',
     editableInputBorder: '#787785 !important',
@@ -541,9 +539,6 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   #select-entity-form label {
     background-color: ${({ theme }) => theme.selectEntityLabelBg};
     color: ${({ theme }) => theme.selectEntityLabel};
-  }
-  #select-entity-form .MuiInputLabel-shrink {
-    color: ${({ theme }) => theme.selectEntityLabelShrink};
   }
   #select-entity-form fieldset {
     border-color: ${({ theme }) => theme.selectEntityBorder};

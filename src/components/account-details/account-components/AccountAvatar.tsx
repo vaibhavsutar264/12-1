@@ -124,8 +124,6 @@ const AccountAvatar = () => {
                             marginBottom: '40px',
                             '& label': {
                                 top: editable ? '14px' : 0,
-                                fontSize: '18px',
-                                letterSpacing: '-0.28px',
                             },
                             '& label:not(.MuiFormLabel-filled, .MuiInputLabel-shrink)': {
                                 top: '-3px',
