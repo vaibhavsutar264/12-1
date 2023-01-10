@@ -141,6 +141,13 @@ export const breadCrums = {
         ],
         PageName: 'userManagementhead',
     },
+    ACCOUNT_DETAILS: {
+        path: [
+            { transName: 'dashboard', type: 'link', linkURL: appRoutes.ACCOUNT_DETAILS },
+            { transName: 'accountDetailshead', type: 'text', linkURL: '' },
+        ],
+        PageName: 'accountDetailshead',
+    },
 }
 
 export const dataTables = {
