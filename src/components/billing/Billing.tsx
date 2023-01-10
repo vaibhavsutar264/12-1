@@ -35,7 +35,6 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(loadInvoices({ searchValue: "", fromDate: getDate(dateRange[0]), toDate: getDate(dateRange[1]) }))
-        dispatch(getAcDetails())
     }, [dispatch, dateRange])
     const { t } = useLocales()
     const cards = [
