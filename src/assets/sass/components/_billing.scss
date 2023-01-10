@@ -187,8 +187,6 @@
     letter-spacing: 0px;
     color: #000000;
     text-decoration: none !important;
-    display: flex;
-    align-items: center;
     justify-content: flex-start;
     opacity: 1;
     width: 100%;
@@ -211,8 +209,6 @@
 
 .profile__menu .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiPaper-root.MuiMenu-paper.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
     width: 100%;
-    // max-width: 225px;
-    // arhan
     max-width: 300px;
     right: 0;
     left: auto !important;
@@ -229,7 +225,6 @@
 
 .dashboard__sidebar {
     width: 180px;
-    // height: 100vh;
     background: white;
     grid-area: dashboardSidebar;
     padding: 50px 8px;
@@ -825,7 +820,6 @@
         opacity: 1;
 
         a {
-            display: inline-block;
             width: 46px;
             height: 46px;
             background: #f7f8fa;
@@ -847,7 +841,6 @@
             white-space: nowrap;
 
             span {
-                display: inline-block;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -894,7 +887,6 @@
 
         th {
             a {
-                display: inline-block;
                 width: 46px;
                 height: 46px;
                 background: #f7f8fa;
@@ -930,7 +922,6 @@
             background: #f1f4f9;
             border: 1px solid #3448571a;
             border-radius: 23px;
-            padding: 0px 15px;
             text-align: left;
             font-weight: bold;
             font-size: 14px;
@@ -971,7 +962,6 @@
     .actionButton__item {
         span {
             cursor: pointer;
-            display: inline-block;
             width: 46px;
             height: 46px;
             background: #f7f8fa;
