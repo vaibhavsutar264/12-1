@@ -3,7 +3,6 @@ import { Select, MenuItem } from '@mui/material'
 import useLocales from '../../hooks/useLocales'
 import FormControl from '@mui/material/FormControl'
 import Globe from '../../assets/images/svg/globe.svg'
-// import GlobeDark from '../../assets/images/svg/globe-dark.svg'
 import GlobeDark from '../../assets/images/svg/globe-dark.svg'
 import { getFromLocalStorage, setInLocalStorage } from '../../hooks/useLocalStorage'
 import { localStorageVar } from '../../utils/constants'
@@ -29,7 +28,6 @@ const LanguageSelector: FC = () => {
                 position: 'relative',
             }}
             size="small"
-            // id="lang-background-white"
             id="lang-background-invoices"
         >
             <img
@@ -50,7 +48,7 @@ const LanguageSelector: FC = () => {
                 }}
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={i18n.language == ('en-ZA') ? 'English' : ('en-US')? 'English':('en-GB')? 'English': i18n.language}
+                value={i18n.language == ('en-ZA') ? 'English' : ('en-US') ? 'English' : ('en-GB') ? 'English' : i18n.language}
                 label="Language"
                 onChange={(e) => {
                     i18n.changeLanguage(e.target.value)
