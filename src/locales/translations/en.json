@@ -119,6 +119,7 @@
     "billingType": "Billing Type",
     "billingCycle": "Billing Cycle",
     "paymentMethod": "Payment Period",
+    "paymentPeriod": "Payment Period",
     "vatGstTax": "VAT/GST No./Tax ID",
     "companyPanOrEqNo": "Company Pan Or Equivalent No.",
     "applicableCurrency": "Applicable Currency",

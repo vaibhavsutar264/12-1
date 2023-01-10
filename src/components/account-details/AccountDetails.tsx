@@ -5,6 +5,11 @@ import AccountAvatar from './account-components/AccountAvatar'
 import AccountContact from './account-components/AccountContact'
 import AccountDetail from './account-components/AccountDetail'
 import AccountInvoice from './account-components/AccountInvoice'
+
+import AccountLeftSection from './account-components/AccountLeftSection'
+import AccountRightSection from './account-components/AccountRightSection'
+
+
 import { useDispatch, useSelector } from '../../redux/store'
 import { getAcDetails } from '../../redux/slices/accountSlice'
 import { BreadCrums } from '../common/elements/BreadCrum'
@@ -27,8 +32,8 @@ const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
         dispatch(getAcDetails())
     }, [dispatch])
 
-    const [LegalEntity, setLegalEntity] = React.useState('')
-    const [sendInvoice, setsendInvoice] = React.useState(null)
+    // const [LegalEntity, setLegalEntity] = React.useState('')
+    // const [sendInvoice, setsendInvoice] = React.useState(null)
 
     return (
         <>
@@ -46,6 +51,8 @@ const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
                     container
                     columns={{ sm: 8, md: 12 }}
                 >
+
+                    {/* Upper grid */}
                     <Grid
                         className="bd-single-container"
                         item
@@ -56,15 +63,18 @@ const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
                         md={12}
                     >
                         <Grid item xs={4}>
-                            <AccountAvatar />
+                            {/* <AccountAvatar /> */}
+                            <AccountLeftSection />
                         </Grid>
 
                         <Grid item xs={8}>
-                            <AccountDetail LegalEntity={LegalEntity} setLegalEntity={setLegalEntity} setsendInvoice={setsendInvoice} />
+                            {/* <AccountDetail LegalEntity={LegalEntity} setLegalEntity={setLegalEntity} setsendInvoice={setsendInvoice} /> */}
+                            <AccountRightSection />
                         </Grid>
                     </Grid>
 
-                    <Grid
+                    {/* Bottom grid */}
+                    {/* <Grid
                         className="bd-single-container"
                         item
                         container
@@ -80,7 +90,9 @@ const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
                         <Grid item xs={8}>
                             <AccountInvoice sendInvoice={sendInvoice} />
                         </Grid>
-                    </Grid>
+                    </Grid> */}
+
+
                 </Grid>
             </Box>
         </>
