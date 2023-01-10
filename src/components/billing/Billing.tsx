@@ -17,20 +17,23 @@ import UnpaidInvoice from '../common/icons/unpaidInvoice'
 import Card from '../common/elements/card'
 import { getCardCount } from '../../utils/helpers'
 import { getAcDetails } from '../../redux/slices/accountSlice'
-import moment from 'moment'
 
 export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
 
     const { PageData = [], MasterData = [], total, page, take } = useSelector((state: any) => state.billing || {});
     const { dashBoardWidth } = useSelector((state: any) => state.common);
-    const [startDate, setStartDate] = useState(moment().subtract(1, "months").format('YYYY-MM-DD'));
-    const [endDate, setEndDate] = useState(moment().format('YYYY-MM-DD'));
 
+    const [dateRange, setDateRange] = useState<any>([null, null]);
+    const getDate = (dateRange: any) => {
+        const s = `${new Date(dateRange).toLocaleDateString()}`.split("/");
+        console.log(`${new Date(dateRange).toLocaleDateString()}`);
+        return `${s[2]}-${s[0]}-${s[1]}`
+    }
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(loadInvoices({ searchValue: "", startDate: startDate, endDate: endDate }))
+        dispatch(loadInvoices({ searchValue: "", fromDate: getDate(dateRange[0]), toDate: getDate(dateRange[1]) }))
         dispatch(getAcDetails())
-    }, [dispatch, endDate, startDate])
+    }, [dispatch, dateRange])
     const { t } = useLocales()
     const cards = [
         { titel: t('allInvoice'), value: getCardCount(MasterData, 'Payment_Status', ''), icon: <Invoice />, action: cardFilter("Payment_Status", "") },
@@ -133,11 +136,12 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     pageAction={ChangePageBilling}
                     sortAction={sortData}
                     filterAction={filterData}
+                    dateAction={filterData}
                     Total={total}
                     page={page}
                     take={take}
-                    setStartDate={setStartDate}
-                    setEndDate={setEndDate}
+                    setDateRange={setDateRange}
+                    dateRange={dateRange}
                     TableData={dataTables.BILLING(PageData, MasterData)} />
             </div>
         </div>

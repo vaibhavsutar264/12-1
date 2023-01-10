@@ -19,7 +19,8 @@ const initialState: any = {
     searchValue: "",
     sortElement: null,
     filterValue: [],
-    download: ""
+    download: "",
+    calOpen: false,
 }
 
 export const billingSlice = createSlice({
@@ -65,6 +66,9 @@ export const billingSlice = createSlice({
         setFilterParms: (state, action) => {
             state.filterValue = action.payload.filterValue
         },
+        setCalStatus: (state, action) => {
+            state.calOpen = action.payload.status
+        },
         setFilterData: (state, action) => {
             state.PageData = action.payload.data
             state.page = action.payload.page
@@ -82,6 +86,13 @@ export default billingSlice.reducer
 export const { startLoading, hasError } = billingSlice.actions
 
 // -----------------------------------------------------------------
+
+
+export const updateCal = (status: any) => {
+    return async () => {
+        dispatch(billingSlice.actions.setCalStatus({ status }))
+    }
+}
 export const runFilters = ({ page, take, sort }: any) => {
     return async () => {
         const { invoiceData, searchValue, filterValue = [] } = store.getState().billing || {};
@@ -119,9 +130,14 @@ export const loadInvoices = (parms: any) => {
             const { data } = await billing.loadInvoices(parms)
             const d = data.result_data.Invoices
             if (data) {
-                dispatch(billingSlice.actions.loadInvoices({ data: d }))
+                dispatch(billingSlice.actions.loadInvoices({ data: d }));
                 const pg = getPageParms(d.length)
-                dispatch(ChangePageBilling(pg.curr, pg.take))
+                if (parms.toDate == null) {
+                    dispatch(ChangePageBilling(pg.curr, pg.take));
+                } else {
+                    dispatch(billingSlice.actions.setpageData({ data: [], page: 1, take: 10 }))
+                    dispatch(ChangePageBilling(1, pg.take));
+                }
             } else {
                 dispatch(billingSlice.actions.hasError())
                 dispatch(billingSlice.actions.loadInvoices({ data: [] }))
@@ -135,6 +151,9 @@ export const loadInvoices = (parms: any) => {
         }
     }
 }
+
+
+
 export const viewInvoice = (id: any) => {
     return async () => {
         try {
@@ -194,7 +213,7 @@ export const downloadBillingInvoiceCDR = (data: any, setErrorinDownload: any) =>
             link.setAttribute('download', 'file.pdf'); //or any other extension
             document.body.appendChild(link);
             link.click();
-        }else{
+        } else {
             setErrorinDownload(true)
         }
     }
@@ -216,7 +235,7 @@ export const ChangePageBilling = (page: any, take: any) => {
     }
 }
 
-export const searchData = (searchValue: any) => {   
+export const searchData = (searchValue: any) => {
     const detailsOfBilling = store.getState().billing || {};
     const { take } = detailsOfBilling
     return async () => {
@@ -235,7 +254,7 @@ export const sortData = (Field: any, dr: any) => {
 }
 
 export const filterData = (element: any, value: any, checked: any) => {
-    const { filterValue = [], take } = store.getState().billing  || {}; 
+    const { filterValue = [], take } = store.getState().billing || {};
     let fild = JSON.parse(JSON.stringify(filterValue.filter((e: any) => e.element == element)));
     return async () => {
         let eleFound = false;

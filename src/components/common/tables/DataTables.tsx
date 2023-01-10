@@ -109,6 +109,8 @@ const DataTable = ({
   handleShow,
   handledownloadPdf,
   handledownloadCdrPdf,
+  setDateRange,
+  dateRange,
   handledownloadViewpdf,
 }: any) => {
   const { t } = useLocales()
@@ -119,8 +121,6 @@ const DataTable = ({
 
   const [filteredData, setFilteredData] = useState(data)
   const [allData, setAllData] = useState(data)
-  const [startDate, setstartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
   const [loading, setLoading] = useState(false)
   const [completed, setCompleted] = useState(false)
   const [errorinDownload, setErrorinDownload] = useState(false)
@@ -128,26 +128,20 @@ const DataTable = ({
   //   setFilteredData(data)
   //   setAllData(data)
   // }, [data])
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection',
-  }
   //   console.log((startDate).toLocaleDateString().substring(0,10))
 
-  const handleSelect = (date: any) => {
-    const filtered = data.filter((item: any) => {
-      const invoiceDate = new Date(item['Invoice_date'])
-      return (
-        invoiceDate >= date.selection.startDate &&
-        invoiceDate <= date.selection.endDate
-      )
-    })
-    setstartDate(date.selection.startDate)
-    console.log(date.selection.startDate)
-    setEndDate(date.selection.endDate)
-    // setFilteredData(filtered)
-  }
+  // const handleSelect = (date: any) => {
+  //   const filtered = data.filter((item: any) => {
+  //     const invoiceDate = new Date(item['Invoice_date'])
+  //     return (
+  //       invoiceDate >= date.selection.startDate &&
+  //       invoiceDate <= date.selection.endDate
+  //     )
+  //   })
+  //   setstartDate(date.selection.startDate)
+  //   setEndDate(date.selection.endDate)
+  //   // setFilteredData(filtered)
+  // }
 
   function useHover(
     styleOnHover: CSSProperties,
@@ -838,13 +832,13 @@ const DataTable = ({
       {/* {loading ? !loading? <CDRDownloaded /> : null: null} */}
       {/* <CDRDownloaded /> */}
       <Actions
+        setDateRange={setDateRange}
+        dateRange={dateRange}
         data={allMasterData}
         pagination={{ take, Total }}
         changeTake={(e: any) => {
           changeTake(e)
         }}
-        selectionRange={selectionRange}
-        handleSelect={handleSelect}
       />
       <p data-testid="para-element"></p>
       <TableContainer component={Paper} className="table__Container buildfix4">
@@ -915,7 +909,7 @@ const DataTable = ({
                       className="voidBtn"
                       // onClick={sort.bind(null, head)}
                       key={`clickkey-${head.headTrans}${index}`}
-                      // onClick={() => { window.alert('found it') }}
+                    // onClick={() => { window.alert('found it') }}
                     >
                       {t<string>(`tables.${tableName}.${head.headTrans}`)}
                       {/* <span id="hiding-part">
@@ -936,7 +930,7 @@ const DataTable = ({
                           />
                         ) : null}{' '}
                       </span> */}
-                      {index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5? (
+                      {index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5 ? (
                         <CustomerLeFilter
                           indexNumber={index}
                           sortDataAscending={(e: any) =>
@@ -966,12 +960,12 @@ const DataTable = ({
               ))}
               <StyledTableCell align="right">
                 <Button onClick={clearFilter} className="th_wrapper">
-                     <span  className='clear-filters'>Clear all filters</span>
+                  <span className='clear-filters'>Clear all filters</span>
                 </Button>
-            </StyledTableCell>
+              </StyledTableCell>
             </TableRow>
           </TableHead>
-          {/* Table Body */}    
+          {/* Table Body */}
           <TableBody
             data-testid="table-body-element"
             className="TableBody"
@@ -985,10 +979,10 @@ const DataTable = ({
                       ? item.icon == 'overdue'
                         ? boxStyle
                         : item.icon == 'pending'
-                        ? pendingStyle
-                        : item.icon == 'completed'
-                        ? completedStyle
-                        : noStyle
+                          ? pendingStyle
+                          : item.icon == 'completed'
+                            ? completedStyle
+                            : noStyle
                       : noStyle
                   }
                   onMouseEnter={handleMouseEnter}
