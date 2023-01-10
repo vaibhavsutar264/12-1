@@ -120,6 +120,7 @@
     "billingType": "Abrechnungsart",
     "billingCycle": "Rechnungskreislauf",
     "paymentMethod": "Zahlungsfrist",
+    "paymentPeriod": "Zahlungsfrist",
     "vatGstTax": "Umsatzsteuer-/GST-Nr./Steuer-ID",
     "companyPanOrEqNo": "Firma Pan oder gleichwertige Nr.",
     "applicableCurrency": "Anwendbare Währung",

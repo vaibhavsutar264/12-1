@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Box,
     Stack,
@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from '../../../redux/store'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import useLocales from '../../../hooks/useLocales'
+import AccountInvoice from './AccountInvoice';
 
 
 const AccountDetail = ({
@@ -56,6 +57,7 @@ const AccountDetail = ({
     console.log("accountDetails", leEntity);
 
 
+
     return (
         <>
             {/* 1st right row container starts here */}
@@ -65,15 +67,22 @@ const AccountDetail = ({
                     bgcolor: '#fff',
                     height: 1,
                     borderRadius: '20px',
-                    pt: '40px',
+                    borderBottomLeftRadius: '0',
+                    borderBottomRightRadius: '0',
+                    // pt: '40px',
                     pb: '133px',
-                    px: '50px',
+                    // px: '50px',
                 }}
             >
                 {/* 1st row starts here */}
                 <Box
                     sx={{
                         mb: 6,
+                        px: '50px',
+                        py: '28px',
+                        bgcolor: 'rgba(85, 47, 114, 0.06)',
+                        borderTopLeftRadius: '20px',
+                        borderTopRightRadius: '20px',
                     }}
                 >
                     <Stack
@@ -154,6 +163,7 @@ const AccountDetail = ({
                             flexWrap: 'wrap',
                             justifyContent: 'space-between',
                             rowGap: '48px',
+                            px: '50px',
                         }}
                         noValidate
                         autoComplete="off"
@@ -614,6 +624,7 @@ const AccountDetail = ({
                     </Box>
                 )}
             </Box>
+            {/* <AccountInvoice sendInvoice={sendInvoice} /> */}
         </>
     )
 }

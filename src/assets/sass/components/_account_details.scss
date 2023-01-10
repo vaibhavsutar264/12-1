@@ -90,3 +90,29 @@
         }
     }
 }
+
+
+// Change bd-container layout completely
+.bd-container {
+    & .css-r2z1up-MuiGrid-root>.MuiGrid-item {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        & .MuiBox-root.css-0 {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+
+            &.removeRowGap {
+                gap: 0;
+            }
+
+            & .bd-single-content {
+                height: auto;
+                flex-grow: 1;
+            }
+        }
+    }
+}
