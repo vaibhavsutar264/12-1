@@ -30,6 +30,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { changePasswordSchema, ForgotPasswordSchema } from '../../utils/yupschemas'
 import { base64Encode } from '../../utils/Base64EncodeDecode'
 import { useNavigate } from 'react-router-dom'
+import ModalPassChanged from '../modals/ModalPassChanged'
 
 
 
@@ -77,11 +78,13 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
             }
             dispatch(changePassword(userPassword))
             navigate(appRoutes.ACCOUNT_DETAILS)
-            
+
         } catch (error) {
             console.error(error)
         }
     }
+
+    const [open, setOpen] = useState<boolean>(false);
 
     return (
         <div >
@@ -175,7 +178,11 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                                 fontFamily: 'ubuntu',
                                                 letterSpacing: '-0.72px',
                                             }}
-                                            className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `} >
+                                            className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `}
+                                            onClick={() => {
+                                                setOpen(true);
+                                            }}
+                                        >
                                             {t<string>('done')}
                                         </ColorButton>
                                     </FormControl>
@@ -186,6 +193,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                     </div>
                 </Box>
             </div>
+            <ModalPassChanged open={open} setOpen={setOpen} />
         </div>
     )
 }

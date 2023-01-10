@@ -7,6 +7,10 @@ import AccountDetail from './account-components/AccountDetail'
 import AccountInvoice from './account-components/AccountInvoice'
 import { useDispatch, useSelector } from '../../redux/store'
 import { getAcDetails } from '../../redux/slices/accountSlice'
+import { BreadCrums } from '../common/elements/BreadCrum'
+import { PageSearch } from '../common/elements/PageSearch'
+import { breadCrums, dataTables } from '../../utils/constants'
+
 
 const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
     const dispatch = useDispatch()
@@ -29,9 +33,14 @@ const AccountDetails = ({ toggleTheme }: { toggleTheme: any }) => {
     return (
         <>
             <Box
-                className="bd-container"
-                style={{ width: `${window.innerWidth - +`${dashBoardWidth}`.split('p')[0]}px`, marginLeft: `${dashBoardWidth}` }}
+                className="bd-container dashboard__content"
+                style={{ width: `${window.innerWidth - +`${dashBoardWidth}`.split('p')[0]}px`, marginLeft: `${dashBoardWidth}`, flexDirection: 'column' }}
             >
+
+                <div className="content__header">
+                    <BreadCrums data={breadCrums.ACCOUNT_DETAILS} />
+                </div>
+
                 <Grid
                     className="bd-inner-container"
                     container

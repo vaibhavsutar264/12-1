@@ -14,7 +14,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import LinearProgress from '@mui/material/LinearProgress'
 import CloseIcon from '@mui/icons-material/Close'
 
-export const PrimaryInput = ({ onChange,sxForInput,classNameInput,register,variantForInput, label, formState, fieldName, typeName, onInput,valueForInput,dataTestId, setpassword = false }: any) => {
+export const PrimaryInput = ({ onChange, sxForInput, classNameInput, register, variantForInput, label, formState, fieldName, typeName, onInput, valueForInput, dataTestId, setpassword = false }: any) => {
     const { t } = useLocales();
     const [val, setVal] = useState('');
     const [toolTipOpen, settoolTipOpen] = useState(false)

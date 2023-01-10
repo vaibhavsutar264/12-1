@@ -373,3 +373,18 @@
 
     }
 }
+
+
+// Single card styles
+.single-card {
+    width: 388px;
+    height: 284px;
+    background-color: #999;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    padding: 24px;
+}
