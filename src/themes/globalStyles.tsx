@@ -2,12 +2,12 @@ import { createGlobalStyle } from 'styled-components'
 
 export const lightTheme = {
     html: '#fff !important',
-    body: '#fff !important',
+    body: '#fff',
     text: '#121212 !important',
-    textForLogin: '#11153b !important',
+    textForLogin: '#11153b',
     primary: 'lightGreen !important',
     background: 'white !important',
-    font: 'sans-serif !important',
+    font: 'sans-serif',
     border: '#e8ebf3',
     label: '#abaec5',
     successBorder: '#75818a',
@@ -117,13 +117,13 @@ export const lightTheme = {
 
 export const darkTheme = {
     html: '#111315 !important',
-    body: '#fff !important',
+    body: '#fff',
     text: '#fff !important',
-    textForLogin: 'white !important',
+    textForLogin: 'white',
     primary:
         'linear-gradient(297deg, #F57C52 0%, #D63548 100%) 0% 0% no-repeat padding-box !important',
     background: '#3A4548 !important',
-    font: '"Ubuntu", sans-serif !important',
+    font: '"Ubuntu", sans-serif',
     border: '#04131E',
     label: '#ffffff',
     successBorder: '#195583',

@@ -7,7 +7,8 @@
     font-size: 12px;
     line-height: 21px;
     letter-spacing: 0px;
-    color: $voidBtn !important;
+    color: $voidBtn;
+    color: darkgreen;
     text-transform: uppercase;
 }
 
@@ -43,7 +44,7 @@
 }
 
 .multi-select-cs .span-label {
-    display: inline !important;
+    display: inline;
     font-size: 14px;
     position: relative;
     top: -4px;
@@ -81,7 +82,7 @@
 }
 
 body {
-    padding-right: 0 !important;
-    overflow: unset !important;
-    overflow-x: hidden !important;
+    padding-right: 0;
+    overflow: unset;
+    overflow-x: hidden;
 }
