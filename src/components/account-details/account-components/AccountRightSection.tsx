@@ -10,9 +10,9 @@ export const AccountRightSection = () => {
     const [sendInvoice, setsendInvoice] = React.useState(null)
 
     return (
-        <Box>
+        <Box className='removeRowGap'>
             <AccountDetail LegalEntity={LegalEntity} setLegalEntity={setLegalEntity} setsendInvoice={setsendInvoice} />
-            {/* <AccountInvoice sendInvoice={sendInvoice} /> */}
+            <AccountInvoice sendInvoice={sendInvoice} />
         </Box>
     )
 }

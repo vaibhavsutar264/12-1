@@ -67,6 +67,8 @@ const AccountDetail = ({
                     bgcolor: '#fff',
                     height: 1,
                     borderRadius: '20px',
+                    borderBottomLeftRadius: '0',
+                    borderBottomRightRadius: '0',
                     // pt: '40px',
                     pb: '133px',
                     // px: '50px',
@@ -623,7 +625,6 @@ const AccountDetail = ({
                 )}
             </Box>
             {/* <AccountInvoice sendInvoice={sendInvoice} /> */}
-            <p>hello bello</p>
         </>
     )
 }
