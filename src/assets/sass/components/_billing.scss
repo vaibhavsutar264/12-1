@@ -900,6 +900,9 @@
             color: #344857;
             opacity: 1;
 
+            max-width: 160px;
+            overflow: hidden;
+
             &:nth-child(4) {
                 height: 84px;
                 display: -webkit-box;
@@ -912,8 +915,6 @@
                 justify-content: flex-end;
                 align-items: center;
 
-                max-width: 160px px;
-                overflow: hidden;
             }
         }
 
