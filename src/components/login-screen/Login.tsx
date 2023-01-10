@@ -24,6 +24,8 @@ import { validateEmail } from '../../utils/helpers'
 import { LoginFormSchema } from '../../utils/yupschemas'
 import SetPassword from '../set-password/SetPassword'
 import { FormProvider, RHFTextField } from '../hook-form'
+import ModalLoginError from '../modals/ModalLoginError'
+
 
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -168,9 +170,10 @@ const Login = () => {
                         </FormProvider>
                     </Box>
                 </div>
-            </Box> ) : (
-                <SetPassword/>
-            )}
+            </Box>) : (
+            <SetPassword />
+        )}
+            <ModalLoginError />
         </>
     )
 }
