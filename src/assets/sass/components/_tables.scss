@@ -127,24 +127,10 @@
 // Table Grid row styles
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
     background-color: unset !important;
-    // display: none;
-
-
-    /* width */
 
 }
 
-tbody .css-1q1u3t4-MuiTableRow-root {
-    // border-bottom: 0 !important;
-    // margin-bottom: 2px;
-    // border-radius: 10px;
-    // display: table;
-}
-
-
-// .MuiTableCell-body {
-//     border-bottom: 5px solid rgb(17 19 21) !important;
-// }
+tbody .css-1q1u3t4-MuiTableRow-root {}
 
 th.MuiTableCell-root {
 
@@ -165,11 +151,6 @@ td.MuiTableCell-root:last-child {
 tbody th,
 tbody td {
     border: none !important;
-    // border: 2px solid rgb(26, 115, 232) !important;
-
-    // &:hover {
-    //     border: 2px solid #ff0 !important;
-    // }
 }
 
 
@@ -250,6 +231,4 @@ tbody tr td {
 }
 
 
-.dashboard__content .css-1hecsjb-MuiStack-root {
-    // display: none;
-}
+.dashboard__content .css-1hecsjb-MuiStack-root {}
