@@ -911,6 +911,9 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+
+                max-width: 160px px;
+                overflow: hidden;
             }
         }
 
