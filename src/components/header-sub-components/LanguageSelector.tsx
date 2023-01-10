@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Select, MenuItem } from '@mui/material'
 import useLocales from '../../hooks/useLocales'
 import FormControl from '@mui/material/FormControl'
@@ -20,6 +20,11 @@ const LanguageSelector: FC = () => {
         onChangeLang(newlang)
     }
     const getitem = getFromLocalStorage(localStorageVar.THEME_VAR)
+
+    useEffect(() => {
+        setInLocalStorage('i18nextLng','English')
+        i18n.language = 'English'
+      }, []);
     return (
         <FormControl
             sx={{
@@ -48,7 +53,7 @@ const LanguageSelector: FC = () => {
                 }}
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={i18n.language == ('en-ZA') ? 'English' : ('en-US') ? 'English' : ('en-GB') ? 'English' : i18n.language}
+                value={i18n.language == ('en-ZA') ? 'English' : i18n.language == ('en-US')? 'English':i18n.language == ('en-GB')? 'English': i18n.language}
                 label="Language"
                 onChange={(e) => {
                     i18n.changeLanguage(e.target.value)
