@@ -112,7 +112,8 @@ const AccountAvatar = () => {
                                     width: '156px',
                                     height: '156px',
                                 }}>
-                                <PersonSharpIcon />
+                                {/* <PersonSharpIcon /> */}
+                                {firstname.charAt(0) + lastName.charAt(0) || null}
                             </Avatar>
                         </Badge>
                     </Stack>

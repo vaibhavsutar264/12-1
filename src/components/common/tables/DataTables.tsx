@@ -1,4 +1,4 @@
-import React, { useState, useEffect, SyntheticEvent } from 'react'
+import React, { useState, useEffect, SyntheticEvent, ChangeEvent } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import Table from '@mui/material/Table'
 import {
@@ -61,7 +61,7 @@ import CDRDownloading from './loader-and-snackbar/CDRDownloading'
 import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
 import { CSSProperties } from 'styled-components'
 
-import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu'
+import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu'
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
 
@@ -97,6 +97,10 @@ const getListStyle = (isDraggingOver: any) => ({
   padding: grid,
   width: 250,
 })
+
+const activeStyle={
+  border: '2px solid #3B6FED'
+}
 
 const DataTable = ({
   TableData,
@@ -144,7 +148,7 @@ const DataTable = ({
       )
     })
     setstartDate(date.selection.startDate)
-    console.log(date.selection.startDate)
+    // console.log(date.selection.startDate)
     setEndDate(date.selection.endDate)
     // setFilteredData(filtered)
   }
@@ -192,7 +196,7 @@ const DataTable = ({
   }
 
   const updateData = (page: any, take: any) => {
-    console.log(Total, page, take)
+    // console.log(Total, page, take)
     if (take * page > Total) {
       dispatch(pageAction(Math.ceil(Total / take), take))
       setUlrParms(page, take)
@@ -582,7 +586,6 @@ const DataTable = ({
     )[0]
     if (columns[7]) {
       columns[7].eleName = 'Due_date'
-      console.log('ddd')
     }
     dueIdHeadElement.style.display = dueState ? 'block' : 'none'
     setDueState(!dueState)
@@ -626,6 +629,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank',
       idForClose: 'checkbox',
       state: invoiceState,
+      isActive: false
     },
     {
       id: 'Customer LE',
@@ -635,6 +639,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank-customer',
       idForClose: 'checkbox-customer',
       state: customerState,
+      isActive: false
     },
     {
       id: 'Entity',
@@ -644,6 +649,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank-entity',
       idForClose: 'checkbox-entity',
       state: entityState,
+      isActive: false
     },
     {
       id: 'PO No.',
@@ -653,6 +659,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank-po',
       idForClose: 'checkbox-po',
       state: poState,
+      isActive: false
     },
     {
       id: 'Status',
@@ -662,6 +669,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank-status',
       idForClose: 'checkbox-status',
       state: statusState,
+      isActive: false
     },
     {
       id: 'Invoice Amount',
@@ -671,6 +679,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank-invoice-amount',
       idForClose: 'checkbox-invoice-amount',
       state: amountState,
+      isActive: false
     },
     {
       id: 'Invoice Issued Date',
@@ -680,6 +689,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank-invoice-issue',
       idForClose: 'checkbox-invoice-issue',
       state: invoiceIssueState,
+      isActive: false
     },
     {
       id: 'Due Date',
@@ -689,6 +699,7 @@ const DataTable = ({
       idForOpen: 'checkbox-blank-due-date',
       idForClose: 'checkbox-due-date',
       state: dueState,
+      isActive: false
     },
   ]
   const result1: any[] = []
@@ -755,12 +766,9 @@ const DataTable = ({
 
   const [tableData, setTableData] = useState(data)
   const onSearch = (e: any, head: any, index: any) => {
-    console.log(head)
-    // const filterData = data.filter((obj : any)=>obj[head['Payment_Status']].toString().includes(e.target.value));
     const filterData = tableData.filter((obj: any) =>
       obj[head['eleName']].toString().includes(e.target.value)
     )
-    console.log(filterData)
     setTableData(filterData)
   }
 
@@ -820,6 +828,84 @@ const DataTable = ({
     }
   }
 
+  // const changeActive =(item: any)=>{
+  //   console.log(item)
+  //   if(item.key !== 'date' && item.key !== 'app'){
+  //     let colm = [...menuItemsData];
+  //     colm = colm.map(obj=>{
+  //       if(obj.key === item.key){
+  //         obj['isActive'] = !obj['isActive'];
+  //       }
+  //       return obj;
+  //     });
+  //     setmenuItemsData(colm);
+  //   }
+  //   }
+
+    const [columnsDropdown,setColumnsDropdown] = useState(result1);
+    // const dispatch = useDispatch();
+
+  
+    const changeActive =(item: any)=>{
+      if(item.eleName !== 'date' && item.eleName !== 'app'){
+        let colm = [...columnsDropdown];
+        colm = colm.map(obj=>{
+          if(obj.eleName === item.eleName){
+            obj['isActive'] = !obj['isActive'];
+          }
+          return obj;
+        });
+        setColumnsDropdown(colm);
+      }
+      }
+  
+    const apply = ()=>{
+      // dispatch({
+      //   type: SET_COLUMNS,
+      //   columns:columns
+      // });
+    }
+  
+    useEffect(()=>{
+      setColumnsDropdown(columns);
+    },[])
+    
+    // const handleChange = (item: SyntheticEvent) => {
+    //   console.log(item)
+    //   if(item.eleName !== 'date' && item.eleName !== 'app'){
+    //     let colm = [...columnsDropdown];
+    //     colm = colm.map(obj=>{
+    //       if(obj.eleName === item.eleName){
+    //         obj['isActive'] = !obj['isActive'];
+    //       }
+    //       return obj;
+    //     });
+    //     setColumnsDropdown(colm);
+    //   }
+    // }
+
+    const allowDrop = (ev: any) =>{
+      ev.preventDefault();
+    }
+    
+    const drag =(ev: any,item: any,index: any)=> {
+      ev.dataTransfer.setData("columnData", JSON.stringify({...item,index}));
+    }
+    
+    const drop = (ev: any)=> {
+      console.log(ev)
+      ev.preventDefault();
+      const data = JSON.parse(ev.dataTransfer.getData("columnData"));
+      if(ev.target.id){
+        const draggedPosition = ev.target.id.split('-');
+        // let draggedPosition = ;      
+        const col = [...columnsDropdown].filter((val,ind)=>ind!==data['index']);
+        delete data['index'];
+        col.splice(parseInt(draggedPosition[1]),0,data);
+        setColumnsDropdown(col);
+      }
+    }
+
   return (
     <>
       {/* <CustomerLeFilter /> */}
@@ -846,7 +932,6 @@ const DataTable = ({
         selectionRange={selectionRange}
         handleSelect={handleSelect}
       />
-      <p data-testid="para-element"></p>
       <TableContainer component={Paper} className="table__Container buildfix4">
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
           <TableHead className="TableHead ">
@@ -859,43 +944,37 @@ const DataTable = ({
                     </MenuButton>
                   }
                   transition
+                  onDragOver={allowDrop} onDrop={drop}
                 >
-                  {menuItemsData.map((item: any, index) => {
+                  {columnsDropdown.map((item: any, index) => {
                     return (
                       <>
                         <MenuItem
                           key={index}
                           className="list-item"
-                          draggable
-                          onDragStart={(e: any) => (dragItem.current = index)}
-                          onDragEnter={(e: any) =>
-                            (dragOverItem.current = index)
-                          }
-                          onDragEnd={handleSort}
-                          onDragOver={(e: any) => e.preventDefault()}
+                          draggable={true}
+                          onDragStart={(ev)=>drag(ev,item,index)}
+                          // onClick={(e)=>changeActive(item)}
+                          id={`${item.eleName}-${index}`}
+                          // style={col.isActive ?activeStyle:{}}
                         >
                           <ListItemIcon>
-                            {/* <Logout fontSize="small" /> */}
                             <DragIndicatorIcon fontSize="small" />
-                            <CheckBoxIcon
-                              onClick={item.onClickCloseMenuItem}
-                              id={item.idForClose}
-                              fontSize="small"
-                              style={{ display: item.state ? 'block' : 'none' }}
-                            />
-                            {/* remove above icon and use below icon for when user unchecks the option */}
+                            {item.isActive == true? (<><CheckBoxIcon
+                              onClick={(e)=>changeActive(item)}
+                              fontSize="small"  
+                            /></>):(<>
                             <CheckBoxOutlineBlankIcon
-                              onClick={item.onClickOpenMenuItem}
+                              onClick={(e)=>changeActive(item)}
                               fontSize="small"
-                              id={item.idForOpen}
-                              style={{ display: item.state ? 'none' : 'block' }}
-                            />
+                            /></>)}
                           </ListItemIcon>
-                          <span
-                            style={{ color: item.state ? '#303030' : '#bbb' }}
+                          <Button
+                            onClick={(e)=>changeActive(item)}
+                            style={item.isActive ?activeStyle:{}}
                           >
-                            {item.content}
-                          </span>
+                            {item.eleName}
+                          </Button>
                         </MenuItem>
                       </>
                     )
@@ -903,39 +982,21 @@ const DataTable = ({
                 </Menu>
               </StyledTableCell>
               {/* Table Heads */}
-              {columns.map((head: any, index: any) => (
+              {columnsDropdown.map((head: any, index: any) => (
                 <StyledTableCell
                   key={`${head.headTrans}${index}`}
                   align="right"
                 >
-                  <div className="th_wrapper">
-                    <button
+                 {head.isActive && <div className="th_wrapper">
+                      <button
                       id="hiding"
                       name={t<string>(`tables.${tableName}.${head.headTrans}`)}
                       className="voidBtn"
                       // onClick={sort.bind(null, head)}
                       key={`clickkey-${head.headTrans}${index}`}
                       // onClick={() => { window.alert('found it') }}
-                    >
+                    > 
                       {t<string>(`tables.${tableName}.${head.headTrans}`)}
-                      {/* <span id="hiding-part">
-                        {' '}
-                        {head && head.filter && index == 4 ? (
-                            // <StatusFilter />
-                          <StatusFilter
-                            clearFilter={clearFilterMasterData}
-                            filterAction={filterAction}
-                            filterData={head.filterData}
-                            id={`filter-${head.headTrans}${index}`}
-                            columns={columns}
-                            data={[...tableData]}
-                            onChangeForSearch={(e: any) =>
-                              onSearch(e, head, index)
-                            }
-                            idForSearch={`input-${index}`}
-                          />
-                        ) : null}{' '}
-                      </span> */}
                       {index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5? (
                         <CustomerLeFilter
                           indexNumber={index}
@@ -961,7 +1022,7 @@ const DataTable = ({
                       )}
                       {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                     </button>
-                  </div>
+                  </div>}
                 </StyledTableCell>
               ))}
               <StyledTableCell align="right">
@@ -1017,7 +1078,8 @@ const DataTable = ({
                       </a>
                     </a>
                   </TableCell>
-                  {columns.map((clm: any, index: any) => (
+                  {columnsDropdown.map((clm: any, index: any) => (
+                    clm.isActive &&
                     <>
                       <Tooltip
                         title={
