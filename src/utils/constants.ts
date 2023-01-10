@@ -222,7 +222,7 @@ export const dataTables = {
                 filter: false,
                 isActive: true
             },
-            { eleName: 'Due_date', headTrans: 'dueDate', sort: true, filter: false,isActive: true },
+            { eleName: 'Due_date', headTrans: 'dueDate', sort: true, filter: false, isActive: true },
         ],
         tableName: 'billing',
     }),
