@@ -1,9 +1,9 @@
-.MuiSnackbarContent-root {
-    background-color: #fff !important;
-    color: #11153B !important;
-    border-radius: 10px !important;
+.dashboard__content .MuiSnackbarContent-root {
+    background-color: #fff;
+    color: #11153B;
+    border-radius: 10px;
     border: 1px solid #38AA7C;
-    padding: 0 !important;
+    padding: 0;
 
     & .MuiSnackbarContent-message {
         max-width: 550px;
