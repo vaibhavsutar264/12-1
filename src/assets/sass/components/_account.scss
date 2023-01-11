@@ -1087,15 +1087,13 @@ p.text-error-success {
     border-radius: 10px !important;
 }
 
-.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
-    background-color: $white !important;
-    color: $grey2 !important;
+.MuiMenu-list[aria-labelledby="demo-simple-select-label"] {
+    background-color: $white;
+    color: $grey2;
     border-bottom: none;
 }
 
 .css-6hp17o-MuiList-root-MuiMenu-list {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
 
     >li {
         justify-content: center;
@@ -1132,7 +1130,7 @@ MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiPaper-r
 }
 
 .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
-    background-color: transparent !important;
+    background-color: transparent;
 }
 
 .MuiInputLabel-shrink {
@@ -1230,4 +1228,23 @@ label {
 
 .CnfPass.success {
     color: green;
+}
+
+
+// Make disabled button just a little prominent
+form .MuiButton-outlined.Mui-disabled {
+    color: rgb(0 0 0 / 48%);
+    border: 1px solid rgb(0 0 0 / 39%);
+}
+
+// Set logout text style inside right dropdown
+#basic-menu ul li.logout-li:last-child {
+    opacity: 1;
+    text-decoration: none;
+
+    // align items center not working for some reason, use position to align both spans vertically
+    & .icon {
+        position: relative;
+        top: 2px;
+    }
 }

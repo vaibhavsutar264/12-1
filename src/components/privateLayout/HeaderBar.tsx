@@ -237,7 +237,7 @@ export const HeaderBar = ({
                                         <span className="text">{t<string>('changePassword')}</span>
                                     </a>
                                 </MenuItem>
-                                <MenuItem onClick={handelLogout} style={{ paddingTop: '12px' }}>
+                                <MenuItem className="logout-li" onClick={handelLogout} style={{ paddingTop: '12px' }}>
                                     <span className="icon">
                                         <LogoutOutlinedIcon />
                                     </span>

@@ -98,10 +98,10 @@ export const lightTheme = {
     editableInputBorder: '',
     avatarInitialsBg: '#E1E1E1 !important',
     avatarInitials: '#344857 !important',
-    datatableIconBg: '#F7F8FA !important',
+    datatableIconBg: '#F7F8FA',
     datatableIconColor: '',
-    iconCtaNBg: '#fff !important',
-    datatableIconHoverBg: '#d63548 !important',
+    iconCtaNBg: '#fff',
+    datatableIconHoverBg: '#d63548',
     iconCtaTxt: '#d63548 a!important',
     datatableIconHoverTxt: '#fff !important',
     forgotPasswordLnkColor: '#092133 !important',
@@ -213,10 +213,10 @@ export const darkTheme = {
     editableInputBorder: '#787785 !important',
     avatarInitialsBg: '#343A47 !important',
     avatarInitials: '#FFFFFF !important',
-    datatableIconBg: '#2B3744 !important',
-    datatableIconColor: '#fff !important',
-    iconCtaNBg: '#d63548 !important',
-    datatableIconHoverBg: '#d63548 !importnt',
+    datatableIconBg: '#2B3744',
+    datatableIconColor: '#fff',
+    iconCtaNBg: '#d63548',
+    datatableIconHoverBg: '#d63548',
     iconCtaTxt: '#fff !important',
     datatableIconHoverTxt: '#fff !importnt',
     forgotPasswordLnkColor: '#9D9FA1 !important',
@@ -578,9 +578,6 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   .card-wrapper-1 .cardType__1:nth-child(3):hover, .card-wrapper-1 .cardType__1:nth-child(3).active,
   .card-wrapper-1 .cardType__1:nth-child(4):hover, .card-wrapper-1 .cardType__1:nth-child(4).active {
     border: 1px solid ${({ theme }) => theme.cardHoverBorder};
-  }
-  table tr th button#basic-button {
-    background-color: ${({ theme }) => theme.verticalDotsBg};
   }
   table tr th button#basic-button svg {
     color: ${({ theme }) => theme.verticalDots};
