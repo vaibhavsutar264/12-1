@@ -8,6 +8,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useDispatch } from "../../../redux/store";
 import { updateCal } from "../../../redux/slices/billingSlice";
 import { useSelector } from "react-redux";
+import CloseIcon from '@mui/icons-material/Close';
 export const DateSelect = ({ dateRange, setDateRange }: any) => {
   const getDate = (dateRange: any) => {
     const s = `${new Date(dateRange[0]).toDateString()}`.split(" ");
@@ -34,11 +35,15 @@ export const DateSelect = ({ dateRange, setDateRange }: any) => {
         value={dateRange}
         onChange={(date: any) => dateChangeFn(date)}
         renderInput={(startProps: any, endProps: any) => (
-          <div>
+          <div style={{position:'relative'}}>
             <button onClick={() => dispatch(updateCal(!calOpen))} className="showDate">
               {(dateRange[0] == null && dateRange[1] == null) ? 'Select date' : getDate(dateRange)}
+              {/* {(dateRange[0] != null && dateRange[1] != null) && <span className="closeDate"><CloseIcon onClick={()=>{setDateRange([null,null])}} /></span>} */}
+
               <span className="cal"><CalendarMonthIcon /></span>
             </button>
+            {(dateRange[0] != null && dateRange[1] != null) && <span className="closeDate"><CloseIcon onClick={()=>{setDateRange([null,null])}} /></span>}
+
           </div>
         )
         }

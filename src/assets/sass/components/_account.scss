@@ -1087,15 +1087,13 @@ p.text-error-success {
     border-radius: 10px !important;
 }
 
-.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
-    background-color: $white !important;
-    color: $grey2 !important;
+.MuiMenu-list[aria-labelledby="demo-simple-select-label"] {
+    background-color: $white;
+    color: $grey2;
     border-bottom: none;
 }
 
 .css-6hp17o-MuiList-root-MuiMenu-list {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
 
     >li {
         justify-content: center;

@@ -1,11 +1,11 @@
 .box-help-text {
-    font-family: "poppins", sans-serif;
-    text-align: center;
-    display: block;
-    padding: 15px;
-    margin: auto;
-    color: #9CA6AD;
-    width: 80%;
+  font-family: "poppins", sans-serif;
+  text-align: center;
+  display: block;
+  padding: 15px;
+  margin: auto;
+  color: #9ca6ad;
+  width: 80%;
 }
 
 .no-pointers {
@@ -13,10 +13,41 @@
 }
 
 .checkIcon {
-    position: absolute;
-    z-index: 9;
-    right: 6%;
-    top: 40%;
+  position: absolute;
+  z-index: 9;
+  right: 6%;
+  top: 40%;
+}
+
+.checkIcon svg path {
+  fill: green !important;
+}
+
+.buidfix1 {
+  width: 112px !important;
+  padding-left: 20px !important;
+  background: transparent !important;
+  color: white !important;
+  height: 35px;
+  text-transform: uppercase;
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+.buildfix2 {
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+  flex-basis: 480px !important;
+  background: transparent linear-gradient(297deg, #f57c52 0%, #d63548 100%) 0% 0% no-repeat padding-box !important;
+  transition: all 300ms 0ms ease-in !important;
+  border-radius: 35px !important;
+  color: #fff !important;
+}
+
+.buildfix3 {
+  padding: 0 !important;
+  padding-bottom: 12vh !important;
+  justify-content: center !important;
 }
 
 .removeBorder .MuiInputBase-root:before {
@@ -33,18 +64,44 @@
 }
 
 .showDate {
-    border: solid 1px #3448571A;
-    border-radius: 20px;
-    padding: 10px;
-    background: #F1F4F9;
-    font-family: ubuntu;
-    color: #344857;
-    font-weight: 500;
-    cursor: pointer;
+  border: solid 1px #3448571a;
+  border-radius: 20px;
+  padding: 10px;
+  background: #f1f4f9;
+  font-family: ubuntu;
+  color: #344857;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .cal {
-    padding-left: 32px;
-    position: relative;
-    top: 7px;
+  padding-left: 32px;
+  position: relative;
+  top: 7px;
+}
+
+.FilterItems {
+  max-height: 128px;
+  overflow: scroll;
+}
+
+.closeDate{
+  svg {
+    font-size: 19px;
+    font-weight: 900;
+  }
+  position: absolute;
+  top: 13px;
+  cursor: pointer;
+  right: 55px;
+}
+.ModalErrorIcon {
+  svg {
+    fill: #d63548;
+    height: 203px;
+    width: 90px;
+  }
+  margin-left: auto;
+  margin-right: auto;
+  max-width: unset;
 }

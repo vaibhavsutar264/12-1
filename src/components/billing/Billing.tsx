@@ -8,7 +8,7 @@ import {
     useDispatch as useAppDispatch,
     useSelector
 } from '../../redux/store'
-import { cardFilter, ChangePageBilling, viewBillingInvoice, downloadBillingInvoice, downloadBillingInvoiceCDR, filterData, loadInvoices, searchData, sortData } from '../../redux/slices/billingSlice'
+import { cardFilter, ChangePageBilling, viewBillingInvoice, downloadBillingInvoice, downloadBillingInvoiceCDR, filterData, loadInvoices, searchData, sortData, ClmSearch, removeCLmFilter, clearAllfilter } from '../../redux/slices/billingSlice'
 import useLocales from '../../hooks/useLocales'
 import Invoice from '../common/icons/invoice'
 import Overdue from '../common/icons/overdue'
@@ -23,7 +23,7 @@ import ModalTicketError from '../modals/ModalTicketError'
 
 export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
 
-    const { PageData = [], MasterData = [], total, page, take } = useSelector((state: any) => state.billing || {});
+    const { PageData = [], MasterData = [], total, page, take ,filterValue} = useSelector((state: any) => state.billing || {});
     const { dashBoardWidth } = useSelector((state: any) => state.common);
 
     const [dateRange, setDateRange] = useState<any>([null, null]);
@@ -138,12 +138,15 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     pageAction={ChangePageBilling}
                     sortAction={sortData}
                     filterAction={filterData}
-                    dateAction={filterData}
+                    clearFilterClm={removeCLmFilter}
+                    filterValues={filterValue}
+                    ClmSearch={ClmSearch}
                     Total={total}
                     page={page}
                     take={take}
                     setDateRange={setDateRange}
                     dateRange={dateRange}
+                    clearAllfilter={clearAllfilter}
                     TableData={dataTables.BILLING(PageData, MasterData)} />
             </div>
             {/* <ModalTicketError /> */}

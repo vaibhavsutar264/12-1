@@ -5,8 +5,8 @@ import UnpaidInvoice from "../components/common/icons/unpaidInvoice"
 
 export const apiRoutes = {
     // BASE_URL: 'http://115.112.43.74:8585',
-    // BASE_URL: '',
-    BASE_URL: 'http://localhost:8585',
+    BASE_URL: '',
+    // BASE_URL: 'http://localhost:8585',
     // BASE_URL: 'http://api.sspdev.digodev.com',
 
     // User
@@ -174,6 +174,7 @@ export const dataTables = {
                 eleName: apiVrbls.BILLING.CUSTOMER_LE,
                 headTrans: 'customerLe',
                 sort: true,
+                search: true,
                 filter: false,
                 filterData: {
                     element: apiVrbls.BILLING.CUSTOMER_LE,
@@ -185,6 +186,7 @@ export const dataTables = {
                 eleName: apiVrbls.BILLING.TATA_ENTITY,
                 headTrans: 'entity',
                 sort: true,
+                search: true,
                 filter: false,
                 isActive: true
             },
@@ -192,7 +194,7 @@ export const dataTables = {
                 eleName: apiVrbls.BILLING.PO_NUMBER,
                 headTrans: 'poNo',
                 sort: true,
-                filter: false,
+                filter: true,
                 filterData: {
                     element: apiVrbls.BILLING.PO_NUMBER,
                     values: masterData.map((e: any) => e[apiVrbls.BILLING.PO_NUMBER]).filter((it, i, ar) => ar.indexOf(it) === i)
@@ -224,11 +226,11 @@ export const dataTables = {
             {
                 eleName: apiVrbls.BILLING.INVOICE_DATE,
                 headTrans: 'invoiceIssuedDate',
-                sort: true,
+                sort: false,
                 filter: false,
                 isActive: true
             },
-            { eleName: 'Due_date', headTrans: 'dueDate', sort: true, filter: false, isActive: true },
+            { eleName: 'Due_date', headTrans: 'dueDate', sort: false, filter: false, isActive: true },
         ],
         tableName: 'billing',
     }),
