@@ -49,13 +49,14 @@ const Login = () => {
     const [showError, setShowError] = useState(false)
     const [val, setVal] = useState('')
     useEffect(() => {
+        
         if (!isAuthenticated) {
             dispatch(resetLoginParms())
         }
         if (getFromLocalStorage(localStorageVar.TOKEN_VAR) && getFromLocalStorage(localStorageVar.TOKEN_VAR) !== null) {
             if (user) {
                 if (user.attributes[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
-                    // navigate(appRoutes.SET_PASSWORD)
+                    navigate(appRoutes.SET_PASSWORD)
                 } else {
                     navigate(appRoutes.DASHBOARD)
                 }
@@ -68,18 +69,16 @@ const Login = () => {
         resolver: yupResolver(LoginFormSchema),
     });
     const DoLogin = (d: any) => {
-        console.log(d)
         const userDetails: any = {
             email: d.user,
             password: d.password
         }
-
         try {
-            dispatch(login(userDetails, d.user,setShowError))
+            dispatch(login(userDetails, setShowError))
         } catch (error) {
             console.log(error);
         }
-        
+
     }
 
     // if (resetmessage === "SUCCESS") {
@@ -87,7 +86,7 @@ const Login = () => {
     // }
 
     return (
-        <>{(user == null) ? (
+        <>
             <Box
                 sx={{ flexGrow: 1 }}
                 id="login-form"
@@ -177,10 +176,8 @@ const Login = () => {
                         </FormProvider>
                     </Box>
                 </div>
-            </Box>) : (
-            <SetPassword />
-        )}
-            {showError ? <ModalLoginError /> : ""}
+            </Box>
+            {showError ? <ModalLoginError showError={showError} setShowError={setShowError} /> : null}
         </>
     )
 }

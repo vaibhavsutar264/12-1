@@ -40,6 +40,7 @@ const httpInstance = (transformer: any) => {
 
       // checking api url should exclude interceptor or not
       if (!excludeULS.map((u) => `${error.config.baseURL}${u}`).includes(error.config.url)) {
+        console.log("came to interceptor");
 
         // checking for unauthorized error 401
         if (error.response.status === 401) {
@@ -76,12 +77,12 @@ const httpInstance = (transformer: any) => {
         } else {
 
           // if error is not 401 then return same error it will handle in transformer and slice level
-          return error;
+          return Promise.reject(error);
         }
       } else {
 
         // if req URL is excludable then returning the error
-        return error;
+        return Promise.reject(error);
       }
     });
 
@@ -137,7 +138,7 @@ const userLoginData = {
 const billing = {
   loadInvoices: (data: any) =>
     requests.get(
-      `${routes.BASE_URL}${routes.GET_INVOICES}?q=${data.searchValue}${data.fromDate ? `&fromDate=${data.fromDate}`: ''}${data.toDate ? `&toDate=${data.toDate}`: ''}`,
+      `${routes.BASE_URL}${routes.GET_INVOICES}?q=${data.searchValue}${data.fromDate ? `&fromDate=${data.fromDate}` : ''}${data.toDate ? `&toDate=${data.toDate}` : ''}`,
       billingTransformer
     ),
   viewInvoice: (data: any) =>
