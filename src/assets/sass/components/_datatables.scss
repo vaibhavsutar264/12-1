@@ -6,13 +6,13 @@ ul.actionButtons {
             & span {
 
                 transition: all 200ms 0ms ease-in;
-                background-color: $red !important;
+                background-color: $red;
 
                 & svg {
 
                     & path {
                         transition: all 200ms 0ms ease-in;
-                        fill: $white !important;
+                        fill: $white;
 
                     }
                 }
@@ -24,12 +24,12 @@ ul.actionButtons {
 
     & button.download-cdr {
         &:hover {
-            background-color: #d63548 !important;
+            background-color: #d63548;
 
             & svg {
 
                 & path {
-                    fill: $white !important;
+                    fill: $white;
                 }
             }
         }
@@ -37,34 +37,34 @@ ul.actionButtons {
 }
 
 .overdue svg path {
-    fill: rgb(54, 63, 94) !important;
-    stroke: rgb(54, 63, 94) !important;
+    fill: rgb(54, 63, 94);
+    stroke: rgb(54, 63, 94);
 }
 
 .overdue svg circle {
-    stroke: rgb(54, 63, 94) !important;
-    fill: rgb(54, 63, 94) !important;
+    stroke: rgb(54, 63, 94);
+    fill: rgb(54, 63, 94);
 }
 
 
 .pending svg path {
-    fill: rgb(229, 68, 87) !important;
-    stroke: rgb(229, 68, 87) !important;
+    fill: rgb(229, 68, 87);
+    stroke: rgb(229, 68, 87);
 }
 
 .pending svg circle {
-    stroke: rgb(229, 68, 87) !important;
-    fill: rgb(229, 68, 87) !important;
+    stroke: rgb(229, 68, 87);
+    fill: rgb(229, 68, 87);
 }
 
 .completed svg path {
-    fill: rgb(61, 184, 135) !important;
-    stroke: rgb(61, 184, 135) !important;
+    fill: rgb(61, 184, 135);
+    stroke: rgb(61, 184, 135);
 }
 
 .completed svg circle {
-    stroke: rgb(61, 184, 135) !important;
-    fill: rgb(61, 184, 135) !important;
+    stroke: rgb(61, 184, 135);
+    fill: rgb(61, 184, 135);
 }
 
 
@@ -80,21 +80,21 @@ ul.actionButtons {
         flex-direction: column;
         gap: 20px;
         background-color: $white;
-        padding-top: 24px !important;
-        padding-bottom: 24px !important;
+        padding-top: 24px;
+        padding-bottom: 24px;
         border-radius: 10px;
         box-shadow: 0px 5px 50px #00000026;
 
         & li {
             font-size: 14px;
-            color: #717171 !important;
+            color: #717171;
 
             & svg {
                 height: 20px;
             }
 
             &:last-child {
-                color: #344857 !important;
+                color: #344857;
                 opacity: 0.4;
                 font-weight: bold;
                 text-decoration: underline;
@@ -114,7 +114,6 @@ ul.actionButtons {
 
         & li {
 
-            & svg {}
 
             &:last-child {
                 display: flex;
@@ -130,14 +129,12 @@ ul.actionButtons {
 
         & li {
 
-            & svg {}
 
             &:nth-child(2) {
                 display: flex;
                 gap: 16px;
             }
 
-            &:last-child {}
         }
     }
 }
@@ -157,10 +154,6 @@ ul.actionButtons {
 }
 
 
-// unfold more icon styles 
-#hiding-part {
-}
-
 .customer-le-menu {
 
     position: absolute;
@@ -169,7 +162,7 @@ ul.actionButtons {
     z-index: 100;
 
     button#basic-button {
-        background-color: transparent !important;
+        background-color: transparent;
         padding: 0;
     }
 }

@@ -26,6 +26,7 @@
     background-color: #fff;
     padding: 20px;
     -webkit-box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -123,7 +124,6 @@
     }
 }
 
-tbody .css-1q1u3t4-MuiTableRow-root {}
 
 th.MuiTableCell-root {
 
@@ -224,4 +224,3 @@ tbody tr td {
 }
 
 
-.dashboard__content .css-1hecsjb-MuiStack-root {}
