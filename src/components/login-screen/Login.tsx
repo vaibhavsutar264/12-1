@@ -15,7 +15,7 @@ import {
 } from '@mui/material'
 import { purple } from '@mui/material/colors'
 import useLocales from '../../hooks/useLocales'
-import { getFromLocalStorage } from '../../hooks/useLocalStorage'
+import { getFromLocalStorage, setInLocalStorage } from '../../hooks/useLocalStorage'
 import { apiVrbls, appRoutes, localStorageVar } from '../../utils/constants'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
@@ -25,6 +25,7 @@ import { LoginFormSchema } from '../../utils/yupschemas'
 import SetPassword from '../set-password/SetPassword'
 import { FormProvider, RHFTextField } from '../hook-form'
 import ModalLoginError from '../modals/ModalLoginError'
+import { useTranslation } from 'react-i18next'
 
 
 
@@ -42,12 +43,17 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }))
 
 const Login = () => {
+    const { i18n } = useTranslation()
     const { t } = useLocales()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const { user, isError, isAuthenticated, resetmessage } = useAppSelector((state: any) => state.auth || {})
     const [showError, setShowError] = useState(false)
     const [val, setVal] = useState('')
+    useEffect(() => {
+        setInLocalStorage('i18nextLng','English')
+        i18n.language = 'English'
+      }, []);
     useEffect(() => {
         if (!isAuthenticated) {
             dispatch(resetLoginParms())
