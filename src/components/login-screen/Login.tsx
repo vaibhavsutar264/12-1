@@ -50,18 +50,15 @@ const Login = () => {
     const { user, isError, isAuthenticated, resetmessage } = useAppSelector((state: any) => state.auth || {})
     const [showError, setShowError] = useState(false)
     const [val, setVal] = useState('')
-    useEffect(() => {
-        setInLocalStorage('i18nextLng','English')
-        i18n.language = 'English'
-      }, []);
+
     useEffect(() => {
         if (!isAuthenticated) {
             dispatch(resetLoginParms())
         }
         if (getFromLocalStorage(localStorageVar.TOKEN_VAR) && getFromLocalStorage(localStorageVar.TOKEN_VAR) !== null) {
             if (user) {
-                if (user.attributes[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
-                    // navigate(appRoutes.SET_PASSWORD)
+                if (user[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
+                    navigate(appRoutes.SET_PASSWORD)
                 } else {
                     navigate(appRoutes.DASHBOARD)
                 }
@@ -74,26 +71,21 @@ const Login = () => {
         resolver: yupResolver(LoginFormSchema),
     });
     const DoLogin = (d: any) => {
-        console.log(d)
         const userDetails: any = {
             email: d.user,
             password: d.password
         }
-
         try {
-            dispatch(login(userDetails, d.user,setShowError))
+            dispatch(login(userDetails, setShowError))
         } catch (error) {
-            console.log(error);
+            console.log(error)
+            error ? setShowError(true) : ""
         }
-        
+
     }
 
-    // if (resetmessage === "SUCCESS") {
-    //     navigate(appRoutes.WELCOME)
-    // }
-
     return (
-        <>{(user == null) ? (
+        <>
             <Box
                 sx={{ flexGrow: 1 }}
                 id="login-form"
@@ -183,10 +175,8 @@ const Login = () => {
                         </FormProvider>
                     </Box>
                 </div>
-            </Box>) : (
-            <SetPassword />
-        )}
-            {showError ? <ModalLoginError /> : ""}
+            </Box>
+            {showError ? <ModalLoginError showError={showError} setShowError={setShowError} /> : null}
         </>
     )
 }

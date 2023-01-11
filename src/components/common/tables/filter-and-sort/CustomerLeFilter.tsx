@@ -35,13 +35,6 @@ export default function CustomerLeFilter({ id, filterData, filterAction, columns
                 startIcon={<UnfoldMoreIcon />}
             >
             </Button>
-            {/* <IconButton id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick} aria-label="unfold more" disabled color="primary">
-                <UnfoldMoreIcon />
-            </IconButton> */}
             <Menu
                 id="basic-menu-customerle"
                 anchorEl={anchorEl}
@@ -62,7 +55,10 @@ export default function CustomerLeFilter({ id, filterData, filterAction, columns
                     })}
                 </MenuItem></>):""}
                 <MenuItem><input id={idForSearch} onChange={onChangeForSearch} placeholder={'Search'} className='inside_search' /></MenuItem>
-                {indexNumber !== 4 ? (<><MenuItem onClick={sortDataAscending} ><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem><MenuItem onClick={sortDataDescending} ><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem></>): filterData?.values && filterData.values.map((w: any, i: any) => {
+                {indexNumber !== 4 ? (<>
+                <MenuItem onClick={sortDataAscending} ><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem>
+                <MenuItem onClick={sortDataDescending} ><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem>
+                </>): filterData?.values && filterData.values.map((w: any, i: any) => {
                         return <MenuItem className='clkIgnr' key={`eleCheck-${w}-${i}`}>
                                 <input id='status-check-box' onChange={handelFilter.bind(null, w)} className='clkIgnr check-Box status-check-box' type="checkbox" />
                                 <span className='clkIgnr span-label'>{w}</span>

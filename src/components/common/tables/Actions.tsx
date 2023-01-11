@@ -30,6 +30,7 @@ export const Actions = ({
         changeTake(+e.target.value)
     }
     const [loading, setLoading] = useState(false)
+    const [completed, setCompleted] = useState(false)
     const [dataStored, setDataStored] = useState(data)
 
     // console.log(data)
@@ -68,14 +69,15 @@ export const Actions = ({
             setTimeout(() => {
                 setDataStored(data)
                 setLoading(false)
+                setCompleted(true)
             }, 1000);
         }
         return dataStored
     }
     const ExportToCsv = {
         filename: 'InvoicesData.csv',
-        headers: headers,
-        data: dataStored
+        // headers: headers,
+        data: data
     }
 
     // const handleDownload = (title: any) => {
@@ -111,7 +113,7 @@ export const Actions = ({
                     </span>
                     {dataStored && (
                         <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
-                            {loading ? 'EXPORTING' : t<string>('exportToCsv')}
+                            {loading ? 'EXPORTING' :completed? 'EXPORT COMPLETE': t<string>('exportToCsv')}
                             {/* {loading ? 'EXPORTING' : t<string>('exportToCsv')} */}
                         </CSVLink>)}
                 </span>

@@ -11,31 +11,25 @@ import { styled } from '@mui/system';
 import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import PasswordProtected from '../../assets/images/svg/password-protected.svg'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
-function ModalLoginError() {
-    const [open, setOpen] = React.useState(true);
+function ModalLoginError({ setShowError, showError }: any) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
         <div>
             <Dialog
                 fullScreen={fullScreen}
-                open={open}
-                onClose={handleClose}
+                open={showError}
+                onClose={() => { setShowError(false) }}
                 aria-labelledby="responsive-dialog-title"
                 className='modal-login-error'
             >
-                <IconButton onClick={handleClose}><CloseRoundedIcon /></IconButton>
-                <img src={PasswordProtected} alt="" />
+                <IconButton onClick={() => { setShowError(false) }}><CloseRoundedIcon /></IconButton>
+                {/* <img src={PasswordProtected} alt="" /> */}
+                <div className='ModalErrorIcon'>
+                    <WarningAmberIcon />
+                </div>
                 <DialogTitle id="responsive-dialog-title" textAlign='center'>
                     {"Oops"}
                 </DialogTitle>
@@ -45,7 +39,7 @@ function ModalLoginError() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>
+                    <Button onClick={() => { setShowError(false) }}>
                         retry
                     </Button>
                 </DialogActions>

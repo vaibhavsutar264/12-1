@@ -61,7 +61,7 @@ export const getFilterConditons = (filters: any) => {
         const m = JSON.parse(JSON.stringify(d.values.filter((l: any) => (l != ""))))
         if (m.length == 0) { return null }
         if (d.values.length != 0) {
-            return `(${d.values.map((g: any) => `(f.${d.element} == "${g}")`).join(" || ")})`
+            return `(${d.values.map((g: any) => `${d.check ? `(f.${d.element} == "${g}" )` : `(f.${d.element}.includes("${g}") )`} `).join(" || ")})`
         } else {
             return null;
         }
