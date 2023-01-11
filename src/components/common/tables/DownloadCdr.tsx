@@ -21,6 +21,7 @@ import {
   useSelector,
 } from '../../../redux/store'
 import useLocales from '../../../hooks/useLocales'
+import CheckIcon from '@mui/icons-material/Check';
 
 export default function DownloadCdr({
   item,
@@ -34,6 +35,7 @@ export default function DownloadCdr({
   setCompletedInvoice,
   setErrorinDownload,
   setErrorinDownloadInvoice,
+  arrayData
 }: any) {
   const { t } = useLocales()
   const dispatch = useAppDispatch()
@@ -69,14 +71,18 @@ export default function DownloadCdr({
       dispatch(downloadBillingInvoiceCDR(data, setErrorinDownload))
     }, 2000)
     setTimeout(() => {
+        if(data.id == item.id){
       if (!completed) {
         setCompleted(true)
         setLoading(false)
+      }}else{
+        setCompleted(false)
+        setLoading(true)
       }
     }, 3000)
-    setTimeout(() => {
-      setCompleted(false)
-    }, 4000)
+    // setTimeout(() => {
+    //   setCompleted(false)
+    // }, 4000)
   }
 
   return (
@@ -93,7 +99,7 @@ export default function DownloadCdr({
           aria-expanded={open ? 'true' : undefined}
         >
           {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-          <Download />
+          {completed && item.id ? <CheckIcon/> :<Download />}
         </IconButton>
       </Tooltip>
       {/* </Box> */}

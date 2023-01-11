@@ -51,6 +51,11 @@ const Login = () => {
     const [showError, setShowError] = useState(false)
     const [val, setVal] = useState('')
 
+        useEffect(() => {
+        setInLocalStorage('i18nextLng','English')
+        // i18n.language = 'English'
+      }, []);
+
     useEffect(() => {
         if (!isAuthenticated) {
             dispatch(resetLoginParms())

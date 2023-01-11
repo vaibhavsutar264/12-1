@@ -63,6 +63,7 @@ import InvoiceError from './loader-and-snackbar/InvoiceError'
 import InvoicePreparing from './loader-and-snackbar/InvoicePreparing'
 import { CSSProperties } from 'styled-components'
 
+
 // import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu';
 
 import Menu from '@mui/material/Menu';
@@ -381,11 +382,10 @@ const DataTable = ({
                                             <MoreVertIcon />
                                         </MenuButton>
                                     }
-
                                     transition
                                     onDragOver={allowDrop} onDrop={drop}
                                 >
-                                    {columns.map((item: any, index: any) => {
+                                    {columnsDropdown.map((item: any, index: any) => {
                                         return (
                                             <>
                                                 <TbMenuItem
@@ -423,7 +423,7 @@ const DataTable = ({
                                 </TbMenu>
                             </StyledTableCell>
                             {/* Table Heads */}
-                            {columns.map((head: any, index: any) => (
+                            {columnsDropdown.map((head: any, index: any) => (
                                 !hiddenClms.includes(head.eleName) && <StyledTableCell
                                     key={`${head.headTrans}${index}`}
                                     align="right"
@@ -592,7 +592,7 @@ const DataTable = ({
                                             </a>
                                         </a>
                                     </TableCell>
-                                    {columns.map((clm: any, index: any) => (
+                                    {columnsDropdown.map((clm: any, index: any) => (
                                         !hiddenClms.includes(clm.eleName) &&
                                         <>
                                             <Tooltip
@@ -649,6 +649,7 @@ const DataTable = ({
                                                 setErrorinDownload={setErrorinDownload}
                                                 setErrorinDownloadInvoice={setErrorinDownloadInvoice}
                                                 item={item}
+                                                arrayData={data}
                                             />
                                         </ul>
                                     </TableCell>
