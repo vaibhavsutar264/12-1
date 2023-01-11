@@ -83,7 +83,8 @@ const Login = () => {
         try {
             dispatch(login(userDetails, d.user,setShowError))
         } catch (error) {
-            console.log(error);
+            console.log(error)
+            error ? setShowError(true) : ""
         }
         
     }

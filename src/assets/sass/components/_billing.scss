@@ -845,9 +845,10 @@
         border-bottom: 0px;
         opacity: 1;
         width: 160px;
+        max-width: 160px;
 
         &:nth-child(1) {
-            width: 85px !important;
+            width: 75px !important;
         }
 
         a {

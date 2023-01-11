@@ -390,9 +390,7 @@ const DataTable = ({
                                                     className="list-item"
                                                     draggable={true}
                                                     onDragStart={(ev) => drag(ev, item, index)}
-                                                    // onClick={(e)=>changeActive(item)}
                                                     id={`${item.eleName}-${index}`}
-                                                // style={col.isActive ?activeStyle:{}}
                                                 >
                                                     <ListItemIcon>
                                                         <DragIndicatorIcon fontSize="small" />
@@ -407,7 +405,7 @@ const DataTable = ({
                                                     </ListItemIcon>
                                                     <Button
                                                         onClick={(e) => changeActive(item)}
-                                                    // style={item.isActive ?activeStyle:{}}
+                                                        style={{"color":"black"}}
                                                     >
                                                         {item.eleName}
                                                     </Button>
