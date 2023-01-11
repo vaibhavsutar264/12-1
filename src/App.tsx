@@ -48,9 +48,13 @@ const App = () => {
         try {
             const date = document.getElementsByClassName('MuiPickersPopper-root');
             if (date.length > 0) {
-                const clEl = document.querySelector(`.MuiPickersPopper-root .${e.target.classList[0]}`)
+                const clEl = document.querySelector(`.MuiPickersPopper-root .${e.target.classList[0]}`);
                 if (clEl == null) {
                     dispatch(updateCal(false));
+                }
+                const n = document.querySelector(`#date-picker .${e.target.classList[0]}`);
+                if (n != null) {
+                    dispatch(updateCal(true));
                 }
             }
             const trEle = e.target.classList.contains("clkIgnr");

@@ -79,3 +79,19 @@
   position: relative;
   top: 7px;
 }
+
+.FilterItems {
+  max-height: 128px;
+  overflow: scroll;
+}
+
+.closeDate{
+  svg {
+    font-size: 19px;
+    font-weight: 900;
+  }
+  position: absolute;
+  top: 13px;
+  cursor: pointer;
+  right: 55px;
+}

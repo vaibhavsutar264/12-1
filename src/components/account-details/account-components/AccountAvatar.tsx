@@ -41,9 +41,9 @@ const AccountAvatar = () => {
         if (user) {
             setFirstname(user.firstname)
             setLastName(user.lastName)
-            setPhoneNumber(user.attributes.phoneNumber)
-            setTimezone(user?.attributes?.timezone)
-            setCommunication(user?.attributes?.preferredCommunicationMode)
+            setPhoneNumber(user.phoneNumber)
+            setTimezone(user?.timezone)
+            setCommunication(user?.preferredCommunicationMode)
         }
     }, [dispatch])
 
@@ -369,7 +369,7 @@ const AccountAvatar = () => {
                                     value={timezone}
                                     onChange={handleTimeChange}
                                 >
-                                    <MenuItem value="utc0:00">UTC 0:00</MenuItem>
+                                    <MenuItem value="IST">IST</MenuItem>
                                     <MenuItem value="utc+1:30">UTC +1:30</MenuItem>
                                     <MenuItem value="utc+5:30">UTC +5:30</MenuItem>
                                 </Select>

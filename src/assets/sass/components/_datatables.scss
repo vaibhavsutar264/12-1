@@ -70,6 +70,7 @@ ul.actionButtons {
 
 #basic-menu-customerle,
 #basic-menu-entity,
+#basic-menu,
 #basic-menu-invoiceno,
 #basic-menu-pono,
 #basic-menu-status,
@@ -93,13 +94,13 @@ ul.actionButtons {
                 height: 20px;
             }
 
-            &:last-child {
-                color: #344857 !important;
-                opacity: 0.4;
-                font-weight: bold;
-                text-decoration: underline;
-                text-decoration-thickness: 1px;
-            }
+            // &:last-child {
+            //     color: #344857 !important;
+            //     opacity: 0.4;
+            //     font-weight: bold;
+            //     text-decoration: underline;
+            //     text-decoration-thickness: 1px;
+            // }
         }
     }
 }

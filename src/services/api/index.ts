@@ -76,12 +76,12 @@ const httpInstance = (transformer: any) => {
         } else {
 
           // if error is not 401 then return same error it will handle in transformer and slice level
-          return error;
+          return Promise.reject(error);
         }
       } else {
 
         // if req URL is excludable then returning the error
-        return error;
+        return Promise.reject(error);
       }
     });
 

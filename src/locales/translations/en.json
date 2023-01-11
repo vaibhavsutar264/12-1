@@ -125,7 +125,7 @@
     "applicableCurrency": "Applicable Currency",
     "contactTerm": "Contract Term",
     "rateChange...days": "Rate Change Notification Period ( In Days )",
-    "rate&cover...zone": "Rate & CoverLegalEntity Change Time Zone",
+    "rate&cover...zone": "Rate & Coverage Change Time Zone",
     "accountStatusAndRemark": "Account Status & Remark",
     "changePasswordInstruction": "Your new password must be different from previous password"
   }

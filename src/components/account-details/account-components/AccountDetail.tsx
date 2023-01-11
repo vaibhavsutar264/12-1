@@ -106,49 +106,51 @@ const AccountDetail = ({
                         >
                             {t<string>('billingDetails')}
                         </Typography>
-                        <Box
-                            id="select-entity-form"
-                            sx={{
-                                minWidth: 200,
-                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                {
-                                    top: '1px',
-                                    height: 'min-content',
-                                    backgroundColor: '#fff !important',
-                                },
-                                '& [role="button"]': {
-                                    color: '#222',
-                                    textTransform: 'capitalize',
-                                    fontWeight: 400,
-                                },
-                                '& label': {
-                                    // top: '-9px',
-                                    top: LegalEntity.length > 1 ? '1px' : '-11px',
-                                    height: 'min-content',
-                                    backgroundColor: '#fff !important',
-                                },
-                            }}
-                        >
-                            {accountDetails.legalentities.length > 0 && (
-                                <FormControl fullWidth>
-                                    <Select
-                                        MenuProps={{
-                                            disableScrollLock: true,
-                                        }}
-                                        id="demo-simple-select"
-                                        value={LegalEntity}
-                                        onChange={handleChange}
-                                        inputProps={{ 'aria-label': 'Without label' }}
-                                    >
-                                        {accountDetails.legalentities.map((val: any, index: any) => (
-                                            <MenuItem value={index} key={`legalEnt${index}`}>
-                                                {val.legalEntityName}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
-                            )}
-                        </Box>
+                        {LegalEntity &&
+                            <Box
+                                id="select-entity-form"
+                                sx={{
+                                    minWidth: 200,
+                                    '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                    {
+                                        top: '1px',
+                                        height: 'min-content',
+                                        backgroundColor: '#fff !important',
+                                    },
+                                    '& [role="button"]': {
+                                        color: '#222',
+                                        textTransform: 'capitalize',
+                                        fontWeight: 400,
+                                    },
+                                    '& label': {
+                                        // top: '-9px',
+                                        top: LegalEntity.length > 1 ? '1px' : '-11px',
+                                        height: 'min-content',
+                                        backgroundColor: '#fff !important',
+                                    },
+                                }}
+                            >
+                                {accountDetails.legalentities.length > 0 && (
+                                    <FormControl fullWidth>
+                                        <Select
+                                            MenuProps={{
+                                                disableScrollLock: true,
+                                            }}
+                                            id="demo-simple-select"
+                                            value={LegalEntity}
+                                            onChange={handleChange}
+                                            inputProps={{ 'aria-label': 'Without label' }}
+                                        >
+                                            {accountDetails.legalentities.map((val: any, index: any) => (
+                                                <MenuItem value={index} key={`legalEnt${index}`}>
+                                                    {val.legalEntityName}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                )}
+                            </Box>
+                        }
                     </Stack>
                 </Box>
 

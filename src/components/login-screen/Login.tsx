@@ -54,7 +54,7 @@ const Login = () => {
         }
         if (getFromLocalStorage(localStorageVar.TOKEN_VAR) && getFromLocalStorage(localStorageVar.TOKEN_VAR) !== null) {
             if (user) {
-                if (user.attributes[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
+                if (user[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
                     // navigate(appRoutes.SET_PASSWORD)
                 } else {
                     navigate(appRoutes.DASHBOARD)
@@ -82,12 +82,8 @@ const Login = () => {
         
     }
 
-    // if (resetmessage === "SUCCESS") {
-    //     navigate(appRoutes.WELCOME)
-    // }
-
     return (
-        <>{(user == null) ? (
+        <>
             <Box
                 sx={{ flexGrow: 1 }}
                 id="login-form"
@@ -177,9 +173,7 @@ const Login = () => {
                         </FormProvider>
                     </Box>
                 </div>
-            </Box>) : (
-            <SetPassword />
-        )}
+            </Box>
             {showError ? <ModalLoginError /> : ""}
         </>
     )

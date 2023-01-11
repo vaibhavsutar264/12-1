@@ -1,10 +1,8 @@
-import React, { useState, useEffect, SyntheticEvent, ChangeEvent } from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from '@mui/material/Table'
 import {
-    IconButton,
     ListItemIcon,
     Tooltip,
-    ClickAwayListener,
     Button,
 } from '@mui/material'
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
@@ -17,7 +15,8 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import TableHead from '@mui/material/TableHead'
-
+import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
+import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
 import CustomerLeFilter from './filter-and-sort/CustomerLeFilter'
 import EntityFilter from './filter-and-sort/EntityFilter'
 import InvoiceAmtFilter from './filter-and-sort/InvoiceAmtFilter'
@@ -60,7 +59,12 @@ import CDRDownloading from './loader-and-snackbar/CDRDownloading'
 import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
 import { CSSProperties } from 'styled-components'
 
-import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu'
+// import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu';
+
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { getValue } from '@testing-library/user-event/dist/utils';
+import { Menu as TbMenu, MenuItem as TbMenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu'
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
 
@@ -105,16 +109,20 @@ const DataTable = ({
     TableData,
     sortAction,
     Total,
+    clearFilterClm,
     pageAction,
     take,
     filterAction,
+    ClmSearch,
     page,
+    clearAllfilter,
     handleShow,
     handledownloadPdf,
     handledownloadCdrPdf,
     setDateRange,
     dateRange,
     handledownloadViewpdf,
+    filterValues
 }: any) => {
     const { t } = useLocales()
     const { data, columns, tableName, allMasterData } = TableData
@@ -195,13 +203,10 @@ const DataTable = ({
 
     // Vertical Dropdown code
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const open = Boolean(anchorEl)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
     }
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
+    const handleClose = () => { setAnchorEl(null) }
 
     // Handle Tooltip closing & opening
     const [opened, setOpen] = React.useState(false)
@@ -303,18 +308,6 @@ const DataTable = ({
     const [columnsDropdown, setColumnsDropdown] = useState(result1);
 
 
-    const changeActive = (item: any) => {
-        if (item.eleName !== 'date' && item.eleName !== 'app') {
-            let colm = [...columnsDropdown];
-            colm = colm.map(obj => {
-                if (obj.eleName === item.eleName) {
-                    obj['isActive'] = !obj['isActive'];
-                }
-                return obj;
-            });
-            setColumnsDropdown(colm);
-        }
-    }
 
     useEffect(() => {
         setColumnsDropdown(columns);
@@ -329,7 +322,6 @@ const DataTable = ({
     }
 
     const drop = (ev: any) => {
-        console.log(ev)
         ev.preventDefault();
         const data = JSON.parse(ev.dataTransfer.getData("columnData"));
         if (ev.target.id) {
@@ -342,6 +334,25 @@ const DataTable = ({
         }
     }
 
+    const [drops, setdrops] = useState('');
+    const [hiddenClms, SetHiddentClmns] = useState<any>([]);
+
+    const changeActive = (item: any) => {
+        const i = hiddenClms.indexOf(`${item}`);
+        console.log(hiddenClms);
+        if (i == -1) {
+            SetHiddentClmns((s: any) => [...s, item]);
+        } else {
+            const m = hiddenClms;
+            m.splice(i, 1);
+            SetHiddentClmns((s: any) => m);
+        }
+    }
+
+
+    const getValue = () => {
+        return 'vdf'
+    }
     return (
         <>
             {/* <CustomerLeFilter /> */}
@@ -373,53 +384,56 @@ const DataTable = ({
                     <TableHead className="TableHead" id="table-head-element-display-fix">
                         <TableRow id="table-head">
                             <StyledTableCell>
-                                <Menu
+                                <TbMenu
                                     menuButton={
                                         <MenuButton id="border-removing">
                                             <MoreVertIcon />
                                         </MenuButton>
                                     }
+
                                     transition
                                     onDragOver={allowDrop} onDrop={drop}
                                 >
-                                    {columnsDropdown.map((item: any, index) => {
+                                    {columns.map((item: any, index: any) => {
                                         return (
                                             <>
-                                                <MenuItem
+                                                <TbMenuItem
                                                     key={index}
                                                     className="list-item"
                                                     draggable={true}
                                                     onDragStart={(ev) => drag(ev, item, index)}
-                                                    // onClick={(e)=>changeActive(item)}
                                                     id={`${item.eleName}-${index}`}
-                                                // style={col.isActive ?activeStyle:{}}
                                                 >
                                                     <ListItemIcon>
                                                         <DragIndicatorIcon fontSize="small" />
-                                                        {item.isActive == true ? (<><CheckBoxIcon
-                                                            onClick={(e) => changeActive(item)}
+                                                        {hiddenClms.includes(item.eleName) ? (<CheckBoxOutlineBlankIcon
+                                                            onClick={(e) => {
+                                                                changeActive(item.eleName)
+                                                            }}
                                                             fontSize="small"
-                                                        /></>) : (<>
-                                                            <CheckBoxOutlineBlankIcon
-                                                                onClick={(e) => changeActive(item)}
+                                                        />) : (
+                                                            <CheckBoxIcon
+                                                                onClick={(e) => changeActive(item.eleName)}
                                                                 fontSize="small"
-                                                            /></>)}
+                                                            />
+                                                        )}
                                                     </ListItemIcon>
                                                     <Button
-                                                        onClick={(e) => changeActive(item)}
-                                                    // style={item.isActive ?activeStyle:{}}
+                                                        onClick={(e) => {
+                                                            changeActive(item.eleName)
+                                                        }}
                                                     >
-                                                        {item.eleName}
+                                                        {item.headTrans}
                                                     </Button>
-                                                </MenuItem>
+                                                </TbMenuItem>
                                             </>
                                         )
                                     })}
-                                </Menu>
+                                </TbMenu>
                             </StyledTableCell>
                             {/* Table Heads */}
-                            {columnsDropdown.map((head: any, index: any) => (
-                                head.isActive && <StyledTableCell
+                            {columns.map((head: any, index: any) => (
+                                !hiddenClms.includes(head.eleName) && <StyledTableCell
                                     key={`${head.headTrans}${index}`}
                                     align="right"
                                 >
@@ -428,33 +442,105 @@ const DataTable = ({
                                             id="hiding"
                                             name={t<string>(`tables.${tableName}.${head.headTrans}`)}
                                             className="voidBtn"
-                                            // onClick={sort.bind(null, head)}
                                             key={`clickkey-${head.headTrans}${index}`}
-                                        // onClick={() => { window.alert('found it') }}
                                         >
                                             {t<string>(`tables.${tableName}.${head.headTrans}`)}
-                                            {index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5 ? (
-                                                <CustomerLeFilter
-                                                    indexNumber={index}
-                                                    sortDataAscending={(e: any) =>
-                                                        onSortAscending(e, head, index)
-                                                    }
-                                                    sortDataDescending={(e: any) =>
-                                                        onSortDescending(e, head, index)
-                                                    }
-                                                    idForSearch={`input-${index}`}
-                                                    onChangeForSearch={(e: any) =>
-                                                        onSearch(e, head, index)
-                                                    }
-                                                    clearFilter={clearFilter}
-                                                    filterAction={filterAction}
-                                                    filterData={head.filterData}
-                                                    id={`filter-${head.headTrans}${index}`}
-                                                    columns={columns}
-                                                    data={[...tableData]}
-                                                />
-                                            ) : (
-                                                ''
+                                            {(head.sort || head.search || head.filter) && (
+                                                <>
+                                                    <div className='customer-le-menu'>
+                                                        <Button
+                                                            id="basic-button"
+                                                            aria-controls={drops == head.headTrans ? 'basic-menu' : undefined}
+                                                            aria-haspopup="true"
+                                                            aria-expanded={drops == head.headTrans ? 'true' : undefined}
+                                                            onClick={(e) => {
+                                                                handleClick(e);
+                                                                if (drops == head.headTrans) {
+                                                                    setdrops('')
+                                                                } else {
+                                                                    setdrops(head.headTrans);
+                                                                    setTimeout(() => {
+                                                                        if (head.search) {
+                                                                            const m: any = document.getElementById(`${head.headTrans}${tableName}${head.eleName}`);
+                                                                            const p = filterValues.filter((g: any) => g.element == head.eleName);
+
+                                                                            if (p.length > 0) {
+                                                                                if (p[0].values[0]) {
+                                                                                    m.value = p[0].values[0]
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                        if (head.filter) {
+                                                                            const p = filterValues.filter((g: any) => g.element == head.filterData?.element);
+                                                                            if (p.length > 0) {
+                                                                                p[0].values.map((f: any) => {
+                                                                                    const m: any = document.getElementById(`${head.eleName}${f}status-check-box`);
+                                                                                    m.checked = true
+
+                                                                                })
+                                                                            }
+                                                                        }
+                                                                    }, 300);
+
+                                                                }
+                                                            }}
+                                                            startIcon={<UnfoldMoreIcon />}
+                                                        >
+                                                        </Button>
+                                                        <Menu
+                                                            id={`basic-menu`}
+                                                            anchorEl={anchorEl}
+                                                            open={drops == head.headTrans}
+                                                            onClose={() => {
+                                                                handleClose();
+                                                                if (drops == head.headTrans) {
+                                                                    setdrops('')
+                                                                } else {
+                                                                    setdrops(head.headTrans);
+                                                                }
+                                                            }}
+                                                            MenuListProps={{
+                                                                'aria-labelledby': 'basic-button',
+                                                            }}
+                                                        >
+                                                            {head.search ? <MenuItem>
+                                                                <input
+                                                                    id={`${head.headTrans}${tableName}${head.eleName}`}
+                                                                    onInput={(e: any) => {
+                                                                        dispatch(ClmSearch(head.eleName, e.target.value))
+                                                                    }} type='search' placeholder='search' className='inside_search' />
+                                                            </MenuItem> : null}
+                                                            {head.filter &&
+                                                                <div className='FilterItems'>
+                                                                    {head.filterData?.values && head.filterData.values.map((w: any, i: any) => {
+                                                                        return <MenuItem className='clkIgnr' key={`eleCheck-${w}-${i}`}>
+                                                                            <input id={`${head.eleName}${w}status-check-box`} onChange={(e) => {
+                                                                                dispatch(filterAction(head.filterData?.element, w, e.target.checked))
+                                                                            }} className='clkIgnr check-Box status-check-box' type="checkbox" />
+                                                                            <label htmlFor={`${head.eleName}${w}status-check-box`} className='clkIgnr span-label'>{w}</label>
+                                                                        </MenuItem>
+                                                                    })}
+                                                                </div>
+                                                            }
+                                                            {head.sort ? <MenuItem onClick={() => { dispatch(sortAction(head, 1)) }} ><ArrowUpwardRoundedIcon />Sorting Ascending (A-Z)</MenuItem> : null}
+                                                            {head.sort ? <MenuItem onClick={() => { dispatch(sortAction(head, -1)) }} ><ArrowDownwardRoundedIcon />Sorting Descending (Z-A)</MenuItem> : null}
+                                                            <MenuItem onClick={() => {
+                                                                dispatch(clearFilterClm(head.eleName))
+                                                                if (head.search) {
+                                                                    const m: any = document.getElementById(`${head.headTrans}${tableName}${head.eleName}`);
+                                                                    m.value = ''
+                                                                }
+                                                                if (head.filter) {
+                                                                    head.filterData.values.map((w: any, i: any) => {
+                                                                        const m: any = document.getElementById(`${head.eleName}${w}status-check-box`);
+                                                                        m.checked = false
+                                                                    })
+                                                                }
+                                                            }}>CLEAR</MenuItem>
+                                                        </Menu>
+                                                    </div>
+                                                </>
                                             )}
                                             {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                                         </button>
@@ -462,7 +548,7 @@ const DataTable = ({
                                 </StyledTableCell>
                             ))}
                             <StyledTableCell align="right">
-                                <Button onClick={clearFilter} className="th_wrapper">
+                                <Button onClick={()=>{dispatch(clearAllfilter())}} className="th_wrapper">
                                     <span className='clear-filters'>Clear all filters</span>
                                 </Button>
                             </StyledTableCell>
@@ -474,8 +560,8 @@ const DataTable = ({
                         className="TableBody"
                         id="table-body-element"
                     >
-                        {tableData &&
-                            tableData.map((item: any, index: any) => (
+                        {data &&
+                            data.map((item: any, index: any) => (
                                 <TableRow
                                     style={
                                         isHover == true
@@ -514,8 +600,8 @@ const DataTable = ({
                                             </a>
                                         </a>
                                     </TableCell>
-                                    {columnsDropdown.map((clm: any, index: any) => (
-                                        clm.isActive &&
+                                    {columns.map((clm: any, index: any) => (
+                                        !hiddenClms.includes(clm.eleName) &&
                                         <>
                                             <Tooltip
                                                 title={
@@ -529,7 +615,7 @@ const DataTable = ({
                                                     style={{ width: 160 }}
                                                     align="right"
                                                 >
-                                                    {item[clm.eleName]}{' '}
+                                                    <span style={{ width: '160px', display: 'block' }}>{item[clm.eleName]}{' '}</span>
                                                 </TableCell>
                                             </Tooltip>
                                         </>

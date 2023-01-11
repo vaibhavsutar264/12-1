@@ -5,6 +5,7 @@ import { slices } from '../../utils/constants'
 import { getFilterConditons, getPageParms, searchArray, setUlrParms, sortArray } from '../../utils/helpers'
 import axios from 'axios'
 import routes from '../../services/api/routes'
+import { removeFromLocalStorage } from '../../hooks/useLocalStorage'
 
 const initialState: any = {
     MasterData: [],
@@ -97,16 +98,19 @@ export const runFilters = ({ page, take, sort }: any) => {
     return async () => {
         const { invoiceData, searchValue, filterValue = [] } = store.getState().billing || {};
         let filteredData: any = []
+        const con = getFilterConditons(filterValue);
         if (sort) {
             const dm = JSON.parse(JSON.stringify(invoiceData))
-            filteredData = sortArray(dm, sort.eleName, sort.dr)
+            filteredData = sortArray(dm, sort.eleName, sort.dr);
+
             dispatch(billingSlice.actions.setSortData({ invocieData: filteredData, sortElement: sort.eleName }))
-        }
-        const con = getFilterConditons(filterValue);
-        if (con == "" || con == null) {
-            filteredData = searchArray(invoiceData, searchValue)
         } else {
-            filteredData = searchArray(invoiceData, searchValue).filter((f: any) => {
+            filteredData = JSON.parse(JSON.stringify(invoiceData));
+        }
+        if (con == "" || con == null) {
+            filteredData = searchArray(JSON.parse(JSON.stringify(filteredData)), searchValue)
+        } else {
+            filteredData = searchArray(JSON.parse(JSON.stringify(filteredData)), searchValue).filter((f: any) => {
                 return eval(con)
             })
         }
@@ -119,7 +123,6 @@ export const runFilters = ({ page, take, sort }: any) => {
         }
         dispatch(billingSlice.actions.setFilterData(d))
         setUlrParms(page, take)
-
     }
 }
 
@@ -229,6 +232,50 @@ export const cardFilter = (element: any, value: any) => {
     }
 }
 
+export const ClmSearch = (element: any, value: any) => {
+    const detailsOfBilling = store.getState().billing || {};
+    const { take, filterValue = [] } = detailsOfBilling
+    return async () => {
+        const f = JSON.parse(JSON.stringify(filterValue));
+        if (filterValue.filter((a: any) => a.element == element).length > 0) {
+            const p = f.findIndex((a: any) => a.element == element);
+            f[p] = { element: element, values: [value] };
+        } else {
+            f.push({ element: element, values: [value] })
+        }
+        dispatch(billingSlice.actions.setFilterParms({ filterValue: f }));
+        dispatch(runFilters({ page: 1, take, sort: false }))
+    }
+}
+
+
+
+
+
+export const removeCLmFilter = (element: any) => {
+    const detailsOfBilling = store.getState().billing || {};
+    const { take, filterValue = [] } = detailsOfBilling
+    return async () => {
+        const f = JSON.parse(JSON.stringify(filterValue));
+        if (filterValue.filter((a: any) => a.element == element).length > 0) {
+            const p = f.findIndex((a: any) => a.element == element);
+            f[p] = { element: element, values: [] };
+        }
+        dispatch(billingSlice.actions.setFilterParms({ filterValue: f }));
+        dispatch(runFilters({ page: 1, take, sort: false }))
+    }
+}
+
+export const clearAllfilter = () => {
+    const detailsOfBilling = store.getState().billing || {};
+    const { take, filterValue = [] } = detailsOfBilling
+    return async () => {
+   
+        dispatch(billingSlice.actions.setFilterParms({ filterValue: [] }));
+        dispatch(runFilters({ page: 1, take, sort: false }))
+    }
+}
+
 export const ChangePageBilling = (page: any, take: any) => {
     return async () => {
         dispatch(runFilters({ page, take, sort: false }))
@@ -266,7 +313,7 @@ export const filterData = (element: any, value: any, checked: any) => {
                 fild[0].values.splice(fild[0].values.indexOf(value), 1)
             }
         } else {
-            fild = [{ element: element, values: [value] }]
+            fild = [{ element: element, values: [value], check: true }]
         }
         if (eleFound) {
             const finalObj = JSON.parse(JSON.stringify(filterValue));
