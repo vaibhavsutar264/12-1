@@ -824,10 +824,6 @@
     }
 }
 
-.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
-    box-shadow: none !important;
-}
-
 .TableHead {
     // background: #f7f8fa !important;
     background: #f7f8fa;
@@ -845,9 +841,10 @@
         border-bottom: 0px;
         opacity: 1;
         width: 160px;
+        max-width: 160px;
 
         &:nth-child(1) {
-            width: 85px !important;
+            width: 75px !important;
         }
 
         a {
@@ -901,6 +898,7 @@
             letter-spacing: -0.64px;
             color: #344857;
             opacity: 1;
+            max-width: 160px;
             overflow: hidden !important;
 
             &:nth-child(4) {
@@ -915,6 +913,11 @@
                 justify-content: flex-end;
                 align-items: center;
 
+            }
+
+            &:last-child {
+                width: 220px;
+                max-width: 220px;
             }
         }
 

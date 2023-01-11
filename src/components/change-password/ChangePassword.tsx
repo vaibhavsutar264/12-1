@@ -56,6 +56,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
     const [oldPassval, setOldPassVal] = useState('');
     const [newPassval, setNewPassVal] = useState('');
     const [cnfPass, setCnfPass] = useState('');
+    const [success, setSuccess] = useState(false)
     const { isError, isSuccess, message, user, changeMessage } = useAppSelector(
         (state: any) => state.auth || {}
     )
@@ -77,12 +78,16 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                 username: null
             }
             dispatch(changePassword(userPassword))
-            navigate(appRoutes.ACCOUNT_DETAILS)
+            setSuccess(true)
 
         } catch (error) {
             console.error(error)
         }
     }
+
+    // if (changeMessage === "SUCCESS") {
+    //     navigate(appRoutes.WELCOME)
+    // }
 
     const [open, setOpen] = useState<boolean>(false);
 
@@ -193,7 +198,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                     </div>
                 </Box>
             </div>
-            <ModalPassChanged open={open} setOpen={setOpen} />
+            {success? <ModalPassChanged open={open} setOpen={setOpen} />:""}
         </div>
     )
 }

@@ -1,4 +1,5 @@
 .box-help-text {
+<<<<<<< HEAD
   font-family: "poppins", sans-serif;
   text-align: center;
   display: block;
@@ -6,13 +7,23 @@
   margin: auto;
   color: #9ca6ad;
   width: 80%;
+=======
+    font-family: "poppins", sans-serif;
+    text-align: center;
+    display: block;
+    padding: 15px;
+    margin: auto;
+    color: #9CA6AD;
+    width: 80%;
+>>>>>>> 6771a5cc2c3af4e06a73c360fa16aee89718aef8
 }
 
 .no-pointers {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .checkIcon {
+<<<<<<< HEAD
   position: absolute;
   z-index: 9;
   right: 6%;
@@ -48,19 +59,25 @@
   padding: 0 !important;
   padding-bottom: 12vh !important;
   justify-content: center !important;
+=======
+    position: absolute;
+    z-index: 9;
+    right: 6%;
+    top: 40%;
+>>>>>>> 6771a5cc2c3af4e06a73c360fa16aee89718aef8
 }
 
 .removeBorder .MuiInputBase-root:before {
-  border-bottom: none !important;
+    border-bottom: none;
 }
 
 .removeBorder {
-  pointer-events: none;
+    pointer-events: none;
 }
 
-.buildfix4 {
-  background-color: unset !important;
-  box-shadow: none !important;
+.MuiTableContainer-root.buildfix4 {
+    background-color: unset;
+    box-shadow: none;
 }
 
 .showDate {

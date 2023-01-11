@@ -134,6 +134,7 @@ export const login = (userData: UserLogin, setShowError: any) => {
         }
       }
     } catch (response: any) {
+      setShowError(true)
       const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
       dispatch(userSlice.actions.hasError(data))
       setShowError(true)
