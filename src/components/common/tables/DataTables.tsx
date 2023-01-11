@@ -32,8 +32,8 @@ import PaidInvoice from '../icons/paidInvoice'
 import UnpaidInvoice from '../icons/unpaidInvoice'
 import DownloadCdr from './DownloadCdr'
 import CDRError from './loader-and-snackbar/CDRError'
-import CDRDownloading from './loader-and-snackbar/CDRDownloading'
-import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
+import CDRDownloading from './loader-and-snackbar/Downlaoding'
+import CDRDownloaded from './loader-and-snackbar/Downlaoded'
 import InvoiceDownloaded from './loader-and-snackbar/InvoiceDownloaded'
 import InvoiceDownloading from './loader-and-snackbar/InvoiceDownloading'
 import InvoiceError from './loader-and-snackbar/InvoiceError'
@@ -264,13 +264,12 @@ const DataTable = ({
     return (
         <>
 
-            {errorinDownload ? <CDRError /> : null}
+            {/* {errorinDownload ? <CDRError /> : null}
             {errorinDownloadInvoice ? <InvoiceError /> : null}
-            {/* <CDRPreparing /> */}
             {loading ? <CDRDownloading /> : null}
             {completed ? <CDRDownloaded /> : null}
             {loadingInvoice ? <InvoiceDownloading /> : null}
-            {completedInvoice ? <InvoiceDownloaded /> : null}
+            {completedInvoice ? <InvoiceDownloaded /> : null} */}
             {downloadCompleteShowing}
             <Actions
                 setDateRange={setDateRange}
@@ -559,6 +558,10 @@ const DataTable = ({
                                                 setErrorinDownloadInvoice={setErrorinDownloadInvoice}
                                                 item={item}
                                                 arrayData={data}
+
+
+                                                apiAction={handledownloadCdrPdf}
+                                                apiActionPdf={handledownloadPdf}
                                             />
                                         </ul>
                                     </TableCell>

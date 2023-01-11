@@ -7,38 +7,15 @@ import IconButton from '@mui/material/IconButton';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import CloseIcon from '@mui/icons-material/Close';
 
-export interface State extends SnackbarOrigin {
-    open: boolean;
-}
 
-export default function CDRDownloading() {
-    const [state, setState] = React.useState<State>({
-        open: true,
+
+export default function Downlaoding({ open, SnakData, close }: any) {
+    const [state, setState] = React.useState<any>({
         vertical: 'top',
         horizontal: 'center',
     });
-    const { vertical, horizontal, open } = state;
+    const { vertical, horizontal } = state;
 
-    const handleClick = (newState: SnackbarOrigin) => () => {
-        setState({ open: true, ...newState });
-    };
-
-    const handleClose = () => {
-        setState({ ...state, open: false });
-    };
-
-    const buttons = (
-        <React.Fragment>
-            <Button
-                onClick={handleClick({
-                    vertical: 'top',
-                    horizontal: 'right',
-                })}
-            >
-                Top-Right
-            </Button>
-        </React.Fragment>
-    );
 
     const action = (
         <React.Fragment>
@@ -46,7 +23,7 @@ export default function CDRDownloading() {
                 size="small"
                 aria-label="close"
                 color="inherit"
-                onClick={handleClose}
+                onClick={() => { close(false) }}
             >
                 <CloseIcon fontSize="small" />
             </IconButton>
@@ -61,13 +38,13 @@ export default function CDRDownloading() {
                 open={open}
                 autoHideDuration={7500}
                 action={action}
-                onClose={handleClose}
+                onClose={() => { close(false) }}
                 message={<div className='snackbar-content--container'>
                     <IconButton aria-label="progress">
                         <RotateRightIcon />
                     </IconButton>
                     <div className='snackbar-content'>
-                        <p>CDR File is Downloading</p><p>The download of AM2398756710 is in progress</p></div></div>}
+                        <p> {SnakData.type} is Downloading</p><p>The download of {SnakData.invoice} is in progress</p></div></div>}
                 key={vertical + horizontal}
             />
         </Stack>

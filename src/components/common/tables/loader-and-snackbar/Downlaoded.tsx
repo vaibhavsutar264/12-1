@@ -7,25 +7,19 @@ import IconButton from '@mui/material/IconButton';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 
-export interface State extends SnackbarOrigin {
-    open: boolean;
-}
 
-export default function CDRDownloaded() {
-    const [state, setState] = React.useState<State>({
-        open: true,
+export default function Downloaded({ open, InvoiceId, close }: any) {
+    const [state, setState] = React.useState<any>({
         vertical: 'top',
         horizontal: 'center',
     });
-    const { vertical, horizontal, open } = state;
+    const { vertical, horizontal, } = state;
 
     const handleClick = (newState: SnackbarOrigin) => () => {
-        setState({ open: true, ...newState });
+        setState({ ...newState });
+        close(true);
     };
 
-    const handleClose = () => {
-        setState({ ...state, open: false });
-    };
 
     const buttons = (
         <React.Fragment>
@@ -35,7 +29,7 @@ export default function CDRDownloaded() {
                     horizontal: 'right',
                 })}
             >
-                
+
             </Button>
         </React.Fragment>
     );
@@ -46,7 +40,7 @@ export default function CDRDownloaded() {
                 size="small"
                 aria-label="close"
                 color="inherit"
-                onClick={handleClose}
+                onClick={() => { close(false) }}
             >
                 <CloseIcon fontSize="small" />
             </IconButton>
@@ -61,13 +55,13 @@ export default function CDRDownloaded() {
                 open={open}
                 autoHideDuration={7500}
                 action={action}
-                onClose={handleClose}
+                onClose={() => { close(false) }}
                 message={<div className='snackbar-content--container'>
                     <IconButton aria-label="done">
                         <CheckCircleIcon />
                     </IconButton>
                     <div className='snackbar-content'>
-                        <p>Successfully Downloaded!</p><p>The file AM2398756710 has been downloaded Click on the link to open the file https://www.openfile.com/</p></div></div>}
+                        <p>Successfully Downloaded!</p><p>The file {InvoiceId} has been downloaded Click on the link to open the file https://www.openfile.com/</p></div></div>}
                 key={vertical + horizontal}
             />
         </Stack>

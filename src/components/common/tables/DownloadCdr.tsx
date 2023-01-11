@@ -22,6 +22,9 @@ import {
 } from '../../../redux/store'
 import useLocales from '../../../hooks/useLocales'
 import CheckIcon from '@mui/icons-material/Check';
+import Downlaoding from './loader-and-snackbar/Downlaoding'
+import Downloaded from './loader-and-snackbar/Downlaoded'
+import CachedIcon from '@mui/icons-material/Cached';
 
 export default function DownloadCdr({
   item,
@@ -35,11 +38,19 @@ export default function DownloadCdr({
   setCompletedInvoice,
   setErrorinDownload,
   setErrorinDownloadInvoice,
-  arrayData
+  arrayData,
+  apiAction,
+  apiActionPdf
 }: any) {
   const { t } = useLocales()
   const dispatch = useAppDispatch()
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const [openSnack, SetOpenSnack] = React.useState(false);
+  const [openSnackdone, SetOpenSnackdone] = React.useState(false);
+
+
+  const [SnakData, setSnackData] = React.useState({ type: '', invoice: '', fileURl: '' });
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -49,44 +60,42 @@ export default function DownloadCdr({
   }
 
   const handleDownload = async (data: any) => {
-    setLoadingInvoice(true)
-
-    setTimeout(() => {
-      dispatch(downloadBillingInvoice(data, setErrorinDownloadInvoice))
-    }, 2000)
-    setTimeout(() => {
-      if (!completed) {
-        setCompletedInvoice(true)
-        setLoadingInvoice(false)
-      }
-    }, 3000)
-    setTimeout(() => {
-      setCompletedInvoice(false)
-    }, 4000)
+    SetOpenSnack(true);
+    setSnackData({ type: 'Invoice', invoice: data.id, fileURl: '' })
+    dispatch(apiActionPdf(data, (status: any) => {
+      SetOpenSnack(false);
+      setTimeout(() => {
+        if (status == true) {
+          // Handle error
+        } else {
+          setSnackData({ type: 'Invoice', invoice: data.id, fileURl: '' })
+          SetOpenSnackdone(true);
+        }
+      }, 10);
+    }));
   }
-  const handleDownloadCdr = (data: any) => {
-    setLoading(true)
 
-    setTimeout(() => {
-      dispatch(downloadBillingInvoiceCDR(data, setErrorinDownload))
-    }, 2000)
-    setTimeout(() => {
-        if(data.id == item.id){
-      if (!completed) {
-        setCompleted(true)
-        setLoading(false)
-      }}else{
-        setCompleted(false)
-        setLoading(true)
-      }
-    }, 3000)
-    // setTimeout(() => {
-    //   setCompleted(false)
-    // }, 4000)
+
+
+  const handleDownloadCdr = (data: any) => {
+    SetOpenSnack(true);
+    setSnackData({ type: 'CDR File', invoice: data.id, fileURl: '' })
+    dispatch(apiAction(data, (status: any) => {
+      SetOpenSnack(false);
+      setTimeout(() => {
+        if (status == true) {
+          // Handle error
+        } else {
+          SetOpenSnackdone(true);
+        }
+      }, 10);
+    }))
   }
 
   return (
     <React.Fragment>
+      <Downlaoding open={openSnack} close={SetOpenSnack} SnakData={SnakData} />
+      <Downloaded open={openSnackdone} close={SetOpenSnackdone} SnakData={SnakData} />
       {/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}> */}
       <Tooltip title="DOWNLOAD">
         <IconButton
@@ -99,7 +108,7 @@ export default function DownloadCdr({
           aria-expanded={open ? 'true' : undefined}
         >
           {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-          {completed && item.id ? <CheckIcon/> :<Download />}
+          {completed && item.id ? <CheckIcon /> : <Download />}
         </IconButton>
       </Tooltip>
       {/* </Box> */}

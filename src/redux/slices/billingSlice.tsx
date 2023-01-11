@@ -22,6 +22,13 @@ const initialState: any = {
     filterValue: [],
     download: "",
     calOpen: false,
+    downlaodStatus: [
+        {
+            inoviceNumber: '',
+            type: '',
+            status: '',
+        }
+    ]
 }
 
 export const billingSlice = createSlice({
@@ -179,7 +186,7 @@ export const viewInvoice = (id: any) => {
         }
     }
 }
-export const downloadBillingInvoice = (data: any, setErrorinDownloadInvoice: any) => {
+export const downloadBillingInvoice = (data: any, calback: any) => {
     dispatch(billingSlice.actions.startLoading())
     return async () => {
         const response = await billing.downloadInvoice(data)
@@ -191,8 +198,9 @@ export const downloadBillingInvoice = (data: any, setErrorinDownloadInvoice: any
             link.setAttribute('download', 'file.pdf'); //or any other extension
             document.body.appendChild(link);
             link.click();
+            calback(false)
         } else {
-            setErrorinDownloadInvoice(true)
+            calback(true)
         }
     }
 }
@@ -208,7 +216,7 @@ export const viewBillingInvoice = (data: any) => {
 }
 
 
-export const downloadBillingInvoiceCDR = (data: any, setErrorinDownload: any) => {
+export const downloadBillingInvoiceCDR = (data: any, callBack: any) => {
     return async () => {
         const response = await billing.downloadInvoiceCdr(data)
         if (response) {
@@ -218,8 +226,9 @@ export const downloadBillingInvoiceCDR = (data: any, setErrorinDownload: any) =>
             link.setAttribute('download', 'file.pdf'); //or any other extension
             document.body.appendChild(link);
             link.click();
+            callBack(false);
         } else {
-            setErrorinDownload(true)
+            callBack(true)
         }
     }
 }
@@ -272,7 +281,7 @@ export const clearAllfilter = () => {
     const detailsOfBilling = store.getState().billing || {};
     const { take, filterValue = [] } = detailsOfBilling
     return async () => {
-   
+
         dispatch(billingSlice.actions.setFilterParms({ filterValue: [] }));
         dispatch(runFilters({ page: 1, take, sort: false }))
     }
