@@ -140,3 +140,7 @@
         padding-bottom: 0;
     }
 }
+
+.MuiDialog-container {
+    backdrop-filter: blur(3px);
+}

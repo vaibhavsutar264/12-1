@@ -395,7 +395,7 @@
                         margin: 0 !important;
 
                         &.fp-margin {
-                            margin-top: 2vh !important;
+                            // margin-top: 2vh !important;
                         }
                     }
 
@@ -435,7 +435,7 @@
                             text-align: left;
                             font-weight: normal;
                             font-size: 18px;
-                            line-height: 18px;
+                            line-height: 20px;
                             font-family: $font-Ubuntu;
                             letter-spacing: 0px;
                             color: $label;

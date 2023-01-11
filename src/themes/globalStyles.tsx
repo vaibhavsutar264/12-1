@@ -72,7 +72,7 @@ export const lightTheme = {
     sunModeBtnBg: '#fff !important',
     darkModeBtnBg: 'transparent',
     bdContainerBg: '#F7F8FA',
-    bdSingleContentBg: '#fff',
+    bdSingleContentBg: '#e5e5e5',
     prefilledTitle: '#344857',
     prefilledContent: '#344857',
     billingDetailsInput: '#344857 !important',
@@ -91,7 +91,7 @@ export const lightTheme = {
     headerLangBg: '#fff',
     langInvoicesTxt: '#344857 !important',
     langInvoicesOutTxt: '#344857 !important',
-    selectEntityLabelBg: '#fff !important',
+    selectEntityLabelBg: 'transparent !important',
     selectEntityLabel: 'rgba(0, 0, 0, 0.6)',
     selectEntityBorder: 'rgba(0, 0, 0, 0.23)',
     selectEntityInput: '#344857 !important',
@@ -112,6 +112,18 @@ export const lightTheme = {
     borderRemovingBg: '#f7f8fa',
     borderRemovingColor: '#222',
     trFirstIcon: '#F7F8FA',
+    raiseTicketBg: '#fff',
+    raiseTicketTypography: '#303030',
+    raiseTicketOutlineBtn: '#d32f2f',
+    raiseTicketOutlineSpan: '#131523',
+    raiseTicketOutlineSpanBorder: '#70707080',
+    raiseTicketTextareaBg: '#fff',
+    raiseTicketTextareaPlaceholder: '#757575',
+    raiseTicketTextarea: '#303030',
+    actSaveBtn: '',
+    legalEntityLabel: 'rgba(0, 0, 0, 0.6) !important',
+    raiseTicketInput: '#344857',
+    raiseTicketInputLabel: '#787785 !important',
 }
 
 export const darkTheme = {
@@ -227,6 +239,18 @@ export const darkTheme = {
     borderRemovingBg: '#2B3744',
     borderRemovingColor: '#eee',
     trFirstIcon: '#2B3744',
+    raiseTicketBg: '#1E2631',
+    raiseTicketTypography: '#fff',
+    raiseTicketOutlineBtn: '#fff',
+    raiseTicketOutlineSpan: '#fff',
+    raiseTicketOutlineSpanBorder: '#fff',
+    raiseTicketTextareaBg: '#222D3B',
+    raiseTicketTextareaPlaceholder: '#787785',
+    raiseTicketTextarea: '#fff',
+    actSaveBtn: '#8c9196',
+    legalEntityLabel: '#787785 !important',
+    raiseTicketInput: '#fff',
+    raiseTicketInputLabel: '#787785 !important',
 }
 
 export const GlobalStyles = createGlobalStyle<{ theme: string }>`
@@ -592,4 +616,44 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
   .TableBody tr th a {
     background-color: ${({ theme }) => theme.trFirstIcon};
   }
+  .raise-ticket {
+    background-color: ${({ theme }) => theme.raiseTicketBg};
+  }
+  .raise-ticket--typography {
+    color: ${({ theme }) => theme.raiseTicketTypography};
+  }
+  .raise-ticket button:not(.MuiButton-contained) {
+    border-color: ${({ theme }) => theme.raiseTicketOutlineBtn};
+    color: ${({ theme }) => theme.raiseTicketOutlineBtn};
+  }
+  span.attachment {
+    border-color: ${({ theme }) => theme.raiseTicketOutlineSpanBorder};
+    color: ${({ theme }) => theme.raiseTicketOutlineSpan};
+  }
+  .raise-ticket-textarea {
+    background-color: ${({ theme }) => theme.raiseTicketTextareaBg};
+    color: ${({ theme }) => theme.raiseTicketTextarea};
+  }
+  .raise-ticket-textarea::placeholder {
+    color: ${({ theme }) => theme.raiseTicketTextareaPlaceholder};
+  }
+  .raise-ticket-textarea::placeholder {
+    color: ${({ theme }) => theme.raiseTicketTextarea};
+  }
+  {/* save button */}
+    form .MuiButton-outlined.Mui-disabled {
+      border-color: ${({ theme }) => theme.actSaveBtn};
+      color: ${({ theme }) => theme.actSaveBtn};
+    }
+    .bd-single-content .legal-entity label {
+      color: ${({ theme }) => theme.legalEntityLabel};
+    }
+    {/* raise ticket input colors */}
+    .raise-ticket-input input {
+      color: ${({ theme }) => theme.raiseTicketInput};
+    }
+    {/* raise ticket input label colors */}
+    .raise-ticket-input label {
+      color: ${({ theme }) => theme.raiseTicketInputLabel};
+    }
 `
