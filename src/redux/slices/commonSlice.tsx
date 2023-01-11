@@ -29,6 +29,6 @@ export const updateWidth = () => {
 
 export const reset = () => {
     return async () => {
-        dispatch(commonSlice.actions.upddatewidth('300px'))
+        dispatch(commonSlice.actions.upddatewidth('86px'))
     }
 }

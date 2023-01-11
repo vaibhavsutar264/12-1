@@ -33,6 +33,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
         return `${s[2]}-${s[0]}-${s[1]}`
     }
     const dispatch = useAppDispatch();
+    
     useEffect(() => {
         dispatch(loadInvoices({ searchValue: "", fromDate: getDate(dateRange[0]), toDate: getDate(dateRange[1]) }))
     }, [dispatch, dateRange])
@@ -116,10 +117,18 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
     //   }
     // }
 
+    useEffect(() => {
+        const mainDiv = document.getElementById('main-div-element')
+        if(mainDiv){
+        mainDiv.style.marginLeft = '86px'
+        }
+    }, [])
+    
+
     return (
         <div >
             <RaiseTicket handleShow={handleShow} showIt={showIt} />
-            <div className="dashboard__content" style={{
+            <div className="dashboard__content" id="main-div-element" style={{
                 // width: `${window.innerWidth - +`${dashBoardWidth}`.split('p')[0]}px`,
                 marginLeft: `${dashBoardWidth}`, width: `calc(100% - ${dashBoardWidth}.split('p')[0]}px`
             }}>
