@@ -57,6 +57,10 @@ import CDRError from './loader-and-snackbar/CDRError'
 import CDRPreparing from './loader-and-snackbar/CDRPreparing'
 import CDRDownloading from './loader-and-snackbar/CDRDownloading'
 import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
+import InvoiceDownloaded from './loader-and-snackbar/InvoiceDownloaded'
+import InvoiceDownloading from './loader-and-snackbar/InvoiceDownloading'
+import InvoiceError from './loader-and-snackbar/InvoiceError'
+import InvoicePreparing from './loader-and-snackbar/InvoicePreparing'
 import { CSSProperties } from 'styled-components'
 
 // import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu';
@@ -133,26 +137,10 @@ const DataTable = ({
     const [allData, setAllData] = useState(data)
     const [loading, setLoading] = useState(false)
     const [completed, setCompleted] = useState(false)
+    const [loadingInvoice, setLoadingInvoice] = useState(false)
+    const [completedInvoice, setCompletedInvoice] = useState(false)
     const [errorinDownload, setErrorinDownload] = useState(false)
-
-    //   const selectionRange = {
-    //     startDate: startDate,
-    //     endDate: endDate,
-    //     key: 'selection',
-    //   }
-    //   //   console.log((startDate).toLocaleDateString().substring(0,10))
-    // 
-    //   const handleSelect = (date: any) => {
-    //     const filtered = data.filter((item: any) => {
-    //       const invoiceDate = new Date(item['Invoice_date'])
-    //       return (
-    //         invoiceDate >= date.selection.startDate &&
-    //         invoiceDate <= date.selection.endDate
-    //       )
-    //     })
-    //     setstartDate(date.selection.startDate)
-    //     setEndDate(date.selection.endDate)
-    //   }
+    const [errorinDownloadInvoice, setErrorinDownloadInvoice] = useState(false)
 
     function useHover(
         styleOnHover: CSSProperties,
@@ -190,12 +178,12 @@ const DataTable = ({
         }
     }
 
-    const handleDownload = (data: any) => {
-        dispatch(handledownloadPdf(data))
-    }
-    const handleDownloadCdr = (data: any) => {
-        dispatch(handledownloadCdrPdf(data))
-    }
+    // const handleDownload = (data: any) => {
+    //     dispatch(handledownloadPdf(data))
+    // }
+    // const handleDownloadCdr = (data: any) => {
+    //     dispatch(handledownloadCdrPdf(data))
+    // }
 
     const handleViewPdf = (data: any) => {
         dispatch(handledownloadViewpdf(data))
@@ -364,9 +352,12 @@ const DataTable = ({
             {/* <Loader /> */}
             {/* <CDRError /> */}
             {errorinDownload ? <CDRError /> : null}
+            {errorinDownloadInvoice ? <InvoiceError /> : null}
             {/* <CDRPreparing /> */}
             {loading ? <CDRDownloading /> : null}
             {completed ? <CDRDownloaded /> : null}
+            {loadingInvoice ? <InvoiceDownloading /> : null}
+            {completedInvoice ? <InvoiceDownloaded /> : null}
             {downloadCompleteShowing}
             {/* {loading ? !loading? <CDRDownloaded /> : null: null} */}
             {/* <CDRDownloaded /> */}
@@ -649,9 +640,14 @@ const DataTable = ({
                                             <DownloadCdr
                                                 loading={loading}
                                                 setLoading={setLoading}
+                                                loadingInvoice={loadingInvoice}
+                                                setLoadingInvoice={setLoadingInvoice}
                                                 completed={completed}
                                                 setCompleted={setCompleted}
+                                                completedInvoice={completedInvoice}
+                                                setCompletedInvoice={setCompletedInvoice}
                                                 setErrorinDownload={setErrorinDownload}
+                                                setErrorinDownloadInvoice={setErrorinDownloadInvoice}
                                                 item={item}
                                             />
                                         </ul>
