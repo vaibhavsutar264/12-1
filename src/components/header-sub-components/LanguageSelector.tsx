@@ -21,10 +21,10 @@ const LanguageSelector: FC = () => {
     }
     const getitem = getFromLocalStorage(localStorageVar.THEME_VAR)
 
-    useEffect(() => {
-        setInLocalStorage('i18nextLng','English')
-        i18n.language = 'English'
-      }, []);
+    // useEffect(() => {
+    //     setInLocalStorage('i18nextLng','English')
+    //     i18n.language = 'English'
+    //   }, []);
     return (
         <FormControl
             sx={{

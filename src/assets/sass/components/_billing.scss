@@ -901,6 +901,7 @@
             letter-spacing: -0.64px;
             color: #344857;
             opacity: 1;
+            max-width: 160px;
             overflow: hidden !important;
 
             &:nth-child(4) {
@@ -915,6 +916,11 @@
                 justify-content: flex-end;
                 align-items: center;
 
+            }
+
+            &:last-child {
+                width: 220px;
+                max-width: 220px;
             }
         }
 
