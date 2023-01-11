@@ -17,50 +17,24 @@ import { styled } from '@mui/material/styles'
 import TableHead from '@mui/material/TableHead'
 import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
-import CustomerLeFilter from './filter-and-sort/CustomerLeFilter'
-import EntityFilter from './filter-and-sort/EntityFilter'
-import InvoiceAmtFilter from './filter-and-sort/InvoiceAmtFilter'
-import InvoiceNoFilter from './filter-and-sort/InvoiceNoFilter'
-import PoNoFilter from './filter-and-sort/PoNoFilter'
-import StatusFilter from './filter-and-sort/StatusFilter'
-
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import useLocales from '../../../hooks/useLocales'
-import Time from '../icons/time'
 import Pdf from '../icons/pdf'
 import Ticket from '../icons/ticket'
-import Download from '../icons/download'
 import { Actions } from './Actions'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
-import { getPageParms, setUlrParms } from '../../../utils/helpers'
+import {  setUlrParms } from '../../../utils/helpers'
 import { useDispatch as useAppDispatch } from '../../../redux/store'
-import { Link } from 'react-router-dom'
-import MultiSelect from '../elements/multiSelect'
-import { apiVrbls } from '../../../utils/constants'
-import moment from 'moment'
-import Invoice from '../icons/invoice'
 import Overdue from '../icons/overdue'
 import PaidInvoice from '../icons/paidInvoice'
 import UnpaidInvoice from '../icons/unpaidInvoice'
 import DownloadCdr from './DownloadCdr'
-
-import { Avatar, Divider } from '@mui/material'
-import Logout from '@mui/icons-material/Logout'
-import Settings from '@mui/icons-material/Settings'
-import PersonAdd from '@mui/icons-material/PersonAdd'
-import Loader from './loader-and-snackbar/Loader'
 import CDRError from './loader-and-snackbar/CDRError'
-import CDRPreparing from './loader-and-snackbar/CDRPreparing'
 import CDRDownloading from './loader-and-snackbar/CDRDownloading'
 import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
 import { CSSProperties } from 'styled-components'
-
-// import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu';
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { getValue } from '@testing-library/user-event/dist/utils';
@@ -77,33 +51,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 14,
     },
 }))
-
-const reorder = (list: any, startIndex: any, endIndex: any) => {
-    const result = Array.from(list)
-    const [removed] = result.splice(startIndex, 1)
-    result.splice(endIndex, 0, removed)
-    return result
-}
-
-const grid = 8
-
-const getItemStyle = (isDragging: any, draggableStyle: any) => ({
-    userSelect: 'none',
-    padding: grid * 2,
-    margin: `0 0 ${grid}px 0`,
-    background: isDragging ? 'lightgreen' : 'grey',
-    ...draggableStyle,
-})
-
-const getListStyle = (isDraggingOver: any) => ({
-    background: isDraggingOver ? 'lightblue' : 'lightgrey',
-    padding: grid,
-    width: 250,
-})
-
-const activeStyle = {
-    border: '2px solid #3B6FED'
-}
 
 const DataTable = ({
     TableData,
@@ -130,51 +77,16 @@ const DataTable = ({
     const totalCount = Math.ceil(Total / take)
     const [sortdir, setSortdir]: any = useState(null)
 
-    const [allData, setAllData] = useState(data)
     const [loading, setLoading] = useState(false)
     const [completed, setCompleted] = useState(false)
     const [errorinDownload, setErrorinDownload] = useState(false)
-
-    //   const selectionRange = {
-    //     startDate: startDate,
-    //     endDate: endDate,
-    //     key: 'selection',
-    //   }
-    //   //   console.log((startDate).toLocaleDateString().substring(0,10))
-    // 
-    //   const handleSelect = (date: any) => {
-    //     const filtered = data.filter((item: any) => {
-    //       const invoiceDate = new Date(item['Invoice_date'])
-    //       return (
-    //         invoiceDate >= date.selection.startDate &&
-    //         invoiceDate <= date.selection.endDate
-    //       )
-    //     })
-    //     setstartDate(date.selection.startDate)
-    //     setEndDate(date.selection.endDate)
-    //   }
-
-    function useHover(
-        styleOnHover: CSSProperties,
-        styleOnNotHover: CSSProperties = {}
-    ) {
-        const [style, setStyle] = React.useState(styleOnNotHover)
-        const onMouseEnter = () => setStyle(styleOnHover)
-        const onMouseLeave = () => setStyle(styleOnNotHover)
-        return { style, onMouseEnter, onMouseLeave }
-    }
-    const hover = useHover({ borderColor: 'green', userSelect: 'none' })
-
     const changeTake = (take: any) => {
         updateData(page, take)
     }
-
     const changePage = (da: any, pageNumber: any) => {
         updateData(pageNumber, take)
     }
-
     const updateData = (page: any, take: any) => {
-        // console.log(Total, page, take)
         if (take * page > Total) {
             dispatch(pageAction(Math.ceil(Total / take), take))
             setUlrParms(page, take)
@@ -183,24 +95,9 @@ const DataTable = ({
             setUlrParms(page, take)
         }
     }
-    const sort = (head: any) => {
-        if (head.sort) {
-            dispatch(sortAction(head, sortdir === -1 ? 1 : -1))
-            setSortdir(sortdir === -1 ? 1 : -1)
-        }
-    }
-
-    const handleDownload = (data: any) => {
-        dispatch(handledownloadPdf(data))
-    }
-    const handleDownloadCdr = (data: any) => {
-        dispatch(handledownloadCdrPdf(data))
-    }
-
     const handleViewPdf = (data: any) => {
         dispatch(handledownloadViewpdf(data))
     }
-
     // Vertical Dropdown code
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -208,19 +105,7 @@ const DataTable = ({
     }
     const handleClose = () => { setAnchorEl(null) }
 
-    // Handle Tooltip closing & opening
-    const [opened, setOpen] = React.useState(false)
-
-    const handleTooltipClose = () => {
-        setOpen(false)
-    }
-
-    const handleTooltipOpen = () => {
-        setOpen(true)
-    }
-
     const [isHover, setIsHover] = useState(false)
-
     const handleMouseEnter = () => {
         setIsHover(true)
     }
@@ -355,21 +240,11 @@ const DataTable = ({
     }
     return (
         <>
-            {/* <CustomerLeFilter /> */}
-            {/* <EntityFilter /> */}
-            {/* <InvoiceNoFilter /> */}
-            {/* <PoNoFilter /> */}
-            {/* <InvoiceAmtFilter />
-            {/* <StatusFilter /> */}
-            {/* <Loader /> */}
-            {/* <CDRError /> */}
+
             {errorinDownload ? <CDRError /> : null}
-            {/* <CDRPreparing /> */}
             {loading ? <CDRDownloading /> : null}
             {completed ? <CDRDownloaded /> : null}
             {downloadCompleteShowing}
-            {/* {loading ? !loading? <CDRDownloaded /> : null: null} */}
-            {/* <CDRDownloaded /> */}
             <Actions
                 setDateRange={setDateRange}
                 dateRange={dateRange}
@@ -390,11 +265,10 @@ const DataTable = ({
                                             <MoreVertIcon />
                                         </MenuButton>
                                     }
-
                                     transition
                                     onDragOver={allowDrop} onDrop={drop}
                                 >
-                                    {columns.map((item: any, index: any) => {
+                                    {columnsDropdown.map((item: any, index: any) => {
                                         return (
                                             <>
                                                 <TbMenuItem
@@ -432,7 +306,7 @@ const DataTable = ({
                                 </TbMenu>
                             </StyledTableCell>
                             {/* Table Heads */}
-                            {columns.map((head: any, index: any) => (
+                            {columnsDropdown.map((head: any, index: any) => (
                                 !hiddenClms.includes(head.eleName) && <StyledTableCell
                                     key={`${head.headTrans}${index}`}
                                     align="right"
@@ -542,7 +416,6 @@ const DataTable = ({
                                                     </div>
                                                 </>
                                             )}
-                                            {/* <button onClick={(e: any)=>onSortAscending(e,head)}>sort</button> */}
                                         </button>
                                     </div>
                                 </StyledTableCell>
@@ -600,7 +473,7 @@ const DataTable = ({
                                             </a>
                                         </a>
                                     </TableCell>
-                                    {columns.map((clm: any, index: any) => (
+                                    {columnsDropdown.map((clm: any, index: any) => (
                                         !hiddenClms.includes(clm.eleName) &&
                                         <>
                                             <Tooltip

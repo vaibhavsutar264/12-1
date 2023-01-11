@@ -39,7 +39,7 @@ function ModalLoginError({ setShowError, showError }: any) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => { setShowError(false) }}>
+                    <Button className='buildfix2' onClick={() => { setShowError(false) }}>
                         retry
                     </Button>
                 </DialogActions>

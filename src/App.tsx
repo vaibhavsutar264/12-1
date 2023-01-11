@@ -16,6 +16,7 @@ import { logout } from './redux/slices/authSlice'
 import { store } from './redux/store'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
 import { updateCal } from './redux/slices/billingSlice'
+import { setInLocalStorage } from './hooks/useLocalStorage'
 
 const App = () => {
     const dispatch = useAppDispatch()
@@ -70,6 +71,7 @@ const App = () => {
 
     }
     useEffect(() => {
+        setInLocalStorage('i18nextLng','English')
         document.addEventListener('click', clickEventHandler, true);
     }, [])
 

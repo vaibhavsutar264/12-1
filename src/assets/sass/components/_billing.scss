@@ -842,9 +842,11 @@
         opacity: 1;
         width: 160px;
         max-width: 160px;
+        padding-left: 12px;
 
         &:nth-child(1) {
-            width: 75px !important;
+            width: 90px !important;
+            min-width: unset;
         }
 
         a {
@@ -899,6 +901,7 @@
             color: #344857;
             opacity: 1;
             max-width: 160px;
+            min-width: 160px;
             overflow: hidden !important;
 
             &:nth-child(4) {
@@ -1285,7 +1288,6 @@ form.raise-ticket-input .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
     color: unset;
 }
 
-.MuiTooltip-popper[role="tooltip"] {}
 
 
 // Account details styles 

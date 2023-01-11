@@ -145,7 +145,7 @@ export const HeaderBar = ({
                                     }}
                                     labelId="demo-select-small"
                                     id="demo-select-small-out"
-                                    value={i18n.language == ('en-ZA' || 'en-US') ? 'English' : i18n.language}
+                                    value={i18n.language == ('en-ZA') ? 'English' : i18n.language == ('en-US') ? 'English' : i18n.language == ('en-GB') ? 'English' : i18n.language}
                                     label="Language"
                                     onChange={(e) => {
                                         i18n.changeLanguage(e.target.value)

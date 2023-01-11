@@ -53,7 +53,7 @@ const AccountDetail = ({
 
     }
 
-    console.log(accountDetails.legalentities);
+    console.log(LegalEntity);
     console.log("accountDetails", leEntity);
 
 
@@ -106,7 +106,7 @@ const AccountDetail = ({
                         >
                             {t<string>('billingDetails')}
                         </Typography>
-                        {LegalEntity &&
+                        {accountDetails.legalentities &&
                             <Box
                                 id="select-entity-form"
                                 sx={{
@@ -124,7 +124,7 @@ const AccountDetail = ({
                                     },
                                     '& label': {
                                         // top: '-9px',
-                                        top: LegalEntity.length > 1 ? '1px' : '-11px',
+                                        top: accountDetails.legalentities.length > 1 ? '1px' : '-11px',
                                         height: 'min-content',
                                         backgroundColor: '#fff !important',
                                     },
