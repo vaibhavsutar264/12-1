@@ -32,6 +32,12 @@ function Routes({ toggleTheme }: { toggleTheme: any }) {
                 { path: appRoutes.SET_PASSWORD, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={SetPassword} /> },
                 { path: appRoutes.ACCOUNT_DETAILS, element: <PrivateLayout toggleTheme={toggleTheme} Component={AccountDetails} /> },
                 { path: appRoutes.WELCOME, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={Welcome} /> },
+                { path: appRoutes.MODAL, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={Modal} /> },
+                { path: appRoutes.MODAL_LOGIN_ERROR, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={ModalLoginError} /> },
+                { path: appRoutes.MODAL_MAIL, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={ModalMail} /> },
+                { path: appRoutes.MODAL_PASS_CHANGED, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={ModalPassChanged} /> },
+                { path: appRoutes.MODAL_TICKET, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={ModalTicket} /> },
+                { path: appRoutes.MODAL_TICKET_ERROR, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={ModalTicketError} /> },
                 { path: appRoutes.CUSTOMER_LE_FILTER, element: <OnBoardingLayout toggleTheme={toggleTheme} Component={CustomerLeFilter} /> },
                 { path: appRoutes.BILLING, element: <PrivateLayout toggleTheme={toggleTheme} Component={Billing} /> },
                 { path: appRoutes.CHANGE_PASSWORD, element: <PrivateLayout toggleTheme={toggleTheme} Component={ChangePassword} /> },
@@ -57,6 +63,12 @@ const PrivateLayout = Loadable(lazy(() => import('../components/privateLayout/Pr
 const OnBoardingLayout = Loadable(lazy(() => import('../components/onBoardingLayout/onBoardingLayout')))
 const AccountDetails = Loadable(lazy(() => import('../components/account-details/AccountDetails')))
 const Welcome = Loadable(lazy(() => import('../components/welcome/welcome')))
+const Modal = Loadable(lazy(() => import('../components/modals/Modal')))
+const ModalLoginError = Loadable(lazy(() => import('../components/modals/ModalLoginError')))
+const ModalMail = Loadable(lazy(() => import('../components/modals/ModalMail')))
+const ModalPassChanged = Loadable(lazy(() => import('../components/modals/ModalPassChanged')))
+const ModalTicket = Loadable(lazy(() => import('../components/modals/ModalTicket')))
+const ModalTicketError = Loadable(lazy(() => import('../components/modals/ModalTicketError')))
 const DateFilter = Loadable(lazy(() => import('../components/Date/DateFilter')))
 const CustomerLeFilter = Loadable(lazy(() => import('../components/common/tables/filter-and-sort/CustomerLeFilter')))
 

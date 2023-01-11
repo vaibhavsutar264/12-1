@@ -420,6 +420,7 @@ const DataTable = ({
                                 head.isActive && <StyledTableCell
                                     key={`${head.headTrans}${index}`}
                                     align="right"
+                                    sx={{minWidth:'160px'}}
                                 >
                                     <div className="th_wrapper">
                                         <button
