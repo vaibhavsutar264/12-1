@@ -117,6 +117,12 @@ export const appRoutes = {
     ACCOUNT_DETAILS: '/accountdetails',
     WELCOME: '/welcome',
     CUSTOMER_LE_FILTER: '/customer-le-filter',
+    MODAL: '/modal',
+    MODAL_LOGIN_ERROR: '/modal-login-error',
+    MODAL_MAIL: '/modal-mail',
+    MODAL_PASS_CHANGED: '/modal-pass-changed',
+    MODAL_TICKET: '/modal-ticket',
+    MODAL_TICKET_ERROR: '/modal-ticket-error',
 }
 
 export const breadCrums = {

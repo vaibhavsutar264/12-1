@@ -34,7 +34,15 @@ import DownloadCdr from './DownloadCdr'
 import CDRError from './loader-and-snackbar/CDRError'
 import CDRDownloading from './loader-and-snackbar/CDRDownloading'
 import CDRDownloaded from './loader-and-snackbar/CDRDownloaded'
+import InvoiceDownloaded from './loader-and-snackbar/InvoiceDownloaded'
+import InvoiceDownloading from './loader-and-snackbar/InvoiceDownloading'
+import InvoiceError from './loader-and-snackbar/InvoiceError'
+import InvoicePreparing from './loader-and-snackbar/InvoicePreparing'
 import { CSSProperties } from 'styled-components'
+
+
+// import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu';
+
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { getValue } from '@testing-library/user-event/dist/utils';
@@ -79,7 +87,22 @@ const DataTable = ({
 
     const [loading, setLoading] = useState(false)
     const [completed, setCompleted] = useState(false)
+    const [loadingInvoice, setLoadingInvoice] = useState(false)
+    const [completedInvoice, setCompletedInvoice] = useState(false)
     const [errorinDownload, setErrorinDownload] = useState(false)
+    const [errorinDownloadInvoice, setErrorinDownloadInvoice] = useState(false)
+
+    function useHover(
+        styleOnHover: CSSProperties,
+        styleOnNotHover: CSSProperties = {}
+    ) {
+        const [style, setStyle] = React.useState(styleOnNotHover)
+        const onMouseEnter = () => setStyle(styleOnHover)
+        const onMouseLeave = () => setStyle(styleOnNotHover)
+        return { style, onMouseEnter, onMouseLeave }
+    }
+    const hover = useHover({ borderColor: 'green', userSelect: 'none' })
+
     const changeTake = (take: any) => {
         updateData(page, take)
     }
@@ -242,8 +265,12 @@ const DataTable = ({
         <>
 
             {errorinDownload ? <CDRError /> : null}
+            {errorinDownloadInvoice ? <InvoiceError /> : null}
+            {/* <CDRPreparing /> */}
             {loading ? <CDRDownloading /> : null}
             {completed ? <CDRDownloaded /> : null}
+            {loadingInvoice ? <InvoiceDownloading /> : null}
+            {completedInvoice ? <InvoiceDownloaded /> : null}
             {downloadCompleteShowing}
             <Actions
                 setDateRange={setDateRange}
@@ -310,6 +337,7 @@ const DataTable = ({
                                 !hiddenClms.includes(head.eleName) && <StyledTableCell
                                     key={`${head.headTrans}${index}`}
                                     align="right"
+                                    sx={{minWidth:'160px'}}
                                 >
                                     <div className="th_wrapper">
                                         <button
@@ -521,10 +549,16 @@ const DataTable = ({
                                             <DownloadCdr
                                                 loading={loading}
                                                 setLoading={setLoading}
+                                                loadingInvoice={loadingInvoice}
+                                                setLoadingInvoice={setLoadingInvoice}
                                                 completed={completed}
                                                 setCompleted={setCompleted}
+                                                completedInvoice={completedInvoice}
+                                                setCompletedInvoice={setCompletedInvoice}
                                                 setErrorinDownload={setErrorinDownload}
+                                                setErrorinDownloadInvoice={setErrorinDownloadInvoice}
                                                 item={item}
+                                                arrayData={data}
                                             />
                                         </ul>
                                     </TableCell>

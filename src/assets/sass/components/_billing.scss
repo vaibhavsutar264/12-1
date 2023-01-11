@@ -840,11 +840,14 @@
         text-transform: uppercase;
         border-bottom: 0px;
         opacity: 1;
-        width: 160px;
-        max-width: 160px;
+        min-width:147px;
+        width: 147px;
+        max-width: 147px;
+        padding-left: 12px;
 
         &:nth-child(1) {
-            width: 75px !important;
+            width: 90px !important;
+            min-width: unset;
         }
 
         a {
@@ -898,7 +901,8 @@
             letter-spacing: -0.64px;
             color: #344857;
             opacity: 1;
-            max-width: 160px;
+            max-width: 147px;
+            min-width: 147px;
             overflow: hidden !important;
 
             &:nth-child(4) {

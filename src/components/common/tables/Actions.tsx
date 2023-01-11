@@ -15,6 +15,9 @@ import InvoiceAmtFilter from './filter-and-sort/InvoiceAmtFilter'
 import InvoiceNoFilter from './filter-and-sort/InvoiceNoFilter'
 import PoNoFilter from './filter-and-sort/PoNoFilter'
 import StatusFilter from './filter-and-sort/StatusFilter'
+import RotateRightIcon from '@mui/icons-material/RotateRight';
+import CheckIcon from '@mui/icons-material/Check';
+
 // import { DateRangePicker } from 'react-date-range';
 // import { DateRangePicker } from 'rsuite';
 import { DateSelect } from './DateSelect';
@@ -109,7 +112,7 @@ export const Actions = ({
             <div className="action__elementItem">
                 <span className="iconCta">
                     <span className="icon">
-                        <Export />
+                    {loading?<RotateRightIcon/>:completed? <CheckIcon />: <Export />}
                     </span>
                     {dataStored && (
                         <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">

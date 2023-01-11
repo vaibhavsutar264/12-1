@@ -127,13 +127,13 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                         register={{ ...register('oldPassword') }}
                                         label={'oldPassword'}
                                         classNameInput={"input-field"}
-                                        fieldName={'user'}
+                                        fieldName={'password'}
                                         formState={formState}
                                         typeName={'password'}
                                         onInput={setOldPassVal}
                                         variantForInput={"standard"}
                                         sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
-                                        dataTestId='email-element'
+                                        dataTestId='old-password-element'
                                     />
                                     <PrimaryInput
                                         register={{ ...register('newPass') }}
@@ -146,7 +146,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                         setpassword={true}
                                         variantForInput={"standard"}
                                         sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
-                                        dataTestId='password-element'
+                                        dataTestId='new-password-element'
                                     />
                                     <PrimaryInput
                                         register={{ ...register('cnfPassword') }}
