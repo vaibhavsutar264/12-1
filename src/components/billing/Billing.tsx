@@ -16,14 +16,11 @@ import PaidInvoice from '../common/icons/paidInvoice'
 import UnpaidInvoice from '../common/icons/unpaidInvoice'
 import Card from '../common/elements/card'
 import { getCardCount } from '../../utils/helpers'
-import { getAcDetails } from '../../redux/slices/accountSlice'
-import moment from 'moment'
-import ModalTicketError from '../modals/ModalTicketError'
 
 
 export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
 
-    const { PageData = [], MasterData = [], total, page, take ,filterValue} = useSelector((state: any) => state.billing || {});
+    const { PageData = [], MasterData = [], total, page, take ,filterValue,downloadCRDInprogress} = useSelector((state: any) => state.billing || {});
     const { dashBoardWidth } = useSelector((state: any) => state.common);
 
     const [dateRange, setDateRange] = useState<any>([null, null]);
@@ -50,35 +47,6 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
         setShowIt(!showIt);
     };
 
-    const firstElement = document.getElementById(
-        'first'
-    )
-    const secondElement = document.getElementById(
-        'second'
-    )
-    const thirdElement = document.getElementById(
-        'third'
-    )
-    const forthElement = document.getElementById(
-        'fourth'
-    )
-    const mainElement = document.getElementById(
-        'main-div'
-    )
-
-    // console.log(cards[0])
-    // cards.map((q: any, i: any) => console.log(q))
-    // console.log(mainElement?.firstChild?.firstChild)
-
-    //     const nodes = document.getElementById('main-div')?.childNodes;
-    // for(let i=0; i<4; i++) {
-    //     if(nodes){
-    //     if (nodes[i].nodeName.toLowerCase() == 'div') {
-    //          nodes[i]. = 'red';
-    //      }
-    //     }
-    // }
-
     const btnContainer = document.getElementById("main-div");
 
     // Get all buttons with class="btn" inside the container
@@ -90,41 +58,10 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     const current = document.getElementsByClassName("active");
                     current[0].classList.remove('active')
                     btns[i].classList.add('active')
-                    //     $('.blue').removeClass('red')
-                    // $(this).addClass('red');
-                    //     current[0].className = current[0].className.replace(" active", "");
-                    //     btns[i].className = "cardType__1 active";
                 });
             }
         }
     }
-    // Loop through the buttons and add the active class to the current/clicked button
-
-    // if(btns !== undefined){
-    // // Loop through the buttons and add the active class to the current/clicked button
-    // for (let i = 0; i < btns.length; i++) {
-    //     btns[i].addEventListener("click", function() {
-    //       const current = document.getElementsByClassName("active");
-
-    //       // If there's no active class
-    //       if (current.length > 0) {
-    //         current[0].className = current[0].className.replace(" active", "");
-    //       }
-
-    //       // Add the active class to the current/clicked button
-    //       btns[i].className += " active";
-    //     });
-    //   }
-    // }
-
-    useEffect(() => {
-        const mainDiv = document.getElementById('main-div-element')
-        if(mainDiv){
-        mainDiv.style.marginLeft = '86px'
-        }
-    }, [])
-    
-
     return (
         <div >
             <RaiseTicket handleShow={handleShow} showIt={showIt} />
@@ -156,6 +93,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     setDateRange={setDateRange}
                     dateRange={dateRange}
                     clearAllfilter={clearAllfilter}
+                    inProgress={downloadCRDInprogress}
                     TableData={dataTables.BILLING(PageData, MasterData)} />
             </div>
             {/* <ModalTicketError /> */}

@@ -1,24 +1,12 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
-import Avatar from '@mui/material/Avatar'
 import Download from '../icons/download'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import PersonAdd from '@mui/icons-material/PersonAdd'
-import Settings from '@mui/icons-material/Settings'
-import Logout from '@mui/icons-material/Logout'
-import {
-  downloadBillingInvoice,
-  downloadBillingInvoiceCDR,
-} from '../../../redux/slices/billingSlice'
 import {
   useDispatch as useAppDispatch,
-  useSelector,
 } from '../../../redux/store'
 import useLocales from '../../../hooks/useLocales'
 import CheckIcon from '@mui/icons-material/Check';
@@ -28,19 +16,10 @@ import CachedIcon from '@mui/icons-material/Cached';
 
 export default function DownloadCdr({
   item,
-  loading,
-  setLoading,
-  loadingInvoice,
-  setLoadingInvoice,
   completed,
-  setCompleted,
-  completedInvoice,
-  setCompletedInvoice,
-  setErrorinDownload,
-  setErrorinDownloadInvoice,
-  arrayData,
   apiAction,
-  apiActionPdf
+  apiActionPdf,
+  inProgress
 }: any) {
   const { t } = useLocales()
   const dispatch = useAppDispatch()
@@ -48,6 +27,7 @@ export default function DownloadCdr({
 
   const [openSnack, SetOpenSnack] = React.useState(false);
   const [openSnackdone, SetOpenSnackdone] = React.useState(false);
+  const [downloadStarted, SetdownloadStarted] = React.useState(false);
 
 
   const [SnakData, setSnackData] = React.useState({ type: '', invoice: '', fileURl: '' });
@@ -78,6 +58,7 @@ export default function DownloadCdr({
 
 
   const handleDownloadCdr = (data: any) => {
+    SetdownloadStarted(true);
     SetOpenSnack(true);
     setSnackData({ type: 'CDR File', invoice: data.id, fileURl: '' })
     dispatch(apiAction(data, (status: any) => {
@@ -88,6 +69,7 @@ export default function DownloadCdr({
         } else {
           SetOpenSnackdone(true);
         }
+        SetdownloadStarted(false);
       }, 10);
     }))
   }
@@ -97,7 +79,7 @@ export default function DownloadCdr({
       <Downlaoding open={openSnack} close={SetOpenSnack} SnakData={SnakData} />
       <Downloaded open={openSnackdone} close={SetOpenSnackdone} SnakData={SnakData} />
       {/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}> */}
-      <Tooltip title="DOWNLOAD">
+      <Tooltip title="DOWNLOAD" className={downloadStarted ? 'downlaodIP' : '' }>
         <IconButton
           className="download-cdr"
           onClick={handleClick}
@@ -107,8 +89,7 @@ export default function DownloadCdr({
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
         >
-          {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-          {completed && item.id ? <CheckIcon /> : <Download />}
+         {downloadStarted ? <CachedIcon/> : completed && item.id ? <CheckIcon /> : <Download />}
         </IconButton>
       </Tooltip>
       {/* </Box> */}
@@ -151,7 +132,7 @@ export default function DownloadCdr({
           {t<string>('invoice')}
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => handleDownloadCdr(item)}>
+        <MenuItem className={`${inProgress ? 'downlaodIP' : ''}`} onClick={() => handleDownloadCdr(item)}>
           {t<string>('cdr')}
         </MenuItem>
       </Menu>

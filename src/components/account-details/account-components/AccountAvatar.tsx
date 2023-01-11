@@ -34,7 +34,6 @@ const AccountAvatar = () => {
     const [timezone, setTimezone] = useState('')
     const [communication, setCommunication] = useState('')
     const [editable, setEditable] = useState<boolean>(false)
-    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         dispatch(getuserInfo(user.emailId))
@@ -46,6 +45,11 @@ const AccountAvatar = () => {
             setCommunication(user?.preferredCommunicationMode)
         }
     }, [dispatch])
+
+    const isFormChanged = () => {
+        return `${user.firstname}-${user.lastName}-${user.phoneNumber}-${user.timezone}-${user.preferredCommunicationMode}` ==
+            `${firstname}-${lastName}-${phoneNumber}-${timezone}-${communication}`
+    }
 
     const editUserDetails = async (e: SyntheticEvent) => {
         e.preventDefault()
@@ -63,7 +67,6 @@ const AccountAvatar = () => {
 
     const resetDetails = () => {
         setEditable(!false)
-        setOpen(!false)
     }
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -138,7 +141,6 @@ const AccountAvatar = () => {
                             value={firstname}
                             onChange={(e) => {
                                 setFirstname(e.target.value)
-                                setOpen(false)
                             }}
                             variant={editable ? 'outlined' : 'standard'}
                             type="text"
@@ -157,7 +159,6 @@ const AccountAvatar = () => {
                             value={lastName}
                             onChange={(e) => {
                                 setLastName(e.target.value)
-                                setOpen(false)
                             }}
                             sx={{
                                 borderRadius: '10px !important',
@@ -174,7 +175,6 @@ const AccountAvatar = () => {
                             value={phoneNumber}
                             onChange={(e) => {
                                 setPhoneNumber(e.target.value)
-                                setOpen(false)
                             }}
                             sx={{
                                 borderRadius: '10px !important',
@@ -189,7 +189,7 @@ const AccountAvatar = () => {
                             variant={editable ? 'outlined' : 'standard'}
                             type="text"
                             value={communication}
-                            onChange={(e) => { setCommunication(e.target.value); setOpen(false) }}
+                            onChange={(e) => { setCommunication(e.target.value); }}
                             sx={{
                                 borderRadius: '10px !important',
                                 flexBasis: '45%',
@@ -203,7 +203,7 @@ const AccountAvatar = () => {
                             variant={editable ? 'outlined' : 'standard'}
                             type="text"
                             value={timezone}
-                            onChange={(e) => { setTimezone(e.target.value); setOpen(false) }}
+                            onChange={(e) => { setTimezone(e.target.value); }}
                             sx={{
                                 borderRadius: '10px !important',
                                 flexBasis: '100%',
@@ -295,7 +295,7 @@ const AccountAvatar = () => {
                         variant="outlined"
                         type="button"
                         id="button-edit"
-                        disabled={open}
+                        disabled={editable ? isFormChanged() : false}
                         onClick={editable ? editUserDetails : resetDetails}
                         sx={{
                             textTransform: 'uppercase',

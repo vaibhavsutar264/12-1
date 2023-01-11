@@ -259,7 +259,7 @@ export const apiVrbls = {
     USER: {
         ACCESS_TOKEN: "access_token",
         REFRESH_TOKEN: "refresh_token",
-        IS_LOGGED_IN_FIRST: "isLoginFirstTime",
+        IS_LOGGED_IN_FIRST: "loginFirstTime",
         EMAIL_ID: "emailId"
     },
 

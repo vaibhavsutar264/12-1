@@ -1,10 +1,8 @@
-import { Box, Stack, Typography, TextField } from '@mui/material'
-import { useSelector } from '../../../redux/store'
+import { Box, Stack, Typography } from '@mui/material'
 import useLocales from '../../../hooks/useLocales'
 
 
 const AccountInvoice = ({ sendInvoice }: any) => {
-    const { accountDetails } = useSelector((state: any) => state.account || {})
     const { t } = useLocales()
 
     return (

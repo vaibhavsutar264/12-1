@@ -177,23 +177,53 @@ tbody tr {
 // border on table row hover
 tbody tr:hover {
 
-    & th,
-    & td {
-        border: 2px solid rgb(26, 115, 232) !important;
+    & th.overdue,
+    & td.overdue {
+        border: 2px solid #344857 !important;
     }
-
-    & th {
+    & td.overdue:last-child {
+        border-right: 2px solid #344857 !important;
+    }
+    & th.overdue {
         border-right: 0 !important;
     }
-
-    & td {
+    & td.overdue {
         border-left: 0 !important;
         border-right: 0 !important;
     }
 
-    & td:last-child {
-        border-right: 2px solid rgb(26, 115, 232) !important;
+
+    & th.completed,
+    & td.completed {
+        border: 2px solid #3DB887 !important;
     }
+    & td.completed:last-child {
+        border-right: 2px solid #3DB887 !important;
+    }
+    & th.completed {
+        border-right: 0 !important;
+    }
+    & td.completed {
+        border-left: 0 !important;
+        border-right: 0 !important;
+    }
+
+
+    & th.pending,
+    & td.pending {
+        border: 2px solid #E54457 !important;
+    }
+    & td.pending:last-child {
+        border-right: 2px solid #E54457 !important;
+    }
+    & th.pending {
+        border-right: 0 !important;
+    }
+    & td.pending {
+        border-left: 0 !important;
+        border-right: 0 !important;
+    }
+
 }
 
 tbody tr td {

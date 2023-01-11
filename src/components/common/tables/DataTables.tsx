@@ -25,27 +25,16 @@ import Ticket from '../icons/ticket'
 import { Actions } from './Actions'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
-import {  setUlrParms } from '../../../utils/helpers'
+import { setUlrParms } from '../../../utils/helpers'
 import { useDispatch as useAppDispatch } from '../../../redux/store'
 import Overdue from '../icons/overdue'
 import PaidInvoice from '../icons/paidInvoice'
 import UnpaidInvoice from '../icons/unpaidInvoice'
 import DownloadCdr from './DownloadCdr'
-import CDRError from './loader-and-snackbar/CDRError'
-import CDRDownloading from './loader-and-snackbar/Downlaoding'
 import CDRDownloaded from './loader-and-snackbar/Downlaoded'
-import InvoiceDownloaded from './loader-and-snackbar/InvoiceDownloaded'
-import InvoiceDownloading from './loader-and-snackbar/InvoiceDownloading'
-import InvoiceError from './loader-and-snackbar/InvoiceError'
-import InvoicePreparing from './loader-and-snackbar/InvoicePreparing'
 import { CSSProperties } from 'styled-components'
-
-
-// import { Menu, MenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu';
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { getValue } from '@testing-library/user-event/dist/utils';
 import { Menu as TbMenu, MenuItem as TbMenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu'
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
@@ -77,20 +66,16 @@ const DataTable = ({
     setDateRange,
     dateRange,
     handledownloadViewpdf,
-    filterValues
+    filterValues,
+    inProgress
 }: any) => {
     const { t } = useLocales()
     const { data, columns, tableName, allMasterData } = TableData
     const dispatch = useAppDispatch()
     const totalCount = Math.ceil(Total / take)
-    const [sortdir, setSortdir]: any = useState(null)
 
     const [loading, setLoading] = useState(false)
     const [completed, setCompleted] = useState(false)
-    const [loadingInvoice, setLoadingInvoice] = useState(false)
-    const [completedInvoice, setCompletedInvoice] = useState(false)
-    const [errorinDownload, setErrorinDownload] = useState(false)
-    const [errorinDownloadInvoice, setErrorinDownloadInvoice] = useState(false)
 
     function useHover(
         styleOnHover: CSSProperties,
@@ -167,6 +152,8 @@ const DataTable = ({
     useEffect(() => {
         setTableData(data)
     }, [data])
+
+
 
     const onSortAscending = (e: any, head: any, index: any) => {
 
@@ -263,13 +250,6 @@ const DataTable = ({
     }
     return (
         <>
-
-            {/* {errorinDownload ? <CDRError /> : null}
-            {errorinDownloadInvoice ? <InvoiceError /> : null}
-            {loading ? <CDRDownloading /> : null}
-            {completed ? <CDRDownloaded /> : null}
-            {loadingInvoice ? <InvoiceDownloading /> : null}
-            {completedInvoice ? <InvoiceDownloaded /> : null} */}
             {downloadCompleteShowing}
             <Actions
                 setDateRange={setDateRange}
@@ -336,7 +316,7 @@ const DataTable = ({
                                 !hiddenClms.includes(head.eleName) && <StyledTableCell
                                     key={`${head.headTrans}${index}`}
                                     align="right"
-                                    sx={{minWidth:'160px'}}
+                                    sx={{ minWidth: '160px' }}
                                 >
                                     <div className="th_wrapper">
                                         <button
@@ -447,11 +427,13 @@ const DataTable = ({
                                     </div>
                                 </StyledTableCell>
                             ))}
-                            <StyledTableCell align="right">
-                                <Button onClick={()=>{dispatch(clearAllfilter())}} className="th_wrapper">
-                                    <span className='clear-filters'>Clear all filters</span>
-                                </Button>
-                            </StyledTableCell>
+                            {(filterValues.length != 0 || `${filterValues.map((d: any) => d.values.length).filter((d: any) => d != 0).length}` != `0` )&&
+                                <StyledTableCell align="right">
+                                    <Button onClick={() => { dispatch(clearAllfilter()) }} className="th_wrapper">
+                                        <span className='clear-filters'>Clear all filters</span>
+                                    </Button>
+                                </StyledTableCell>
+                            }
                         </TableRow>
                     </TableHead>
                     {/* Table Body */}
@@ -479,25 +461,23 @@ const DataTable = ({
                                     id="table-data"
                                     key={item.id}
                                 >
-                                    <TableCell component="th" scope="row">
-                                        <a href="/">
-                                            <a href="#/">
-                                                {item.icon == 'overdue' && (
-                                                    <span className="overdue">
-                                                        <Overdue />
-                                                    </span>
-                                                )}
-                                                {item.icon == 'pending' && (
-                                                    <span className="pending">
-                                                        <UnpaidInvoice />
-                                                    </span>
-                                                )}
-                                                {item.icon == 'completed' && (
-                                                    <span className="completed">
-                                                        <PaidInvoice />
-                                                    </span>
-                                                )}
-                                            </a>
+                                    <TableCell component="th" scope="row" className={`onlySVG ${item.icon}`}>
+                                        <a href="#/">
+                                            {item.icon == 'overdue' && (
+                                                <span className="overdue">
+                                                    <Overdue />
+                                                </span>
+                                            )}
+                                            {item.icon == 'pending' && (
+                                                <span className="pending">
+                                                    <UnpaidInvoice />
+                                                </span>
+                                            )}
+                                            {item.icon == 'completed' && (
+                                                <span className="completed">
+                                                    <PaidInvoice />
+                                                </span>
+                                            )}
                                         </a>
                                     </TableCell>
                                     {columnsDropdown.map((clm: any, index: any) => (
@@ -510,7 +490,7 @@ const DataTable = ({
                                             >
                                                 <TableCell
                                                     id="td-element"
-                                                    className="table-cell-tooltip"
+                                                    className={`table-cell-tooltip ${item.icon}`}
                                                     key={`tbl-clm${index}`}
                                                     style={{ width: 160 }}
                                                     align="right"
@@ -520,7 +500,7 @@ const DataTable = ({
                                             </Tooltip>
                                         </>
                                     ))}
-                                    <TableCell style={{ width: 160 }} align="right">
+                                    <TableCell style={{ width: 160 }} align="right" className={`${item.icon}`}>
                                         <ul className="actionButtons">
                                             <Tooltip title="VIEW INVOICE">
                                                 <button
@@ -546,20 +526,9 @@ const DataTable = ({
                                                 </button>
                                             </Tooltip>
                                             <DownloadCdr
-                                                loading={loading}
-                                                setLoading={setLoading}
-                                                loadingInvoice={loadingInvoice}
-                                                setLoadingInvoice={setLoadingInvoice}
                                                 completed={completed}
-                                                setCompleted={setCompleted}
-                                                completedInvoice={completedInvoice}
-                                                setCompletedInvoice={setCompletedInvoice}
-                                                setErrorinDownload={setErrorinDownload}
-                                                setErrorinDownloadInvoice={setErrorinDownloadInvoice}
                                                 item={item}
-                                                arrayData={data}
-
-
+                                                inProgress={inProgress}
                                                 apiAction={handledownloadCdrPdf}
                                                 apiActionPdf={handledownloadPdf}
                                             />

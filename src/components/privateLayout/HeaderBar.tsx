@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl'
 import IconButton from '@mui/material/IconButton'
 import InputBase from '@mui/material/InputBase'
 import LightModeIcon from '@mui/icons-material/LightMode'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
@@ -219,23 +219,23 @@ export const HeaderBar = ({
                                     </div>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose} style={{ paddingTop: '8px' }}>
-                                    <a
-                                        href="/accountdetails"
+                                    <Link
+                                        to="/accountdetails"
                                         className="profile__dropLink userinfo-dropdown"
                                     >
                                         <span className="icon">
                                             <Setting />
                                         </span>
                                         <span className="text">{t<string>('setting')}</span>
-                                    </a>
+                                    </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <a href="/change-password" className="profile__dropLink userinfo-dropdown">
+                                    <Link to="/change-password" className="profile__dropLink userinfo-dropdown">
                                         <span className="icon">
                                             <LockOutlinedIcon />
                                         </span>
                                         <span className="text">{t<string>('changePassword')}</span>
-                                    </a>
+                                    </Link>
                                 </MenuItem>
                                 <MenuItem className="logout-li" onClick={handelLogout} style={{ paddingTop: '12px' }}>
                                     <span className="icon">

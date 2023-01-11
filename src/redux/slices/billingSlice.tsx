@@ -22,13 +22,8 @@ const initialState: any = {
     filterValue: [],
     download: "",
     calOpen: false,
-    downlaodStatus: [
-        {
-            inoviceNumber: '',
-            type: '',
-            status: '',
-        }
-    ]
+    downlaodStatus: [],
+    downloadCRDInprogress: false
 }
 
 export const billingSlice = createSlice({
@@ -84,6 +79,9 @@ export const billingSlice = createSlice({
             state.total = action.payload.total
             state.searchValue = action.payload.searchValue
         },
+        setdownloadCRDInprogress: (state, action) => {
+            state.downloadCRDInprogress = action.payload
+        }
     },
 })
 
@@ -217,20 +215,29 @@ export const viewBillingInvoice = (data: any) => {
 
 
 export const downloadBillingInvoiceCDR = (data: any, callBack: any) => {
-    return async () => {
-        const response = await billing.downloadInvoiceCdr(data)
-        if (response) {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'file.pdf'); //or any other extension
-            document.body.appendChild(link);
-            link.click();
-            callBack(false);
-        } else {
-            callBack(true)
+    dispatch(billingSlice.actions.setdownloadCRDInprogress(true));
+    try {
+        return async () => {
+            const response = await billing.downloadInvoiceCdr(data)
+            if (response) {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'file.pdf'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+                callBack(false);
+                dispatch(billingSlice.actions.setdownloadCRDInprogress(false));
+            } else {
+                callBack(true);
+                dispatch(billingSlice.actions.setdownloadCRDInprogress(false));
+            }
         }
+    } catch {
+        callBack(true);
+        dispatch(billingSlice.actions.setdownloadCRDInprogress(false));
     }
+
 }
 
 export const cardFilter = (element: any, value: any) => {

@@ -70,6 +70,6 @@ const ModalPassChanged = Loadable(lazy(() => import('../components/modals/ModalP
 const ModalTicket = Loadable(lazy(() => import('../components/modals/ModalTicket')))
 const ModalTicketError = Loadable(lazy(() => import('../components/modals/ModalTicketError')))
 const DateFilter = Loadable(lazy(() => import('../components/Date/DateFilter')))
-const CustomerLeFilter = Loadable(lazy(() => import('../components/common/tables/filter-and-sort/CustomerLeFilter')))
+const CustomerLeFilter = Loadable(lazy(() => import('../components/common/tables/filter-and-sort(Not using)/CustomerLeFilter')))
 
 export default Routes

@@ -43,34 +43,29 @@ export const SideBar = ({
     }
 
     React.useEffect(() => {
-        const btn = document.getElementById('sidebar-button')
-        btn?.addEventListener('click',()=>{
-           console.log('clicked')
-        })
-            setIsOpen((pre: any) => (!pre))
-            dispatch(updateWidth())
-            const texts = document.querySelectorAll<HTMLElement>('#link__text')
-            const sidebarLeft = document.querySelector(
-                '#sidebar-left'
-            ) as HTMLElement
-            const text = document.querySelector('#link__text') as HTMLElement
-            if (text.style.display != 'none') {
-                console.log(sidebarLeft.style.width)
-                for (let i = 0; i < texts.length; i++) {
-                    texts[i].style.display = 'none'
-                }
-                sidebarLeft.style.width = 'max-content'
-            } else {
-                console.log(sidebarLeft.style.width)
-                for (let i = 0; i < texts.length; i++) {
-                    texts[i].style.display = 'block'
-                }
-                sidebarLeft.style.width = '300px'
+        setIsOpen((pre: any) => (!pre))
+        dispatch(updateWidth())
+        const texts = document.querySelectorAll<HTMLElement>('#link__text')
+        const sidebarLeft = document.querySelector(
+            '#sidebar-left'
+        ) as HTMLElement
+        const text = document.querySelector('#link__text') as HTMLElement
+        if (text.style.display != 'none') {
+            console.log(sidebarLeft.style.width)
+            for (let i = 0; i < texts.length; i++) {
+                texts[i].style.display = 'none'
             }
+            sidebarLeft.style.width = 'max-content'
+        } else {
+            console.log(sidebarLeft.style.width)
+            for (let i = 0; i < texts.length; i++) {
+                texts[i].style.display = 'block'
+            }
+            sidebarLeft.style.width = '300px'
+        }
         dispatch(reset())
     }, [])
 
-    const [sidebarWidth, setSidebarWidth] = React.useState<boolean>(false);
 
     return (
         <>

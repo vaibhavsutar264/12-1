@@ -114,5 +114,20 @@ declare module 'styled-components' {
         borderRemovingBg: string
         borderRemovingColor: string
         trFirstIcon: string
+        raiseTicketBg: string
+        raiseTicketTypography: string
+        raiseTicketOutlineBtn: string
+        raiseTicketOutlineSpan: string
+        raiseTicketOutlineSpanBorder: string
+        raiseTicketTextareaBg: string
+        raiseTicketTextareaPlaceholder: string
+        raiseTicketTextarea: string
+        actSaveBtn: string
+        legalEntityLabel: string
+        raiseTicketInput: string
+        raiseTicketInputLabel: string
+        langBackground: string
+        
+
     }
 }

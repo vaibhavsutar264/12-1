@@ -2,7 +2,7 @@ import { FormControl, Box, IconButton, InputAdornment, InputLabel, TextField } f
 import useLocales from '../../../hooks/useLocales'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -13,9 +13,20 @@ import ModerateCheck from '../icons/moderateCheck'
 import CheckIcon from '@mui/icons-material/Check'
 import LinearProgress from '@mui/material/LinearProgress'
 import CloseIcon from '@mui/icons-material/Close'
-
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles({
+  underline: {
+    "&&&:before": {
+      borderBottom: "solid 1px"
+    },
+    "&&:after": {
+      borderBottom: "none !important"
+    }
+  }
+});
 export const PrimaryInput = ({ onChange, sxForInput, classNameInput, register, variantForInput, label, formState, fieldName, typeName, onInput, valueForInput, dataTestId, setpassword = false }: any) => {
     const { t } = useLocales();
+    const classes = useStyles();
     const [val, setVal] = useState('');
     const [toolTipOpen, settoolTipOpen] = useState(false)
     const [values, setValues] = useState<any>({ showPassword: (typeName == 'email' || 'text') ? true : false })
@@ -26,6 +37,12 @@ export const PrimaryInput = ({ onChange, sxForInput, classNameInput, register, v
             return "input-wrapper password-checkHide no-margin"
         }
     }
+
+    useEffect(() => {
+        if (typeName === 'password') {
+            setValues({ ...values, showPassword: !values.showPassword })
+        }
+    }, [])
 
     const iconstyle = { opacity: 0.5 }
 
@@ -101,6 +118,7 @@ export const PrimaryInput = ({ onChange, sxForInput, classNameInput, register, v
                     {getIcon()}
                 </InputLabel>
                 <TextField
+                    spellcheck="false"
                     className={classNameInput}
                     id={fieldName}
                     defaultValue={valueForInput}
@@ -146,6 +164,8 @@ export const PrimaryInput = ({ onChange, sxForInput, classNameInput, register, v
                             },
                             'data-testid': dataTestId,
                             autoComplete: 'off',
+                            classes:classes
+                            // disableUnderline: true
                         }
                     }
                 />

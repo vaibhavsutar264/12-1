@@ -36,35 +36,37 @@ ul.actionButtons {
     }
 }
 
-.overdue svg path {
-    fill: rgb(54, 63, 94);
-    stroke: rgb(54, 63, 94);
-}
+.onlySVG {
+    .overdue svg path {
+        fill: rgb(54, 63, 94);
+        stroke: rgb(54, 63, 94);
+    }
 
-.overdue svg circle {
-    stroke: rgb(54, 63, 94);
-    fill: rgb(54, 63, 94);
-}
+    .overdue svg circle {
+        stroke: rgb(54, 63, 94);
+        fill: rgb(54, 63, 94);
+    }
 
 
-.pending svg path {
-    fill: rgb(229, 68, 87);
-    stroke: rgb(229, 68, 87);
-}
+    .pending svg path {
+        fill: rgb(229, 68, 87);
+        stroke: rgb(229, 68, 87);
+    }
 
-.pending svg circle {
-    stroke: rgb(229, 68, 87);
-    fill: rgb(229, 68, 87);
-}
+    .pending svg circle {
+        stroke: rgb(229, 68, 87);
+        fill: rgb(229, 68, 87);
+    }
 
-.completed svg path {
-    fill: rgb(61, 184, 135);
-    stroke: rgb(61, 184, 135);
-}
+    .completed svg path {
+        fill: rgb(61, 184, 135);
+        stroke: rgb(61, 184, 135);
+    }
 
-.completed svg circle {
-    stroke: rgb(61, 184, 135);
-    fill: rgb(61, 184, 135);
+    .completed svg circle {
+        stroke: rgb(61, 184, 135);
+        fill: rgb(61, 184, 135);
+    }
 }
 
 

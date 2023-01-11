@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from 'react'
-// import DateRange from './DateRange'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-
 import { CSVLink } from 'react-csv'
 import { typeVar, billingKeys } from '../../../utils/constants'
 import useLocales from '../../../hooks/useLocales'
 import Export from '../icons/export'
-import { downloadBillingInvoice } from '../../../redux/slices/billingSlice'
-import { dispatch, useSelector } from '../../../redux/store'
-import CustomerLeFilter from './filter-and-sort/CustomerLeFilter'
-import EntityFilter from './filter-and-sort/EntityFilter'
-import InvoiceAmtFilter from './filter-and-sort/InvoiceAmtFilter'
-import InvoiceNoFilter from './filter-and-sort/InvoiceNoFilter'
-import PoNoFilter from './filter-and-sort/PoNoFilter'
-import StatusFilter from './filter-and-sort/StatusFilter'
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import CheckIcon from '@mui/icons-material/Check';
-
-// import { DateRangePicker } from 'react-date-range';
-// import { DateRangePicker } from 'rsuite';
 import { DateSelect } from './DateSelect';
 export const Actions = ({
     data,
@@ -53,17 +40,6 @@ export const Actions = ({
         { label: 'Due date', key: billingKeys.DUE_DATE },
     ]
 
-    const dataFromAllDataTable = () => {
-        // if(!loading) {
-        //     setLoading(true)
-        // }
-        //     // setTimeout(() => {
-        //         setDataStored(data)
-        //         setLoading(false)
-        //         setCompleted(true)
-        //     // }, 1000); 
-        return dataStored
-    }
     const downloadDetails = async () => {
         if (!loading) {
             setLoading(true)
@@ -79,13 +55,9 @@ export const Actions = ({
     }
     const ExportToCsv = {
         filename: 'InvoicesData.csv',
-        // headers: headers,
         data: data
     }
 
-    // const handleDownload = (title: any) => {
-    //     dispatch(downloadBillingInvoice(title))
-    // }
 
     return (
         <div className="action__elements">
@@ -112,12 +84,11 @@ export const Actions = ({
             <div className="action__elementItem">
                 <span className="iconCta">
                     <span className="icon">
-                    {loading?<RotateRightIcon/>:completed? <CheckIcon />: <Export />}
+                        {loading ? <RotateRightIcon /> : completed ? <CheckIcon /> : <Export />}
                     </span>
                     {dataStored && (
                         <CSVLink {...ExportToCsv} className="text" asyncOnClick={true} onClick={downloadDetails} data-testid="csv-link">
-                            {loading ? 'EXPORTING' :completed? 'EXPORT COMPLETE': t<string>('exportToCsv')}
-                            {/* {loading ? 'EXPORTING' : t<string>('exportToCsv')} */}
+                            {loading ? 'EXPORTING' : completed ? 'EXPORT COMPLETE' : t<string>('exportToCsv')}
                         </CSVLink>)}
                 </span>
             </div>

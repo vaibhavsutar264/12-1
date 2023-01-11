@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Box,
     Stack,
@@ -8,12 +8,9 @@ import {
     InputLabel,
     Select,
     MenuItem,
-    SelectChangeEvent,
 } from '@mui/material'
 import { useDispatch, useSelector } from '../../../redux/store'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import useLocales from '../../../hooks/useLocales'
-import AccountInvoice from './AccountInvoice';
 
 
 const AccountDetail = ({
@@ -22,7 +19,6 @@ const AccountDetail = ({
     setsendInvoice,
 }: any) => {
     const { t } = useLocales()
-    const dispatch = useDispatch()
     const [leEntity, setLeEntity] = useState<any>(null)
     const { accountDetails } = useSelector((state: any) => state.account)
 
@@ -34,14 +30,6 @@ const AccountDetail = ({
         } catch { }
     }, [accountDetails.legalentities, setsendInvoice, setLegalEntity])
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const GetLegalEntities = () => {
-        try {
-            return accountDetails.legalentities.map((e: any) => Object.keys(e)[0])
-        } catch {
-            return []
-        }
-    }
     const handleChange = (event: any) => {
         try {
             setLeEntity(accountDetails.legalentities[+event.target.value])
@@ -52,11 +40,6 @@ const AccountDetail = ({
         }
 
     }
-
-    console.log(LegalEntity);
-    console.log("accountDetails", leEntity);
-
-
 
     return (
         <>
@@ -137,11 +120,11 @@ const AccountDetail = ({
 
                             {accountDetails.legalentities.length > 0 && (
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Timezone</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Legal Entity</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    label="Timezone"
+                                    label="Legal Entity"
                                     value={LegalEntity}
                                     onChange={handleChange}
                                 >

@@ -807,9 +807,11 @@
 
     .action__elementItem {
         margin-left: 30px;
+        min-width: 215px;
 
         * {
-            width: max-content;
+            // width: max-content;
+
         }
 
         &#date-picker button {
@@ -840,7 +842,7 @@
         text-transform: uppercase;
         border-bottom: 0px;
         opacity: 1;
-        min-width:147px;
+        min-width: 147px;
         width: 147px;
         max-width: 147px;
         padding-left: 12px;
@@ -975,7 +977,7 @@
             opacity: 1;
 
 
-            background: url('../../images/svg/select-svg.svg') no-repeat 95%;
+            background: url('../../images/svg/downarrow.svg') no-repeat 92%;
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
@@ -1107,6 +1109,7 @@
             &:first-child,
             &:last-child {
                 button {
+                    margin-right: 15px;
                     background: #ffffff;
                     border: 0.5px solid #70707080;
                 }

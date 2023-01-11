@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { BreadCrums } from '../common/elements/BreadCrum'
-import { appRoutes, breadCrums, dataTables } from '../../utils/constants'
-import {
-    useSelector
-} from '../../redux/store'
+import {  breadCrums } from '../../utils/constants'
 import {
     useDispatch as useAppDispatch,
     useSelector as useAppSelector,
 } from '../../redux/store'
 import { Password } from '../../types/authType'
-import { changePassword, forgotPassword, resetForgotPaswordPrms } from '../../redux/slices/authSlice'
+import { changePassword } from '../../redux/slices/authSlice'
 import { Typography } from '@mui/material'
 import {
     Box,
@@ -24,17 +21,12 @@ import { purple } from '@mui/material/colors'
 import useLocales from '../../hooks/useLocales'
 
 import { PrimaryInput } from '../common/elements/PrimaryInput'
-import { validateEmail } from '../../utils/helpers'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { changePasswordSchema, ForgotPasswordSchema } from '../../utils/yupschemas'
 import { base64Encode } from '../../utils/Base64EncodeDecode'
 import { useNavigate } from 'react-router-dom'
 import ModalPassChanged from '../modals/ModalPassChanged'
-
-
-
-
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
@@ -57,15 +49,10 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
     const [newPassval, setNewPassVal] = useState('');
     const [cnfPass, setCnfPass] = useState('');
     const [success, setSuccess] = useState(false)
-    const { isError, isSuccess, message, user, changeMessage } = useAppSelector(
-        (state: any) => state.auth || {}
-    )
+
     const dispatch = useAppDispatch()
     const { t } = useLocales()
 
-    // if (changeMessage === "SUCCESS") {
-    //     navigate(appRoutes.ACCOUNT_DETAILS)
-    // }
     const { register, handleSubmit, formState, control, getValues } = useForm<any>({
         mode: "onChange",
         resolver: yupResolver(changePasswordSchema),
@@ -84,17 +71,11 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
             console.error(error)
         }
     }
-
-    // if (changeMessage === "SUCCESS") {
-    //     navigate(appRoutes.WELCOME)
-    // }
-
     const [open, setOpen] = useState<boolean>(false);
 
     return (
         <div >
             <div className="dashboard__content" style={{
-                // width: `${window.innerWidth - +`${dashBoardWidth}`.split('p')[0]}px`,
                 marginLeft: `${dashBoardWidth}`, width: `calc(100% - ${dashBoardWidth}.split('p')[0]}px`
             }}>
                 <div className="content__header">
@@ -183,7 +164,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                                 fontFamily: 'ubuntu',
                                                 letterSpacing: '-0.72px',
                                             }}
-                                            className={`customBtn-01 ${((newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `}
+                                            className={`customBtn-01 ${((oldPassval !="") && (newPassval != "") && (newPassval == cnfPass) && !formState.errors.newPass) ? 'btn-enable-style' : 'no-pointers'} `}
                                             onClick={() => {
                                                 setOpen(true);
                                             }}
@@ -194,7 +175,7 @@ export const ChangePassword = ({ toggleTheme }: { toggleTheme: any }) => {
                                 </FormGroup>
                             </FormProvider>
                         </Box>
-                        <Button href='./'>Forgot Password?</Button>
+                        <Button href='/forgot-password'>Forgot Password?</Button>
                     </div>
                 </Box>
             </div>
