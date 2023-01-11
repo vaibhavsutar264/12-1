@@ -4,12 +4,12 @@
   display: block;
   padding: 15px;
   margin: auto;
-  color: #9CA6AD;
+  color: #9ca6ad;
   width: 80%;
 }
 
 .no-pointers {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .checkIcon {
@@ -38,7 +38,7 @@
   padding-top: 24px !important;
   padding-bottom: 24px !important;
   flex-basis: 480px !important;
-  background: transparent linear-gradient(297deg, #F57C52 0%, #D63548 100%) 0% 0% no-repeat padding-box !important;
+  background: transparent linear-gradient(297deg, #f57c52 0%, #d63548 100%) 0% 0% no-repeat padding-box !important;
   transition: all 300ms 0ms ease-in !important;
   border-radius: 35px !important;
   color: #fff !important;
@@ -51,23 +51,23 @@
 }
 
 .removeBorder .MuiInputBase-root:before {
-  border-bottom: none !important;
+    border-bottom: none;
 }
 
 .removeBorder {
-  pointer-events: none;
+    pointer-events: none;
 }
 
-.buildfix4 {
-  background-color: unset !important;
-  box-shadow: none !important;
+.MuiTableContainer-root.buildfix4 {
+    background-color: unset;
+    box-shadow: none;
 }
 
 .showDate {
-  border: solid 1px #3448571A;
+  border: solid 1px #3448571a;
   border-radius: 20px;
   padding: 10px;
-  background: #F1F4F9;
+  background: #f1f4f9;
   font-family: ubuntu;
   color: #344857;
   font-weight: 500;
@@ -94,4 +94,14 @@
   top: 13px;
   cursor: pointer;
   right: 55px;
+}
+.ModalErrorIcon {
+  svg {
+    fill: #d63548;
+    height: 203px;
+    width: 90px;
+  }
+  margin-left: auto;
+  margin-right: auto;
+  max-width: unset;
 }

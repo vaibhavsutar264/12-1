@@ -108,13 +108,14 @@ export const { startLoading, hasError } = userSlice.actions
 
 // -----------------------------------------------------------------
 
-export const login = (userData: UserLogin, emailcredential: any, setShowError: any) => {
+export const login = (userData: UserLogin, setShowError: any) => {
   dispatch(userSlice.actions.startLoading())
   return async () => {
     try {
-      const { data }: any = await userLoginData.login(userData)
+      const { data } = await userLoginData.login(userData);
       if (data) {
-        const token: any = data.data.data[apiVrbls.USER.ACCESS_TOKEN]
+        const token: any = data.data.data[apiVrbls.USER.ACCESS_TOKEN];
+        console.log(token)
         if (token) {
           setInLocalStorage(localStorageVar.TOKEN_VAR, token);
           setInLocalStorage(localStorageVar.REFRESH_TOKEN, data.data.data[apiVrbls.USER.ACCESS_TOKEN]);
@@ -124,19 +125,20 @@ export const login = (userData: UserLogin, emailcredential: any, setShowError: a
         dispatch(userSlice.actions.resetPasswordSuccess({ data: "" }))
         if (userInfo && userInfo.data.data) {
           dispatch(userSlice.actions.loginSuccess(userInfo.data.data))
-          dispatch(userSlice.actions.loginCredential(emailcredential))
+          dispatch(userSlice.actions.loginCredential(userData))
           setInLocalStorage(localStorageVar.USER_VAR, token)
         } else {
-          // setShowError(true)
-          toast.error(userInfo.data.message)
+          setShowError(true);
+          // toast.error(userInfo.data.message)
           dispatch(userSlice.actions.hasError(userInfo.data.message))
         }
       }
     } catch (response: any) {
+      setShowError(true)
       const { data = { data: { message: staticErrors.serverInactive } } } = response.response.data;
       dispatch(userSlice.actions.hasError(data))
       setShowError(true)
-      toast.error(data.message)
+      // toast.error(data.message)
     }
   }
 }

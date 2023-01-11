@@ -15,7 +15,7 @@ import {
 } from '@mui/material'
 import { purple } from '@mui/material/colors'
 import useLocales from '../../hooks/useLocales'
-import { getFromLocalStorage } from '../../hooks/useLocalStorage'
+import { getFromLocalStorage, setInLocalStorage } from '../../hooks/useLocalStorage'
 import { apiVrbls, appRoutes, localStorageVar } from '../../utils/constants'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
@@ -25,6 +25,7 @@ import { LoginFormSchema } from '../../utils/yupschemas'
 import SetPassword from '../set-password/SetPassword'
 import { FormProvider, RHFTextField } from '../hook-form'
 import ModalLoginError from '../modals/ModalLoginError'
+import { useTranslation } from 'react-i18next'
 
 
 
@@ -42,12 +43,14 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }))
 
 const Login = () => {
+    const { i18n } = useTranslation()
     const { t } = useLocales()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const { user, isError, isAuthenticated, resetmessage } = useAppSelector((state: any) => state.auth || {})
     const [showError, setShowError] = useState(false)
     const [val, setVal] = useState('')
+
     useEffect(() => {
         if (!isAuthenticated) {
             dispatch(resetLoginParms())
@@ -55,7 +58,7 @@ const Login = () => {
         if (getFromLocalStorage(localStorageVar.TOKEN_VAR) && getFromLocalStorage(localStorageVar.TOKEN_VAR) !== null) {
             if (user) {
                 if (user[apiVrbls.USER.IS_LOGGED_IN_FIRST]) {
-                    // navigate(appRoutes.SET_PASSWORD)
+                    navigate(appRoutes.SET_PASSWORD)
                 } else {
                     navigate(appRoutes.DASHBOARD)
                 }
@@ -68,18 +71,17 @@ const Login = () => {
         resolver: yupResolver(LoginFormSchema),
     });
     const DoLogin = (d: any) => {
-        console.log(d)
         const userDetails: any = {
             email: d.user,
             password: d.password
         }
-
         try {
-            dispatch(login(userDetails, d.user,setShowError))
+            dispatch(login(userDetails, setShowError))
         } catch (error) {
-            console.log(error);
+            console.log(error)
+            error ? setShowError(true) : ""
         }
-        
+
     }
 
     return (
@@ -174,7 +176,7 @@ const Login = () => {
                     </Box>
                 </div>
             </Box>
-            {showError ? <ModalLoginError /> : ""}
+            {showError ? <ModalLoginError showError={showError} setShowError={setShowError} /> : null}
         </>
     )
 }
