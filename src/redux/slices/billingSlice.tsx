@@ -257,7 +257,8 @@ export const ClmSearch = (element: any, value: any) => {
         const f = JSON.parse(JSON.stringify(filterValue));
         if (filterValue.filter((a: any) => a.element == element).length > 0) {
             const p = f.findIndex((a: any) => a.element == element);
-            f[p] = { element: element, values: [value] };
+            console.log(p);
+            f[p] = { element: element, values: [value] }; 
         } else {
             f.push({ element: element, values: [value] })
         }

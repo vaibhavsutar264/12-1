@@ -100,6 +100,13 @@ const ResetPassword = () => {
                     </Box>
                     <Box sx={{ width: 1 }} className="account__form__error">
                         <p className="error__msg">{message && message}</p>
+                        <div style={{ position: 'relative', minHeight: '20px', display: 'flex', justifyContent: 'center',marginTop: '-10px' }}>
+                        {!formState.errors.newPass && !formState.errors.cnfPassword && passval != '' &&
+                            <p className={passval !== cnfPass ? 'CnfPass error' : 'CnfPass success'}>
+                                {passval !== cnfPass ? `${t<string>('bothPasswordMustMatch')}` : `${t<string>('paswordsMatched')}`}
+                            </p>
+                        }
+                    </div>
                     </Box>
                     <Box sx={{ flexGrow: 1 }} className="account__form__body">
                         <FormProvider onSubmit={handleSubmit((d) => resetPass(d))}>
@@ -129,13 +136,6 @@ const ResetPassword = () => {
                                     sxForInput={{ width: 1, borderRadius: '10px !important', border: 'none !important' }}
                                     dataTestId='confirm-password-element'
                                 />
-                                <div style={{ position: 'relative', minHeight: '15px' }}>
-                                    {!formState.errors.newPass && !formState.errors.cnfPassword && passval != '' &&
-                                        <p className={passval !== cnfPass ? 'CnfPass error' : 'CnfPass success'}>
-                                            {passval !== cnfPass ? `${t<string>('bothPasswordMustMatch')}` : `${t<string>('paswordsMatched')}`}
-                                        </p>
-                                    }
-                                </div>
                                 <FormControl
                                     className="input-wrapper submitBtn"
                                     sx={{

@@ -306,6 +306,7 @@ const DataTable = ({
                                                         onClick={(e) => {
                                                             changeActive(item.eleName)
                                                         }}
+                                                        style={{'color':'black'}}
                                                     >
                                                         {item.headTrans}
                                                     </Button>
@@ -348,7 +349,6 @@ const DataTable = ({
                                                                         if (head.search) {
                                                                             const m: any = document.getElementById(`${head.headTrans}${tableName}${head.eleName}`);
                                                                             const p = filterValues.filter((g: any) => g.element == head.eleName);
-
                                                                             if (p.length > 0) {
                                                                                 if (p[0].values[0]) {
                                                                                     m.value = p[0].values[0]

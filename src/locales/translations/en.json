@@ -35,7 +35,7 @@
     "whatsapp": "Whatsapp",
     "loading": "Loading...",
     "bothPasswordMustMatch": "Both passwords must match",
-    "paswordsMatched": "password and confirm password matched",
+    "paswordsMatched": "Password and confirm password matched",
     "enterPassword": "Enter your password",
     "atleastFiveCharPassword": "Password must be at least 5 characters",
     "atleastEightCharPassword": "Password must be at least 8 characters",
