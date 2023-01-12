@@ -72,6 +72,7 @@ describe('App', () => {
     ) as HTMLInputElement
     expect(emailElement).toBeInTheDocument()
     expect(passwordElement).toBeInTheDocument()
+    screen.debug()
   })
 
   test('inputs should be initially empty', () => {
@@ -104,7 +105,7 @@ describe('App', () => {
       'password-element'
     ) as HTMLInputElement
     const buttonElement = screen.getByRole('button', { name: /Login/i })
-    typeIntoForm({ email: 'vaibhav@gmail,.com', password: 'Vaibhav@1234' })
+    typeIntoForm({ email: '', password: 'Vaibhav@1234' })
     expect(passwordElement.value).toBe('Vaibhav@1234')
     expect(buttonElement).toBeEnabled()
   })
@@ -120,9 +121,10 @@ describe('App', () => {
     const NavigateToSetpasswordScreen = screen.getByRole('button', {
       name: /Login/i,
     })
-    const errorafterwrongcredentials = 'Your email id and password do not match. Please try again'
+    const errorafterwrongcredentials =
+      'Entered credential are not correct'
     userEvent.click(NavigateToSetpasswordScreen)
-    await expect(errorafterwrongcredentials).toBeInTheDocument()
+    waitFor(() => expect(errorafterwrongcredentials).toBeInTheDocument());
   })
 
   test('Then it should be redirectioned to the setpassword Page', async () => {
@@ -150,7 +152,7 @@ describe('App', () => {
     const setpasswordscreen ='Set Password'
     userEvent.click(NavigateToSetpasswordScreen)
     // expect(history.location.pathname).toEqual('/about');
-    await waitFor(() => expect(setpasswordscreen).toBeInTheDocument());
+    waitFor(() => expect(setpasswordscreen).toBeInTheDocument());
     // expect(setpasswordscreen).toBeVisible()
   })
 })

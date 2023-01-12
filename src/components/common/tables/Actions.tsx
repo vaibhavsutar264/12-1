@@ -62,8 +62,6 @@ export const Actions = ({
         filename: 'InvoicesData.csv',
         data: dataStored !== null && dataStored
     }
-
-
     return (
         <div className="action__elements">
             <div className="action__elementItem">

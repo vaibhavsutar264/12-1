@@ -102,9 +102,9 @@ describe('App', () => {
     const passwordElement = screen.getByTestId(
       'password-element'
     ) as HTMLInputElement
-    typeIntoForm({ password: 'Vaibhav@123', confirmPassword: 'Vaibhav@' })
+    typeIntoForm({ password: 'Vaibhav@123', confirmPassword: 'Vaibhav@1234' })
     expect(passwordElement.value).toBe('Vaibhav@123')
-    expect(confirmPasswordElement.value).toBe('Vaibhav@')
+    expect(confirmPasswordElement.value).toBe('Vaibhav@1234')
     const NavigateToSetpasswordScreen = screen.getByRole('button', {
       name: /Done/i,
     })

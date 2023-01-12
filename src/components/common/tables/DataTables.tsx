@@ -234,7 +234,6 @@ const DataTable = ({
 
     const changeActive = (item: any) => {
         const i = hiddenClms.indexOf(`${item}`);
-        console.log(hiddenClms);
         if (i == -1) {
             SetHiddentClmns((s: any) => [...s, item]);
         } else {

@@ -26,7 +26,6 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
     const [dateRange, setDateRange] = useState<any>([null, null]);
     const getDate = (dateRange: any) => {
         const s = `${new Date(dateRange).toLocaleDateString()}`.split("/");
-        console.log(`${new Date(dateRange).toLocaleDateString()}`);
         return `${s[2]}-${s[0]}-${s[1]}`
     }
     const dispatch = useAppDispatch();
