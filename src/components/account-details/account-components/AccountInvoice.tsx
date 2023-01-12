@@ -10,7 +10,7 @@ const AccountInvoice = ({ sendInvoice }: any) => {
             {/* 2nd row container starts */}
             {sendInvoice != null &&
                 <Box
-                    className="bd-single-content"
+                    className="bd-single-content account-invoice"
                     sx={{
                         bgcolor: '#fff',
                         height: 1,

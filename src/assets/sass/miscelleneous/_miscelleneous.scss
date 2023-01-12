@@ -85,3 +85,7 @@ body {
     overflow: unset;
     overflow-x: hidden;
 }
+
+html, #root {
+    overflow-y: overlay;
+}

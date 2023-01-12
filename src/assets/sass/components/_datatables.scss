@@ -184,3 +184,14 @@ ul.actionButtons {
 thead th:first-of-type ul[role='menu'] li svg[data-testid="CheckBoxIcon"] path {
     fill: $red;
 }
+
+// Style tooltips
+.MuiTooltip-popper[data-popper-placement*="bottom"] .css-ja5taz-MuiTooltip-tooltip {
+    background-color: #fff;
+    color: #092133;
+    font-family: ubuntu;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid #00000033;
+}

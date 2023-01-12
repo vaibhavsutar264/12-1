@@ -42,7 +42,7 @@ const AccountContact = () => {
                     fontWeight: 700,
                     fontFamily: 'ubuntu',
                     mb: '10px',
-                }}>{t<string>('enterYourEmailID')}</Typography>
+                }}>{t<string>('needHelp')}</Typography>
                 <Typography variant='subtitle1' sx={{
                     textAlign: 'center',
                     color: '#344857',
