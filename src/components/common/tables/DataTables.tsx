@@ -38,6 +38,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Menu as TbMenu, MenuItem as TbMenuItem, MenuButton, ClickEvent } from '@szhsin/react-menu'
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
+import { blue } from '@material-ui/core/colors'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -121,14 +122,17 @@ const DataTable = ({
         setIsHover(false)
     }
 
+    // overdue
     const boxStyle = {
         // border: '2px solid grey',
         // margin: '10px 0px',
     }
+    // pending
     const pendingStyle = {
         // border: '2px solid red',
         // margin: '10px 0px',
     }
+    // completed
     const completedStyle = {
         // border: '2px solid green',
         // margin: '10px 0px',
@@ -456,6 +460,13 @@ const DataTable = ({
                                                         : noStyle
                                             : noStyle
                                     }
+                                    className={item.icon == 'overdue'
+                                    ? 'row-overdue'
+                                    : item.icon == 'pending'
+                                        ? 'row-pending'
+                                        : item.icon == 'completed'
+                                            ? 'row-completed'
+                                            : 'row-unknown'}
                                     onMouseEnter={handleMouseEnter}
                                     onMouseLeave={handleMouseLeave}
                                     id="table-data"

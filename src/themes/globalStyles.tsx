@@ -222,7 +222,7 @@ export const darkTheme = {
   langInvoicesOutTxt: '#fff !important',
   selectEntityLabelBg: '#252f3b !important',
   selectEntityLabel: '#fff',
-  selectEntityBorder: '#fff !important',
+  selectEntityBorder: '#2B3744 !important',
   selectEntityInput: '#fff !important',
   editableInputBorder: '#787785 !important',
   avatarInitialsBg: '#343A47 !important',
