@@ -120,3 +120,20 @@
 .billing-details-input label {
     font-size: 14px;
 }
+
+
+// Style partitian line b/w account detail and account invoice component
+.bd-single-content.account-invoice {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 1px;
+        opacity: 0.3;
+        width: 90%;
+    }
+}

@@ -127,7 +127,6 @@ declare module 'styled-components' {
         raiseTicketInput: string
         raiseTicketInputLabel: string
         langBackground: string
-        
-
+        accountDetailPartitian: string
     }
 }

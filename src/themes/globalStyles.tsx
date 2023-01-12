@@ -125,7 +125,7 @@ export const lightTheme = {
   raiseTicketInput: '#344857',
   raiseTicketInputLabel: '#787785 !important',
   langBackground:  'white !important',
-  
+  accountDetailPartitian: '#344857',
 }
 
 export const darkTheme = {
@@ -222,7 +222,7 @@ export const darkTheme = {
   langInvoicesOutTxt: '#fff !important',
   selectEntityLabelBg: '#252f3b !important',
   selectEntityLabel: '#fff',
-  selectEntityBorder: '#fff !important',
+  selectEntityBorder: '#2B3744 !important',
   selectEntityInput: '#fff !important',
   editableInputBorder: '#787785 !important',
   avatarInitialsBg: '#343A47 !important',
@@ -253,7 +253,8 @@ export const darkTheme = {
   legalEntityLabel: '#787785 !important',
   raiseTicketInput: '#fff',
   raiseTicketInputLabel: '#787785 !important',
-  langBackground: '#252f3b !important'
+  langBackground: '#252f3b !important',
+  accountDetailPartitian: '#fff',
 }
 
 export const GlobalStyles = createGlobalStyle<{ theme: string }>`
@@ -662,5 +663,9 @@ export const GlobalStyles = createGlobalStyle<{ theme: string }>`
     {/* raise ticket input label colors */}
     .raise-ticket-input label {
       color: ${({ theme }) => theme.raiseTicketInputLabel};
+    }
+    {/* account detail partitian color */}
+    .bd-single-content.account-invoice::before {
+      background-color: ${({ theme }) => theme.accountDetailPartitian};
     }
 `
