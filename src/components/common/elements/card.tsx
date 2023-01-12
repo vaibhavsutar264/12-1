@@ -2,11 +2,10 @@ import { useState, useEffect} from 'react';
 import useLocales from '../../../hooks/useLocales';
 import { useDispatch } from '../../../redux/store'
 
-const Card = ({ data, id }: any) => {
+const Card = ({ cardData,data, id }: any) => {
   const { t } = useLocales()
     const dispatch = useDispatch();
     const [active, setActive] = useState(data.titel)
-
     const handleClick = (event : any) => {
         dispatch(data.action)
       };

@@ -69,6 +69,9 @@ const AccountAvatar = () => {
         setEditable(!false)
     }
 
+    const DefaultStateHandle = (event: SyntheticEvent) => {
+        // event.isDefaultPrevented()
+    }
     const handleChange = (event: SelectChangeEvent) => {
         setCommunication(event.target.value as string)
     }
@@ -241,6 +244,7 @@ const AccountAvatar = () => {
                                     id="demo-simple-select"
                                     value={communication}
                                     label="Communication"
+                                    onClick={DefaultStateHandle}
                                     onChange={handleChange}
                                 >
                                     <MenuItem value='phone'>Phone</MenuItem>

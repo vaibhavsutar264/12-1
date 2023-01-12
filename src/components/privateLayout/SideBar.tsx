@@ -178,7 +178,6 @@ export const SideBar = ({
                         ) as HTMLElement
                         const text = document.querySelector('#link__text') as HTMLElement
                         if (text.style.display != 'none') {
-                            console.log(sidebarLeft.style.width)
                             for (let i = 0; i < texts.length; i++) {
                                 texts[i].style.display = 'none'
                             }

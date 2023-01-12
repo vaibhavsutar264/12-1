@@ -74,7 +74,7 @@ export const Billing = ({ toggleTheme }: { toggleTheme: any }) => {
                     <PageSearch searchFn={searchData} searchPlaceholder='searchInvoiceNoEntity' />
                 </div>
                 <div id="main-div" className="card-wrapper-1">
-                    {cards.map((q: any, i: any) => <Card data={q} key={i} />)}
+                    {cards.map((q: any, i: any) => <Card cardData={cards} data={q} key={i} />)}
                 </div >
                 <DataTable
                     handledownloadViewpdf={viewBillingInvoice}

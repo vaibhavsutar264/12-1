@@ -50,12 +50,17 @@ export const Actions = ({
                 setLoading(false)
                 setCompleted(true)
             }, 1000);
+            setTimeout(() => {
+                // setDataStored(data)
+                // setLoading(false)
+                setCompleted(false)
+            }, 2000);
         }
         return dataStored
     }
     const ExportToCsv = {
         filename: 'InvoicesData.csv',
-        data: data
+        data: dataStored !== null && dataStored
     }
 
 
